@@ -39,6 +39,7 @@
             this.btnlogout = new FontAwesome.Sharp.IconButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toplbl = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panelmenu.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -85,6 +86,7 @@
             this.btndashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btndashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btndashboard.UseVisualStyleBackColor = false;
+            this.btndashboard.Click += new System.EventHandler(this.btndashboard_Click);
             // 
             // btninventory
             // 
@@ -109,6 +111,7 @@
             this.btninventory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btninventory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btninventory.UseVisualStyleBackColor = false;
+            this.btninventory.Click += new System.EventHandler(this.btninventory_Click);
             // 
             // btnsales
             // 
@@ -277,12 +280,21 @@
             this.toplbl.Text = "Home";
             this.toplbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(270, 84);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1042, 649);
+            this.panel2.TabIndex = 10;
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(239)))), ((int)(((byte)(236)))));
             this.ClientSize = new System.Drawing.Size(1312, 733);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelmenu);
             this.Name = "Dashboard";
@@ -308,6 +320,7 @@
         private FontAwesome.Sharp.IconButton btnlogout;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label toplbl;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 

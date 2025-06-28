@@ -16,7 +16,7 @@ namespace TechStore
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Inventoryform());
+            Application.Run(new Dashboard());
         }
     }
 }

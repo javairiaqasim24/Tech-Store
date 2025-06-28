@@ -26,5 +26,10 @@ namespace TechStore
         {
 
         }
+
+        private void btndashboard_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
