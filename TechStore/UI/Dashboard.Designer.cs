@@ -300,6 +300,7 @@
             this.Name = "Dashboard";
             this.Text = "Form1";
             this.TopMost = true;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelmenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
