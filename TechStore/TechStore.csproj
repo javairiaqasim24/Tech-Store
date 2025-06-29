@@ -190,5 +190,14 @@
   <ItemGroup>
     <None Include="Resources\DALLE2025-02-2502.03.20-ThetextITECwritteninasimpleboldandmodernfontwithnobackground.Thetextshouldbecleanandminimalisticwithoutanyextradesignele-ezgif.com-webp-to-jpg-converter.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ChatGPT Image Jun 28, 2025, 10_13_36 PM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Screenshot 2025-06-28 221639.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Screenshot 2025-06-28 221639-Photoroom.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

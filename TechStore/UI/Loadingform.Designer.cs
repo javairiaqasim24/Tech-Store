@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Loadingform));
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.btndelete = new System.Windows.Forms.Button();
             this.btnedit = new System.Windows.Forms.Button();
@@ -44,14 +42,12 @@
             this.btncategory = new FontAwesome.Sharp.IconButton();
             this.btnproducts = new FontAwesome.Sharp.IconButton();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(239)))), ((int)(((byte)(236)))));
-            this.panel2.Controls.Add(this.dataGridView2);
             this.panel2.Controls.Add(this.pictureBox10);
             this.panel2.Controls.Add(this.btndelete);
             this.panel2.Controls.Add(this.btnedit);
@@ -68,31 +64,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1306, 775);
             this.panel2.TabIndex = 10;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Linen;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Lime;
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView2.BackgroundColor = System.Drawing.Color.AliceBlue;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.GridColor = System.Drawing.SystemColors.AppWorkspace;
-            this.dataGridView2.Location = new System.Drawing.Point(12, 133);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView2.Size = new System.Drawing.Size(1263, 474);
-            this.dataGridView2.TabIndex = 103;
             // 
             // pictureBox10
             // 
@@ -292,7 +263,6 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.ResumeLayout(false);
 
@@ -301,7 +271,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.Button btndelete;
         private System.Windows.Forms.Button btnedit;

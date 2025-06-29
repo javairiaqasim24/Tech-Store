@@ -17,10 +17,14 @@ namespace TechStore
         private Form activeForm = null;
         private IconButton currentBtn;
 
+        public static Dashboard Instance { get; private set; }
+
         public Dashboard()
         {
             InitializeComponent();
+            Instance = this;
         }
+
 
         private void btninventory_Click(object sender, EventArgs e)
         {
@@ -29,7 +33,7 @@ namespace TechStore
         }
 
 
-        private async void LoadFormIntoPanel(Form newForm)
+       public async void LoadFormIntoPanel(Form newForm)
         {
             if (activeForm != null)
             {
