@@ -23,6 +23,7 @@ namespace TechStore
         {
             InitializeComponent();
             Instance = this;
+         
         }
 
 

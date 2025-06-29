@@ -17,7 +17,10 @@ namespace TechStore
         public Inventoryform()
         {
             InitializeComponent();
+            paneledit.BackColor = Color.FromArgb(150, 255, 255, 255); // Frosty white with transparency
+
             paneledit.Visible = false;
+
         }
 
         private void button9_Click(object sender, EventArgs e)
