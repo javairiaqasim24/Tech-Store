@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inventoryform));
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.toplbl = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
@@ -43,10 +45,34 @@
             this.btnlogs = new FontAwesome.Sharp.IconButton();
             this.btncategory = new FontAwesome.Sharp.IconButton();
             this.btnproducts = new FontAwesome.Sharp.IconButton();
+            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
+            this.panel1.Controls.Add(this.toplbl);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1312, 84);
+            this.panel1.TabIndex = 11;
+            // 
+            // toplbl
+            // 
+            this.toplbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.toplbl.AutoSize = true;
+            this.toplbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toplbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.toplbl.Location = new System.Drawing.Point(538, 26);
+            this.toplbl.Name = "toplbl";
+            this.toplbl.Size = new System.Drawing.Size(160, 38);
+            this.toplbl.TabIndex = 6;
+            this.toplbl.Text = "Inventory";
+            this.toplbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
             // 
@@ -64,19 +90,19 @@
             this.panel2.Controls.Add(this.btncategory);
             this.panel2.Controls.Add(this.btnproducts);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Location = new System.Drawing.Point(0, 84);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1312, 792);
-            this.panel2.TabIndex = 9;
+            this.panel2.Size = new System.Drawing.Size(1312, 708);
+            this.panel2.TabIndex = 12;
             // 
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Linen;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Lime;
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Linen;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Lime;
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -91,7 +117,7 @@
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView2.Size = new System.Drawing.Size(1269, 491);
+            this.dataGridView2.Size = new System.Drawing.Size(1269, 407);
             this.dataGridView2.TabIndex = 103;
             // 
             // pictureBox10
@@ -173,7 +199,6 @@
             this.button9.TabIndex = 98;
             this.button9.Text = "Search";
             this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // textBox1
             // 
@@ -288,8 +313,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1312, 792);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Name = "Inventoryform";
             this.Text = "Inventoryform";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -299,11 +327,11 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label toplbl;
         private System.Windows.Forms.Panel panel2;
-        private FontAwesome.Sharp.IconButton btnstate;
-        private FontAwesome.Sharp.IconButton btnlogs;
-        private FontAwesome.Sharp.IconButton btncategory;
-        private FontAwesome.Sharp.IconButton btnproducts;
+        private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.Button btndelete;
         private System.Windows.Forms.Button btnedit;
@@ -311,6 +339,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private FontAwesome.Sharp.IconButton btnstate;
+        private FontAwesome.Sharp.IconButton btnlogs;
+        private FontAwesome.Sharp.IconButton btncategory;
+        private FontAwesome.Sharp.IconButton btnproducts;
     }
 }
