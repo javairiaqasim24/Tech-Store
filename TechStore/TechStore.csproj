@@ -167,9 +167,18 @@
     <Compile Include="UI\Loadingform.Designer.cs">
       <DependentUpon>Loadingform.cs</DependentUpon>
     </Compile>
+<<<<<<< Updated upstream
     <EmbeddedResource Include="UI\Addproductform.resx">
       <DependentUpon>addproductform.cs</DependentUpon>
     </EmbeddedResource>
+=======
+    <Compile Include="UI\orders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\orders.Designer.cs">
+      <DependentUpon>orders.cs</DependentUpon>
+    </Compile>
+>>>>>>> Stashed changes
     <EmbeddedResource Include="UI\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,6 +200,9 @@
     </Compile>
     <EmbeddedResource Include="UI\Loadingform.resx">
       <DependentUpon>Loadingform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\orders.resx">
+      <DependentUpon>orders.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
