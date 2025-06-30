@@ -24,8 +24,6 @@ namespace TechStore.UI
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
             this.UpdateStyles();
             this.Load += HomeContentform_Load;
-
-            // After InitializeComponent or in Form_Load
             chart1.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
             chart1.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
         }
@@ -37,14 +35,14 @@ namespace TechStore.UI
             get
             {
                 CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000; // WS_EX_COMPOSITED
+                cp.ExStyle |= 0x02000000; 
                 return cp;
             }
         }
 
         private void HomeContentform_Load(object sender, EventArgs e)
         {
-//            
+       
         }
     }
 }

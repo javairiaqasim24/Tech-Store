@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toplbl = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -130,7 +130,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(3, 114);
+            this.label2.Location = new System.Drawing.Point(3, 110);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 81);
             this.label2.TabIndex = 2;
@@ -139,13 +139,13 @@
             // iconPictureBox4
             // 
             this.iconPictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconPictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(67)))));
+            this.iconPictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.iconPictureBox4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.iconPictureBox4.IconChar = FontAwesome.Sharp.IconChar.Newspaper;
             this.iconPictureBox4.IconColor = System.Drawing.SystemColors.ButtonHighlight;
             this.iconPictureBox4.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox4.IconSize = 55;
-            this.iconPictureBox4.Location = new System.Drawing.Point(258, 3);
+            this.iconPictureBox4.Location = new System.Drawing.Point(251, 3);
             this.iconPictureBox4.Name = "iconPictureBox4";
             this.iconPictureBox4.Size = new System.Drawing.Size(56, 55);
             this.iconPictureBox4.TabIndex = 1;
@@ -164,14 +164,15 @@
             // 
             // panel7
             // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(67)))));
+            this.panel7.BackColor = System.Drawing.Color.CadetBlue;
             this.panel7.Controls.Add(this.label11);
             this.panel7.Controls.Add(this.iconPictureBox6);
             this.panel7.Controls.Add(this.label12);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(326, 214);
+            this.panel7.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(317, 195);
+            this.panel7.Size = new System.Drawing.Size(310, 195);
             this.panel7.TabIndex = 9;
             // 
             // label11
@@ -189,13 +190,13 @@
             // iconPictureBox6
             // 
             this.iconPictureBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconPictureBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(67)))));
+            this.iconPictureBox6.BackColor = System.Drawing.Color.Transparent;
             this.iconPictureBox6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.iconPictureBox6.IconChar = FontAwesome.Sharp.IconChar.Newspaper;
+            this.iconPictureBox6.IconChar = FontAwesome.Sharp.IconChar.Laptop;
             this.iconPictureBox6.IconColor = System.Drawing.SystemColors.ButtonHighlight;
             this.iconPictureBox6.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox6.IconSize = 55;
-            this.iconPictureBox6.Location = new System.Drawing.Point(258, 3);
+            this.iconPictureBox6.Location = new System.Drawing.Point(251, 3);
             this.iconPictureBox6.Name = "iconPictureBox6";
             this.iconPictureBox6.Size = new System.Drawing.Size(56, 55);
             this.iconPictureBox6.TabIndex = 1;
@@ -214,7 +215,6 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -231,13 +231,14 @@
             // 
             // panel10
             // 
-            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(82)))), ((int)(((byte)(147)))));
+            this.panel10.BackColor = System.Drawing.Color.SeaGreen;
             this.panel10.Controls.Add(this.pieChart1);
             this.panel10.Controls.Add(this.label17);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(4, 4);
+            this.panel10.Location = new System.Drawing.Point(3, 10);
+            this.panel10.Margin = new System.Windows.Forms.Padding(3, 10, 10, 3);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(638, 349);
+            this.panel10.Size = new System.Drawing.Size(633, 344);
             this.panel10.TabIndex = 0;
             // 
             // pieChart1
@@ -245,7 +246,7 @@
             this.pieChart1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pieChart1.Location = new System.Drawing.Point(0, 36);
             this.pieChart1.Name = "pieChart1";
-            this.pieChart1.Size = new System.Drawing.Size(638, 313);
+            this.pieChart1.Size = new System.Drawing.Size(633, 308);
             this.pieChart1.TabIndex = 1;
             this.pieChart1.Text = "pieChart1";
             // 
@@ -264,38 +265,39 @@
             // 
             // panel11
             // 
-            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(82)))), ((int)(((byte)(147)))));
+            this.panel11.BackColor = System.Drawing.Color.Teal;
             this.panel11.Controls.Add(this.chart1);
             this.panel11.Controls.Add(this.label18);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel11.Location = new System.Drawing.Point(649, 4);
+            this.panel11.Location = new System.Drawing.Point(649, 10);
+            this.panel11.Margin = new System.Windows.Forms.Padding(3, 10, 10, 3);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(639, 349);
+            this.panel11.Size = new System.Drawing.Size(633, 344);
             this.panel11.TabIndex = 1;
             // 
             // chart1
             // 
-            this.chart1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(82)))), ((int)(((byte)(147)))));
+            this.chart1.BackColor = System.Drawing.Color.Teal;
             this.chart1.BorderlineWidth = 6;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            legend4.Name = "Legend1";
+            this.chart1.Legends.Add(legend4);
             this.chart1.Location = new System.Drawing.Point(0, 36);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series1.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.Center;
-            series1.BorderWidth = 5;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Legend1";
-            series1.MarkerBorderColor = System.Drawing.Color.OrangeRed;
-            series1.MarkerBorderWidth = 3;
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(639, 313);
+            series4.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.Center;
+            series4.BorderWidth = 5;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.IsVisibleInLegend = false;
+            series4.Legend = "Legend1";
+            series4.MarkerBorderColor = System.Drawing.Color.OrangeRed;
+            series4.MarkerBorderWidth = 3;
+            series4.Name = "Series1";
+            this.chart1.Series.Add(series4);
+            this.chart1.Size = new System.Drawing.Size(633, 308);
             this.chart1.TabIndex = 2;
             this.chart1.Text = "chart1";
             // 
@@ -318,7 +320,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label3.Location = new System.Drawing.Point(3, 114);
+            this.label3.Location = new System.Drawing.Point(3, 107);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(70, 81);
             this.label3.TabIndex = 2;
@@ -351,15 +353,16 @@
             // 
             // panel9
             // 
-            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(67)))));
+            this.panel9.BackColor = System.Drawing.Color.Purple;
             this.panel9.Controls.Add(this.label15);
             this.panel9.Controls.Add(this.iconPictureBox8);
             this.panel9.Controls.Add(this.label16);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(972, 214);
+            this.panel9.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.panel9.Name = "panel9";
             this.panel9.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.panel9.Size = new System.Drawing.Size(317, 195);
+            this.panel9.Size = new System.Drawing.Size(310, 195);
             this.panel9.TabIndex = 11;
             // 
             // label15
@@ -377,13 +380,13 @@
             // iconPictureBox8
             // 
             this.iconPictureBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconPictureBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(67)))));
+            this.iconPictureBox8.BackColor = System.Drawing.Color.Transparent;
             this.iconPictureBox8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.iconPictureBox8.IconChar = FontAwesome.Sharp.IconChar.Newspaper;
+            this.iconPictureBox8.IconChar = FontAwesome.Sharp.IconChar.Print;
             this.iconPictureBox8.IconColor = System.Drawing.SystemColors.ButtonHighlight;
             this.iconPictureBox8.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox8.IconSize = 55;
-            this.iconPictureBox8.Location = new System.Drawing.Point(258, 13);
+            this.iconPictureBox8.Location = new System.Drawing.Point(251, 13);
             this.iconPictureBox8.Name = "iconPictureBox8";
             this.iconPictureBox8.Size = new System.Drawing.Size(56, 55);
             this.iconPictureBox8.TabIndex = 1;
@@ -394,22 +397,23 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label16.Location = new System.Drawing.Point(17, 23);
+            this.label16.Location = new System.Drawing.Point(17, 24);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(138, 25);
+            this.label16.Size = new System.Drawing.Size(112, 25);
             this.label16.TabIndex = 0;
-            this.label16.Text = "Best Computer";
+            this.label16.Text = "Best Printer";
             // 
             // panel8
             // 
-            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(67)))));
+            this.panel8.BackColor = System.Drawing.Color.SteelBlue;
             this.panel8.Controls.Add(this.label13);
             this.panel8.Controls.Add(this.iconPictureBox7);
             this.panel8.Controls.Add(this.label14);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(649, 214);
+            this.panel8.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(317, 195);
+            this.panel8.Size = new System.Drawing.Size(310, 195);
             this.panel8.TabIndex = 10;
             // 
             // label13
@@ -427,13 +431,13 @@
             // iconPictureBox7
             // 
             this.iconPictureBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconPictureBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(67)))));
+            this.iconPictureBox7.BackColor = System.Drawing.Color.Transparent;
             this.iconPictureBox7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.iconPictureBox7.IconChar = FontAwesome.Sharp.IconChar.Newspaper;
+            this.iconPictureBox7.IconChar = FontAwesome.Sharp.IconChar.DesktopAlt;
             this.iconPictureBox7.IconColor = System.Drawing.SystemColors.ButtonHighlight;
             this.iconPictureBox7.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox7.IconSize = 55;
-            this.iconPictureBox7.Location = new System.Drawing.Point(258, 3);
+            this.iconPictureBox7.Location = new System.Drawing.Point(251, 3);
             this.iconPictureBox7.Name = "iconPictureBox7";
             this.iconPictureBox7.Size = new System.Drawing.Size(56, 55);
             this.iconPictureBox7.TabIndex = 1;
@@ -452,14 +456,15 @@
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(67)))));
+            this.panel6.BackColor = System.Drawing.Color.LightSeaGreen;
             this.panel6.Controls.Add(this.label9);
             this.panel6.Controls.Add(this.iconPictureBox5);
             this.panel6.Controls.Add(this.label10);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(3, 214);
+            this.panel6.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(317, 195);
+            this.panel6.Size = new System.Drawing.Size(310, 195);
             this.panel6.TabIndex = 8;
             // 
             // label9
@@ -477,13 +482,13 @@
             // iconPictureBox5
             // 
             this.iconPictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconPictureBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(67)))));
+            this.iconPictureBox5.BackColor = System.Drawing.Color.Transparent;
             this.iconPictureBox5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.iconPictureBox5.IconChar = FontAwesome.Sharp.IconChar.Newspaper;
+            this.iconPictureBox5.IconChar = FontAwesome.Sharp.IconChar.MoneyBillAlt;
             this.iconPictureBox5.IconColor = System.Drawing.SystemColors.ButtonHighlight;
             this.iconPictureBox5.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox5.IconSize = 55;
-            this.iconPictureBox5.Location = new System.Drawing.Point(258, 3);
+            this.iconPictureBox5.Location = new System.Drawing.Point(251, 3);
             this.iconPictureBox5.Name = "iconPictureBox5";
             this.iconPictureBox5.Size = new System.Drawing.Size(56, 55);
             this.iconPictureBox5.TabIndex = 1;
@@ -502,14 +507,15 @@
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(67)))));
+            this.panel5.BackColor = System.Drawing.Color.Orange;
             this.panel5.Controls.Add(this.label7);
             this.panel5.Controls.Add(this.iconPictureBox4);
             this.panel5.Controls.Add(this.label8);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(972, 13);
+            this.panel5.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(317, 195);
+            this.panel5.Size = new System.Drawing.Size(310, 188);
             this.panel5.TabIndex = 7;
             // 
             // label7
@@ -518,7 +524,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label7.Location = new System.Drawing.Point(3, 114);
+            this.label7.Location = new System.Drawing.Point(3, 107);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(70, 81);
             this.label7.TabIndex = 2;
@@ -537,14 +543,15 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(67)))));
+            this.panel3.BackColor = System.Drawing.Color.Red;
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.iconPictureBox3);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(649, 13);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(317, 195);
+            this.panel3.Size = new System.Drawing.Size(310, 188);
             this.panel3.TabIndex = 6;
             // 
             // label5
@@ -553,7 +560,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label5.Location = new System.Drawing.Point(3, 114);
+            this.label5.Location = new System.Drawing.Point(3, 107);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(70, 81);
             this.label5.TabIndex = 2;
@@ -562,13 +569,13 @@
             // iconPictureBox3
             // 
             this.iconPictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconPictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(67)))));
+            this.iconPictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.iconPictureBox3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.Newspaper;
+            this.iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.ScrewdriverWrench;
             this.iconPictureBox3.IconColor = System.Drawing.SystemColors.ButtonHighlight;
             this.iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox3.IconSize = 55;
-            this.iconPictureBox3.Location = new System.Drawing.Point(258, 3);
+            this.iconPictureBox3.Location = new System.Drawing.Point(251, 3);
             this.iconPictureBox3.Name = "iconPictureBox3";
             this.iconPictureBox3.Size = new System.Drawing.Size(56, 55);
             this.iconPictureBox3.TabIndex = 1;
@@ -587,26 +594,27 @@
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(67)))));
+            this.panel4.BackColor = System.Drawing.Color.DarkSlateGray;
             this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.iconPictureBox1);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(326, 13);
+            this.panel4.Margin = new System.Windows.Forms.Padding(3, 3, 10, 7);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(317, 195);
+            this.panel4.Size = new System.Drawing.Size(310, 191);
             this.panel4.TabIndex = 5;
             // 
             // iconPictureBox1
             // 
             this.iconPictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(67)))));
+            this.iconPictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.iconPictureBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Newspaper;
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Coins;
             this.iconPictureBox1.IconColor = System.Drawing.SystemColors.ButtonHighlight;
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox1.IconSize = 55;
-            this.iconPictureBox1.Location = new System.Drawing.Point(258, 3);
+            this.iconPictureBox1.Location = new System.Drawing.Point(251, 3);
             this.iconPictureBox1.Name = "iconPictureBox1";
             this.iconPictureBox1.Size = new System.Drawing.Size(56, 55);
             this.iconPictureBox1.TabIndex = 1;
@@ -625,26 +633,27 @@
             // 
             // panel14
             // 
-            this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(67)))));
+            this.panel14.BackColor = System.Drawing.Color.SeaGreen;
             this.panel14.Controls.Add(this.label3);
             this.panel14.Controls.Add(this.iconPictureBox2);
             this.panel14.Controls.Add(this.label4);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel14.Location = new System.Drawing.Point(3, 13);
+            this.panel14.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(317, 195);
+            this.panel14.Size = new System.Drawing.Size(310, 188);
             this.panel14.TabIndex = 4;
             // 
             // iconPictureBox2
             // 
             this.iconPictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconPictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(67)))));
+            this.iconPictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.iconPictureBox2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.Newspaper;
+            this.iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.BoxesStacked;
             this.iconPictureBox2.IconColor = System.Drawing.SystemColors.ButtonHighlight;
             this.iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox2.IconSize = 55;
-            this.iconPictureBox2.Location = new System.Drawing.Point(258, 3);
+            this.iconPictureBox2.Location = new System.Drawing.Point(251, 3);
             this.iconPictureBox2.Name = "iconPictureBox2";
             this.iconPictureBox2.Size = new System.Drawing.Size(56, 55);
             this.iconPictureBox2.TabIndex = 1;
@@ -652,6 +661,7 @@
             // 
             // panel2
             // 
+            this.panel2.AutoScroll = true;
             this.panel2.Controls.Add(this.tableLayoutPanel2);
             this.panel2.Controls.Add(this.tableLayoutPanel1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -666,6 +676,7 @@
             this.panel15.Controls.Add(this.panel2);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel15.Location = new System.Drawing.Point(0, 84);
+            this.panel15.Margin = new System.Windows.Forms.Padding(3, 10, 10, 3);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(1312, 779);
             this.panel15.TabIndex = 11;
