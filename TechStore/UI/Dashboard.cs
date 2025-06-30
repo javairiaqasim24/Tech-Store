@@ -1,4 +1,5 @@
 ﻿using FontAwesome.Sharp;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,7 +31,8 @@ namespace TechStore
         private void btninventory_Click(object sender, EventArgs e)
         {
             activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
-            LoadFormIntoPanel(new Inventoryform());
+            var f =Program.ServiceProvider.GetRequiredService<Inventoryform>();
+            LoadFormIntoPanel(f);
         }
 
 
