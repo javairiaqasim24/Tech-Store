@@ -9,7 +9,7 @@ using TechStore.Interfaces.DLInterfaces;
 
 namespace TechStore.BL.BL
 {
-    public class ProductBL:IproductBl
+    public class ProductBL : IproductBl
     {
         private readonly IproductDl _productDl;
         public ProductBL(IproductDl productDl)
@@ -38,7 +38,7 @@ namespace TechStore.BL.BL
         }
         public bool UpdateProduct(Products p)
         {
-            if(p == null)
+            if (p == null)
             {
                 throw new ArgumentNullException(nameof(p), "Product cannot be null");
             }
@@ -77,12 +77,27 @@ namespace TechStore.BL.BL
                 throw new Exception("Error retrieving products: " + ex.Message, ex);
             }
         }
-        public List<string> getcategories()
+        public List<string> getcategories(string name)
         {
-           try { return _productDl.getcategories(); }
+            try { return _productDl.getcategories(name); }
             catch (Exception ex)
             {
                 throw new Exception("Error retrieving categories: " + ex.Message, ex);
+            }
+        }
+        public List<Products> searchproducts(string text)
+        {
+            //if (string.IsNullOrWhiteSpace(text))
+            //{
+            //    throw new ArgumentException("Search text cannot be null or empty", nameof(text));
+            //}
+            try
+            {
+                return _productDl.searchproducts(text);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error searching products: " + ex.Message, ex);
             }
         }
     }

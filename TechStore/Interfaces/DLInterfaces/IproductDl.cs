@@ -13,6 +13,8 @@ namespace TechStore.Interfaces.DLInterfaces
         bool UpdateProduct(Products p);
         bool DeleteProduct(int id);
         List<Products> getproducts();
-        List<string> getcategories();
+        List<string> getcategories(string name);
+        List<Products> searchproducts(string text);
+
     }
 }

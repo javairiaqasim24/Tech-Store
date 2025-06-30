@@ -135,6 +135,12 @@
     <Compile Include="Interfaces\DLInterfaces\IproductDl.cs" />
     <Compile Include="Service Provider\BLServiceProvider.cs" />
     <Compile Include="Service Provider\DLServiceProvider.cs" />
+    <Compile Include="UI\addproductform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\addproductform.Designer.cs">
+      <DependentUpon>addproductform.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,11 +153,11 @@
     <Compile Include="UI\HomeContentform.Designer.cs">
       <DependentUpon>HomeContentform.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Inventoryform.cs">
+    <Compile Include="UI\productsform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Inventoryform.Designer.cs">
-      <DependentUpon>Inventoryform.cs</DependentUpon>
+    <Compile Include="UI\productsform.Designer.cs">
+      <DependentUpon>productsform.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -161,14 +167,17 @@
     <Compile Include="UI\Loadingform.Designer.cs">
       <DependentUpon>Loadingform.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\Addproductform.resx">
+      <DependentUpon>addproductform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\HomeContentform.resx">
       <DependentUpon>HomeContentform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Inventoryform.resx">
-      <DependentUpon>Inventoryform.cs</DependentUpon>
+    <EmbeddedResource Include="UI\productsform.resx">
+      <DependentUpon>productsform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

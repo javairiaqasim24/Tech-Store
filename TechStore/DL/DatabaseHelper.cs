@@ -72,7 +72,7 @@ namespace KIMS
 throw new Exception("Error retrieving category ID: " + ex.Message);
             }
         }
-        public static List<string> GetCategories()
+        public static List<string> GetCategories(string keyword)
         {
             List<string> categories = new List<string>();
             try
@@ -80,9 +80,11 @@ throw new Exception("Error retrieving category ID: " + ex.Message);
                 using (var conn = GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT name FROM categories;";
+                    string query = "SELECT name FROM categories WHERE name LIKE @keyword;";
                     using (var cmd = new MySqlCommand(query, conn))
                     {
+                        cmd.Parameters.AddWithValue("@keyword", $"%{keyword}%");
+
                         using (var reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -99,5 +101,6 @@ throw new Exception("Error retrieving category ID: " + ex.Message);
             }
             return categories;
         }
+
     }
 }

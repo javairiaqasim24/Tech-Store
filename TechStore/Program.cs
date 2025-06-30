@@ -29,16 +29,16 @@ namespace TechStore
             Application.Run(mainForm);
         }
         public static void configureServices(IServiceCollection services)
-        {//DL
+        {
+            //DL
             services.AddScoped<IproductDl, ProductDL>();
             //BL
             services.AddScoped<TechStore.Interfaces.BLInterfaces.IproductBl, TechStore.BL.BL.ProductBL>();
             //forms
             services.AddTransient<HomeContentform>();
             services.AddTransient<Dashboard>();
-            //services.AddScoped<Addproductform>();
-            services.AddTransient<Inventoryform>();
-
+            services.AddTransient<addproductform>();
+            services.AddTransient<productsform>();
         }
     }
 }

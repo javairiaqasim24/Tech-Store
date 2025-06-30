@@ -31,7 +31,7 @@ namespace TechStore
         private void btninventory_Click(object sender, EventArgs e)
         {
             activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
-            var f =Program.ServiceProvider.GetRequiredService<Inventoryform>();
+            var f =Program.ServiceProvider.GetRequiredService<productsform>();
             LoadFormIntoPanel(f);
         }
 
