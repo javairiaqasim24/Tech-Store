@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TechStore.BL.BL;
 using TechStore.DL;
+using TechStore.Interfaces;
+using TechStore.Interfaces.BLInterfaces;
 using TechStore.Interfaces.DLInterfaces;
 using TechStore.UI;
 
@@ -32,13 +35,19 @@ namespace TechStore
         {
             //DL
             services.AddScoped<IproductDl, ProductDL>();
+            services.AddScoped<IsupplierDl, SupplierDl>();
             //BL
             services.AddScoped<TechStore.Interfaces.BLInterfaces.IproductBl, TechStore.BL.BL.ProductBL>();
+            services.AddScoped<IPersonFactory, PersonFactory>();
+            services.AddScoped<ISupplierBL, SupplierBl>();
+
             //forms
             services.AddTransient<HomeContentform>();
             services.AddTransient<Dashboard>();
             services.AddTransient<addproductform>();
             services.AddTransient<productsform>();
+            services.AddTransient<Supplierform>();
+            services.AddTransient<Addsupplierform>();
         }
     }
 }

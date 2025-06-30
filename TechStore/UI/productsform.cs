@@ -138,7 +138,7 @@ namespace TechStore
             }
 
         }
-        private void ShowEditPanel()
+        public  void ShowEditPanel()
         {
             paneledit.Left = (this.ClientSize.Width - paneledit.Width) / 2;
             paneledit.Top = (this.ClientSize.Height - paneledit.Height) / 2;
@@ -319,6 +319,11 @@ namespace TechStore
         }
 
         private void paneledit_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }

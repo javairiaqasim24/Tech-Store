@@ -142,6 +142,8 @@ namespace TechStore
         private void btnsupplier_Click(object sender, EventArgs e)
         {
             activebutton(sender, sidebarColors[3]);
+            var f = Program.ServiceProvider.GetRequiredService<Supplierform>();
+            LoadFormIntoPanel(f);
 
         }
 

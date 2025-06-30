@@ -128,11 +128,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL\BL\ProductBL.cs" />
+    <Compile Include="BL\BL\SupplierBl.cs" />
+    <Compile Include="BL\Models\Person\persons.cs" />
+    <Compile Include="BL\Models\Person\Supplier.cs" />
     <Compile Include="BL\Models\Products.cs" />
     <Compile Include="DL\DatabaseHelper.cs" />
     <Compile Include="DL\ProductDL.cs" />
+    <Compile Include="DL\SupplierDl.cs" />
     <Compile Include="Interfaces\BLInterfaces\IproductBl.cs" />
+    <Compile Include="Interfaces\BLInterfaces\ISupplierBL.cs" />
     <Compile Include="Interfaces\DLInterfaces\IproductDl.cs" />
+    <Compile Include="Interfaces\DLInterfaces\IsupplierDl.cs" />
+    <Compile Include="Interfaces\IPersonFactory.cs" />
     <Compile Include="Service Provider\BLServiceProvider.cs" />
     <Compile Include="Service Provider\DLServiceProvider.cs" />
     <Compile Include="UI\addproductform.cs">
@@ -140,6 +147,12 @@
     </Compile>
     <Compile Include="UI\addproductform.Designer.cs">
       <DependentUpon>addproductform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Addsupplierform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Addsupplierform.Designer.cs">
+      <DependentUpon>Addsupplierform.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Dashboard.cs">
       <SubType>Form</SubType>
@@ -167,8 +180,17 @@
     <Compile Include="UI\Loadingform.Designer.cs">
       <DependentUpon>Loadingform.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Supplierform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Supplierform.Designer.cs">
+      <DependentUpon>Supplierform.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="UI\Addproductform.resx">
       <DependentUpon>addproductform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Addsupplierform.resx">
+      <DependentUpon>Addsupplierform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
@@ -191,6 +213,9 @@
     </Compile>
     <EmbeddedResource Include="UI\Loadingform.resx">
       <DependentUpon>Loadingform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Supplierform.resx">
+      <DependentUpon>Supplierform.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
