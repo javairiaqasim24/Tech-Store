@@ -22,7 +22,7 @@ namespace TechStore.BL.BL
             {
                 throw new ArgumentNullException(nameof(p), "Product cannot be null");
             }
-            if (string.IsNullOrWhiteSpace(p.name) || string.IsNullOrWhiteSpace(p.sku) || string.IsNullOrWhiteSpace(p.description) || string.IsNullOrWhiteSpace(p.category))
+            if (string.IsNullOrWhiteSpace(p.name)  || string.IsNullOrWhiteSpace(p.description) || string.IsNullOrWhiteSpace(p.category))
             {
                 throw new ArgumentException("Product properties cannot be null or empty");
             }
@@ -42,7 +42,7 @@ namespace TechStore.BL.BL
             {
                 throw new ArgumentNullException(nameof(p), "Product cannot be null");
             }
-            if (string.IsNullOrWhiteSpace(p.name) || string.IsNullOrWhiteSpace(p.sku) || string.IsNullOrWhiteSpace(p.description) || string.IsNullOrWhiteSpace(p.category))
+            if (string.IsNullOrWhiteSpace(p.name)  || string.IsNullOrWhiteSpace(p.description) || string.IsNullOrWhiteSpace(p.category))
             {
                 throw new ArgumentException("Product properties cannot be null or empty");
             }

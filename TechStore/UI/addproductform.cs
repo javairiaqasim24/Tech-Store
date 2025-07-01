@@ -24,32 +24,17 @@ namespace TechStore.UI
         private void btnsave_Click(object sender, EventArgs e)
         {
             string name = txtname.Text.Trim();
-            string sku = txtsku.Text.Trim();
             string description = txtdescp.Text.Trim();
             string category = txtcategory.Text.Trim();
-            int? quantity = null;
-            if (!string.IsNullOrWhiteSpace(txtquantity.Text) &&
-                int.TryParse(txtquantity.Text, out int q))
-            {
-                quantity = q;
-            }
-            else if (!string.IsNullOrWhiteSpace(txtquantity.Text))
-            {
-                MessageBox.Show("Quantity must be a valid number.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            double? price = string.IsNullOrWhiteSpace(txtprice.Text)
-                ? (double?)null
-                : Convert.ToDouble(txtprice.Text);
+           
             try
             {
-                Products products = new Products(name, sku, description, category,quantity,price);
+                Products products = new Products(name,  description, category);
                 bool result = _productBl.AddProduct(products);
                 if (result)
                 {
                     MessageBox.Show("Product added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtname.Clear();
-                    txtsku.Clear();
                     txtdescp.Clear();
                     txtcategory.SelectedIndex = -1; // Clear the selected category
                 }
