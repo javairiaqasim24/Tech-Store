@@ -1,0 +1,24 @@
+	--trigger for customer_return  
+
+DELIMITER $$
+
+CREATE TRIGGER trg_handle_customer_return
+AFTER INSERT ON customer_returns
+FOR EACH ROW
+BEGIN
+    DECLARE v_product_id INT;
+
+    -- Get product_id from bill detail
+    SELECT product_id INTO v_product_id
+    FROM customer_bill_details
+    WHERE Bill_detail_ID = NEW.bill_detail_id;
+
+    IF NEW.action_taken = 'Refunded' THEN
+        -- Add returned item back to stock
+        UPDATE inventory
+        SET quantity_in_stock = quantity_in_stock + NEW.quantity_returned
+        WHERE product_id = v_product_id;
+    END IF;
+END$$
+
+DELIMITER ;
