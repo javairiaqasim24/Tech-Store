@@ -42,6 +42,9 @@
     <Reference Include="Google.Protobuf, Version=3.30.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>packages\Google.Protobuf.3.30.0\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
+    <Reference Include="Guna.UI2">
+      <HintPath>packages\Guna.UI2.WinForms.2.0.4.7\lib\net472\Guna.UI2.dll</HintPath>
+    </Reference>
     <Reference Include="K4os.Compression.LZ4, Version=1.3.8.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
       <HintPath>packages\K4os.Compression.LZ4.1.3.8\lib\net462\K4os.Compression.LZ4.dll</HintPath>
     </Reference>
@@ -60,8 +63,14 @@
     <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.6, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.9.0.6\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=9.0.0.6, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.9.0.6\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=9.3.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.9.3.0\lib\net462\MySql.Data.dll</HintPath>
@@ -116,9 +125,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\Models\Person\persons.cs" />
+    <Compile Include="BL\Models\Person\Supplier.cs" />
+    <Compile Include="BL\Models\Products.cs" />
+    <Compile Include="BL\BL\ProductBL.cs" />
+    <Compile Include="BL\BL\SupplierBl.cs" />
     <Compile Include="DL\DatabaseHelper.cs" />
+    <Compile Include="DL\ProductDL.cs" />
+    <Compile Include="DL\SupplierDl.cs" />
+    <Compile Include="Interfaces\BLInterfaces\IproductBl.cs" />
+    <Compile Include="Interfaces\BLInterfaces\ISupplierBL.cs" />
+    <Compile Include="Interfaces\DLInterfaces\IproductDl.cs" />
+    <Compile Include="Interfaces\DLInterfaces\IsupplierDl.cs" />
+    <Compile Include="Interfaces\IPersonFactory.cs" />
     <Compile Include="Service Provider\BLServiceProvider.cs" />
     <Compile Include="Service Provider\DLServiceProvider.cs" />
+    <Compile Include="UI\addproductform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\addproductform.Designer.cs">
+      <DependentUpon>addproductform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Addsupplierform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Addsupplierform.Designer.cs">
+      <DependentUpon>Addsupplierform.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,12 +164,6 @@
     <Compile Include="UI\HomeContentform.Designer.cs">
       <DependentUpon>HomeContentform.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Inventoryform.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Inventoryform.Designer.cs">
-      <DependentUpon>Inventoryform.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\Loadingform.cs">
@@ -145,14 +172,35 @@
     <Compile Include="UI\Loadingform.Designer.cs">
       <DependentUpon>Loadingform.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\orders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\orders.Designer.cs">
+      <DependentUpon>orders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\productsform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\productsform.Designer.cs">
+      <DependentUpon>productsform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Supplierform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Supplierform.Designer.cs">
+      <DependentUpon>Supplierform.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UI\Addproductform.resx">
+      <DependentUpon>addproductform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Addsupplierform.resx">
+      <DependentUpon>Addsupplierform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\HomeContentform.resx">
       <DependentUpon>HomeContentform.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Inventoryform.resx">
-      <DependentUpon>Inventoryform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -172,6 +220,15 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <EmbeddedResource Include="UI\orders.resx">
+      <DependentUpon>orders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\productsform.resx">
+      <DependentUpon>productsform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Supplierform.resx">
+      <DependentUpon>Supplierform.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -186,12 +243,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BL\BL\" />
-    <Folder Include="BL\Models\" />
-    <Folder Include="Interfaces\BLInterfaces\" />
-    <Folder Include="Interfaces\DLInterfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\DALLE2025-02-2502.03.20-ThetextITECwritteninasimpleboldandmodernfontwithnobackground.Thetextshouldbecleanandminimalisticwithoutanyextradesignele-ezgif.com-webp-to-jpg-converter.jpg" />
   </ItemGroup>

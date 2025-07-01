@@ -191,5 +191,10 @@ namespace TechStore.UI
                 dataGridView2.Columns["id"].Visible = false; // Hide the ID column
             }
         }
+
+        private void btncategory_Click(object sender, EventArgs e)
+        {
+            Dashboard.Instance.LoadFormIntoPanel(Program.ServiceProvider.GetRequiredService<orders>());
+        }
     }
 }

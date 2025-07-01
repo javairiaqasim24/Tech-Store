@@ -48,7 +48,7 @@ namespace TechStore
             services.AddTransient<productsform>();
             services.AddTransient<Supplierform>();
             services.AddTransient<Addsupplierform>();
+            services.AddTransient<orders>();
         }
     }
 }
-  

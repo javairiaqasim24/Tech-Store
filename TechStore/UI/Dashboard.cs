@@ -36,50 +36,73 @@ namespace TechStore
         }
 
 
-       public async void LoadFormIntoPanel(Form newForm)
+        public async void LoadFormIntoPanel(Form newForm)
         {
+            if (newForm == null || newForm == activeForm) return;
+
             if (activeForm != null)
             {
-                // Step 1: Fade out old form
                 await FadeOutFormAsync(activeForm);
-
-                // Step 2: Remove old form
                 panel2.Controls.Remove(activeForm);
                 activeForm.Dispose();
             }
 
-            // Step 3: Load and fade in new form
             activeForm = newForm;
             newForm.TopLevel = false;
             newForm.FormBorderStyle = FormBorderStyle.None;
             newForm.Dock = DockStyle.Fill;
-            newForm.Opacity = 0; // Start invisible
+            newForm.Opacity = 0;
             panel2.Controls.Add(newForm);
             newForm.Show();
 
-            // Step 4: Fade in the new form
             await FadeInFormAsync(newForm);
         }
 
+
         private async Task FadeOutFormAsync(Form form)
         {
-            while (form.Opacity > 0)
-            {
-                form.Opacity -= 0.05;
-                await Task.Delay(10);
-            }
-            form.Opacity = 0;
-        }
+            if (form == null || form.IsDisposed || !form.IsHandleCreated)
+                return;
 
+            try
+            {
+                while (form.Opacity > 0)
+                {
+                    if (form.IsDisposed) return;
+
+                    form.Opacity -= 0.05;
+                    await Task.Delay(10);
+                }
+                form.Opacity = 0;
+            }
+            catch (ObjectDisposedException)
+            {
+                // Safe exit
+            }
+        }
         private async Task FadeInFormAsync(Form form)
         {
-            while (form.Opacity < 1)
+            if (form == null || form.IsDisposed || !form.IsHandleCreated)
+                return;
+
+            try
             {
-                form.Opacity += 0.05;
-                await Task.Delay(10);
+                while (form.Opacity < 1)
+                {
+                    if (form.IsDisposed) return;
+
+                    form.Opacity += 0.05;
+                    await Task.Delay(10);
+                }
+                form.Opacity = 1;
             }
-            form.Opacity = 1;
+            catch (ObjectDisposedException)
+            {
+                // Safe exit
+            }
         }
+
+
 
         private void btndashboard_Click(object sender, EventArgs e)
         {
