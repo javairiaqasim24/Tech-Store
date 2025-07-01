@@ -49,7 +49,7 @@ namespace TechStore.DL
                     string query = "UPDATE suppliers SET name = @name, phone = @contact, address = @address,email=@email WHERE supplier_id = @id";
                     var cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@name", s.name);
-                    cmd.Parameters.AddWithValue("@contact", s.email);  // Use inherited field
+                    cmd.Parameters.AddWithValue("@contact", s.phone);  // Use inherited field
                     cmd.Parameters.AddWithValue("@address", s.address);
                     cmd.Parameters.AddWithValue("@email", s.email); // Use inherited field
                     cmd.Parameters.AddWithValue("@id", s.id); // Assuming 'id' is a property of persons

@@ -125,6 +125,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\BL\CustomerBL.cs" />
+    <Compile Include="Interfaces\BLInterfaces\ICustomerBL.cs" />
     <Compile Include="BL\Models\Person\Customer.cs" />
     <Compile Include="BL\Models\Person\persons.cs" />
     <Compile Include="BL\Models\Person\Supplier.cs" />
@@ -133,6 +135,7 @@
     <Compile Include="BL\BL\SupplierBl.cs" />
     <Compile Include="DL\CustomerDL.cs" />
     <Compile Include="DL\DatabaseHelper.cs" />
+    <Compile Include="Interfaces\DLInterfaces\ICustomerDL.cs" />
     <Compile Include="DL\ProductDL.cs" />
     <Compile Include="DL\SupplierDl.cs" />
     <Compile Include="Interfaces\BLInterfaces\IproductBl.cs" />

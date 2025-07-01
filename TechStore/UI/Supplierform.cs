@@ -37,6 +37,8 @@ namespace TechStore.UI
             this.supplierBL = supplierBL;
             this.ipf = ipf;
             paneledit.Visible = false;
+            dataGridView2.CellPainting += dataGridView2_CellPainting;
+
         }
         public void ShowEditPanel()
         {
@@ -47,30 +49,48 @@ namespace TechStore.UI
         }
         private void load()
         {
-            var list=supplierBL.getsuppliers();
+            var list = supplierBL.getsuppliers();
+            dataGridView2.Columns.Clear(); // <-- Important to prevent duplicate buttons
             dataGridView2.DataSource = list;
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView2.Columns["id"].Visible = false; // Hide the ID column
-        }
-        private void btnedit_Click(object sender, EventArgs e)
-        {
-            if (dataGridView2.SelectedRows.Count>0) {
-                var row = dataGridView2.SelectedRows[0];
+            dataGridView2.Columns["id"].Visible = false;
 
-                selectedProductId = Convert.ToInt32(row.Cells["id"].Value);
-                txtname1.Text = row.Cells["name"].Value?.ToString() ?? "";
-                txtaddress.Text = row.Cells["address"].Value?.ToString() ?? "";
-                txtemail.Text = row.Cells["email"].Value?.ToString() ?? "";
-                txtcontact.Text = row.Cells["phone"].Value?.ToString() ?? "";
+            // Add Edit button
+            DataGridViewButtonColumn editButton = new DataGridViewButtonColumn();
+            editButton.HeaderText = "Edit";
+            editButton.Text = "Edit";
+            editButton.UseColumnTextForButtonValue = true;
+            editButton.Name = "Edit";
+            dataGridView2.Columns.Add(editButton);
 
-                RoundPanelCorners(paneledit, 20);
-                ShowEditPanel();
-            }
-            else
-            {
-                MessageBox.Show("Please select a row to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            // Add Delete button
+            DataGridViewButtonColumn deleteButton = new DataGridViewButtonColumn();
+            deleteButton.HeaderText = "Delete";
+            deleteButton.Text = "Delete";
+            deleteButton.UseColumnTextForButtonValue = true;
+            deleteButton.Name = "Delete";
+            dataGridView2.Columns.Add(deleteButton);
         }
+
+        //private void btnedit_Click(object sender, EventArgs e)
+        //{
+        //    if (dataGridView2.SelectedRows.Count>0) {
+        //        var row = dataGridView2.SelectedRows[0];
+
+        //        selectedProductId = Convert.ToInt32(row.Cells["id"].Value);
+        //        txtname1.Text = row.Cells["name"].Value?.ToString() ?? "";
+        //        txtaddress.Text = row.Cells["address"].Value?.ToString() ?? "";
+        //        txtemail.Text = row.Cells["email"].Value?.ToString() ?? "";
+        //        txtcontact.Text = row.Cells["phone"].Value?.ToString() ?? "";
+
+        //        RoundPanelCorners(paneledit, 20);
+        //        ShowEditPanel();
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Please select a row to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //    }
+        //}
         public void RoundPanelCorners(Panel panel, int radius)
         {
             var bounds = new Rectangle(0, 0, panel.Width, panel.Height);
@@ -95,8 +115,8 @@ namespace TechStore.UI
         {
             string name = txtname1.Text.Trim();
             string address = txtaddress.Text.Trim();
-            string email=txtemail.Text.Trim();
-            string phone=txtcontact.Text.Trim();
+            string email = txtemail.Text.Trim();
+            string phone = txtcontact.Text.Trim();
             try
             {
                 var person = ipf.CreatePerson(PersonType.Supplier, selectedProductId, email, address, name, phone);
@@ -143,33 +163,33 @@ namespace TechStore.UI
             f.ShowDialog(this);
         }
 
-        private void btndelete_Click(object sender, EventArgs e)
-        {
-            if (dataGridView2.SelectedRows.Count > 0)
-            {
-                var confirm = MessageBox.Show("Are you sure you want to delete this product?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (confirm == DialogResult.Yes)
-                {
-                    int productId = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["id"].Value);
-                    bool result = supplierBL.deletesupplier(productId);
+        //private void btndelete_Click(object sender, EventArgs e)
+        //{
+        //    if (dataGridView2.SelectedRows.Count > 0)
+        //    {
+        //        var confirm = MessageBox.Show("Are you sure you want to delete this product?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+        //        if (confirm == DialogResult.Yes)
+        //        {
+        //            int productId = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["id"].Value);
+        //            bool result = supplierBL.deletesupplier(productId);
 
-                    if (result)
-                    {
-                        MessageBox.Show("Supplier deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        load();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Failed to delete Supplier.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select a row to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+        //            if (result)
+        //            {
+        //                MessageBox.Show("Supplier deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //                load();
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Failed to delete Supplier.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Please select a row to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //    }
 
-        }
+        //}
 
         private void pictureBox10_Click(object sender, EventArgs e)
         {
@@ -181,7 +201,7 @@ namespace TechStore.UI
             string text=textBox1.Text.Trim();
             if (string.IsNullOrEmpty(text))
             {
-                load(); // Reload all suppliers if the search text is empty
+                load(); 
             }
             else
             {
@@ -196,5 +216,79 @@ namespace TechStore.UI
         {
             Dashboard.Instance.LoadFormIntoPanel(Program.ServiceProvider.GetRequiredService<orders>());
         }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Ignore header clicks or out of range
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            string columnName = dataGridView2.Columns[e.ColumnIndex].Name;
+
+            if (columnName == "Edit")
+            {
+                var row = dataGridView2.Rows[e.RowIndex];
+                selectedProductId = Convert.ToInt32(row.Cells["id"].Value);
+                txtname1.Text = row.Cells["name"].Value?.ToString() ?? "";
+                txtaddress.Text = row.Cells["address"].Value?.ToString() ?? "";
+                txtemail.Text = row.Cells["email"].Value?.ToString() ?? "";
+                txtcontact.Text = row.Cells["phone"].Value?.ToString() ?? "";
+
+                RoundPanelCorners(paneledit, 20);
+                ShowEditPanel();
+            }
+            else if (columnName == "Delete")
+            {
+                var confirm = MessageBox.Show("Are you sure you want to delete this supplier?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (confirm == DialogResult.Yes)
+                {
+                    int id = Convert.ToInt32(dataGridView2.Rows[e.RowIndex].Cells["id"].Value);
+                    bool result = supplierBL.deletesupplier(id);
+
+                    if (result)
+                    {
+                        MessageBox.Show("Supplier deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        load();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to delete Supplier.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+        private void dataGridView2_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            var column = dataGridView2.Columns[e.ColumnIndex];
+
+            if (column.Name == "Edit" || column.Name == "Delete")
+            {
+                e.PaintBackground(e.CellBounds, true);
+
+                string text = column.Name;
+                Color backColor = text == "Edit" ? Color.SteelBlue : Color.IndianRed;
+                Color textColor = Color.White;
+
+                using (Brush b = new SolidBrush(backColor))
+                {
+                    e.Graphics.FillRectangle(b, e.CellBounds);
+                }
+
+                TextRenderer.DrawText(
+                    e.Graphics,
+                    text,
+                    dataGridView2.Font,
+                    e.CellBounds,
+                    textColor,
+                    TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+
+                e.Handled = true;
+            }
+        }
+
+
     }
 }
