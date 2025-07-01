@@ -1,21 +1,30 @@
-﻿using System.Configuration; // Required for reading from App.config
+﻿using System.Configuration;
 using MySql.Data.MySqlClient;
 using System.Data;
 using System;
-using System.Windows;
 using System.Collections.Generic;
 
 namespace KIMS
 {
-    public class DatabaseHelper
+    public sealed class DatabaseHelper
     {
-        public static MySqlConnection GetConnection()
+        // Singleton instance
+        private static readonly Lazy<DatabaseHelper> _instance = new Lazy<DatabaseHelper>(() => new DatabaseHelper());
+
+        // Private constructor
+        private DatabaseHelper() { }
+
+        // Public accessor
+        public static DatabaseHelper Instance => _instance.Value;
+
+        // Methods
+        public MySqlConnection GetConnection()
         {
             string connStr = ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString;
             return new MySqlConnection(connStr);
         }
 
-        public static MySqlDataReader ExecuteReader(string query, MySqlParameter[] parameters = null)
+        public MySqlDataReader ExecuteReader(string query, MySqlParameter[] parameters = null)
         {
             var conn = GetConnection();
             conn.Open();
@@ -25,7 +34,7 @@ namespace KIMS
             return cmd.ExecuteReader(CommandBehavior.CloseConnection);
         }
 
-        public static int GetLastInsertId()
+        public int GetLastInsertId()
         {
             string query = "SELECT LAST_INSERT_ID();";
             using (var conn = GetConnection())
@@ -38,7 +47,7 @@ namespace KIMS
             }
         }
 
-        public static int ExecuteNonQuery(string query, MySqlParameter[] parameters = null)
+        public int ExecuteNonQuery(string query, MySqlParameter[] parameters = null)
         {
             using (var conn = GetConnection())
             {
@@ -51,7 +60,8 @@ namespace KIMS
                 }
             }
         }
-        public static int getcategoryid(string name)
+
+        public int GetCategoryId(string name)
         {
             try
             {
@@ -69,10 +79,11 @@ namespace KIMS
             }
             catch (Exception ex)
             {
-throw new Exception("Error retrieving category ID: " + ex.Message);
+                throw new Exception("Error retrieving category ID: " + ex.Message);
             }
         }
-        public static List<string> GetCategories(string keyword)
+
+        public List<string> GetCategories(string keyword)
         {
             List<string> categories = new List<string>();
             try
@@ -101,9 +112,10 @@ throw new Exception("Error retrieving category ID: " + ex.Message);
             }
             return categories;
         }
-        public static List<string> Getsuppliers(string keyword)
+
+        public List<string> GetSuppliers(string keyword)
         {
-            List<string> categories = new List<string>();
+            List<string> suppliers = new List<string>();
             try
             {
                 using (var conn = GetConnection())
@@ -118,7 +130,7 @@ throw new Exception("Error retrieving category ID: " + ex.Message);
                         {
                             while (reader.Read())
                             {
-                                categories.Add(reader.GetString("name"));
+                                suppliers.Add(reader.GetString("name"));
                             }
                         }
                     }
@@ -126,10 +138,9 @@ throw new Exception("Error retrieving category ID: " + ex.Message);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error retrieving categories: " + ex.Message);
+                throw new Exception("Error retrieving suppliers: " + ex.Message);
             }
-            return categories;
+            return suppliers;
         }
-
     }
 }

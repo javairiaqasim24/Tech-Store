@@ -26,7 +26,7 @@ namespace TechStore.BL.Models
         {
             this.email = email;
             this.address = address;
-            this.phone = phone;// Default value for phone if not provided
+            this.phone = phone;
         }
     }
 }
@@ -39,17 +39,26 @@ public enum PersonType
 
 public class PersonFactory : IPersonFactory
 {
-    public persons CreatePerson(PersonType type, int id, string email, string address, string name,string phone)
+    public persons CreatePerson(PersonType type, int id, string email, string address, string name, string phone)
     {
         switch (type)
         {
             case PersonType.Supplier:
-                return new Supplier(id, email, address, name,phone);
+                return new Supplier(id, email, address, name, phone);
+            default:
+                throw new ArgumentException("Invalid or incomplete person type");
+        }
+    }
+
+    public persons CreatePerson(PersonType type, int id, string email, string address, string name, string phone, string lastname, string types)
+    {
+        switch (type)
+        {
             case PersonType.Customer:
-                // return new Customer(id, email, address, name); // To be implemented later
-                throw new NotImplementedException("Customer not yet implemented.");
+                return new Customer(id, email, address, name, lastname, types, phone);
             default:
                 throw new ArgumentException("Invalid person type");
         }
     }
+
 }

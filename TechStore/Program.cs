@@ -40,7 +40,6 @@ namespace TechStore
             services.AddScoped<TechStore.Interfaces.BLInterfaces.IproductBl, TechStore.BL.BL.ProductBL>();
             services.AddScoped<IPersonFactory, PersonFactory>();
             services.AddScoped<ISupplierBL, SupplierBl>();
-
             //forms
             services.AddTransient<HomeContentform>();
             services.AddTransient<Dashboard>();
@@ -49,6 +48,8 @@ namespace TechStore
             services.AddTransient<Supplierform>();
             services.AddTransient<Addsupplierform>();
             services.AddTransient<orders>();
+            services.AddTransient<AddCustomerform>();
+            services.AddTransient<Customerform>();
         }
     }
 }
