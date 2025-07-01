@@ -15,6 +15,7 @@ namespace TechStore.UI
         public Loadingform()
         {
             InitializeComponent();
+
         }
     }
 }

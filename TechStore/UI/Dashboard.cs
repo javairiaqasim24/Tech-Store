@@ -1,4 +1,5 @@
 ﻿using FontAwesome.Sharp;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,19 +18,25 @@ namespace TechStore
         private Form activeForm = null;
         private IconButton currentBtn;
 
+        public static Dashboard Instance { get; private set; }
+
         public Dashboard()
         {
             InitializeComponent();
+            Instance = this;
+         
         }
+
 
         private void btninventory_Click(object sender, EventArgs e)
         {
             activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
-            LoadFormIntoPanel(new Inventoryform());
+            var f =Program.ServiceProvider.GetRequiredService<productsform>();
+            LoadFormIntoPanel(f);
         }
 
 
-        private async void LoadFormIntoPanel(Form newForm)
+       public async void LoadFormIntoPanel(Form newForm)
         {
             if (activeForm != null)
             {
@@ -135,6 +142,8 @@ namespace TechStore
         private void btnsupplier_Click(object sender, EventArgs e)
         {
             activebutton(sender, sidebarColors[3]);
+            var f = Program.ServiceProvider.GetRequiredService<Supplierform>();
+            LoadFormIntoPanel(f);
 
         }
 

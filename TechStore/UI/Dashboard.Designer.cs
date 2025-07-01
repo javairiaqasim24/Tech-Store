@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.panelmenu = new System.Windows.Forms.FlowLayoutPanel();
-            this.btndashboard = new FontAwesome.Sharp.IconButton();
-            this.btninventory = new FontAwesome.Sharp.IconButton();
-            this.btnsales = new FontAwesome.Sharp.IconButton();
-            this.btnrepair = new FontAwesome.Sharp.IconButton();
-            this.btncustomers = new FontAwesome.Sharp.IconButton();
-            this.btnsupplier = new FontAwesome.Sharp.IconButton();
-            this.btnreport = new FontAwesome.Sharp.IconButton();
-            this.btnlogout = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btndashboard = new FontAwesome.Sharp.IconButton();
+            this.btncustomers = new FontAwesome.Sharp.IconButton();
+            this.btnsupplier = new FontAwesome.Sharp.IconButton();
+            this.btnrepair = new FontAwesome.Sharp.IconButton();
+            this.btnreport = new FontAwesome.Sharp.IconButton();
+            this.btnsales = new FontAwesome.Sharp.IconButton();
+            this.btnlogout = new FontAwesome.Sharp.IconButton();
+            this.btninventory = new FontAwesome.Sharp.IconButton();
             this.panelmenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -49,18 +49,38 @@
             this.panelmenu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelmenu.Controls.Add(this.pictureBox1);
             this.panelmenu.Controls.Add(this.btndashboard);
-            this.panelmenu.Controls.Add(this.btncustomers);
-            this.panelmenu.Controls.Add(this.btnsupplier);
+            this.panelmenu.Controls.Add(this.btninventory);
             this.panelmenu.Controls.Add(this.btnrepair);
             this.panelmenu.Controls.Add(this.btnreport);
+            this.panelmenu.Controls.Add(this.btnsupplier);
             this.panelmenu.Controls.Add(this.btnsales);
+            this.panelmenu.Controls.Add(this.btncustomers);
             this.panelmenu.Controls.Add(this.btnlogout);
-            this.panelmenu.Controls.Add(this.btninventory);
             this.panelmenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelmenu.Location = new System.Drawing.Point(0, 0);
             this.panelmenu.Name = "panelmenu";
-            this.panelmenu.Size = new System.Drawing.Size(270, 733);
+            this.panelmenu.Size = new System.Drawing.Size(270, 862);
             this.panelmenu.TabIndex = 8;
+            // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(270, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1042, 862);
+            this.panel2.TabIndex = 10;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Image = global::TechStore.Properties.Resources.Screenshot_2025_06_28_221639_Photoroom;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(265, 176);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // btndashboard
             // 
@@ -78,7 +98,7 @@
             this.btndashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btndashboard.IconSize = 40;
             this.btndashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btndashboard.Location = new System.Drawing.Point(3, 113);
+            this.btndashboard.Location = new System.Drawing.Point(3, 185);
             this.btndashboard.Name = "btndashboard";
             this.btndashboard.Size = new System.Drawing.Size(267, 60);
             this.btndashboard.TabIndex = 1;
@@ -87,84 +107,6 @@
             this.btndashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btndashboard.UseVisualStyleBackColor = false;
             this.btndashboard.Click += new System.EventHandler(this.btndashboard_Click);
-            // 
-            // btninventory
-            // 
-            this.btninventory.BackColor = System.Drawing.Color.Transparent;
-            this.btninventory.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btninventory.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btninventory.FlatAppearance.BorderSize = 2;
-            this.btninventory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            this.btninventory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            this.btninventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btninventory.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btninventory.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btninventory.IconChar = FontAwesome.Sharp.IconChar.BoxesStacked;
-            this.btninventory.IconColor = System.Drawing.Color.White;
-            this.btninventory.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btninventory.IconSize = 40;
-            this.btninventory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btninventory.Location = new System.Drawing.Point(3, 575);
-            this.btninventory.Name = "btninventory";
-            this.btninventory.Size = new System.Drawing.Size(265, 60);
-            this.btninventory.TabIndex = 2;
-            this.btninventory.Text = "Inventory";
-            this.btninventory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btninventory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btninventory.UseVisualStyleBackColor = false;
-            this.btninventory.Click += new System.EventHandler(this.btninventory_Click);
-            // 
-            // btnsales
-            // 
-            this.btnsales.BackColor = System.Drawing.Color.Transparent;
-            this.btnsales.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnsales.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnsales.FlatAppearance.BorderSize = 2;
-            this.btnsales.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            this.btnsales.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            this.btnsales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnsales.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnsales.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnsales.IconChar = FontAwesome.Sharp.IconChar.CartShopping;
-            this.btnsales.IconColor = System.Drawing.Color.White;
-            this.btnsales.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnsales.IconSize = 40;
-            this.btnsales.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsales.Location = new System.Drawing.Point(3, 443);
-            this.btnsales.Name = "btnsales";
-            this.btnsales.Size = new System.Drawing.Size(270, 60);
-            this.btnsales.TabIndex = 3;
-            this.btnsales.Text = "Sales";
-            this.btnsales.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsales.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnsales.UseVisualStyleBackColor = false;
-            this.btnsales.Click += new System.EventHandler(this.btnsales_Click);
-            // 
-            // btnrepair
-            // 
-            this.btnrepair.BackColor = System.Drawing.Color.Transparent;
-            this.btnrepair.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnrepair.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnrepair.FlatAppearance.BorderSize = 2;
-            this.btnrepair.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            this.btnrepair.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            this.btnrepair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnrepair.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnrepair.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnrepair.IconChar = FontAwesome.Sharp.IconChar.ScrewdriverWrench;
-            this.btnrepair.IconColor = System.Drawing.Color.White;
-            this.btnrepair.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnrepair.IconSize = 40;
-            this.btnrepair.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnrepair.Location = new System.Drawing.Point(3, 311);
-            this.btnrepair.Name = "btnrepair";
-            this.btnrepair.Size = new System.Drawing.Size(270, 60);
-            this.btnrepair.TabIndex = 4;
-            this.btnrepair.Text = "repairs";
-            this.btnrepair.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnrepair.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnrepair.UseVisualStyleBackColor = false;
-            this.btnrepair.Click += new System.EventHandler(this.btnrepair_Click);
             // 
             // btncustomers
             // 
@@ -182,7 +124,7 @@
             this.btncustomers.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btncustomers.IconSize = 40;
             this.btncustomers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btncustomers.Location = new System.Drawing.Point(3, 179);
+            this.btncustomers.Location = new System.Drawing.Point(3, 581);
             this.btncustomers.Name = "btncustomers";
             this.btncustomers.Size = new System.Drawing.Size(270, 60);
             this.btncustomers.TabIndex = 5;
@@ -208,7 +150,7 @@
             this.btnsupplier.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnsupplier.IconSize = 40;
             this.btnsupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsupplier.Location = new System.Drawing.Point(3, 245);
+            this.btnsupplier.Location = new System.Drawing.Point(3, 449);
             this.btnsupplier.Name = "btnsupplier";
             this.btnsupplier.Size = new System.Drawing.Size(270, 60);
             this.btnsupplier.TabIndex = 6;
@@ -217,6 +159,32 @@
             this.btnsupplier.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnsupplier.UseVisualStyleBackColor = false;
             this.btnsupplier.Click += new System.EventHandler(this.btnsupplier_Click);
+            // 
+            // btnrepair
+            // 
+            this.btnrepair.BackColor = System.Drawing.Color.Transparent;
+            this.btnrepair.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnrepair.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnrepair.FlatAppearance.BorderSize = 2;
+            this.btnrepair.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            this.btnrepair.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            this.btnrepair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnrepair.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnrepair.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnrepair.IconChar = FontAwesome.Sharp.IconChar.ScrewdriverWrench;
+            this.btnrepair.IconColor = System.Drawing.Color.White;
+            this.btnrepair.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnrepair.IconSize = 40;
+            this.btnrepair.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnrepair.Location = new System.Drawing.Point(3, 317);
+            this.btnrepair.Name = "btnrepair";
+            this.btnrepair.Size = new System.Drawing.Size(270, 60);
+            this.btnrepair.TabIndex = 4;
+            this.btnrepair.Text = "repairs";
+            this.btnrepair.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnrepair.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnrepair.UseVisualStyleBackColor = false;
+            this.btnrepair.Click += new System.EventHandler(this.btnrepair_Click);
             // 
             // btnreport
             // 
@@ -234,7 +202,7 @@
             this.btnreport.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnreport.IconSize = 40;
             this.btnreport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnreport.Location = new System.Drawing.Point(3, 377);
+            this.btnreport.Location = new System.Drawing.Point(3, 383);
             this.btnreport.Name = "btnreport";
             this.btnreport.Size = new System.Drawing.Size(270, 60);
             this.btnreport.TabIndex = 7;
@@ -243,6 +211,32 @@
             this.btnreport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnreport.UseVisualStyleBackColor = false;
             this.btnreport.Click += new System.EventHandler(this.btnreport_Click);
+            // 
+            // btnsales
+            // 
+            this.btnsales.BackColor = System.Drawing.Color.Transparent;
+            this.btnsales.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnsales.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnsales.FlatAppearance.BorderSize = 2;
+            this.btnsales.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            this.btnsales.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            this.btnsales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnsales.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnsales.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnsales.IconChar = FontAwesome.Sharp.IconChar.CartShopping;
+            this.btnsales.IconColor = System.Drawing.Color.White;
+            this.btnsales.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnsales.IconSize = 40;
+            this.btnsales.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnsales.Location = new System.Drawing.Point(3, 515);
+            this.btnsales.Name = "btnsales";
+            this.btnsales.Size = new System.Drawing.Size(270, 60);
+            this.btnsales.TabIndex = 3;
+            this.btnsales.Text = "Sales";
+            this.btnsales.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnsales.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnsales.UseVisualStyleBackColor = false;
+            this.btnsales.Click += new System.EventHandler(this.btnsales_Click);
             // 
             // btnlogout
             // 
@@ -260,7 +254,7 @@
             this.btnlogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnlogout.IconSize = 40;
             this.btnlogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnlogout.Location = new System.Drawing.Point(3, 509);
+            this.btnlogout.Location = new System.Drawing.Point(3, 647);
             this.btnlogout.Name = "btnlogout";
             this.btnlogout.Size = new System.Drawing.Size(270, 60);
             this.btnlogout.TabIndex = 8;
@@ -270,34 +264,41 @@
             this.btnlogout.UseVisualStyleBackColor = false;
             this.btnlogout.Click += new System.EventHandler(this.btnlogout_Click);
             // 
-            // panel2
+            // btninventory
             // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(270, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1042, 733);
-            this.panel2.TabIndex = 10;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox1.Image = global::TechStore.Properties.Resources.DALLE2025_02_2502_03_20_ThetextITECwritteninasimpleboldandmodernfontwithnobackground_Thetextshouldbecleanandminimalisticwithoutanyextradesignele_ezgif_com_webp_to_jpg_converter;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(265, 104);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.btninventory.BackColor = System.Drawing.Color.Transparent;
+            this.btninventory.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btninventory.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btninventory.FlatAppearance.BorderSize = 2;
+            this.btninventory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            this.btninventory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            this.btninventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btninventory.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btninventory.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btninventory.IconChar = FontAwesome.Sharp.IconChar.BoxesStacked;
+            this.btninventory.IconColor = System.Drawing.Color.White;
+            this.btninventory.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btninventory.IconSize = 40;
+            this.btninventory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btninventory.Location = new System.Drawing.Point(3, 251);
+            this.btninventory.Name = "btninventory";
+            this.btninventory.Size = new System.Drawing.Size(265, 60);
+            this.btninventory.TabIndex = 2;
+            this.btninventory.Text = "Inventory";
+            this.btninventory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btninventory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btninventory.UseVisualStyleBackColor = false;
+            this.btninventory.Click += new System.EventHandler(this.btninventory_Click);
             // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(239)))), ((int)(((byte)(236)))));
-            this.ClientSize = new System.Drawing.Size(1312, 733);
+            this.ClientSize = new System.Drawing.Size(1312, 862);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelmenu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Dashboard";
             this.Text = "Form1";
             this.TopMost = true;
