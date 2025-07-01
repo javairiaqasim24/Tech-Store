@@ -19,12 +19,12 @@ namespace TechStore.DL
                 using (var conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string query = "INSERT INTO suppliers (name, phone, address) VALUES (@name, @contact, @address)";
+                    string query = "INSERT INTO suppliers (name, phone, address,email) VALUES (@name, @contact, @address,@email)";
                     var cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@name", s.name);
-                    cmd.Parameters.AddWithValue("@contact", s.email);  // Use inherited field
-                    cmd.Parameters.AddWithValue("@address", s.address); // Use inherited field
-
+                    cmd.Parameters.AddWithValue("@contact", s.phone);  // Use inherited field
+                    cmd.Parameters.AddWithValue("@address", s.address);
+cmd.Parameters.AddWithValue("@email", s.email); // Use inherited field
                     int rowsAffected = cmd.ExecuteNonQuery();
                     return rowsAffected > 0;
                 }
@@ -46,11 +46,12 @@ namespace TechStore.DL
                 using (var conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string query = "UPDATE suppliers SET name = @name, phone = @contact, address = @address WHERE supplier_id = @id";
+                    string query = "UPDATE suppliers SET name = @name, phone = @contact, address = @address,email=@email WHERE supplier_id = @id";
                     var cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@name", s.name);
                     cmd.Parameters.AddWithValue("@contact", s.email);  // Use inherited field
-                    cmd.Parameters.AddWithValue("@address", s.address); // Use inherited field
+                    cmd.Parameters.AddWithValue("@address", s.address);
+                    cmd.Parameters.AddWithValue("@email", s.email); // Use inherited field
                     cmd.Parameters.AddWithValue("@id", s.id); // Assuming 'id' is a property of persons
                     int rowsAffected = cmd.ExecuteNonQuery();
                     return rowsAffected > 0;
@@ -106,11 +107,14 @@ public List<Supplier> getsuppliers()
 
                     {
                         Supplier s = new Supplier(
-                         reader.GetInt32("supplier_id"),
-                        reader.GetString("name"),
-                        reader.GetString("phone"),
-                        reader.GetString("address")
-                            );
+                                    reader.GetInt32("supplier_id"),
+                                      reader.GetString("email"),
+                                      reader.GetString("address"),
+                                    reader.GetString("name"),
+                                    reader.GetString("phone")
+
+                                // Assuming email is also a field in the suppliers table
+                                );
                         suppliers.Add(s);
                     }
                     return suppliers;
@@ -159,9 +163,12 @@ public List<Supplier> getsuppliers()
                             {
                                 Supplier s = new Supplier(
                                     reader.GetInt32("supplier_id"),
+                                      reader.GetString("email"),
+                                      reader.GetString("address"),
                                     reader.GetString("name"),
-                                    reader.GetString("phone"),
-                                    reader.GetString("address")
+                                    reader.GetString("phone")
+                                    
+                                  // Assuming email is also a field in the suppliers table
                                 );
                                 suppliers.Add(s);
                             }

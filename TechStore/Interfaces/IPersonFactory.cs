@@ -11,7 +11,7 @@ namespace TechStore.Interfaces
 
     public interface IPersonFactory
     {
-        persons CreatePerson(PersonType type, int id, string email, string address, string name);
+        persons CreatePerson(PersonType type, int id, string email, string address, string name,string phone);
     }
 
 
