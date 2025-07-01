@@ -16,7 +16,7 @@ namespace TechStore.DL
         {
             try
             {
-                using (var conn = DatabaseHelper.GetConnection())
+                using (var conn = DatabaseHelper.Instance.GetConnection())
                 {
                     conn.Open();
                     string query = "INSERT INTO suppliers (name, phone, address,email) VALUES (@name, @contact, @address,@email)";
@@ -43,7 +43,7 @@ namespace TechStore.DL
         {
             try
             {
-                using (var conn = DatabaseHelper.GetConnection())
+                using (var conn = DatabaseHelper.Instance.GetConnection())
                 {
                     conn.Open();
                     string query = "UPDATE suppliers SET name = @name, phone = @contact, address = @address,email=@email WHERE supplier_id = @id";
@@ -70,7 +70,7 @@ namespace TechStore.DL
         {
             try
             {
-                using (var conn = DatabaseHelper.GetConnection())
+                using (var conn = DatabaseHelper.Instance.GetConnection())
                 {
                     conn.Open();
                     string query = "DELETE FROM suppliers WHERE supplier_id = @id";
@@ -96,7 +96,7 @@ public List<Supplier> getsuppliers()
         {
             try
             {
-                using (var conn = DatabaseHelper.GetConnection())
+                using (var conn = DatabaseHelper.Instance.GetConnection())
                 {
                     conn.Open();
                     string query = "SELECT * FROM suppliers";
@@ -133,7 +133,7 @@ public List<Supplier> getsuppliers()
         {
             try
             {
-                return DatabaseHelper.Getsuppliers(name);
+                return DatabaseHelper.Instance.GetSuppliers(name);
 
             }
             catch (MySqlException ex)
@@ -149,7 +149,7 @@ public List<Supplier> getsuppliers()
         {
             try
             {
-                using (var conn=DatabaseHelper.GetConnection())
+                using (var conn=DatabaseHelper.Instance.GetConnection())
                 {
                     conn.Open();
                     string query = "SELECT * FROM suppliers WHERE name LIKE @text OR phone LIKE @text OR address LIKE @text";

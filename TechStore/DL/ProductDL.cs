@@ -14,10 +14,10 @@ namespace TechStore.DL
     {
         public bool AddProduct(Products p)
         {
-            int categoryid = DatabaseHelper.getcategoryid(p.category);
+            int categoryid = DatabaseHelper.Instance.GetCategoryId(p.category);
             try
             {
-                using (var conn = DatabaseHelper.GetConnection())
+                using (var conn = DatabaseHelper.Instance.GetConnection())
                 {
                     conn.Open();
                     string query = "INSERT INTO products (name, sku, description, category_id,sale_price,quantity_in_stock) VALUES (@name, @sku, @description, @category_id,@price,@quantity);";
@@ -54,10 +54,10 @@ namespace TechStore.DL
         }
         public bool UpdateProduct(Products p)
         {
-            int categoryid = DatabaseHelper.getcategoryid(p.category);
+            int categoryid = DatabaseHelper.Instance.GetCategoryId(p.category);
             try
             {
-                using (var conn=DatabaseHelper.GetConnection())
+                using (var conn=DatabaseHelper.Instance.GetConnection())
                 {
                     conn.Open();
                     string query = "UPDATE products SET name = @name, sku = @sku, description = @description, category_id = @category_id,sale_price=@price,quantity_in_stock=@quantity WHERE product_id = @id;";
@@ -86,7 +86,7 @@ namespace TechStore.DL
         }
         public bool DeleteProduct(int id)
         {
-            using (var conn=DatabaseHelper.GetConnection())
+            using (var conn=DatabaseHelper.Instance.GetConnection())
             {
                 conn.Open();
                 string query = "DELETE FROM products WHERE product_id = @id;";
@@ -103,7 +103,7 @@ namespace TechStore.DL
            List<Products> products = new List<Products>();
             try
             {
-                using (var conn = DatabaseHelper.GetConnection())
+                using (var conn = DatabaseHelper.Instance.GetConnection())
                 {
                     conn.Open();
                     string query = "SELECT p.product_id, p.name, p.sale_price,p.quantity_in_stock,p.sku, p.description, c.name as category_name FROM products p JOIN categories c ON p.category_id = c.category_id;";
@@ -145,7 +145,7 @@ namespace TechStore.DL
         {
             try
             {
-                return DatabaseHelper.GetCategories(name);
+                return DatabaseHelper.Instance.GetCategories(name);
             }
             catch
             {
@@ -157,7 +157,7 @@ namespace TechStore.DL
             List<Products> products = new List<Products>();
             try
             {
-                using (var conn = DatabaseHelper.GetConnection())
+                using (var conn = DatabaseHelper.Instance.GetConnection())
                 {
                     conn.Open();
                     string query = @"SELECT p.product_id,p.sale_price,p.quantity_in_stock, p.name, p.sku, p.description, c.name as category_name
