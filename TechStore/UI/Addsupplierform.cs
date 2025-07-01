@@ -32,7 +32,7 @@ namespace TechStore.UI
             string email = txtemail.Text.Trim();
             try
             {
-                var person = personFactory.CreatePerson(PersonType.Supplier, 0, email, address, name);
+                var person = personFactory.CreatePerson(PersonType.Supplier, 0, email, address, name,contact);
                 var supplier = (Supplier)person;
                 bool result = supplierBL.addsupplier(supplier);
                 if (result)

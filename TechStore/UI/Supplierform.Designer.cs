@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Supplierform));
             this.panel1 = new System.Windows.Forms.Panel();
             this.toplbl = new System.Windows.Forms.Label();
             this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            this.button9 = new System.Windows.Forms.Button();
             this.paneledit = new System.Windows.Forms.Panel();
             this.txtcontact = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -58,7 +59,6 @@
             this.btnlogs = new FontAwesome.Sharp.IconButton();
             this.btncategory = new FontAwesome.Sharp.IconButton();
             this.btnproducts = new FontAwesome.Sharp.IconButton();
-            this.button9 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.guna2CustomGradientPanel1.SuspendLayout();
             this.paneledit.SuspendLayout();
@@ -84,9 +84,9 @@
             this.toplbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.toplbl.Location = new System.Drawing.Point(538, 26);
             this.toplbl.Name = "toplbl";
-            this.toplbl.Size = new System.Drawing.Size(160, 38);
+            this.toplbl.Size = new System.Drawing.Size(162, 38);
             this.toplbl.TabIndex = 6;
-            this.toplbl.Text = "Inventory";
+            this.toplbl.Text = "Suppliers";
             this.toplbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // guna2CustomGradientPanel1
@@ -114,6 +114,21 @@
             this.guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
             this.guna2CustomGradientPanel1.Size = new System.Drawing.Size(1312, 708);
             this.guna2CustomGradientPanel1.TabIndex = 14;
+            // 
+            // button9
+            // 
+            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(64)))));
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button9.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button9.Location = new System.Drawing.Point(1187, 61);
+            this.button9.Margin = new System.Windows.Forms.Padding(4);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(112, 31);
+            this.button9.TabIndex = 127;
+            this.button9.Text = "Search";
+            this.button9.UseVisualStyleBackColor = false;
             // 
             // paneledit
             // 
@@ -304,7 +319,7 @@
             this.iconButton3.Name = "iconButton3";
             this.iconButton3.Size = new System.Drawing.Size(201, 34);
             this.iconButton3.TabIndex = 125;
-            this.iconButton3.Text = "Batches";
+            this.iconButton3.Text = "Bill Details";
             this.iconButton3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton3.UseVisualStyleBackColor = false;
@@ -328,7 +343,7 @@
             this.iconButton2.Name = "iconButton2";
             this.iconButton2.Size = new System.Drawing.Size(201, 34);
             this.iconButton2.TabIndex = 124;
-            this.iconButton2.Text = "Batch Details";
+            this.iconButton2.Text = "Supplier Bills";
             this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton2.UseVisualStyleBackColor = false;
@@ -356,6 +371,7 @@
             this.btndelete.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btndelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btndelete.UseVisualStyleBackColor = false;
+            this.btndelete.Click += new System.EventHandler(this.btndelete_Click);
             // 
             // btnedit
             // 
@@ -410,11 +426,11 @@
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Linen;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Lime;
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Linen;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Lime;
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -441,6 +457,7 @@
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox10.TabIndex = 119;
             this.pictureBox10.TabStop = false;
+            this.pictureBox10.Click += new System.EventHandler(this.pictureBox10_Click);
             // 
             // label4
             // 
@@ -466,6 +483,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(230, 29);
             this.textBox1.TabIndex = 118;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // btnstate
             // 
@@ -486,7 +504,7 @@
             this.btnstate.Name = "btnstate";
             this.btnstate.Size = new System.Drawing.Size(201, 34);
             this.btnstate.TabIndex = 116;
-            this.btnstate.Text = "Sell Product";
+            this.btnstate.Text = "Price Record";
             this.btnstate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnstate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnstate.UseVisualStyleBackColor = false;
@@ -510,7 +528,7 @@
             this.btnlogs.Name = "btnlogs";
             this.btnlogs.Size = new System.Drawing.Size(201, 34);
             this.btnlogs.TabIndex = 115;
-            this.btnlogs.Text = "Inventory ";
+            this.btnlogs.Text = "Supplier Payments";
             this.btnlogs.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnlogs.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnlogs.UseVisualStyleBackColor = false;
@@ -534,7 +552,7 @@
             this.btncategory.Name = "btncategory";
             this.btncategory.Size = new System.Drawing.Size(201, 34);
             this.btncategory.TabIndex = 114;
-            this.btncategory.Text = "Categories";
+            this.btncategory.Text = "Give Order";
             this.btncategory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btncategory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btncategory.UseVisualStyleBackColor = false;
@@ -558,25 +576,10 @@
             this.btnproducts.Name = "btnproducts";
             this.btnproducts.Size = new System.Drawing.Size(201, 34);
             this.btnproducts.TabIndex = 113;
-            this.btnproducts.Text = "Products";
+            this.btnproducts.Text = "Suppliers";
             this.btnproducts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnproducts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnproducts.UseVisualStyleBackColor = false;
-            // 
-            // button9
-            // 
-            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(64)))));
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button9.Location = new System.Drawing.Point(1187, 61);
-            this.button9.Margin = new System.Windows.Forms.Padding(4);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(112, 31);
-            this.button9.TabIndex = 127;
-            this.button9.Text = "Search";
-            this.button9.UseVisualStyleBackColor = false;
             // 
             // Supplierform
             // 

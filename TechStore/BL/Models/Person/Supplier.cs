@@ -9,11 +9,11 @@ namespace TechStore.BL.Models.Person
     public class Supplier : persons
     {
         public string name { get; private set; }
-        public Supplier(int id, string email, string address, string name) : base(id, email, address)
+        public Supplier(int id, string email, string address, string name,string phone) : base(id, email, address,phone)
         {
             this.name = name;
         }
-        public Supplier(string email, string address, string name) : base(email, address)
+        public Supplier(string email, string address, string phone,string name) : base(email, address,phone)
         {
             {
                 this.name = name;
