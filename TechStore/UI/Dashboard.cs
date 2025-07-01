@@ -153,13 +153,11 @@ namespace TechStore
         private void btnrepair_Click(object sender, EventArgs e)
         {
             activebutton(sender, System.Drawing.Color.FromArgb(231, 76, 60));
-
         }
 
         private void btncustomers_Click(object sender, EventArgs e)
         {
             activebutton(sender, sidebarColors[2]);
-
         }
 
         private void btnsupplier_Click(object sender, EventArgs e)
@@ -167,13 +165,11 @@ namespace TechStore
             activebutton(sender, sidebarColors[3]);
             var f = Program.ServiceProvider.GetRequiredService<Supplierform>();
             LoadFormIntoPanel(f);
-
         }
 
         private void btnreport_Click(object sender, EventArgs e)
         {
             activebutton(sender, sidebarColors[5]);
-
         }
 
         private void btnlogout_Click(object sender, EventArgs e)
@@ -192,5 +188,9 @@ namespace TechStore
     Color.FromArgb(231, 76, 60)    // Rose Red
 };
 
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

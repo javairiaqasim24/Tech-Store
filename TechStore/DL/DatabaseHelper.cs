@@ -69,7 +69,7 @@ namespace KIMS
             }
             catch (Exception ex)
             {
-throw new Exception("Error retrieving category ID: " + ex.Message);
+                throw new Exception("Error retrieving category ID: " + ex.Message);
             }
         }
         public static List<string> GetCategories(string keyword)

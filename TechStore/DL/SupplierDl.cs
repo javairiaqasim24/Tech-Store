@@ -24,7 +24,7 @@ namespace TechStore.DL
                     cmd.Parameters.AddWithValue("@name", s.name);
                     cmd.Parameters.AddWithValue("@contact", s.phone);  // Use inherited field
                     cmd.Parameters.AddWithValue("@address", s.address);
-cmd.Parameters.AddWithValue("@email", s.email); // Use inherited field
+                    cmd.Parameters.AddWithValue("@email", s.email); // Use inherited field
                     int rowsAffected = cmd.ExecuteNonQuery();
                     return rowsAffected > 0;
                 }

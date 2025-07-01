@@ -152,6 +152,12 @@
     <Compile Include="UI\Addsupplierform.Designer.cs">
       <DependentUpon>Addsupplierform.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Customersale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Customersale.Designer.cs">
+      <DependentUpon>Customersale.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,11 +196,45 @@
     <Compile Include="UI\Supplierform.Designer.cs">
       <DependentUpon>Supplierform.cs</DependentUpon>
     </Compile>
+    <Content Include="Content\all.css" />
+    <Content Include="Content\all.min.css" />
+    <Content Include="Content\brands.css" />
+    <Content Include="Content\brands.min.css" />
+    <Content Include="Content\fontawesome.css" />
+    <Content Include="Content\fontawesome.min.css" />
+    <Content Include="Content\regular.css" />
+    <Content Include="Content\regular.min.css" />
+    <Content Include="Content\solid.css" />
+    <Content Include="Content\solid.min.css" />
+    <Content Include="Content\svg-with-js.css" />
+    <Content Include="Content\svg-with-js.min.css" />
+    <Content Include="Content\v4-shims.css" />
+    <Content Include="Content\v4-shims.min.css" />
+    <Content Include="Scripts\fontawesome\all.js" />
+    <Content Include="Scripts\fontawesome\all.min.js" />
+    <Content Include="Scripts\fontawesome\brands.js" />
+    <Content Include="Scripts\fontawesome\brands.min.js" />
+    <Content Include="Scripts\fontawesome\conflict-detection.js" />
+    <Content Include="Scripts\fontawesome\conflict-detection.min.js" />
+    <Content Include="Scripts\fontawesome\fontawesome.js" />
+    <Content Include="Scripts\fontawesome\fontawesome.min.js" />
+    <Content Include="Scripts\fontawesome\regular.js" />
+    <Content Include="Scripts\fontawesome\regular.min.js" />
+    <Content Include="Scripts\fontawesome\solid.js" />
+    <Content Include="Scripts\fontawesome\solid.min.js" />
+    <Content Include="Scripts\fontawesome\v4-shims.js" />
+    <Content Include="Scripts\fontawesome\v4-shims.min.js" />
+    <Content Include="webfonts\fa-brands-400.svg" />
+    <Content Include="webfonts\fa-regular-400.svg" />
+    <Content Include="webfonts\fa-solid-900.svg" />
     <EmbeddedResource Include="UI\Addproductform.resx">
       <DependentUpon>addproductform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Addsupplierform.resx">
       <DependentUpon>Addsupplierform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Customersale.resx">
+      <DependentUpon>Customersale.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
@@ -239,6 +279,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="webfonts\fa-brands-400.eot" />
+    <None Include="webfonts\fa-brands-400.ttf" />
+    <None Include="webfonts\fa-brands-400.woff" />
+    <None Include="webfonts\fa-brands-400.woff2" />
+    <None Include="webfonts\fa-regular-400.eot" />
+    <None Include="webfonts\fa-regular-400.ttf" />
+    <None Include="webfonts\fa-regular-400.woff" />
+    <None Include="webfonts\fa-regular-400.woff2" />
+    <None Include="webfonts\fa-solid-900.eot" />
+    <None Include="webfonts\fa-solid-900.ttf" />
+    <None Include="webfonts\fa-solid-900.woff" />
+    <None Include="webfonts\fa-solid-900.woff2" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
