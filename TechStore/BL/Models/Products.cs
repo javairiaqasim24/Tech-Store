@@ -34,7 +34,7 @@ namespace TechStore.BL.Models
             this.quantity = quantity;
             this.price = price;
         }
-        public Products()
+        public Products((int, string, string, string, int?, double?) value)
         {
         }
     }

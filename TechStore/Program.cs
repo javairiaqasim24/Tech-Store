@@ -28,7 +28,7 @@ namespace TechStore
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var mainForm = ServiceProvider.GetRequiredService<Dashboard>();
+            var mainForm = ServiceProvider.GetRequiredService<Customersale>();
             Application.Run(mainForm);
         }
         public static void configureServices(IServiceCollection services)
@@ -36,10 +36,14 @@ namespace TechStore
             //DL
             services.AddScoped<IproductDl, ProductDL>();
             services.AddScoped<IsupplierDl, SupplierDl>();
+            services.AddScoped<Icustomersaledl, Customersaledl>();
+
             //BL
             services.AddScoped<TechStore.Interfaces.BLInterfaces.IproductBl, TechStore.BL.BL.ProductBL>();
             services.AddScoped<IPersonFactory, PersonFactory>();
             services.AddScoped<ISupplierBL, SupplierBl>();
+            services.AddScoped<ICustomerSaleBL, CustomerSaleBL>();
+
             //forms
             services.AddTransient<HomeContentform>();
             services.AddTransient<Dashboard>();
@@ -50,6 +54,9 @@ namespace TechStore
             services.AddTransient<orders>();
             services.AddTransient<AddCustomerform>();
             services.AddTransient<Customerform>();
+            services.AddTransient<Customersale>();
+
+
         }
     }
 }

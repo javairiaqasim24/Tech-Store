@@ -125,18 +125,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\BL\CustomerSaleBL .cs" />
     <Compile Include="BL\Models\Person\Customer.cs" />
     <Compile Include="BL\Models\Person\persons.cs" />
     <Compile Include="BL\Models\Person\Supplier.cs" />
     <Compile Include="BL\Models\Products.cs" />
     <Compile Include="BL\BL\ProductBL.cs" />
     <Compile Include="BL\BL\SupplierBl.cs" />
+    <Compile Include="BL\Models\ProductSearchResult.cs" />
     <Compile Include="DL\CustomerDL.cs" />
+    <Compile Include="DL\Customersaledl.cs" />
     <Compile Include="DL\DatabaseHelper.cs" />
     <Compile Include="DL\ProductDL.cs" />
     <Compile Include="DL\SupplierDl.cs" />
+    <Compile Include="Interfaces\BLInterfaces\ICustomerSaleBL.cs" />
     <Compile Include="Interfaces\BLInterfaces\IproductBl.cs" />
     <Compile Include="Interfaces\BLInterfaces\ISupplierBL.cs" />
+    <Compile Include="Interfaces\DLInterfaces\Icustomersaledl.cs" />
     <Compile Include="Interfaces\DLInterfaces\IproductDl.cs" />
     <Compile Include="Interfaces\DLInterfaces\IsupplierDl.cs" />
     <Compile Include="Interfaces\IPersonFactory.cs" />
@@ -165,6 +170,12 @@
     </Compile>
     <Compile Include="UI\Customerform.Designer.cs">
       <DependentUpon>Customerform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Customersale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Customersale.Designer.cs">
+      <DependentUpon>Customersale.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Dashboard.cs">
       <SubType>Form</SubType>
@@ -215,6 +226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Customerform.resx">
       <DependentUpon>Customerform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Customersale.resx">
+      <DependentUpon>Customersale.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
