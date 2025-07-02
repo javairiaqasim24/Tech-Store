@@ -6,10 +6,10 @@ namespace TechStore.DL
 {
     public interface ICustomerDL
     {
-        bool Addcustomer(persons c);
+        bool Addcustomer(Ipersons c);
         bool Deletecustomer(int id);
-        List<persons> GetCustomers();
-        List<persons> Searchcustomers(string text);
-        bool Updatecustomer(persons c);
+        List<Ipersons> GetCustomers();
+        List<Ipersons> Searchcustomers(string text);
+        bool Updatecustomer(Ipersons c);
     }
 }

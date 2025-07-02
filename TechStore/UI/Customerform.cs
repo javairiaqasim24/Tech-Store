@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -23,7 +24,7 @@ namespace TechStore.UI
             this._customerBL = customerBL;
             paneledit.Visible = false;
 
-            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
+            //dataGridView2.CellContentClick += dataGridView2_CellContentClick;
 
             UIHelper.ApplyButtonStyles(dataGridView2);
         }
@@ -35,20 +36,20 @@ namespace TechStore.UI
 
         private void LoadCustomers()
         {
-            var list = _customerBL.GetCustomers();
+            List<Customer> list = _customerBL.GetCustomers().OfType<Customer>().ToList();
             dataGridView2.Columns.Clear();
             dataGridView2.DataSource = list;
 
             dataGridView2.Columns["Id"].Visible = false;
-            dataGridView2.Columns["firstname"].HeaderText = "First Name";
-            dataGridView2.Columns["lastname"].HeaderText = "Last Name";
+            dataGridView2.Columns["_firstname"].HeaderText = "First Name";
+            dataGridView2.Columns["_lastname"].HeaderText = "Last Name";
             dataGridView2.Columns["phone"].HeaderText = "Contact Number";
-            dataGridView2.Columns["type"].HeaderText = "Type";
+            dataGridView2.Columns["_type"].HeaderText = "Type";
             dataGridView2.Columns["email"].HeaderText = "Email";
             dataGridView2.Columns["address"].HeaderText = "Address";
 
-            if (dataGridView2.Columns.Contains("name"))
-                dataGridView2.Columns["name"].Visible = false;
+            if (dataGridView2.Columns.Contains("_name"))
+                dataGridView2.Columns["_name"].Visible = false;
          
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
@@ -70,10 +71,10 @@ namespace TechStore.UI
 
             if (columnName == "Edit")
             {
-                txtname.Text = row.Cells["firstname"].Value?.ToString();
-                txtlname.Text = row.Cells["lastname"].Value?.ToString();
+                txtname.Text = row.Cells["_firstname"].Value?.ToString();
+                txtlname.Text = row.Cells["_lastname"].Value?.ToString();
                 txtcontact.Text = row.Cells["phone"].Value?.ToString();
-                string type = row.Cells["type"].Value?.ToString() ?? "Walk_in";
+                string type = row.Cells["_type"].Value?.ToString() ?? "Walk_in";
                 comboBox1.Text = type;
 
                 if (type == "Regular")
@@ -146,7 +147,7 @@ namespace TechStore.UI
 
             try
             {
-                persons customer = new Customer(selectedCustomerId, email, address, name, lname, type, phone);
+                Ipersons customer = new Customer(selectedCustomerId, email, address, name, lname, type, phone);
                 bool result = _customerBL.UpdateCustomer(customer);
 
                 MessageBox.Show(result ? "Customer updated successfully." : "Failed to update customer.", result ? "Success" : "Error",
@@ -185,9 +186,9 @@ namespace TechStore.UI
                 return;
             }
 
-            var results = _customerBL.SearchCustomers(searchText);
+            List<Customer> list = _customerBL.SearchCustomers(searchText).OfType<Customer>().ToList();
             dataGridView2.Columns.Clear();
-            dataGridView2.DataSource = results;
+            dataGridView2.DataSource = list;
 
             dataGridView2.Columns["Id"].Visible = false;
             dataGridView2.Columns["firstname"].HeaderText = "First Name";
@@ -206,14 +207,7 @@ namespace TechStore.UI
 
             UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
             UIHelper.AddButtonColumn(dataGridView2, "Delete", "Delete", "Delete");
-            dataGridView2.Columns["firstname"].DisplayIndex = 0;
-            dataGridView2.Columns["lastname"].DisplayIndex = 1;
-            dataGridView2.Columns["phone"].DisplayIndex = 2;
-            dataGridView2.Columns["type"].DisplayIndex = 3;
-            dataGridView2.Columns["email"].DisplayIndex = 4;
-            dataGridView2.Columns["address"].DisplayIndex = 5;
-            dataGridView2.Columns["Edit"].DisplayIndex = 6;
-            dataGridView2.Columns["Delete"].DisplayIndex = 7;
+       
 
         }
 

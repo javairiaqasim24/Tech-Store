@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -31,7 +32,6 @@ namespace TechStore.UI
 
             paneledit.Visible = false;
              UIHelper.ApplyButtonStyles(dataGridView2);
-            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
         }
 
         private void Supplierform_Load(object sender, EventArgs e)
@@ -41,15 +41,17 @@ namespace TechStore.UI
 
         private void LoadSuppliers()
         {
-            var list = supplierBL.getsuppliers();
+            List<Supplier> list = supplierBL.getsuppliers().OfType<Supplier>().ToList();
+
             dataGridView2.Columns.Clear();
             dataGridView2.DataSource = list;
 
+
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView2.Columns["id"].Visible = false;
-            dataGridView2.Columns["firstname"].Visible = false;
-            dataGridView2.Columns["lastname"].Visible = false;
-            dataGridView2.Columns["type"].Visible = false;
+            //dataGridView2.Columns["_firstname"].Visible = false;
+            //dataGridView2.Columns["_lastname"].Visible = false;
+            //dataGridView2.Columns["_type"].Visible = false;
  
 
             UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
@@ -68,7 +70,7 @@ namespace TechStore.UI
 
             if (columnName == "Edit")
             {
-                txtname1.Text = row.Cells["name"].Value?.ToString() ?? "";
+                txtname1.Text = row.Cells["_name"].Value?.ToString() ?? "";
                 txtaddress.Text = row.Cells["address"].Value?.ToString() ?? "";
                 txtemail.Text = row.Cells["email"].Value?.ToString() ?? "";
                 txtcontact.Text = row.Cells["phone"].Value?.ToString() ?? "";
@@ -155,14 +157,15 @@ namespace TechStore.UI
             }
             else
             {
-                var suppliers = supplierBL.searchsuppliers(search);
+                List<Supplier> list = supplierBL.getsuppliers().OfType<Supplier>().ToList();
                 dataGridView2.Columns.Clear();
-                dataGridView2.DataSource = suppliers;
+                dataGridView2.DataSource = list;
                 dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dataGridView2.Columns["id"].Visible = false;
-                dataGridView2.Columns["firstname"].Visible = false;
-                dataGridView2.Columns["lastname"].Visible = false;
-                dataGridView2.Columns["type"].Visible = false;
+
+                //dataGridView2.Columns["_firstname"].Visible = false;
+                //dataGridView2.Columns["_lastname"].Visible = false;
+                //dataGridView2.Columns["_type"].Visible = false;
                 UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
                 UIHelper.AddButtonColumn(dataGridView2, "Delete", "Delete", "Delete");
             }

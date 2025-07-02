@@ -129,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL\BL\CustomerBL.cs" />
+    <Compile Include="Interfaces\Ipersons.cs" />
     <Compile Include="Interfaces\BLInterfaces\ICustomerBL.cs" />
     <Compile Include="BL\Models\Person\Customer.cs" />
     <Compile Include="BL\Models\Person\persons.cs" />

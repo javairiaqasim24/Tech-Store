@@ -13,7 +13,7 @@ namespace TechStore.DL
 {
     public class CustomerDL : ICustomerDL
     {
-        public bool Addcustomer(persons c)
+        public bool Addcustomer(Ipersons c)
         {
             try
             {
@@ -29,9 +29,9 @@ namespace TechStore.DL
 
                     using (var cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@first", customer.firstName);
-                        cmd.Parameters.AddWithValue("@last", customer.lastName);
-                        cmd.Parameters.AddWithValue("@type", customer.type);
+                        cmd.Parameters.AddWithValue("@first", customer._firstName);
+                        cmd.Parameters.AddWithValue("@last", customer._lastName);
+                        cmd.Parameters.AddWithValue("@type", customer._type);
                         cmd.Parameters.AddWithValue("@email", string.IsNullOrEmpty(customer.email) ? (object)DBNull.Value : customer.email);
                         cmd.Parameters.AddWithValue("@phone", customer.phone);
                         cmd.Parameters.AddWithValue("@address", string.IsNullOrEmpty(customer.address) ? (object)DBNull.Value : customer.address);
@@ -51,7 +51,7 @@ namespace TechStore.DL
             }
         }
 
-        public bool Updatecustomer(persons c)
+        public bool Updatecustomer(Ipersons c)
         {
             try
             {
@@ -65,9 +65,9 @@ namespace TechStore.DL
                     string query = "UPDATE customers SET first_name = @first_name, last_name = @last_name, type = @type, email = @email, phone = @phone, address = @address WHERE customer_id = @id;";
                     using (var cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@first_name",customer.firstName);
-                        cmd.Parameters.AddWithValue("@last_name", customer.lastName);
-                        cmd.Parameters.AddWithValue("@type", customer.type);
+                        cmd.Parameters.AddWithValue("@first_name",customer._firstName);
+                        cmd.Parameters.AddWithValue("@last_name", customer._lastName);
+                        cmd.Parameters.AddWithValue("@type", customer._type);
                         cmd.Parameters.AddWithValue("@email", string.IsNullOrEmpty(customer.email) ? (object)DBNull.Value : customer.email);
                         cmd.Parameters.AddWithValue("@phone", c.phone);
                         cmd.Parameters.AddWithValue("@address", string.IsNullOrEmpty(customer.address) ? (object)DBNull.Value : customer.address);
@@ -111,9 +111,9 @@ namespace TechStore.DL
                 throw new Exception("Error deleting customer: " + ex.Message, ex);
             }
         }
-        public List<persons> GetCustomers()
+        public List<Ipersons> GetCustomers()
         {
-            List<persons> customers = new List<persons>();
+            List<Ipersons> customers = new List<Ipersons>();
             try
             {
                 using (var conn = DatabaseHelper.Instance.GetConnection())
@@ -127,7 +127,7 @@ namespace TechStore.DL
                         {
                             while (reader.Read())
                             {
-                                Customer customer = new Customer
+                                Ipersons customer = new Customer
                                 (
                                      reader.GetInt32("customer_id"),
                                     reader.IsDBNull(reader.GetOrdinal("email")) ? "" : reader.GetString("email"),
@@ -150,9 +150,9 @@ namespace TechStore.DL
             }
             return customers;
         }
-        public List<persons> Searchcustomers(string keyword)
+        public List<Ipersons> Searchcustomers(string keyword)
         {
-            List<persons> customers = new List<persons>();
+            List<Ipersons> customers = new List<Ipersons>();
             try
             {
                 using (var conn = DatabaseHelper.Instance.GetConnection())
@@ -173,7 +173,7 @@ namespace TechStore.DL
                         {
                             while (reader.Read())
                             {
-                                Customer customer = new Customer
+                                var customer = new Customer
                                 (
                                     reader.GetInt32("customer_id"),
                                         reader.IsDBNull(reader.GetOrdinal("email")) ? "" : reader.GetString("email"),

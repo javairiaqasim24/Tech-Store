@@ -9,16 +9,13 @@ using TechStore.Interfaces;
 
 namespace TechStore.BL.Models
 {
-    public  abstract class persons
+    public class persons:Ipersons
     {
         public int id {  get; private set; }
         public  string email { get; private set; }
         public string address { get; private set; }
         public string phone{ get; private set; }
-        public virtual string name => null;
-        public virtual string firstName => null;
-        public virtual string lastName => null;
-        public virtual string type => null;
+     
         public persons(int id, string email, string address,string phone)
         {
             this.id = id;
@@ -32,7 +29,6 @@ namespace TechStore.BL.Models
             this.address = address;
             this.phone = phone;
         }
-        public abstract string getpersontype();
     }
 }
 

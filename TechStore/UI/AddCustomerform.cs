@@ -62,7 +62,7 @@ namespace TechStore.UI
                     throw new ArgumentException("Invalid customer type. Must be 'Walk_in' or 'Regular'.");
                 }
 
-                persons p = new Customer(0, email, address, name, lastname, type, phone);
+                Ipersons p = new Customer(0, email, address, name, lastname, type, phone);
  
 
                 bool result = _customerbl.AddCustomer(p);

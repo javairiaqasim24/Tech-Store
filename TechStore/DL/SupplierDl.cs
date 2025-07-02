@@ -12,7 +12,7 @@ namespace TechStore.DL
 {
     public  class SupplierDl:IsupplierDl
     {
-        public bool addsupplier(persons s)
+        public bool addsupplier(Ipersons s)
         {
             try
             {
@@ -24,7 +24,7 @@ namespace TechStore.DL
                     conn.Open();
                     string query = "INSERT INTO suppliers (name, phone, address,email) VALUES (@name, @contact, @address,@email)";
                     var cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@name", customer.name);
+                    cmd.Parameters.AddWithValue("@name", customer._name);
                     cmd.Parameters.AddWithValue("@contact", customer.phone);  // Use inherited field
                     cmd.Parameters.AddWithValue("@address", customer.address);
                     cmd.Parameters.AddWithValue("@email", customer.email); // Use inherited field
@@ -42,7 +42,7 @@ namespace TechStore.DL
             }
         }
 
-        public bool updatesupplier(persons s)
+        public bool updatesupplier(Ipersons s)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace TechStore.DL
                     conn.Open();
                     string query = "UPDATE suppliers SET name = @name, phone = @contact, address = @address,email=@email WHERE supplier_id = @id";
                     var cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@name", customer.name);
+                    cmd.Parameters.AddWithValue("@name", customer._name);
                     cmd.Parameters.AddWithValue("@contact", customer.phone);  // Use inherited field
                     cmd.Parameters.AddWithValue("@address", customer.address);
                     cmd.Parameters.AddWithValue("@email", customer.email); // Use inherited field
@@ -98,7 +98,7 @@ namespace TechStore.DL
                 throw new Exception("Error deleting supplier: " + ex.Message, ex);
             }
         }
-public List<persons> getsuppliers()
+public List<Ipersons> getsuppliers()
         {
             try
             {
@@ -108,11 +108,11 @@ public List<persons> getsuppliers()
                     string query = "SELECT * FROM suppliers";
                     var cmd = new MySqlCommand(query, conn);
                     var reader = cmd.ExecuteReader();
-                    List<persons> suppliers = new List<persons>();
+                    List<Ipersons> suppliers = new List<Ipersons>();
                     while (reader.Read())
 
                     {
-                        Supplier s = new Supplier(
+                        var s = new Supplier(
                                     reader.GetInt32("supplier_id"),
                                       reader.GetString("email"),
                                       reader.GetString("address"),
@@ -150,7 +150,7 @@ public List<persons> getsuppliers()
                 throw new Exception("Error getting supplier names: " + ex.Message, ex);
             }
         }
-        public List<persons> searchsuppliers(string text)
+        public List<Ipersons> searchsuppliers(string text)
         {
             try
             {
@@ -163,7 +163,7 @@ public List<persons> getsuppliers()
                         cmd.Parameters.AddWithValue("@text", "%" + text + "%");
                         using(var reader = cmd.ExecuteReader())
                         {
-                            List<persons> suppliers = new List<persons>();
+                            List<Ipersons> suppliers = new List<Ipersons>();
                             while (reader.Read())
                             {
                                 Supplier s = new Supplier(

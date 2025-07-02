@@ -16,7 +16,7 @@ namespace TechStore.BL.BL
             _supplierDL = supplierDL ?? throw new ArgumentNullException(nameof(supplierDL), "Supplier data layer cannot be null.");
         }
 
-        public bool addsupplier(persons p)
+        public bool addsupplier(Ipersons p)
         {
             var supplier = p as Supplier ?? throw new ArgumentException("Expected a Supplier instance.", nameof(p));
             ValidateSupplier(supplier, isUpdate: false);
@@ -31,7 +31,7 @@ namespace TechStore.BL.BL
             }
         }
 
-        public bool updatesupplier(persons p)
+        public bool updatesupplier(Ipersons p)
         {
             var supplier = p as Supplier ?? throw new ArgumentException("Expected a Supplier instance.", nameof(p));
             ValidateSupplier(supplier, isUpdate: true);
@@ -61,7 +61,7 @@ namespace TechStore.BL.BL
             }
         }
 
-        public List<persons> getsuppliers()
+        public List<Ipersons> getsuppliers()
         {
             try
             {
@@ -85,7 +85,7 @@ namespace TechStore.BL.BL
             }
         }
 
-        public List<persons> searchsuppliers(string text)
+        public List<Ipersons> searchsuppliers(string text)
         {
             try
             {
@@ -102,7 +102,7 @@ namespace TechStore.BL.BL
             if (isUpdate && supplier.id <= 0)
                 throw new ArgumentException("Supplier ID is invalid.");
 
-            if (string.IsNullOrWhiteSpace(supplier.name))
+            if (string.IsNullOrWhiteSpace(supplier._name))
                 throw new ArgumentException("Supplier name is required.");
 
             if (string.IsNullOrWhiteSpace(supplier.email))

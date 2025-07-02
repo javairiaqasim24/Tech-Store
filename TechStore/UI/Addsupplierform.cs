@@ -31,7 +31,7 @@ namespace TechStore.UI
             string email = txtemail.Text.Trim();
             try
             {
-                persons supplier = new Supplier(0, email, address, name, contact);
+                Ipersons supplier = new Supplier(0, email, address, name, contact);
                 bool result = supplierBL.addsupplier(supplier);
                 if (result)
                 {

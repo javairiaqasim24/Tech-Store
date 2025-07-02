@@ -10,11 +10,11 @@ namespace TechStore.Interfaces.DLInterfaces
 {
     public interface IsupplierDl
     {
-        bool addsupplier(persons s);
-        bool updatesupplier(persons s);
+        bool addsupplier(Ipersons s);
+        bool updatesupplier(Ipersons s);
         bool deletesupplier(int id);
-            List<persons> getsuppliers();
+            List<Ipersons> getsuppliers();
         List<string> getsuppliernames(string name);
-        List<persons> searchsuppliers(string text);
+        List<Ipersons> searchsuppliers(string text);
     }
 }

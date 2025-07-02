@@ -15,7 +15,7 @@ namespace TechStore.BL.BL
             this.customerDL = customerDL ?? throw new ArgumentNullException(nameof(customerDL), "Data access layer cannot be null.");
         }
 
-        public bool AddCustomer(persons p)
+        public bool AddCustomer(Ipersons p)
         {
             var customer = p as Customer ?? throw new ArgumentException("Expected a Customer instance.", nameof(p));
             ValidateCustomer(customer, isUpdate: false);
@@ -30,7 +30,7 @@ namespace TechStore.BL.BL
             }
         }
 
-        public bool UpdateCustomer(persons p)
+        public bool UpdateCustomer(Ipersons p)
         {
             var customer = p as Customer ?? throw new ArgumentException("Expected a Customer instance.", nameof(p));
             ValidateCustomer(customer, isUpdate: true);
@@ -60,7 +60,7 @@ namespace TechStore.BL.BL
             }
         }
 
-        public List<persons> GetCustomers()
+        public List<Ipersons> GetCustomers()
         {
             try
             {
@@ -72,7 +72,7 @@ namespace TechStore.BL.BL
             }
         }
 
-        public List<persons> SearchCustomers(string text)
+        public List<Ipersons> SearchCustomers(string text)
         {
             try
             {
@@ -90,13 +90,13 @@ namespace TechStore.BL.BL
             if (isUpdate && customer.id <= 0)
                 throw new ArgumentException("Customer ID is invalid.");
 
-            if (string.IsNullOrWhiteSpace(customer.firstName))
+            if (string.IsNullOrWhiteSpace(customer._firstName))
                 throw new ArgumentException("First name is required.");
 
-            if (string.IsNullOrWhiteSpace(customer.lastName))
+            if (string.IsNullOrWhiteSpace(customer._lastName))
                 throw new ArgumentException("Last name is required.");
 
-            if (string.IsNullOrWhiteSpace(customer.type))
+            if (string.IsNullOrWhiteSpace(customer._type))
                 throw new ArgumentException("Customer type is required.");
 
             if (string.IsNullOrWhiteSpace(customer.phone))

@@ -5,10 +5,10 @@ namespace TechStore.BL.BL
 {
     public interface ICustomerBL
     {
-        bool AddCustomer(persons c);
+        bool AddCustomer(Ipersons c);
         bool DeleteCustomer(int id);
-        List<persons> GetCustomers();
-        List<persons> SearchCustomers(string text);
-        bool UpdateCustomer(persons c);
+        List<Ipersons> GetCustomers();
+        List<Ipersons> SearchCustomers(string text);
+        bool UpdateCustomer(Ipersons c);
     }
 }
