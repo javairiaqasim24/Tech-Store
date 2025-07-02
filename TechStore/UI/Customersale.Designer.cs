@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            this.manualserialtxt = new System.Windows.Forms.TextBox();
+            this.btnsrch = new System.Windows.Forms.Button();
             this.quantity = new System.Windows.Forms.TextBox();
             this.btndelete = new FontAwesome.Sharp.IconButton();
             this.btnadd = new FontAwesome.Sharp.IconButton();
@@ -46,8 +48,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toplbl = new System.Windows.Forms.Label();
-            this.btnsrch = new System.Windows.Forms.Button();
-            this.manualserialtxt = new System.Windows.Forms.TextBox();
             this.guna2CustomGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -82,6 +82,25 @@
             this.guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
             this.guna2CustomGradientPanel1.Size = new System.Drawing.Size(1583, 952);
             this.guna2CustomGradientPanel1.TabIndex = 1;
+            // 
+            // manualserialtxt
+            // 
+            this.manualserialtxt.Location = new System.Drawing.Point(875, 108);
+            this.manualserialtxt.Multiline = true;
+            this.manualserialtxt.Name = "manualserialtxt";
+            this.manualserialtxt.Size = new System.Drawing.Size(205, 34);
+            this.manualserialtxt.TabIndex = 110;
+            this.manualserialtxt.TextChanged += new System.EventHandler(this.manualserialtxt_TextChanged);
+            // 
+            // btnsrch
+            // 
+            this.btnsrch.Location = new System.Drawing.Point(1122, 108);
+            this.btnsrch.Name = "btnsrch";
+            this.btnsrch.Size = new System.Drawing.Size(75, 23);
+            this.btnsrch.TabIndex = 109;
+            this.btnsrch.Text = "search";
+            this.btnsrch.UseVisualStyleBackColor = true;
+            this.btnsrch.Click += new System.EventHandler(this.btnsrch_Click);
             // 
             // quantity
             // 
@@ -276,6 +295,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1583, 105);
             this.panel1.TabIndex = 14;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // toplbl
             // 
@@ -289,25 +309,6 @@
             this.toplbl.TabIndex = 6;
             this.toplbl.Text = "Customer Sale";
             this.toplbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnsrch
-            // 
-            this.btnsrch.Location = new System.Drawing.Point(1122, 108);
-            this.btnsrch.Name = "btnsrch";
-            this.btnsrch.Size = new System.Drawing.Size(75, 23);
-            this.btnsrch.TabIndex = 109;
-            this.btnsrch.Text = "search";
-            this.btnsrch.UseVisualStyleBackColor = true;
-            this.btnsrch.Click += new System.EventHandler(this.btnsrch_Click);
-            // 
-            // manualserialtxt
-            // 
-            this.manualserialtxt.Location = new System.Drawing.Point(875, 108);
-            this.manualserialtxt.Multiline = true;
-            this.manualserialtxt.Name = "manualserialtxt";
-            this.manualserialtxt.Size = new System.Drawing.Size(205, 34);
-            this.manualserialtxt.TabIndex = 110;
-            this.manualserialtxt.TextChanged += new System.EventHandler(this.manualserialtxt_TextChanged);
             // 
             // Customersale
             // 

@@ -99,7 +99,7 @@ namespace TechStore.UI
                 {
                     txtproductname.Text = product.name;
                     txtdescription.Text = product.description;
-                    txtsaleprice.Text = product.price?.ToString("N2") ?? "0.00";
+                    txtsaleprice.Text = product.price.ToString() ?? "0.00";
                     discount.Text = "0";
                     dgvProductSearch.Visible = false;
                     CalculateNetPrice();
@@ -134,7 +134,7 @@ namespace TechStore.UI
             }
         }
 
-        private void PopulateSearchGrid(List<Products> products)
+        private void PopulateSearchGrid(List<BL.Models.Person.Customersale> products)
         {
             dgvProductSearch.Rows.Clear();
 
@@ -143,8 +143,8 @@ namespace TechStore.UI
                 dgvProductSearch.Rows.Add(
                     p.name,
                     p.description,
-                    p.price ?? 0,
-                    p.quantity ?? 0
+                    p.price ,
+                    p.quantity 
                 );
             }
 
@@ -338,7 +338,7 @@ namespace TechStore.UI
                     txtserial.Text = manualSerial;
                     txtproductname.Text = product.name;
                     txtdescription.Text = product.description;
-                    txtsaleprice.Text = product.price?.ToString("N2") ?? "0.00";
+                    txtsaleprice.Text = product.price.ToString() ?? "0.00";
                     discount.Text = "0";
                     dgvProductSearch.Visible = false;
                     CalculateNetPrice();
@@ -356,6 +356,11 @@ namespace TechStore.UI
 
 
         private void manualserialtxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TechStore.BL.Models;
+using TechStore.BL.Models.Person;
 
 namespace TechStore.Interfaces.DLInterfaces
 {
     public interface Icustomersaledl
     {
         // ... existing methods ...
-        Products GetProductBySku(string sku);
-        List<Products> SearchProductsByName(string name);
+        Customersale GetProductBySku(string sku);
+        List<Customersale> SearchProductsByName(string name);
     }
 }

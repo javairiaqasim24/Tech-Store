@@ -129,6 +129,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL\BL\CustomerBL.cs" />
+    <Compile Include="BL\BL\CustomerSaleBL.cs" />
+    <Compile Include="BL\Models\Customersale.cs" />
+    <Compile Include="DL\Customersaledl .cs" />
+    <Compile Include="Interfaces\DLInterfaces\Icustomersaledl.cs" />
+    <Compile Include="Interfaces\BLInterfaces\ICustomerSaleBL.cs" />
     <Compile Include="Interfaces\Ipersons.cs" />
     <Compile Include="Interfaces\BLInterfaces\ICustomerBL.cs" />
     <Compile Include="BL\Models\Person\Customer.cs" />
@@ -169,6 +174,12 @@
     </Compile>
     <Compile Include="UI\Customerform.Designer.cs">
       <DependentUpon>Customerform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Customersale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Customersale.Designer.cs">
+      <DependentUpon>Customersale.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Dashboard.cs">
       <SubType>Form</SubType>
@@ -220,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Customerform.resx">
       <DependentUpon>Customerform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Customersale.resx">
+      <DependentUpon>Customersale.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
