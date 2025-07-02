@@ -36,6 +36,9 @@
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>packages\BouncyCastle.Cryptography.2.5.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>packages\Castle.Core.5.1.1\lib\net462\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="FontAwesome.Sharp, Version=6.6.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
       <HintPath>packages\FontAwesome.Sharp.6.6.0\lib\net472\FontAwesome.Sharp.dll</HintPath>
     </Reference>
@@ -125,28 +128,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BL\BL\CustomerSaleBL .cs" />
+    <Compile Include="BL\BL\CustomerBL.cs" />
+    <Compile Include="Interfaces\Ipersons.cs" />
+    <Compile Include="Interfaces\BLInterfaces\ICustomerBL.cs" />
     <Compile Include="BL\Models\Person\Customer.cs" />
     <Compile Include="BL\Models\Person\persons.cs" />
     <Compile Include="BL\Models\Person\Supplier.cs" />
     <Compile Include="BL\Models\Products.cs" />
     <Compile Include="BL\BL\ProductBL.cs" />
     <Compile Include="BL\BL\SupplierBl.cs" />
-    <Compile Include="BL\Models\ProductSearchResult.cs" />
     <Compile Include="DL\CustomerDL.cs" />
-    <Compile Include="DL\Customersaledl.cs" />
     <Compile Include="DL\DatabaseHelper.cs" />
+    <Compile Include="Interfaces\DLInterfaces\ICustomerDL.cs" />
     <Compile Include="DL\ProductDL.cs" />
     <Compile Include="DL\SupplierDl.cs" />
-    <Compile Include="Interfaces\BLInterfaces\ICustomerSaleBL.cs" />
     <Compile Include="Interfaces\BLInterfaces\IproductBl.cs" />
     <Compile Include="Interfaces\BLInterfaces\ISupplierBL.cs" />
-    <Compile Include="Interfaces\DLInterfaces\Icustomersaledl.cs" />
     <Compile Include="Interfaces\DLInterfaces\IproductDl.cs" />
     <Compile Include="Interfaces\DLInterfaces\IsupplierDl.cs" />
-    <Compile Include="Interfaces\IPersonFactory.cs" />
-    <Compile Include="Service Provider\BLServiceProvider.cs" />
-    <Compile Include="Service Provider\DLServiceProvider.cs" />
     <Compile Include="UI\AddCustomerform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,12 +169,6 @@
     </Compile>
     <Compile Include="UI\Customerform.Designer.cs">
       <DependentUpon>Customerform.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Customersale.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Customersale.Designer.cs">
-      <DependentUpon>Customersale.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Dashboard.cs">
       <SubType>Form</SubType>
@@ -215,6 +208,7 @@
     <Compile Include="UI\Supplierform.Designer.cs">
       <DependentUpon>Supplierform.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\UIHelper.cs" />
     <EmbeddedResource Include="UI\AddCustomerform.resx">
       <DependentUpon>AddCustomerform.cs</DependentUpon>
     </EmbeddedResource>
@@ -226,9 +220,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Customerform.resx">
       <DependentUpon>Customerform.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Customersale.resx">
-      <DependentUpon>Customersale.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>

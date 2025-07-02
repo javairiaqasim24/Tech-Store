@@ -158,6 +158,8 @@ namespace TechStore
         private void btncustomers_Click(object sender, EventArgs e)
         {
             activebutton(sender, sidebarColors[2]);
+            var f = Program.ServiceProvider.GetRequiredService<Customerform>();
+            LoadFormIntoPanel(f);
         }
 
         private void btnsupplier_Click(object sender, EventArgs e)

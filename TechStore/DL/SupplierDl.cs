@@ -12,19 +12,22 @@ namespace TechStore.DL
 {
     public  class SupplierDl:IsupplierDl
     {
-        public bool addsupplier(Supplier s)
+        public bool addsupplier(Ipersons s)
         {
             try
             {
+                Supplier customer = s as Supplier;
+                if (customer == null)
+                    throw new ArgumentException("Expected Customer object.");
                 using (var conn = DatabaseHelper.Instance.GetConnection())
                 {
                     conn.Open();
                     string query = "INSERT INTO suppliers (name, phone, address,email) VALUES (@name, @contact, @address,@email)";
                     var cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@name", s.name);
-                    cmd.Parameters.AddWithValue("@contact", s.phone);  // Use inherited field
-                    cmd.Parameters.AddWithValue("@address", s.address);
-                    cmd.Parameters.AddWithValue("@email", s.email); // Use inherited field
+                    cmd.Parameters.AddWithValue("@name", customer._name);
+                    cmd.Parameters.AddWithValue("@contact", customer.phone);  // Use inherited field
+                    cmd.Parameters.AddWithValue("@address", customer.address);
+                    cmd.Parameters.AddWithValue("@email", customer.email); // Use inherited field
                     int rowsAffected = cmd.ExecuteNonQuery();
                     return rowsAffected > 0;
                 }
@@ -39,20 +42,23 @@ namespace TechStore.DL
             }
         }
 
-        public bool updatesupplier(Supplier s)
+        public bool updatesupplier(Ipersons s)
         {
             try
             {
+                Supplier customer = s as Supplier;
+                if (customer == null)
+                    throw new ArgumentException("Expected Customer object.");
                 using (var conn = DatabaseHelper.Instance.GetConnection())
                 {
                     conn.Open();
                     string query = "UPDATE suppliers SET name = @name, phone = @contact, address = @address,email=@email WHERE supplier_id = @id";
                     var cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@name", s.name);
-                    cmd.Parameters.AddWithValue("@contact", s.email);  // Use inherited field
-                    cmd.Parameters.AddWithValue("@address", s.address);
-                    cmd.Parameters.AddWithValue("@email", s.email); // Use inherited field
-                    cmd.Parameters.AddWithValue("@id", s.id); // Assuming 'id' is a property of persons
+                    cmd.Parameters.AddWithValue("@name", customer._name);
+                    cmd.Parameters.AddWithValue("@contact", customer.phone);  // Use inherited field
+                    cmd.Parameters.AddWithValue("@address", customer.address);
+                    cmd.Parameters.AddWithValue("@email", customer.email); // Use inherited field
+                    cmd.Parameters.AddWithValue("@id", customer.id); // Assuming 'id' is a property of persons
                     int rowsAffected = cmd.ExecuteNonQuery();
                     return rowsAffected > 0;
                 }
@@ -92,7 +98,7 @@ namespace TechStore.DL
                 throw new Exception("Error deleting supplier: " + ex.Message, ex);
             }
         }
-public List<Supplier> getsuppliers()
+public List<Ipersons> getsuppliers()
         {
             try
             {
@@ -102,18 +108,17 @@ public List<Supplier> getsuppliers()
                     string query = "SELECT * FROM suppliers";
                     var cmd = new MySqlCommand(query, conn);
                     var reader = cmd.ExecuteReader();
-                    List<Supplier> suppliers = new List<Supplier>();
+                    List<Ipersons> suppliers = new List<Ipersons>();
                     while (reader.Read())
 
                     {
-                        Supplier s = new Supplier(
+                        var s = new Supplier(
                                     reader.GetInt32("supplier_id"),
                                       reader.GetString("email"),
                                       reader.GetString("address"),
                                     reader.GetString("name"),
                                     reader.GetString("phone")
 
-                                // Assuming email is also a field in the suppliers table
                                 );
                         suppliers.Add(s);
                     }
@@ -145,7 +150,7 @@ public List<Supplier> getsuppliers()
                 throw new Exception("Error getting supplier names: " + ex.Message, ex);
             }
         }
-        public List<Supplier> searchsuppliers(string text)
+        public List<Ipersons> searchsuppliers(string text)
         {
             try
             {
@@ -158,7 +163,7 @@ public List<Supplier> getsuppliers()
                         cmd.Parameters.AddWithValue("@text", "%" + text + "%");
                         using(var reader = cmd.ExecuteReader())
                         {
-                            List<Supplier> suppliers = new List<Supplier>();
+                            List<Ipersons> suppliers = new List<Ipersons>();
                             while (reader.Read())
                             {
                                 Supplier s = new Supplier(

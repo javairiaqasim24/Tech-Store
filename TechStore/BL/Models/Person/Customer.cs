@@ -6,20 +6,33 @@ using System.Threading.Tasks;
 
 namespace TechStore.BL.Models.Person
 {
-    public class Customer : persons
+    public class Customer : Ipersons
     {
-        public string firstName { get; private set; }
-        public string lastName { get; private set; }
-        public string type { get; private set; }
-        public Customer(int id,string email,string address, string firstName, string lastName, string type,string phone) : base(id,email,address,phone)
+        public string _firstName { get; private set; }
+        public string _lastName { get; private set; }
+        public string _type { get; private set; }
+
+        public Customer(int id,string email,string address, string firstName, string lastName, string type,string phone) 
         {
-          
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.type = type;
+            this.id = id;
+
+            this._firstName = firstName;
+            this._lastName = lastName;
+            this._type = type;
+            this.email = email;
+            this.address = address;
+            this.phone = phone;
+
+
         }
 
+        public string address { get; private set; }
 
+        public string email { get; private set; }
+
+        public int id { get; private set; }
+
+        public string phone { get; private set; }
     }
 
 }

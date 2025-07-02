@@ -25,43 +25,95 @@ namespace TechStore
             paneledit.Visible = false;
             //paneladd.Visible = false;
             _productBl = ibl;
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
 
         }
+
+
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
 
+            var columnName = dataGridView2.Columns[e.ColumnIndex].Name;
+
+            if (columnName == "Edit")
+            {
+                var row = dataGridView2.Rows[e.RowIndex];
+                selectedProductId = Convert.ToInt32(row.Cells["id"].Value);
+                txtname1.Text = row.Cells["name"].Value?.ToString();
+                txtdescp1.Text = row.Cells["description"].Value?.ToString();
+                txtcategory.Text = row.Cells["category"].Value?.ToString();
+                UIHelper.RoundPanelCorners(paneledit, 20);
+                UIHelper.ShowCenteredPanel(this, paneledit);
+            }
+            else if (columnName == "Delete")
+            {
+                var result = MessageBox.Show("Are you sure you want to delete this product?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    int productId = Convert.ToInt32(dataGridView2.Rows[e.RowIndex].Cells["id"].Value);
+                    if (_productBl.DeleteProduct(productId))
+                    {
+                        MessageBox.Show("Product deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        load();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to delete product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
+
         private void load()
         {
-            var list= _productBl.getproducts();
-            dataGridView2.DataSource= list.Select(p => new
+            var list = _productBl.getproducts();
+
+            dataGridView2.Columns.Clear();
+            dataGridView2.DataSource = list.Select(p => new
             {
                 p.id,
                 p.name,
-                p.sku,
                 p.description,
                 p.category,
-                p.price,
-                p.quantity
             }).ToList();
-            dataGridView2.AutoSizeColumnsMode=DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView2.Columns["id"].Visible = false; // Hide the ID column
+
+            dataGridView2.Columns["id"].Visible = false;
+
             dataGridView2.Columns["name"].HeaderText = "Product Name";
-            dataGridView2.Columns["sku"].HeaderText = "SKU";
             dataGridView2.Columns["description"].HeaderText = "Description";
             dataGridView2.Columns["category"].HeaderText = "Category";
-            dataGridView2.Columns["price"].HeaderText = "Unit Price";
-            dataGridView2.Columns["quantity"].HeaderText = "Quantity in Stock";
-            var lists = _productBl.getcategories(""); 
+
+            // Add buttons using helper
+            UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
+            UIHelper.AddButtonColumn(dataGridView2, "Delete", "Delete", "Delete");
+
+            // Apply styling
+            UIHelper.ApplyButtonStyles(dataGridView2);
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Load categories
+            var categories = _productBl.getcategories("");
             txtcategory.Items.Clear();
-            txtcategory.Items.AddRange(lists.ToArray());
+            txtcategory.Items.AddRange(categories.ToArray());
             txtcategory.DropDownStyle = ComboBoxStyle.DropDown;
         }
+
+        //private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        //{
+        //    if (dataGridView2.Columns[e.ColumnIndex].Name == "Edit")
+        //    {
+        //        dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.LightGreen;
+        //        dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor = Color.Black;
+        //    }
+        //    else if (dataGridView2.Columns[e.ColumnIndex].Name == "Delete")
+        //    {
+        //        dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.IndianRed;
+        //        dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor = Color.White;
+        //    }
+        //}
+
         private void btndashboard_Click(object sender, EventArgs e)
         {
 
@@ -82,6 +134,9 @@ namespace TechStore
         }
         private void Inventoryform_Load(object sender, EventArgs e)
         {
+            //dataGridView2.CellContentClick -= dataGridView2_CellContentClick;
+            //dataGridView2.CellContentClick += dataGridView2_CellContentClick;
+
             load();
         }
         private void txtcategory_TextChanged(object sender, EventArgs e)
@@ -121,16 +176,14 @@ namespace TechStore
 
                 selectedProductId = Convert.ToInt32(row.Cells["id"].Value);
                 txtname1.Text = row.Cells["name"].Value?.ToString() ?? "";
-                txtsku1.Text = row.Cells["sku"].Value?.ToString() ?? "";
                 txtdescp1.Text = row.Cells["description"].Value?.ToString() ?? "";
                 txtcategory.Text = row.Cells["category"].Value?.ToString() ?? "";
 
                 // Safely handle nullable price and quantity
-                txtquantity.Text = row.Cells["quantity"].Value != null ? row.Cells["quantity"].Value.ToString() : "0";
-                txtprice.Text = row.Cells["price"].Value != null ? row.Cells["price"].Value.ToString() : "0.00";
 
-                ShowEditPanel();
-                RoundPanelCorners(paneledit, 20);
+                UIHelper.RoundPanelCorners(paneledit, 20);
+
+                UIHelper.ShowCenteredPanel(this,paneledit);
             }
             else
             {
@@ -138,62 +191,15 @@ namespace TechStore
             }
 
         }
-        public  void ShowEditPanel()
+        public void ShowCenteredPanel(Panel panel)
         {
-            paneledit.Left = (this.ClientSize.Width - paneledit.Width) / 2;
-            paneledit.Top = (this.ClientSize.Height - paneledit.Height) / 2;
-            paneledit.BringToFront();
-            paneledit.Visible = true;
-        }
-        //private void ShowaddPanel()
-        //{
-        //    paneladd.Left = (this.ClientSize.Width - paneladd.Width) / 2;
-        //    paneladd.Top = (this.ClientSize.Height - paneladd.Height) / 2;
-        //    paneladd.BringToFront();
-        //    paneladd.Visible = true;
-        //}
-
-        private void btnsave_Click(object sender, EventArgs e)
-        {
-
-            //string name = txtname.Text.Trim();
-            //string sku = txtsku.Text.Trim();
-            //string description = txtdescp.Text.Trim();
-            //string category = txtcategory.Text.Trim();
-            //try
-            //{
-            //    Products products = new Products(name, sku, description, category);
-            //    bool result = _productBl.AddProduct(products);
-            //    if (result)
-            //    {
-            //        MessageBox.Show("Product added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Failed to add product. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-
-            //}
-            //catch (ArgumentNullException ex)
-            //{
-            //    MessageBox.Show("Error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //}
-            //catch (ArgumentException ex)
-            //{
-            //    MessageBox.Show("Error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("An error occurred while adding the product: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-
+            panel.Left = (this.ClientSize.Width - panel.Width) / 2;
+            panel.Top = (this.ClientSize.Height - panel.Height) / 2;
+            panel.BringToFront();
+            panel.Visible = true;
         }
 
-        private void iconButton1_Click(object sender, EventArgs e)
-        {
-            //paneladd.Visible = false;
-
-        }
+  
 
         private void btnadd_Click(object sender, EventArgs e)
         {
@@ -201,32 +207,24 @@ namespace TechStore
             f.ShowDialog(this);
         }
 
-        private void paneledit_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void btnsave1_Click(object sender, EventArgs e)
         {
             try
             {
                 string name = txtname1.Text.Trim();
-                string sku = txtsku1.Text.Trim();
                 string description = txtdescp1.Text.Trim();
                 string category = txtcategory.Text.Trim();
-                int quantity = Convert.ToInt32(txtquantity.Text.Trim());
-                double price = Convert.ToDouble(txtprice.Text.Trim());
 
 
                 var updatedProduct = new Products
                 (
                      selectedProductId,
                  name,
-                     sku,
+                     
                     description,
-                   category,
-                     quantity,
-                     price
+                   category
+                     
                 );
 
                 bool result = _productBl.UpdateProduct(updatedProduct);
@@ -263,32 +261,7 @@ namespace TechStore
             paneledit.Visible = false;
         }
 
-        private void btndelete_Click(object sender, EventArgs e)
-        {
-            if (dataGridView2.SelectedRows.Count > 0)
-            {
-                var confirm = MessageBox.Show("Are you sure you want to delete this product?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (confirm == DialogResult.Yes)
-                {
-                    int productId = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["id"].Value);
-                    bool result = _productBl.DeleteProduct(productId);
-
-                    if (result)
-                    {
-                        MessageBox.Show("Product deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        load();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Failed to delete product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select a row to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
+      
 
         private void pictureBox10_Click(object sender, EventArgs e)
         {
@@ -297,35 +270,61 @@ namespace TechStore
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            string text= textBox1.Text.Trim();
-            var list = _productBl.searchproducts(text);
-            if (list.Count > 0)
+            string text = textBox1.Text.Trim();
+            var list = string.IsNullOrEmpty(text) ? _productBl.getproducts() : _productBl.searchproducts(text);
+
+            dataGridView2.Columns.Clear();
+            dataGridView2.DataSource = list.Select(p => new
             {
-                dataGridView2.DataSource = list.Select(p => new
-                {
-                    p.id,
-                    p.name,
-                    p.sku,
-                    p.description,
-                    p.category,
-                    p.price,
-                    p.quantity
-                }).ToList();
-            }
-            else
-            {
-                dataGridView2.DataSource = _productBl.getproducts(); // Clear the DataGridView if no results found
-            }
+                p.id,
+                p.name,
+                p.description,
+                p.category,
+            }).ToList();
+
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView2.Columns["id"].Visible = false;
+
+            dataGridView2.Columns["name"].HeaderText = "Product Name";
+            dataGridView2.Columns["description"].HeaderText = "Description";
+            dataGridView2.Columns["category"].HeaderText = "Category";
+
+            UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
+            UIHelper.AddButtonColumn(dataGridView2, "Delete", "Delete", "Delete");
+            UIHelper.ApplyButtonStyles(dataGridView2);
         }
 
-        private void paneledit_Paint_1(object sender, PaintEventArgs e)
-        {
 
-        }
+        //private void dataGridView2_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        //{
+        //    if (e.RowIndex < 0 || e.ColumnIndex < 0)
+        //        return;
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
+        //    var column = dataGridView2.Columns[e.ColumnIndex];
 
-        }
+        //    if (column.Name == "Edit" || column.Name == "Delete")
+        //    {
+        //        e.PaintBackground(e.CellBounds, true);
+
+        //        string text = column.Name;
+        //        Color backColor = text == "Edit" ? Color.SteelBlue : Color.IndianRed;
+        //        Color textColor = Color.White;
+
+        //        using (Brush b = new SolidBrush(backColor))
+        //        {
+        //            e.Graphics.FillRectangle(b, e.CellBounds);
+        //        }
+
+        //        TextRenderer.DrawText(
+        //            e.Graphics,
+        //            text,
+        //            dataGridView2.Font,
+        //            e.CellBounds,
+        //            textColor,
+        //            TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+
+        //        e.Handled = true;
+        //    }
+        //}
     }
 }

@@ -1,69 +1,115 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TechStore.Interfaces.BLInterfaces;
 using TechStore.BL.Models;
-using TechStore.Interfaces.DLInterfaces;
 using TechStore.BL.Models.Person;
+using TechStore.Interfaces.BLInterfaces;
+using TechStore.Interfaces.DLInterfaces;
+
 namespace TechStore.BL.BL
 {
-    public class SupplierBl:ISupplierBL
+    public class SupplierBl : ISupplierBL
     {
         private readonly IsupplierDl _supplierDL;
+
         public SupplierBl(IsupplierDl supplierDL)
         {
-            _supplierDL = supplierDL;
+            _supplierDL = supplierDL ?? throw new ArgumentNullException(nameof(supplierDL), "Supplier data layer cannot be null.");
         }
-        public bool addsupplier(Supplier s)
-        {
 
-            if (s == null)
+        public bool addsupplier(Ipersons p)
+        {
+            var supplier = p as Supplier ?? throw new ArgumentException("Expected a Supplier instance.", nameof(p));
+            ValidateSupplier(supplier, isUpdate: false);
+
+            try
             {
-                throw new ArgumentNullException(nameof(s), "Supplier cannot be null");
+                return _supplierDL.addsupplier(supplier);
             }
-            if (string.IsNullOrWhiteSpace(s.name) || string.IsNullOrWhiteSpace(s.email) || string.IsNullOrWhiteSpace(s.address))
-            {
-                throw new ArgumentException("Supplier properties cannot be null or empty");
-            }
-            try { return _supplierDL.addsupplier(s); }
             catch (Exception ex)
             {
                 throw new Exception("Error adding supplier: " + ex.Message, ex);
             }
         }
-        public bool updatesupplier(Supplier s)
+
+        public bool updatesupplier(Ipersons p)
         {
-            if (s == null)
+            var supplier = p as Supplier ?? throw new ArgumentException("Expected a Supplier instance.", nameof(p));
+            ValidateSupplier(supplier, isUpdate: true);
+
+            try
             {
-                throw new ArgumentNullException(nameof(s), "Supplier cannot be null");
+                return _supplierDL.updatesupplier(supplier);
             }
-            if (string.IsNullOrWhiteSpace(s.name) || string.IsNullOrWhiteSpace(s.email) || string.IsNullOrWhiteSpace(s.address))
-            {
-                throw new ArgumentException("Supplier properties cannot be null or empty");
-            }
-            try { return _supplierDL.updatesupplier(s); }
             catch (Exception ex)
             {
                 throw new Exception("Error updating supplier: " + ex.Message, ex);
             }
         }
+
         public bool deletesupplier(int id)
         {
-            return _supplierDL.deletesupplier(id);
+            if (id <= 0)
+                throw new ArgumentException("Invalid supplier ID.");
+
+            try
+            {
+                return _supplierDL.deletesupplier(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error deleting supplier: " + ex.Message, ex);
+            }
         }
-        public List<Supplier> getsuppliers()
+
+        public List<Ipersons> getsuppliers()
         {
-            return _supplierDL.getsuppliers();
+            try
+            {
+                return _supplierDL.getsuppliers();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error retrieving suppliers: " + ex.Message, ex);
+            }
         }
+
         public List<string> getsuppliernames(string name)
         {
-            return _supplierDL.getsuppliernames(name);
+            try
+            {
+                return _supplierDL.getsuppliernames(name);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error retrieving supplier names: " + ex.Message, ex);
+            }
         }
-        public List<Supplier> searchsuppliers(string text)
+
+        public List<Ipersons> searchsuppliers(string text)
         {
-            return _supplierDL.searchsuppliers(text);
+            try
+            {
+                return _supplierDL.searchsuppliers(text);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error searching suppliers: " + ex.Message, ex);
+            }
+        }
+
+        private void ValidateSupplier(Supplier supplier, bool isUpdate)
+        {
+            if (isUpdate && supplier.id <= 0)
+                throw new ArgumentException("Supplier ID is invalid.");
+
+            if (string.IsNullOrWhiteSpace(supplier._name))
+                throw new ArgumentException("Supplier name is required.");
+
+            if (string.IsNullOrWhiteSpace(supplier.email))
+                throw new ArgumentException("Supplier email is required.");
+
+            if (string.IsNullOrWhiteSpace(supplier.address))
+                throw new ArgumentException("Supplier address is required.");
         }
     }
 }

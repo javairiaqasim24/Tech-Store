@@ -30,11 +30,7 @@
         {
             this.txtcontact = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtemail = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnsave = new FontAwesome.Sharp.IconButton();
-            this.txtaddress = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtname = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,16 +38,20 @@
             this.txtlname = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtemail = new System.Windows.Forms.TextBox();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.txtaddress = new System.Windows.Forms.TextBox();
+            this.lblAddress = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtcontact
             // 
             this.txtcontact.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtcontact.Location = new System.Drawing.Point(45, 426);
+            this.txtcontact.Location = new System.Drawing.Point(45, 350);
             this.txtcontact.Multiline = true;
             this.txtcontact.Name = "txtcontact";
             this.txtcontact.Size = new System.Drawing.Size(313, 35);
-            this.txtcontact.TabIndex = 178;
+            this.txtcontact.TabIndex = 5;
             // 
             // label7
             // 
@@ -59,34 +59,12 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label7.Location = new System.Drawing.Point(43, 393);
+            this.label7.Location = new System.Drawing.Point(43, 317);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(90, 30);
             this.label7.TabIndex = 177;
             this.label7.Text = "Contact";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtemail
-            // 
-            this.txtemail.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtemail.Location = new System.Drawing.Point(48, 333);
-            this.txtemail.Multiline = true;
-            this.txtemail.Name = "txtemail";
-            this.txtemail.Size = new System.Drawing.Size(313, 57);
-            this.txtemail.TabIndex = 176;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label2.Location = new System.Drawing.Point(46, 300);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 30);
-            this.label2.TabIndex = 175;
-            this.label2.Text = "Email";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnsave
             // 
@@ -103,35 +81,14 @@
             this.btnsave.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnsave.IconSize = 35;
             this.btnsave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsave.Location = new System.Drawing.Point(117, 620);
+            this.btnsave.Location = new System.Drawing.Point(117, 623);
             this.btnsave.Name = "btnsave";
             this.btnsave.Size = new System.Drawing.Size(132, 42);
-            this.btnsave.TabIndex = 174;
+            this.btnsave.TabIndex = 7;
             this.btnsave.Text = "Save";
             this.btnsave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnsave.UseVisualStyleBackColor = false;
-            // 
-            // txtaddress
-            // 
-            this.txtaddress.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtaddress.Location = new System.Drawing.Point(48, 259);
-            this.txtaddress.Multiline = true;
-            this.txtaddress.Name = "txtaddress";
-            this.txtaddress.Size = new System.Drawing.Size(313, 35);
-            this.txtaddress.TabIndex = 173;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label5.Location = new System.Drawing.Point(46, 226);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 30);
-            this.label5.TabIndex = 172;
-            this.label5.Text = "Address";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnsave.Click += new System.EventHandler(this.btnsave_Click);
             // 
             // txtname
             // 
@@ -140,7 +97,7 @@
             this.txtname.Multiline = true;
             this.txtname.Name = "txtname";
             this.txtname.Size = new System.Drawing.Size(313, 35);
-            this.txtname.TabIndex = 171;
+            this.txtname.TabIndex = 0;
             // 
             // label6
             // 
@@ -174,7 +131,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label3.Location = new System.Drawing.Point(46, 473);
+            this.label3.Location = new System.Drawing.Point(46, 222);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 30);
             this.label3.TabIndex = 179;
@@ -188,7 +145,7 @@
             this.txtlname.Multiline = true;
             this.txtlname.Name = "txtlname";
             this.txtlname.Size = new System.Drawing.Size(313, 35);
-            this.txtlname.TabIndex = 182;
+            this.txtlname.TabIndex = 2;
             // 
             // label4
             // 
@@ -208,35 +165,82 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Walking",
+            "Walk_in",
             "Regular"});
-            this.comboBox1.Location = new System.Drawing.Point(48, 522);
+            this.comboBox1.Location = new System.Drawing.Point(48, 271);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(310, 24);
-            this.comboBox1.TabIndex = 183;
+            this.comboBox1.TabIndex = 6;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // txtemail
+            // 
+            this.txtemail.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtemail.Location = new System.Drawing.Point(43, 528);
+            this.txtemail.Multiline = true;
+            this.txtemail.Name = "txtemail";
+            this.txtemail.Size = new System.Drawing.Size(313, 57);
+            this.txtemail.TabIndex = 183;
+            // 
+            // lblEmail
+            // 
+            this.lblEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
+            this.lblEmail.Location = new System.Drawing.Point(41, 495);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(66, 30);
+            this.lblEmail.TabIndex = 185;
+            this.lblEmail.Text = "Email";
+            this.lblEmail.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtaddress
+            // 
+            this.txtaddress.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtaddress.Location = new System.Drawing.Point(43, 454);
+            this.txtaddress.Multiline = true;
+            this.txtaddress.Name = "txtaddress";
+            this.txtaddress.Size = new System.Drawing.Size(313, 35);
+            this.txtaddress.TabIndex = 182;
+            this.txtaddress.TabStop = false;
+            // 
+            // lblAddress
+            // 
+            this.lblAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.lblAddress.AutoSize = true;
+            this.lblAddress.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
+            this.lblAddress.Location = new System.Drawing.Point(46, 403);
+            this.lblAddress.Name = "lblAddress";
+            this.lblAddress.Size = new System.Drawing.Size(92, 30);
+            this.lblAddress.TabIndex = 184;
+            this.lblAddress.Text = "Address";
+            this.lblAddress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AddCustomerform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(430, 742);
+            this.Controls.Add(this.txtemail);
+            this.Controls.Add(this.lblEmail);
+            this.Controls.Add(this.txtaddress);
+            this.Controls.Add(this.lblAddress);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.txtlname);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtcontact);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtemail);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnsave);
-            this.Controls.Add(this.txtaddress);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.txtname);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
             this.Name = "AddCustomerform";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddCustomerform";
+            this.Load += new System.EventHandler(this.AddCustomerform_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,11 +250,7 @@
 
         private System.Windows.Forms.TextBox txtcontact;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtemail;
-        private System.Windows.Forms.Label label2;
         private FontAwesome.Sharp.IconButton btnsave;
-        private System.Windows.Forms.TextBox txtaddress;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtname;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
@@ -258,5 +258,9 @@
         private System.Windows.Forms.TextBox txtlname;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txtemail;
+        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.TextBox txtaddress;
+        private System.Windows.Forms.Label lblAddress;
     }
 }

@@ -48,8 +48,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.iconButton3 = new FontAwesome.Sharp.IconButton();
             this.iconButton2 = new FontAwesome.Sharp.IconButton();
-            this.btndelete = new FontAwesome.Sharp.IconButton();
-            this.btnedit = new FontAwesome.Sharp.IconButton();
             this.btnadd = new FontAwesome.Sharp.IconButton();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
@@ -95,8 +93,6 @@
             this.guna2CustomGradientPanel1.Controls.Add(this.paneledit);
             this.guna2CustomGradientPanel1.Controls.Add(this.iconButton3);
             this.guna2CustomGradientPanel1.Controls.Add(this.iconButton2);
-            this.guna2CustomGradientPanel1.Controls.Add(this.btndelete);
-            this.guna2CustomGradientPanel1.Controls.Add(this.btnedit);
             this.guna2CustomGradientPanel1.Controls.Add(this.btnadd);
             this.guna2CustomGradientPanel1.Controls.Add(this.dataGridView2);
             this.guna2CustomGradientPanel1.Controls.Add(this.pictureBox10);
@@ -348,56 +344,6 @@
             this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton2.UseVisualStyleBackColor = false;
             // 
-            // btndelete
-            // 
-            this.btndelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(64)))));
-            this.btndelete.FlatAppearance.BorderColor = System.Drawing.Color.Indigo;
-            this.btndelete.FlatAppearance.BorderSize = 2;
-            this.btndelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
-            this.btndelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            this.btndelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btndelete.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btndelete.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btndelete.IconChar = FontAwesome.Sharp.IconChar.Trash;
-            this.btndelete.IconColor = System.Drawing.Color.Red;
-            this.btndelete.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btndelete.IconSize = 35;
-            this.btndelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btndelete.Location = new System.Drawing.Point(343, 56);
-            this.btndelete.Name = "btndelete";
-            this.btndelete.Size = new System.Drawing.Size(151, 42);
-            this.btndelete.TabIndex = 123;
-            this.btndelete.Text = "Delete";
-            this.btndelete.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btndelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btndelete.UseVisualStyleBackColor = false;
-            this.btndelete.Click += new System.EventHandler(this.btndelete_Click);
-            // 
-            // btnedit
-            // 
-            this.btnedit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(64)))));
-            this.btnedit.FlatAppearance.BorderColor = System.Drawing.Color.Indigo;
-            this.btnedit.FlatAppearance.BorderSize = 2;
-            this.btnedit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
-            this.btnedit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            this.btnedit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnedit.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnedit.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnedit.IconChar = FontAwesome.Sharp.IconChar.Pencil;
-            this.btnedit.IconColor = System.Drawing.Color.DarkOrange;
-            this.btnedit.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnedit.IconSize = 35;
-            this.btnedit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnedit.Location = new System.Drawing.Point(186, 56);
-            this.btnedit.Name = "btnedit";
-            this.btnedit.Size = new System.Drawing.Size(151, 42);
-            this.btnedit.TabIndex = 122;
-            this.btnedit.Text = "Edit";
-            this.btnedit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnedit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnedit.UseVisualStyleBackColor = false;
-            this.btnedit.Click += new System.EventHandler(this.btnedit_Click);
-            // 
             // btnadd
             // 
             this.btnadd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(64)))));
@@ -447,11 +393,12 @@
             this.dataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView2.Size = new System.Drawing.Size(1267, 405);
             this.dataGridView2.TabIndex = 120;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // pictureBox10
             // 
             this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(516, 55);
+            this.pictureBox10.Location = new System.Drawing.Point(185, 61);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(43, 43);
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -623,8 +570,6 @@
         private System.Windows.Forms.Label label11;
         private FontAwesome.Sharp.IconButton iconButton3;
         private FontAwesome.Sharp.IconButton iconButton2;
-        private FontAwesome.Sharp.IconButton btndelete;
-        private FontAwesome.Sharp.IconButton btnedit;
         private FontAwesome.Sharp.IconButton btnadd;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.PictureBox pictureBox10;
