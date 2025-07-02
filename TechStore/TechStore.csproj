@@ -145,9 +145,6 @@
     <Compile Include="Interfaces\BLInterfaces\ISupplierBL.cs" />
     <Compile Include="Interfaces\DLInterfaces\IproductDl.cs" />
     <Compile Include="Interfaces\DLInterfaces\IsupplierDl.cs" />
-    <Compile Include="Interfaces\IPersonFactory.cs" />
-    <Compile Include="Service Provider\BLServiceProvider.cs" />
-    <Compile Include="Service Provider\DLServiceProvider.cs" />
     <Compile Include="UI\AddCustomerform.cs">
       <SubType>Form</SubType>
     </Compile>

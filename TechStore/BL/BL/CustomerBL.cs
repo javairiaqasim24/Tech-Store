@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TechStore.BL.Models;
 using TechStore.BL.Models.Person;
 using TechStore.DL;
 
@@ -14,32 +15,33 @@ namespace TechStore.BL.BL
             this.customerDL = customerDL ?? throw new ArgumentNullException(nameof(customerDL), "Data access layer cannot be null.");
         }
 
-        public bool AddCustomer(Customer c)
+        public bool AddCustomer(persons p)
         {
-            if (c == null)
-                throw new ArgumentNullException(nameof(c), "Customer data cannot be null.");
-
-            if (string.IsNullOrWhiteSpace(c.firstName))
-                throw new ArgumentException("First name is required.");
-
-            if (string.IsNullOrWhiteSpace(c.lastName))
-                throw new ArgumentException("Last name is required.");
-
-            if (string.IsNullOrWhiteSpace(c.type))
-                throw new ArgumentException("Customer type is required.");
-
-            if (string.IsNullOrWhiteSpace(c.phone))
-                throw new ArgumentException("Phone number is required.");
-
-            // Email and Address can be null or empty — allowed
+            var customer = p as Customer ?? throw new ArgumentException("Expected a Customer instance.", nameof(p));
+            ValidateCustomer(customer, isUpdate: false);
 
             try
             {
-                return customerDL.Addcustomer(c);
+                return customerDL.Addcustomer(customer);
             }
             catch (Exception ex)
             {
                 throw new Exception("Error while adding customer: " + ex.Message, ex);
+            }
+        }
+
+        public bool UpdateCustomer(persons p)
+        {
+            var customer = p as Customer ?? throw new ArgumentException("Expected a Customer instance.", nameof(p));
+            ValidateCustomer(customer, isUpdate: true);
+
+            try
+            {
+                return customerDL.Updatecustomer(customer);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while updating customer: " + ex.Message, ex);
             }
         }
 
@@ -58,7 +60,7 @@ namespace TechStore.BL.BL
             }
         }
 
-        public List<Customer> GetCustomers()
+        public List<persons> GetCustomers()
         {
             try
             {
@@ -70,10 +72,8 @@ namespace TechStore.BL.BL
             }
         }
 
-        public List<Customer> SearchCustomers(string text)
+        public List<persons> SearchCustomers(string text)
         {
-          
-
             try
             {
                 return customerDL.Searchcustomers(text);
@@ -84,34 +84,23 @@ namespace TechStore.BL.BL
             }
         }
 
-        public bool UpdateCustomer(Customer c)
+        // Helper: validate customer input
+        private void ValidateCustomer(Customer customer, bool isUpdate)
         {
-            if (c == null)
-                throw new ArgumentNullException(nameof(c), "Customer data cannot be null.");
-
-            if (c.id <= 0)
+            if (isUpdate && customer.id <= 0)
                 throw new ArgumentException("Customer ID is invalid.");
 
-            if (string.IsNullOrWhiteSpace(c.firstName))
+            if (string.IsNullOrWhiteSpace(customer.firstName))
                 throw new ArgumentException("First name is required.");
 
-            if (string.IsNullOrWhiteSpace(c.lastName))
+            if (string.IsNullOrWhiteSpace(customer.lastName))
                 throw new ArgumentException("Last name is required.");
 
-            if (string.IsNullOrWhiteSpace(c.type))
+            if (string.IsNullOrWhiteSpace(customer.type))
                 throw new ArgumentException("Customer type is required.");
 
-            if (string.IsNullOrWhiteSpace(c.phone))
+            if (string.IsNullOrWhiteSpace(customer.phone))
                 throw new ArgumentException("Phone number is required.");
-
-            try
-            {
-                return customerDL.Updatecustomer(c);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error while updating customer: " + ex.Message, ex);
-            }
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TechStore.BL.BL;
+using TechStore.BL.Models;
 using TechStore.BL.Models.Person;
 using TechStore.Interfaces;
 
@@ -17,12 +18,10 @@ namespace TechStore.UI
     public partial class AddCustomerform : Form
     {
         private readonly ICustomerBL _customerbl;
-        private readonly IPersonFactory ipf;
-        public AddCustomerform(ICustomerBL customerBL, IPersonFactory ipf)
+        public AddCustomerform(ICustomerBL customerBL )
         {
             InitializeComponent();
             _customerbl = customerBL;
-            this.ipf = ipf;
         }
 
         private void btnsave_Click(object sender, EventArgs e)
@@ -63,10 +62,10 @@ namespace TechStore.UI
                     throw new ArgumentException("Invalid customer type. Must be 'Walk_in' or 'Regular'.");
                 }
 
-                var person = ipf.CreatePerson(PersonType.Customer, 0, email, address, name, phone, lastname, type);
-                person = (Customer)person;
+                persons p = new Customer(0, email, address, name, lastname, type, phone);
+ 
 
-                bool result = _customerbl.AddCustomer((Customer)person);
+                bool result = _customerbl.AddCustomer(p);
                 if (result)
                 {
                     MessageBox.Show("Customer added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

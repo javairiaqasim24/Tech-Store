@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechStore.BL.Models;
 using TechStore.BL.Models.Person;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
@@ -12,23 +13,28 @@ namespace TechStore.DL
 {
     public class CustomerDL : ICustomerDL
     {
-        public bool Addcustomer(Customer c)
+        public bool Addcustomer(persons c)
         {
             try
             {
-                using(var conn = DatabaseHelper.Instance.GetConnection())
+                Customer customer = c as Customer;
+                if (customer == null)
+                    throw new ArgumentException("Expected Customer object.");
+
+
+                using (var conn = DatabaseHelper.Instance.GetConnection())
                 {
                     conn.Open();
                     string query = "INSERT INTO customers (first_name, last_name, type, email, phone, address) VALUES (@first, @last, @type, @email, @phone, @address);";
 
                     using (var cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@first", c.firstName);
-                        cmd.Parameters.AddWithValue("@last", c.lastName);
-                        cmd.Parameters.AddWithValue("@type", c.type);
-                        cmd.Parameters.AddWithValue("@email", string.IsNullOrEmpty(c.email) ? (object)DBNull.Value : c.email);
-                        cmd.Parameters.AddWithValue("@phone", c.phone);
-                        cmd.Parameters.AddWithValue("@address", string.IsNullOrEmpty(c.address) ? (object)DBNull.Value : c.address);
+                        cmd.Parameters.AddWithValue("@first", customer.firstName);
+                        cmd.Parameters.AddWithValue("@last", customer.lastName);
+                        cmd.Parameters.AddWithValue("@type", customer.type);
+                        cmd.Parameters.AddWithValue("@email", string.IsNullOrEmpty(customer.email) ? (object)DBNull.Value : customer.email);
+                        cmd.Parameters.AddWithValue("@phone", customer.phone);
+                        cmd.Parameters.AddWithValue("@address", string.IsNullOrEmpty(customer.address) ? (object)DBNull.Value : customer.address);
 
                         int rowsAffected = cmd.ExecuteNonQuery();
                         return rowsAffected > 0;
@@ -44,22 +50,27 @@ namespace TechStore.DL
                 throw new Exception("Error adding customer: " + ex.Message, ex);
             }
         }
-        public bool Updatecustomer(Customer c)
+
+        public bool Updatecustomer(persons c)
         {
             try
             {
+                Customer customer = c as Customer;
+                if (customer == null)
+                    throw new ArgumentException("Expected Customer object.");
+
                 using (var conn = DatabaseHelper.Instance.GetConnection())
                 {
                     conn.Open();
                     string query = "UPDATE customers SET first_name = @first_name, last_name = @last_name, type = @type, email = @email, phone = @phone, address = @address WHERE customer_id = @id;";
                     using (var cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@first_name", c.firstName);
-                        cmd.Parameters.AddWithValue("@last_name", c.lastName);
-                        cmd.Parameters.AddWithValue("@type", c.type);
-                        cmd.Parameters.AddWithValue("@email", string.IsNullOrEmpty(c.email) ? (object)DBNull.Value : c.email);
+                        cmd.Parameters.AddWithValue("@first_name",customer.firstName);
+                        cmd.Parameters.AddWithValue("@last_name", customer.lastName);
+                        cmd.Parameters.AddWithValue("@type", customer.type);
+                        cmd.Parameters.AddWithValue("@email", string.IsNullOrEmpty(customer.email) ? (object)DBNull.Value : customer.email);
                         cmd.Parameters.AddWithValue("@phone", c.phone);
-                        cmd.Parameters.AddWithValue("@address", string.IsNullOrEmpty(c.address) ? (object)DBNull.Value : c.address);
+                        cmd.Parameters.AddWithValue("@address", string.IsNullOrEmpty(customer.address) ? (object)DBNull.Value : customer.address);
                         cmd.Parameters.AddWithValue("@id", c.id);
                         int rowsAffected = cmd.ExecuteNonQuery();
                         return rowsAffected > 0;
@@ -100,9 +111,9 @@ namespace TechStore.DL
                 throw new Exception("Error deleting customer: " + ex.Message, ex);
             }
         }
-        public List<Customer> GetCustomers()
+        public List<persons> GetCustomers()
         {
-            List<Customer> customers = new List<Customer>();
+            List<persons> customers = new List<persons>();
             try
             {
                 using (var conn = DatabaseHelper.Instance.GetConnection())
@@ -139,9 +150,9 @@ namespace TechStore.DL
             }
             return customers;
         }
-        public List<Customer> Searchcustomers(string keyword)
+        public List<persons> Searchcustomers(string keyword)
         {
-            List<Customer> customers = new List<Customer>();
+            List<persons> customers = new List<persons>();
             try
             {
                 using (var conn = DatabaseHelper.Instance.GetConnection())

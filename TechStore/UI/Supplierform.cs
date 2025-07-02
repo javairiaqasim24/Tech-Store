@@ -13,7 +13,6 @@ namespace TechStore.UI
     {
         private int selectedProductId;
         private readonly ISupplierBL supplierBL;
-        private readonly IPersonFactory ipf;
 
         protected override CreateParams CreateParams
         {
@@ -25,11 +24,10 @@ namespace TechStore.UI
             }
         }
 
-        public Supplierform(ISupplierBL supplierBL, IPersonFactory ipf)
+        public Supplierform(ISupplierBL supplierBL)
         {
             InitializeComponent();
             this.supplierBL = supplierBL;
-            this.ipf = ipf;
 
             paneledit.Visible = false;
              UIHelper.ApplyButtonStyles(dataGridView2);
@@ -49,9 +47,14 @@ namespace TechStore.UI
 
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView2.Columns["id"].Visible = false;
+            dataGridView2.Columns["firstname"].Visible = false;
+            dataGridView2.Columns["lastname"].Visible = false;
+            dataGridView2.Columns["type"].Visible = false;
+ 
 
             UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
             UIHelper.AddButtonColumn(dataGridView2, "Delete", "Delete", "Delete");
+     
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -98,7 +101,7 @@ namespace TechStore.UI
 
             try
             {
-                var supplier = (Supplier)ipf.CreatePerson(PersonType.Supplier, selectedProductId, email, address, name, phone);
+                var supplier = new Supplier(selectedProductId, email, address, name, phone);
                 bool result = supplierBL.updatesupplier(supplier);
 
                 MessageBox.Show(result ? "Supplier updated successfully." : "Failed to update supplier.",
@@ -157,7 +160,9 @@ namespace TechStore.UI
                 dataGridView2.DataSource = suppliers;
                 dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dataGridView2.Columns["id"].Visible = false;
-
+                dataGridView2.Columns["firstname"].Visible = false;
+                dataGridView2.Columns["lastname"].Visible = false;
+                dataGridView2.Columns["type"].Visible = false;
                 UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
                 UIHelper.AddButtonColumn(dataGridView2, "Delete", "Delete", "Delete");
             }

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TechStore.BL.BL;
+using TechStore.BL.Models;
 using TechStore.BL.Models.Person;
 using TechStore.Interfaces;
 using TechStore.Interfaces.BLInterfaces;
@@ -14,14 +15,12 @@ namespace TechStore.UI
     public partial class Customerform : Form
     {
         private readonly ICustomerBL _customerBL;
-        private readonly IPersonFactory _personFactory;
         private int selectedCustomerId;
 
-        public Customerform(ICustomerBL customerBL, IPersonFactory personFactory)
+        public Customerform(ICustomerBL customerBL)
         {
             InitializeComponent();
             this._customerBL = customerBL;
-            this._personFactory = personFactory;
             paneledit.Visible = false;
 
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
@@ -38,13 +37,27 @@ namespace TechStore.UI
         {
             var list = _customerBL.GetCustomers();
             dataGridView2.Columns.Clear();
-
             dataGridView2.DataSource = list;
+
             dataGridView2.Columns["Id"].Visible = false;
+            dataGridView2.Columns["firstname"].HeaderText = "First Name";
+            dataGridView2.Columns["lastname"].HeaderText = "Last Name";
+            dataGridView2.Columns["phone"].HeaderText = "Contact Number";
+            dataGridView2.Columns["type"].HeaderText = "Type";
+            dataGridView2.Columns["email"].HeaderText = "Email";
+            dataGridView2.Columns["address"].HeaderText = "Address";
+
+            if (dataGridView2.Columns.Contains("name"))
+                dataGridView2.Columns["name"].Visible = false;
+         
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+            // 👇 ADD BUTTONS BEFORE SETTING DISPLAY ORDER
             UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
             UIHelper.AddButtonColumn(dataGridView2, "Delete", "Delete", "Delete");
+
+            // ✅ NOW SET ORDER
+       
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -133,7 +146,7 @@ namespace TechStore.UI
 
             try
             {
-                var customer = (Customer)_personFactory.CreatePerson(PersonType.Customer, selectedCustomerId, email, address, name, phone, lname, type);
+                persons customer = new Customer(selectedCustomerId, email, address, name, lname, type, phone);
                 bool result = _customerBL.UpdateCustomer(customer);
 
                 MessageBox.Show(result ? "Customer updated successfully." : "Failed to update customer.", result ? "Success" : "Error",
@@ -177,10 +190,31 @@ namespace TechStore.UI
             dataGridView2.DataSource = results;
 
             dataGridView2.Columns["Id"].Visible = false;
+            dataGridView2.Columns["firstname"].HeaderText = "First Name";
+            dataGridView2.Columns["lastname"].HeaderText = "Last Name";
+            dataGridView2.Columns["phone"].HeaderText = "Contact Number";
+            dataGridView2.Columns["type"].HeaderText = "Type";
+            dataGridView2.Columns["email"].HeaderText = "Email";
+            dataGridView2.Columns["address"].HeaderText = "Address";
+
+            if (dataGridView2.Columns.Contains("name"))
+                dataGridView2.Columns["name"].Visible = false;
+
+            
+
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
             UIHelper.AddButtonColumn(dataGridView2, "Delete", "Delete", "Delete");
+            dataGridView2.Columns["firstname"].DisplayIndex = 0;
+            dataGridView2.Columns["lastname"].DisplayIndex = 1;
+            dataGridView2.Columns["phone"].DisplayIndex = 2;
+            dataGridView2.Columns["type"].DisplayIndex = 3;
+            dataGridView2.Columns["email"].DisplayIndex = 4;
+            dataGridView2.Columns["address"].DisplayIndex = 5;
+            dataGridView2.Columns["Edit"].DisplayIndex = 6;
+            dataGridView2.Columns["Delete"].DisplayIndex = 7;
+
         }
 
         private void btnadd_Click(object sender, EventArgs e)

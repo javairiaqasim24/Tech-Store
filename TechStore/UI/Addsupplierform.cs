@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TechStore.BL.Models;
 using TechStore.BL.Models.Person;
 using TechStore.Interfaces;
 using TechStore.Interfaces.BLInterfaces;
@@ -16,12 +17,10 @@ namespace TechStore.UI
     public partial class Addsupplierform : Form
     {
         private readonly ISupplierBL supplierBL;
-        private readonly IPersonFactory personFactory;
-        public Addsupplierform(ISupplierBL supplierBL, IPersonFactory personFactory)
+        public Addsupplierform(ISupplierBL supplierBL)
         {
             InitializeComponent();
             this.supplierBL = supplierBL;
-            this.personFactory = personFactory;
         }
 
         private void btnsave_Click(object sender, EventArgs e)
@@ -32,8 +31,7 @@ namespace TechStore.UI
             string email = txtemail.Text.Trim();
             try
             {
-                var person = personFactory.CreatePerson(PersonType.Supplier, 0, email, address, name,contact);
-                var supplier = (Supplier)person;
+                persons supplier = new Supplier(0, email, address, name, contact);
                 bool result = supplierBL.addsupplier(supplier);
                 if (result)
                 {

@@ -39,7 +39,7 @@ namespace TechStore
             services.AddScoped<ICustomerDL, CustomerDL>();
             //BL
             services.AddScoped<TechStore.Interfaces.BLInterfaces.IproductBl, TechStore.BL.BL.ProductBL>();
-            services.AddScoped<IPersonFactory, PersonFactory>();
+            //services.AddScoped<IPersonFactory, PersonFactory>();
             services.AddScoped<ISupplierBL, SupplierBl>();
             services.AddScoped<ICustomerBL, CustomerBL>();
             //forms

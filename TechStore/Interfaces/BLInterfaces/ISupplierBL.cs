@@ -10,12 +10,12 @@ namespace TechStore.Interfaces.BLInterfaces
 {
     public interface ISupplierBL
     {
-        bool addsupplier(Supplier s);
-        bool updatesupplier(Supplier s);
+        bool addsupplier(persons s);
+        bool updatesupplier(persons s);
         bool deletesupplier(int id);
-        List<Supplier> getsuppliers();
+        List<persons> getsuppliers();
         List<string> getsuppliernames(string name);
-        List<Supplier> searchsuppliers(string text);
+        List<persons> searchsuppliers(string text);
 
     }
 }

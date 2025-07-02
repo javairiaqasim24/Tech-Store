@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
+using TechStore.BL.Models;
 using TechStore.BL.Models.Person;
 
 namespace TechStore.DL
 {
     public interface ICustomerDL
     {
-        bool Addcustomer(Customer c);
+        bool Addcustomer(persons c);
         bool Deletecustomer(int id);
-        List<Customer> GetCustomers();
-        List<Customer> Searchcustomers(string text);
-        bool Updatecustomer(Customer c);
+        List<persons> GetCustomers();
+        List<persons> Searchcustomers(string text);
+        bool Updatecustomer(persons c);
     }
 }
