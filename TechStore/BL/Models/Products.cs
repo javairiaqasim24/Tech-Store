@@ -8,6 +8,8 @@ namespace TechStore.BL.Models
 {
     public class Products
     {
+       
+
         public int id { get; private set; }
         public string name { get; private set; }
         public string description { get; private set; }
