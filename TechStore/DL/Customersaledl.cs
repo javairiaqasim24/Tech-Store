@@ -42,11 +42,11 @@ namespace TechStore.DL
                         return new Products(
                             reader.GetInt32(productIdOrdinal),
                             reader.GetString(nameOrdinal),
-                            reader.GetString(skuOrdinal),
+                            //reader.GetString(skuOrdinal),
                             reader.GetString(descriptionOrdinal),
-                            reader.GetString(categoryOrdinal),
-                            reader.IsDBNull(totalQuantityOrdinal) ? (int?)null : reader.GetInt32(totalQuantityOrdinal),
-                            reader.IsDBNull(salePriceOrdinal) ? (double?)null : reader.GetDouble(salePriceOrdinal)
+                            reader.GetString(categoryOrdinal)
+                            //reader.IsDBNull(totalQuantityOrdinal) ? (int?)null : reader.GetInt32(totalQuantityOrdinal),
+                            //reader.IsDBNull(salePriceOrdinal) ? (double?)null : reader.GetDouble(salePriceOrdinal)
                         );
                     }
                 }
@@ -88,11 +88,11 @@ namespace TechStore.DL
                         products.Add(new Products(
                             reader.GetInt32(productIdOrdinal),
                             reader.GetString(nameOrdinal),
-                            "", // SKU not needed in name-based search
+                            //"", // SKU not needed in name-based search
                             reader.GetString(descriptionOrdinal),
-                            reader.GetString(categoryOrdinal),
-                            reader.IsDBNull(totalQuantityOrdinal) ? (int?)null : reader.GetInt32(totalQuantityOrdinal),
-                            reader.IsDBNull(salePriceOrdinal) ? (double?)null : reader.GetDouble(salePriceOrdinal)
+                            reader.GetString(categoryOrdinal)
+                            //reader.IsDBNull(totalQuantityOrdinal) ? (int?)null : reader.GetInt32(totalQuantityOrdinal),
+                            //reader.IsDBNull(salePriceOrdinal) ? (double?)null : reader.GetDouble(salePriceOrdinal)
                         ));
                     }
                 }

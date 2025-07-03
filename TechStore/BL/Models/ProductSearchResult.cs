@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace TechStore.BL.Models
 {
-    internal class ProductSearchResult : Products
+    internal class ProductSearchResult 
     {
-        public ProductSearchResult(int id ,string name , string sku , string description , string category, int quantity , int price):base( id,  name,  sku,  description, category, quantity,  price)
-        {
+        //public ProductSearchResult(int id ,string name , string sku , string description , string category, int quantity , int price):base( id,  name,  sku,  description, category, quantity,  price)
+        //{
 
-        }
+        //}
     }
 }
