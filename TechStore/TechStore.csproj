@@ -130,9 +130,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\BL\BatchDetailsBL.cs" />
     <Compile Include="BL\BL\batchesBl.cs" />
     <Compile Include="BL\BL\CustomerBL.cs" />
     <Compile Include="BL\BL\CustomerSaleBL.cs" />
+    <Compile Include="Interfaces\BLInterfaces\IBatchDetailsBL.cs" />
+    <Compile Include="BL\Models\Batchdetails.cs" />
+    <Compile Include="DL\BatchdetailsDl.cs" />
+    <Compile Include="Interfaces\DLInterfaces\IBatchdetailsDl.cs" />
     <Compile Include="Interfaces\BLInterfaces\IBatchesBl.cs" />
     <Compile Include="BL\Models\Batches.cs" />
     <Compile Include="BL\Models\Customersale.cs" />

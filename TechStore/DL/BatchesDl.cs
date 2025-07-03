@@ -21,7 +21,7 @@ namespace TechStore.DL
                 using (var conn = DatabaseHelper.Instance.GetConnection())
                 {
                     conn.Open();
-                    string query = "INSERT INTO batches (batch_name, supplier_id, batch_date) VALUES (@batch_name, @supplier_id, @batch_date);";
+                    string query = "INSERT INTO batches (batch_name, supplier_id, recieved_date) VALUES (@batch_name, @supplier_id, @batch_date);";
                     using (var cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@batch_name", b.batch_name);

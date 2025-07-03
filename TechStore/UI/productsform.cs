@@ -311,6 +311,18 @@ namespace TechStore
             UIHelper.ApplyButtonStyles(dataGridView2);
         }
 
+        private void iconButton3_Click(object sender, EventArgs e)
+        {
+            var f=Program.ServiceProvider.GetRequiredService<AddBatchform>();
+            f.ShowDialog(this);
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            var f=Program.ServiceProvider.GetRequiredService<BatchDetailsform>();
+            Dashboard.Instance.LoadFormIntoPanel(f);
+        }
+
 
         //private void dataGridView2_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         //{

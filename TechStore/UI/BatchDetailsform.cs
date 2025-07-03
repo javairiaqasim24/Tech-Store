@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,12 @@ namespace TechStore.UI
         public BatchDetailsform()
         {
             InitializeComponent();
+        }
+
+        private void btnadd_Click(object sender, EventArgs e)
+        {
+            var f=Program.ServiceProvider.GetRequiredService<AddbatchDetailsform>();
+            f.ShowDialog(this);
         }
     }
 }

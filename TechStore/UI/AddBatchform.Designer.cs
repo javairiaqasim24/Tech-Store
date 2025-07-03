@@ -40,15 +40,11 @@
             // 
             // comboBox1
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Walk_in",
-            "Regular"});
             this.comboBox1.Location = new System.Drawing.Point(13, 277);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(310, 24);
-            this.comboBox1.TabIndex = 184;
+            this.comboBox1.TabIndex = 2;
             // 
             // label4
             // 
@@ -83,7 +79,7 @@
             this.txtname.Multiline = true;
             this.txtname.Name = "txtname";
             this.txtname.Size = new System.Drawing.Size(313, 35);
-            this.txtname.TabIndex = 182;
+            this.txtname.TabIndex = 0;
             // 
             // label6
             // 
@@ -117,7 +113,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(16, 190);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(313, 22);
-            this.dateTimePicker1.TabIndex = 189;
+            this.dateTimePicker1.TabIndex = 181;
             // 
             // btnsave
             // 
@@ -137,7 +133,7 @@
             this.btnsave.Location = new System.Drawing.Point(82, 365);
             this.btnsave.Name = "btnsave";
             this.btnsave.Size = new System.Drawing.Size(152, 42);
-            this.btnsave.TabIndex = 190;
+            this.btnsave.TabIndex = 3;
             this.btnsave.Text = "Save";
             this.btnsave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnsave.UseVisualStyleBackColor = false;
@@ -159,6 +155,7 @@
             this.Name = "AddBatchform";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddBatchform";
+            this.Load += new System.EventHandler(this.AddBatchform_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

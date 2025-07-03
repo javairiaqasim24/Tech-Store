@@ -35,9 +35,9 @@ namespace TechStore.UI
             DateTime date = dateTimePicker1.Value;
             try
             {
-               var batches=new Batches(0, batchname, suppliername, date);
+                var batches = new Batches(0, batchname, suppliername, date);
                 // Assuming you have a method to save the batch
-                bool result =_batchesBl.AddBatches (batches); // Replace with actual save logic
+                bool result = _batchesBl.AddBatches(batches); // Replace with actual save logic
                 if (result)
                 {
                     MessageBox.Show("Batch added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -50,11 +50,11 @@ namespace TechStore.UI
                     MessageBox.Show("Failed to add batch. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch(MySqlException ex)
+            catch (MySqlException ex)
             {
                 MessageBox.Show("Database error occurred while adding batch: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch(ArgumentException ex)
+            catch (ArgumentException ex)
             {
                 MessageBox.Show("Validation error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -63,5 +63,27 @@ namespace TechStore.UI
                 MessageBox.Show("An error occurred while adding the batch: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void AddBatchform_Load(object sender, EventArgs e)
+        {
+            var supplierList = _batchesBl.GetSupplierNames("");
+            if (supplierList != null && supplierList.Count > 0)
+            {
+                comboBox1.Items.Clear();
+                comboBox1.Items.AddRange(supplierList.ToArray());
+
+                // Set up autocomplete source
+                AutoCompleteStringCollection autoSource = new AutoCompleteStringCollection();
+                autoSource.AddRange(supplierList.ToArray());
+                comboBox1.AutoCompleteCustomSource = autoSource;
+
+                comboBox1.SelectedIndex = -1; // No pre-selection
+            }
+            else
+            {
+                MessageBox.Show("No suppliers found. Please add suppliers first.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
     }
 }

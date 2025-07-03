@@ -28,8 +28,7 @@ namespace TechStore.BL.BL
         }
         public List<string> GetSupplierNames(string name)
         {
-            if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("Supplier name cannot be null or empty", nameof(name));
+         
             return _batchesDl.getsuppliernames(name);
         }
     }

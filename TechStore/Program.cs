@@ -39,13 +39,14 @@ namespace TechStore
             services.AddScoped<Icustomersaledl, Customersaledl>();
             services.AddScoped<ICustomerDL,CustomerDL>();
             services.AddScoped<IBatchesDl,BatchesDl>();
+            services.AddScoped<IBatchdetailsDl, BatchdetailsDl>();
             //BL
             services.AddScoped<IproductBl,ProductBL>();
             services.AddScoped<ISupplierBL, SupplierBl>();
             services.AddScoped<ICustomerSaleBL, CustomerSaleBL>();
             services.AddScoped<ICustomerBL, CustomerBL>();
             services.AddScoped<IBatchesBl, BatchesBl>();
-            services.AddTransient<Loadingform>();
+            services.AddScoped<IBatchDetailsBL, BatchDetailsBL>();
 
             //forms
             services.AddTransient<HomeContentform>();
@@ -60,6 +61,10 @@ namespace TechStore
             services.AddTransient<Customersale>();
             services.AddTransient<AddBatchform>();
             services.AddTransient<Addcategoryform>();
+            services.AddTransient<Loadingform>();
+            services.AddTransient<BatchDetailsform>();
+            services.AddTransient<AddbatchDetailsform>();
+
 
 
 
