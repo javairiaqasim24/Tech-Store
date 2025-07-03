@@ -14,6 +14,7 @@ namespace TechStore.BL.Models
         public string name { get; private set; }
         public string description { get; private set; }
         public string category { get; private set; }
+        
 
         public Products(int id, string name, string description, string category)
         {

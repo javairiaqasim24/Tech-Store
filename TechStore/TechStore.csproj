@@ -128,10 +128,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\BL\batchesBl.cs" />
     <Compile Include="BL\BL\CustomerBL.cs" />
     <Compile Include="BL\BL\CustomerSaleBL.cs" />
+    <Compile Include="Interfaces\BLInterfaces\IBatchesBl.cs" />
+    <Compile Include="BL\Models\Batches.cs" />
     <Compile Include="BL\Models\Customersale.cs" />
+    <Compile Include="DL\BatchesDl.cs" />
     <Compile Include="DL\Customersaledl .cs" />
+    <Compile Include="Interfaces\DLInterfaces\IBatchesDl.cs" />
     <Compile Include="Interfaces\DLInterfaces\Icustomersaledl.cs" />
     <Compile Include="Interfaces\BLInterfaces\ICustomerSaleBL.cs" />
     <Compile Include="Interfaces\Ipersons.cs" />
@@ -151,6 +156,18 @@
     <Compile Include="Interfaces\BLInterfaces\ISupplierBL.cs" />
     <Compile Include="Interfaces\DLInterfaces\IproductDl.cs" />
     <Compile Include="Interfaces\DLInterfaces\IsupplierDl.cs" />
+    <Compile Include="UI\AddbatchDetailsform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AddbatchDetailsform.Designer.cs">
+      <DependentUpon>AddbatchDetailsform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AddBatchform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AddBatchform.Designer.cs">
+      <DependentUpon>AddBatchform.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\AddCustomerform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +185,12 @@
     </Compile>
     <Compile Include="UI\Addsupplierform.Designer.cs">
       <DependentUpon>Addsupplierform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BatchDetailsform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\BatchDetailsform.Designer.cs">
+      <DependentUpon>BatchDetailsform.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Customerform.cs">
       <SubType>Form</SubType>
@@ -220,6 +243,12 @@
       <DependentUpon>Supplierform.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\UIHelper.cs" />
+    <EmbeddedResource Include="UI\AddbatchDetailsform.resx">
+      <DependentUpon>AddbatchDetailsform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AddBatchform.resx">
+      <DependentUpon>AddBatchform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\AddCustomerform.resx">
       <DependentUpon>AddCustomerform.cs</DependentUpon>
     </EmbeddedResource>
@@ -228,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Addsupplierform.resx">
       <DependentUpon>Addsupplierform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BatchDetailsform.resx">
+      <DependentUpon>BatchDetailsform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Customerform.resx">
       <DependentUpon>Customerform.cs</DependentUpon>

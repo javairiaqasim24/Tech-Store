@@ -38,11 +38,13 @@ namespace TechStore
             services.AddScoped<IsupplierDl, SupplierDl>();
             services.AddScoped<Icustomersaledl, Customersaledl>();
             services.AddScoped<ICustomerDL,CustomerDL>();
+            services.AddScoped<IBatchesDl,BatchesDl>();
             //BL
             services.AddScoped<IproductBl,ProductBL>();
             services.AddScoped<ISupplierBL, SupplierBl>();
             services.AddScoped<ICustomerSaleBL, CustomerSaleBL>();
             services.AddScoped<ICustomerBL, CustomerBL>();
+            services.AddScoped<IBatchesBl, BatchesBl>();
 
             //forms
             services.AddTransient<HomeContentform>();
@@ -55,6 +57,7 @@ namespace TechStore
             services.AddTransient<AddCustomerform>();
             services.AddTransient<Customerform>();
             services.AddTransient<Customersale>();
+            services.AddTransient<AddBatchform>();
 
 
         }
