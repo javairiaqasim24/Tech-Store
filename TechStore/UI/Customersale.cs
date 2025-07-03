@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Extensions.DependencyInjection;
 using TechStore.BL.Models;
 using TechStore.Interfaces.BLInterfaces;
 
@@ -69,16 +70,18 @@ namespace TechStore.UI
         private void ConfigureCartGrid()
         {
             dataGridView1.Columns.Clear();
-            dataGridView1.Columns.Add("Sku", "SKU");
+            dataGridView1.Columns.Add("Sku", "SKU"); // still showing last scanned serial
             dataGridView1.Columns.Add("Name", "Product Name");
             dataGridView1.Columns.Add("Description", "Description");
+            dataGridView1.Columns.Add("Warranty", "Warranty (Months)");
             dataGridView1.Columns.Add("Price", "Unit Price");
             dataGridView1.Columns.Add("Quantity", "Quantity");
             dataGridView1.Columns.Add("Discount", "Discount");
             dataGridView1.Columns.Add("Total", "Total Price");
 
-            dataGridView1.Columns["Price"].DefaultCellStyle.Format = "N2";
-            dataGridView1.Columns["Total"].DefaultCellStyle.Format = "N2";
+
+            dataGridView1.Columns["Price"].DefaultCellStyle.Format = "N0";
+            dataGridView1.Columns["Total"].DefaultCellStyle.Format = "N0";
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             discount.Text = "0";
         }
@@ -185,7 +188,7 @@ namespace TechStore.UI
                 decimal discountedPricePerUnit = unitPrice - discountAmount;
                 decimal total = discountedPricePerUnit * qty;
 
-                priceafterdisc.Text = total.ToString("N2");
+                priceafterdisc.Text = total.ToString();
             }
             else
             {
@@ -202,20 +205,84 @@ namespace TechStore.UI
 
         private void AddToSaleCart()
         {
+            string newSku = txtserial.Text.Trim(); // This is the new serial number (SKU)
+            string productName = txtproductname.Text.Trim();
+
             if (!ValidateSaleProduct()) return;
 
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                string existingName = row.Cells["Name"].Value?.ToString();
+                string existingSkus = row.Cells["Sku"].Value?.ToString() ?? "";
+
+                if (existingName == productName)
+                {
+                    // If serial already exists, ignore adding again
+                    var existingSerialList = existingSkus.Split(',').Select(s => s.Trim()).ToList();
+                    if (!existingSerialList.Contains(newSku))
+                    {
+                        existingSerialList.Add(newSku);
+                        row.Cells["Sku"].Value = string.Join(", ", existingSerialList);
+                    }
+
+                    // Increase quantity
+                    int currentQty = Convert.ToInt32(row.Cells["Quantity"].Value);
+                    row.Cells["Quantity"].Value = currentQty + 1;
+
+                    // Recalculate total
+                    decimal unitPrice = Convert.ToDecimal(row.Cells["Price"].Value ?? 0);
+                    decimal discount = Convert.ToDecimal(row.Cells["Discount"].Value ?? 0);
+                    decimal total = (unitPrice - discount) * (currentQty + 1);
+                    row.Cells["Total"].Value = total.ToString("N2");
+
+                    UpdateFinalTotals();
+                    ClearProductFields();
+                    return;
+                }
+            }
+
+            // New product row
             dataGridView1.Rows.Add(
-                txtserial.Text.Trim(),
-                txtproductname.Text.Trim(),
+                newSku,                                // Sku (serials) column
+                productName,
                 txtdescription.Text.Trim(),
+                txtwarranty.Text.Trim(),
                 txtsaleprice.Text.Trim(),
-                quantity.Text.Trim(),
+                "1",
                 discount.Text.Trim(),
                 priceafterdisc.Text.Trim()
             );
 
+            UpdateFinalTotals();
             ClearProductFields();
             txtserial.Focus();
+        }
+
+
+
+
+        private void UpdateFinalTotals()
+        {
+            decimal totalPrice = 0;
+            decimal totalDiscount = 0;
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                decimal unitPrice = Convert.ToDecimal(row.Cells["Price"].Value ?? 0);
+                decimal discountPerUnit = Convert.ToDecimal(row.Cells["Discount"].Value ?? 0);
+                int quantity = Convert.ToInt32(row.Cells["Quantity"].Value ?? 0);
+                decimal total = Convert.ToDecimal(row.Cells["Total"].Value ?? 0);
+
+                totalPrice += total;
+                totalDiscount += (discountPerUnit * quantity);
+            }
+
+            finalpricetxt.Text = totalPrice.ToString();
+            finaldiscounttxt.Text = totalDiscount.ToString();
         }
 
 
@@ -243,6 +310,7 @@ namespace TechStore.UI
             txtproductname.Clear();
             txtdescription.Clear();
             txtsaleprice.Clear();
+            txtwarranty.Clear();
             discount.Text = "0";
             priceafterdisc.Clear();
             dgvProductSearch.Visible = false;
@@ -363,6 +431,133 @@ namespace TechStore.UI
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void finalpricetxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void finaldiscounttxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void combocustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtfinalpaid_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private bool ValidatePayment()
+        {
+            if (combocustomer.SelectedItem?.ToString() == "Walk-in")
+            {
+                if (finalpricetxt.Text != txtfinalpaid.Text)
+                {
+                    ShowMessage("Full Payment Required", "Walk-in customers must pay the full amount.");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
+        private void btnsave_Click(object sender, EventArgs e)
+        {
+            if (!ValidatePayment()) return;
+
+            string customerType = combocustomer.SelectedItem?.ToString();
+            string customerName = txtcustomer.Text.Trim();
+            int customerId;
+            
+                // Search existing customer
+                customerId = _saleBl.GetCustomerIdByNameAndType(customerName, customerType);
+
+                // If not found and type is Walk-in, create
+                if (customerId == -1 && customerType == "Walk-in")
+                {
+                    customerId = _saleBl.InsertNewWalkInCustomer(customerName);
+                }
+                else if (customerId == -1)
+                {
+                    ShowMessage("Customer Not Found", "Please select an existing Regular customer.");
+                    return;
+                }
+
+            if (dataGridView1.Rows.Count == 0 || dataGridView1.Rows.Cast<DataGridViewRow>().All(r => r.IsNewRow))
+            {
+                ShowMessage("Cart Empty", "Please add at least one product.");
+                return;
+            }
+
+
+            // Now proceed to save bill + items
+            bool saved = _saleBl.SaveCustomerBill(
+                    customerId,
+                    DateTime.Now,
+                    Convert.ToDecimal(finalpricetxt.Text),
+                    Convert.ToDecimal(txtfinalpaid.Text),
+                    dataGridView1 // Send whole cart
+                );
+
+                if (saved)
+                {
+                    ShowMessage("Success", "Sale recorded successfully!");
+                    // Clear form here
+                }
+                else
+                {
+                    ShowMessage("Failure", "Error saving sale.");
+                }
+        }
+
+
+        private void txtcustomer_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtwarranty_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnadcust_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<AddCustomerform>();
+            f.ShowDialog(this);
+        }
+
+        private void thermalprint_CheckedChanged(object sender, EventArgs e)
+        {
+            if (onlypdf.Checked)
+            {
+                A4printer.Checked = false;
+                thermalprint.Checked = false;
+            }
+        }
+
+        private void onlypdf_CheckedChanged(object sender, EventArgs e)
+        {
+            if (A4printer.Checked)
+            {
+                onlypdf.Checked = false;
+                thermalprint.Checked = false;
+            }
+        }
+
+        private void A4printer_CheckedChanged(object sender, EventArgs e)
+        {
+            if (thermalprint.Checked)
+            {
+                onlypdf.Checked = false;
+                A4printer.Checked = false;
+            }
         }
     }
 }

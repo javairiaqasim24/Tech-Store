@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Customerform));
             this.panel1 = new System.Windows.Forms.Panel();
             this.toplbl = new System.Windows.Forms.Label();
-            this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            //this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.button9 = new System.Windows.Forms.Button();
             this.paneledit = new System.Windows.Forms.Panel();
             this.txtemail = new System.Windows.Forms.TextBox();
@@ -60,7 +60,7 @@
             this.btncategory = new FontAwesome.Sharp.IconButton();
             this.btnproducts = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
-            this.guna2CustomGradientPanel1.SuspendLayout();
+            //this.guna2CustomGradientPanel1.SuspendLayout();
             this.paneledit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
@@ -89,27 +89,27 @@
             this.toplbl.Text = "Customers";
             this.toplbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // guna2CustomGradientPanel1
-            // 
-            this.guna2CustomGradientPanel1.Controls.Add(this.button9);
-            this.guna2CustomGradientPanel1.Controls.Add(this.paneledit);
-            this.guna2CustomGradientPanel1.Controls.Add(this.btnadd);
-            this.guna2CustomGradientPanel1.Controls.Add(this.dataGridView2);
-            this.guna2CustomGradientPanel1.Controls.Add(this.pictureBox10);
-            this.guna2CustomGradientPanel1.Controls.Add(this.label4);
-            this.guna2CustomGradientPanel1.Controls.Add(this.textBox1);
-            this.guna2CustomGradientPanel1.Controls.Add(this.btnstate);
-            this.guna2CustomGradientPanel1.Controls.Add(this.btnlogs);
-            this.guna2CustomGradientPanel1.Controls.Add(this.btncategory);
-            this.guna2CustomGradientPanel1.Controls.Add(this.btnproducts);
-            this.guna2CustomGradientPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2CustomGradientPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(72)))), ((int)(((byte)(99)))));
-            this.guna2CustomGradientPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(125)))), ((int)(((byte)(157)))));
-            this.guna2CustomGradientPanel1.FillColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.guna2CustomGradientPanel1.Location = new System.Drawing.Point(0, 84);
-            this.guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
-            this.guna2CustomGradientPanel1.Size = new System.Drawing.Size(1312, 708);
-            this.guna2CustomGradientPanel1.TabIndex = 15;
+            //// guna2CustomGradientPanel1
+            //// 
+            //this.guna2CustomGradientPanel1.Controls.Add(this.button9);
+            //this.guna2CustomGradientPanel1.Controls.Add(this.paneledit);
+            //this.guna2CustomGradientPanel1.Controls.Add(this.btnadd);
+            //this.guna2CustomGradientPanel1.Controls.Add(this.dataGridView2);
+            //this.guna2CustomGradientPanel1.Controls.Add(this.pictureBox10);
+            //this.guna2CustomGradientPanel1.Controls.Add(this.label4);
+            //this.guna2CustomGradientPanel1.Controls.Add(this.textBox1);
+            //this.guna2CustomGradientPanel1.Controls.Add(this.btnstate);
+            //this.guna2CustomGradientPanel1.Controls.Add(this.btnlogs);
+            //this.guna2CustomGradientPanel1.Controls.Add(this.btncategory);
+            //this.guna2CustomGradientPanel1.Controls.Add(this.btnproducts);
+            //this.guna2CustomGradientPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            //this.guna2CustomGradientPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(72)))), ((int)(((byte)(99)))));
+            //this.guna2CustomGradientPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(125)))), ((int)(((byte)(157)))));
+            //this.guna2CustomGradientPanel1.FillColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
+            //this.guna2CustomGradientPanel1.Location = new System.Drawing.Point(0, 84);
+            //this.guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
+            //this.guna2CustomGradientPanel1.Size = new System.Drawing.Size(1312, 708);
+            //this.guna2CustomGradientPanel1.TabIndex = 15;
             // 
             // button9
             // 
@@ -538,15 +538,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1312, 792);
-            this.Controls.Add(this.guna2CustomGradientPanel1);
+            //this.Controls.Add(this.guna2CustomGradientPanel1);
             this.Controls.Add(this.panel1);
             this.Name = "Customerform";
             this.Text = "Customerform";
             this.Load += new System.EventHandler(this.Customerform_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.guna2CustomGradientPanel1.ResumeLayout(false);
-            this.guna2CustomGradientPanel1.PerformLayout();
+            //this.guna2CustomGradientPanel1.ResumeLayout(false);
+            //this.guna2CustomGradientPanel1.PerformLayout();
             this.paneledit.ResumeLayout(false);
             this.paneledit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -559,7 +559,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label toplbl;
-        private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
+        //private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Panel paneledit;
         private FontAwesome.Sharp.IconButton btncancle1;
