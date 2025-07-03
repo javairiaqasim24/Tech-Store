@@ -5,7 +5,7 @@ namespace TechStore.BL.BL
 {
     public interface IBatchDetailsBL
     {
-        bool AddBatchDetails(Batchdetails batchDetails);
+        bool AddBatchDetailsWithSerial(Batchdetails b, List<string> serialNumbers, decimal price);
         bool DeleteBatchDetails(int batchDetailsId);
         List<Batchdetails> GetBatchDetails();
         List<Batchdetails> GetBatchDetailsByName(string text);

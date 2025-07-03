@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TechStore.BL.Models;
 using TechStore.DL;
 using TechStore.Interfaces.BLInterfaces;
-using static QuestPDF.Helpers.Colors;
+//using static QuestPDF.Helpers.Colors;
 
 namespace TechStore.UI
 {
@@ -513,15 +513,15 @@ namespace TechStore.UI
                         ShowMessage("Success", "Sale recorded successfully!");
                     // Clear form here
                      // 🔥 Check PDF print type
-                    if (onlypdf.Checked)
-                    {
-                        SavePdfInvoice();  // ← Generate and save PDF only
-                    }
+                    //if (onlypdf.Checked)
+                    //{
+                    //    SavePdfInvoice();  // ← Generate and save PDF only
+                    //}
                 if (A4printer.Checked)
                 {
                     decimal total = long.Parse(finalpricetxt.Text);
                     decimal paid = long.Parse(txtfinalpaid.Text);
-                    invoices.PrintInvoiceDirectly(dataGridView1, customerName, DateTime.Now, total, paid);
+                    //invoices.PrintInvoiceDirectly(dataGridView1, customerName, DateTime.Now, total, paid);
                 }
 
             }
@@ -531,36 +531,36 @@ namespace TechStore.UI
                 }
         }
 
-        private void SavePdfInvoice()
-        {
-            using (SaveFileDialog saveDialog = new SaveFileDialog())
-            {
-                saveDialog.Filter = "PDF files (*.pdf)|*.pdf";
-                saveDialog.Title = "Save PDF Invoice";
-                saveDialog.FileName = $"Invoice_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
+        //private void SavePdfInvoice()
+        //{
+        //    using (SaveFileDialog saveDialog = new SaveFileDialog())
+        //    {
+        //        saveDialog.Filter = "PDF files (*.pdf)|*.pdf";
+        //        saveDialog.Title = "Save PDF Invoice";
+        //        saveDialog.FileName = $"Invoice_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
 
-                if (saveDialog.ShowDialog() == DialogResult.OK)
-                {
-                    try
-                    {
-                        invoices.CreateSaleInvoicePdf(
-                            dataGridView1,
-                            saveDialog.FileName,
-                            txtcustomer.Text.Trim(),
-                            DateTime.Now,
-                            Convert.ToDecimal(finalpricetxt.Text),
-                            Convert.ToDecimal(txtfinalpaid.Text)
-                        );
+        //        if (saveDialog.ShowDialog() == DialogResult.OK)
+        //        {
+        //            try
+        //            {
+        //                invoices.CreateSaleInvoicePdf(
+        //                    dataGridView1,
+        //                    saveDialog.FileName,
+        //                    txtcustomer.Text.Trim(),
+        //                    DateTime.Now,
+        //                    Convert.ToDecimal(finalpricetxt.Text),
+        //                    Convert.ToDecimal(txtfinalpaid.Text)
+        //                );
 
-                        MessageBox.Show("PDF saved successfully!", "PDF", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error generating PDF:\n" + ex.Message, "PDF Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-        }
+        //                MessageBox.Show("PDF saved successfully!", "PDF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                MessageBox.Show("Error generating PDF:\n" + ex.Message, "PDF Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //            }
+        //        }
+        //    }
+        //}
 
 
         private void txtcustomer_TextChanged(object sender, EventArgs e)

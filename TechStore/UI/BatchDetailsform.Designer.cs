@@ -34,6 +34,9 @@
             this.toplbl = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.paneledit = new System.Windows.Forms.Panel();
+            this.txtprice = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtBname = new System.Windows.Forms.ComboBox();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.btnsave = new FontAwesome.Sharp.IconButton();
             this.txtproducts = new System.Windows.Forms.ComboBox();
@@ -56,9 +59,6 @@
             this.btnlogs = new FontAwesome.Sharp.IconButton();
             this.btncategory = new FontAwesome.Sharp.IconButton();
             this.btnproducts = new FontAwesome.Sharp.IconButton();
-            this.txtBname = new System.Windows.Forms.ComboBox();
-            this.txtprice = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.paneledit.SuspendLayout();
@@ -132,6 +132,37 @@
             this.paneledit.Size = new System.Drawing.Size(443, 572);
             this.paneledit.TabIndex = 125;
             // 
+            // txtprice
+            // 
+            this.txtprice.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtprice.Location = new System.Drawing.Point(76, 317);
+            this.txtprice.Multiline = true;
+            this.txtprice.Name = "txtprice";
+            this.txtprice.Size = new System.Drawing.Size(313, 37);
+            this.txtprice.TabIndex = 153;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
+            this.label1.Location = new System.Drawing.Point(71, 284);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(112, 30);
+            this.label1.TabIndex = 152;
+            this.label1.Text = "Cost Price";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtBname
+            // 
+            this.txtBname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtBname.FormattingEnabled = true;
+            this.txtBname.Location = new System.Drawing.Point(76, 91);
+            this.txtBname.Name = "txtBname";
+            this.txtBname.Size = new System.Drawing.Size(313, 24);
+            this.txtBname.TabIndex = 151;
+            // 
             // iconButton1
             // 
             this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(64)))));
@@ -155,6 +186,7 @@
             this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton1.UseVisualStyleBackColor = false;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // btnsave
             // 
@@ -179,6 +211,7 @@
             this.btnsave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnsave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnsave.UseVisualStyleBackColor = false;
+            this.btnsave.Click += new System.EventHandler(this.btnsave_Click);
             // 
             // txtproducts
             // 
@@ -395,6 +428,7 @@
             this.dataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView2.Size = new System.Drawing.Size(1267, 405);
             this.dataGridView2.TabIndex = 121;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // pictureBox10
             // 
@@ -444,6 +478,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(230, 29);
             this.textBox1.TabIndex = 118;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // btnstate
             // 
@@ -541,37 +576,6 @@
             this.btnproducts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnproducts.UseVisualStyleBackColor = false;
             // 
-            // txtBname
-            // 
-            this.txtBname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.txtBname.FormattingEnabled = true;
-            this.txtBname.Location = new System.Drawing.Point(76, 91);
-            this.txtBname.Name = "txtBname";
-            this.txtBname.Size = new System.Drawing.Size(313, 24);
-            this.txtBname.TabIndex = 151;
-            // 
-            // txtprice
-            // 
-            this.txtprice.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtprice.Location = new System.Drawing.Point(76, 317);
-            this.txtprice.Multiline = true;
-            this.txtprice.Name = "txtprice";
-            this.txtprice.Size = new System.Drawing.Size(313, 37);
-            this.txtprice.TabIndex = 153;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label1.Location = new System.Drawing.Point(71, 284);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 30);
-            this.label1.TabIndex = 152;
-            this.label1.Text = "Cost Price";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // BatchDetailsform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -581,6 +585,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "BatchDetailsform";
             this.Text = "BatchDetailsform";
+            this.Load += new System.EventHandler(this.BatchDetailsform_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

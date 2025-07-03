@@ -12,73 +12,96 @@ namespace TechStore.BL.BL
     public class BatchDetailsBL : IBatchDetailsBL
     {
         private readonly IBatchdetailsDl ibl;
+
         public BatchDetailsBL(IBatchdetailsDl ibl)
         {
             this.ibl = ibl ?? throw new ArgumentNullException(nameof(ibl), "Batch details data layer cannot be null");
         }
-        public bool AddBatchDetails(Batchdetails batchDetails)
+
+        public bool AddBatchDetailsWithSerial(Batchdetails batchDetails, List<string> serialNumbers, decimal price)
         {
             if (batchDetails == null)
                 throw new ArgumentNullException(nameof(batchDetails), "Batch details cannot be null");
-            if (string.IsNullOrEmpty(batchDetails.batch_name) || string.IsNullOrEmpty(batchDetails.product_name))
-            {
-                throw new ArgumentException("Batch name and product name cannot be empty", nameof(batchDetails));
-            }
-            if (batchDetails.quantity < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(batchDetails.quantity), "Quantity must be greater than zero");
-            }
-            if (batchDetails.price < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(batchDetails.price), "Price must be greater than zero");
-            }
 
-            return ibl.addbatchdetails(batchDetails);
+            if (string.IsNullOrWhiteSpace(batchDetails.batch_name))
+                throw new ArgumentException("Batch name cannot be null or empty", nameof(batchDetails.batch_name));
+
+            if (string.IsNullOrWhiteSpace(batchDetails.product_name))
+                throw new ArgumentException("Product name cannot be null or empty", nameof(batchDetails.product_name));
+
+            if (batchDetails.quantity <= 0)
+                throw new ArgumentOutOfRangeException(nameof(batchDetails.quantity), "Quantity must be greater than 0");
+
+            if (batchDetails.price < 0)
+                throw new ArgumentOutOfRangeException(nameof(batchDetails.price), "Cost price must be non-negative");
+
+            if (price < 0)
+                throw new ArgumentOutOfRangeException(nameof(price), "Sale price must be non-negative");
+
+            if (serialNumbers == null)
+                throw new ArgumentNullException(nameof(serialNumbers), "Serial numbers list cannot be null");
+
+            //if (serialNumbers.Count != batchDetails.quantity)
+            //    throw new ArgumentException("Number of serial numbers must exactly match the quantity", nameof(serialNumbers));
+
+            //if (serialNumbers.Any(sn => string.IsNullOrWhiteSpace(sn)))
+            //    throw new ArgumentException("Serial numbers cannot contain empty or null values", nameof(serialNumbers));
+
+            return ibl.AddBatchDetailsWithSerial(batchDetails, serialNumbers, price);
         }
+
         public bool DeleteBatchDetails(int batchDetailsId)
         {
             if (batchDetailsId <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(batchDetailsId), "Batch details ID must be greater than zero");
-            }
+                throw new ArgumentOutOfRangeException(nameof(batchDetailsId), "Batch details ID must be greater than 0");
+
             return ibl.deletebatchdetails(batchDetailsId);
         }
+
         public List<Batchdetails> GetBatchDetails()
         {
-
             return ibl.getbatchdetails();
         }
+
         public List<string> GetBatches(string text)
         {
+
+
             return ibl.getbatches(text);
         }
+
         public List<string> GetProductNames(string text)
         {
+         
 
             return ibl.getproductnames(text);
         }
+
         public bool UpdateBatchDetails(Batchdetails batchDetails)
         {
             if (batchDetails == null)
                 throw new ArgumentNullException(nameof(batchDetails), "Batch details cannot be null");
-            if (string.IsNullOrEmpty(batchDetails.batch_name) || string.IsNullOrEmpty(batchDetails.product_name))
-            {
-                throw new ArgumentException("Batch name and product name cannot be empty", nameof(batchDetails));
-            }
-            if (batchDetails.quantity < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(batchDetails.quantity), "Quantity must be greater than zero");
-            }
+
+            if (string.IsNullOrWhiteSpace(batchDetails.batch_name))
+                throw new ArgumentException("Batch name cannot be null or empty", nameof(batchDetails.batch_name));
+
+            if (string.IsNullOrWhiteSpace(batchDetails.product_name))
+                throw new ArgumentException("Product name cannot be null or empty", nameof(batchDetails.product_name));
+
+            if (batchDetails.quantity <= 0)
+                throw new ArgumentOutOfRangeException(nameof(batchDetails.quantity), "Quantity must be greater than 0");
+
             if (batchDetails.price < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(batchDetails.price), "Price must be greater than zero");
-            }
+                throw new ArgumentOutOfRangeException(nameof(batchDetails.price), "Price must be non-negative");
+
             return ibl.updatebatchdetails(batchDetails);
         }
+
         public List<Batchdetails> GetBatchDetailsByName(string text)
         {
+           
 
             return ibl.getbatchdetailsbyname(text);
         }
     }
-}
+    }
