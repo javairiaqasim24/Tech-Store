@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace TechStore.DL
 {
@@ -262,6 +263,85 @@ namespace TechStore.DL
             e.Graphics.DrawString($"Paid: Rs. {paidAmount:N2}", regularFont, brush, x + 400, y);
             y += 20;
             e.Graphics.DrawString($"Pending: Rs. {(totalAmount - paidAmount):N2}", regularFont, Brushes.Red, x + 400, y);
+        }
+
+        public static void PrintThermalReceipt(DataGridView cart, string customerName, decimal total, decimal paid)
+        {
+            PrintDocument doc = new PrintDocument();
+            doc.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Receipt", 280, 600); // Width: ~80mm
+
+            doc.PrintPage += (sender, e) =>
+            {
+                DrawThermalReceipt(e, cart, customerName, total, paid);
+            };
+
+            PrintDialog dialog = new PrintDialog
+            {
+                Document = doc,
+                AllowSomePages = false,
+                UseEXDialog = true
+            };
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+                doc.Print();
+        }
+
+        private static void DrawThermalReceipt(PrintPageEventArgs e, DataGridView cart, string customerName, decimal total, decimal paid)
+        {
+            Font font = new Font("Consolas", 9);
+            float y = 10;
+            float lineHeight = font.GetHeight(e.Graphics) + 2;
+            float leftMargin = 5;
+
+            float maxWidth = e.PageBounds.Width - 10;
+
+            float x = leftMargin;
+
+            // Header
+            e.Graphics.DrawString("------------------------------------------", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString("Item        Qty  Price  Disc   Total", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString("------------------------------------------", font, Brushes.Black, x, y); y += lineHeight;
+
+            decimal totalDiscount = 0;
+
+            foreach (DataGridViewRow row in cart.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                string item = Truncate(row.Cells["Name"].Value?.ToString(), 10).PadRight(10);
+                string qty = row.Cells["Quantity"].Value?.ToString().PadLeft(3);
+                string price = row.Cells["Price"].Value?.ToString().PadLeft(6);
+                string discount = row.Cells["Discount"].Value?.ToString().PadLeft(6);
+                string totalPrice = row.Cells["Total"].Value?.ToString().PadLeft(6);
+
+                decimal discVal = 0;
+                decimal.TryParse(row.Cells["Discount"].Value?.ToString(), out discVal);
+                totalDiscount += discVal * Convert.ToInt32(row.Cells["Quantity"].Value);
+
+                string line = $"{item} {qty} {price} {discount} {totalPrice}";
+                e.Graphics.DrawString(line, font, Brushes.Black, x, y); y += lineHeight;
+            }
+
+            e.Graphics.DrawString("------------------------------------------", font, Brushes.Black, x, y); y += lineHeight;
+
+            decimal due = total - paid;
+
+            // Summary
+            e.Graphics.DrawString($"Total Price    : Rs. {total:N0}", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString($"Total Discount : Rs. {totalDiscount:N0}", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString($"Paid           : Rs. {paid:N0}", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString($"Due            : Rs. {due:N0}", font, Brushes.Black, x, y); y += lineHeight;
+
+            e.Graphics.DrawString("------------------------------------------", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString("  Thank you for shopping with us!", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString("------------------------------------------", font, Brushes.Black, x, y);
+        }
+
+        // Helper to truncate long product names
+        private static string Truncate(string value, int maxLength)
+        {
+            if (string.IsNullOrEmpty(value)) return "";
+            return value.Length <= maxLength ? value : value.Substring(0, maxLength);
         }
 
 
