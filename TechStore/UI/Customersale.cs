@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using TechStore.BL.Models;
+using TechStore.DL;
 using TechStore.Interfaces.BLInterfaces;
 
 namespace TechStore.UI
@@ -235,7 +236,7 @@ namespace TechStore.UI
                     decimal unitPrice = Convert.ToDecimal(row.Cells["Price"].Value ?? 0);
                     decimal discount = Convert.ToDecimal(row.Cells["Discount"].Value ?? 0);
                     decimal total = (unitPrice - discount) * (currentQty + 1);
-                    row.Cells["Total"].Value = total.ToString("N2");
+                    row.Cells["Total"].Value = total.ToString();
 
                     UpdateFinalTotals();
                     ClearProductFields();
@@ -508,12 +509,48 @@ namespace TechStore.UI
                 if (saved)
                 {
                     ShowMessage("Success", "Sale recorded successfully!");
-                    // Clear form here
+                // Clear form here
+                // 🔥 Check PDF print type
+                if (onlypdf.Checked)
+                {
+                    SavePdfInvoice();  // ← Generate and save PDF only
                 }
+            }
                 else
                 {
                     ShowMessage("Failure", "Error saving sale.");
                 }
+        }
+
+        private void SavePdfInvoice()
+        {
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
+            {
+                saveDialog.Filter = "PDF files (*.pdf)|*.pdf";
+                saveDialog.Title = "Save PDF Invoice";
+                saveDialog.FileName = $"Invoice_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
+
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        invoices.CreateSaleInvoicePdf(
+                            dataGridView1,
+                            saveDialog.FileName,
+                            txtcustomer.Text.Trim(),
+                            DateTime.Now,
+                            Convert.ToDecimal(finalpricetxt.Text),
+                            Convert.ToDecimal(txtfinalpaid.Text)
+                        );
+
+                        MessageBox.Show("PDF saved successfully!", "PDF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error generating PDF:\n" + ex.Message, "PDF Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
 
@@ -535,6 +572,15 @@ namespace TechStore.UI
 
         private void thermalprint_CheckedChanged(object sender, EventArgs e)
         {
+            if (thermalprint.Checked)
+            {
+                onlypdf.Checked = false;
+                A4printer.Checked = false;
+            }
+        }
+
+        private void onlypdf_CheckedChanged(object sender, EventArgs e)
+        {
             if (onlypdf.Checked)
             {
                 A4printer.Checked = false;
@@ -542,21 +588,12 @@ namespace TechStore.UI
             }
         }
 
-        private void onlypdf_CheckedChanged(object sender, EventArgs e)
+        private void A4printer_CheckedChanged(object sender, EventArgs e)
         {
             if (A4printer.Checked)
             {
                 onlypdf.Checked = false;
                 thermalprint.Checked = false;
-            }
-        }
-
-        private void A4printer_CheckedChanged(object sender, EventArgs e)
-        {
-            if (thermalprint.Checked)
-            {
-                onlypdf.Checked = false;
-                A4printer.Checked = false;
             }
         }
     }

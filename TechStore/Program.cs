@@ -28,7 +28,7 @@ namespace TechStore
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var mainForm = ServiceProvider.GetRequiredService<Dashboard>();
+            var mainForm = ServiceProvider.GetRequiredService<Customersale>();
             Application.Run(mainForm);
         }
         public static void configureServices(IServiceCollection services)

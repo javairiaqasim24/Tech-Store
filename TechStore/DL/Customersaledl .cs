@@ -12,7 +12,7 @@ using TechStore.Interfaces.DLInterfaces;
 
 namespace TechStore.DL
 {
-    public class Customersaledl : Icustomersaledl
+    public class Customersaledl : invoices ,  Icustomersaledl
     {
         public Customersale GetProductBySku(string sku)
         {
@@ -204,28 +204,26 @@ GROUP BY
                             {
                                 cmd.Parameters.AddWithValue("@bill", billId);
 
-                                // 🔍 Get product ID via SKU or fallback
-                                string sku = row.Cells["Sku"].Value?.ToString()?.Trim();
-                                string productName = row.Cells["Name"].Value?.ToString()?.Trim();
-                                string productId = sku;
+                                // 🔍 Get SKU(s) and lookup product_id
+                                string serialList = row.Cells["Sku"].Value?.ToString()?.Trim();
+                                string[] serials = serialList.Split(',');
+                                string firstSerial = serials[0].Trim();
 
-                                if (string.IsNullOrWhiteSpace(productId))
+                                string lookupQuery = "SELECT product_id FROM productsserial WHERE sku = @sku LIMIT 1;";
+                                string productId = null;
+
+                                using (var lookup = new MySqlCommand(lookupQuery, conn, tran))
                                 {
-                                    // Fallback to search by name
-                                    string lookupQuery = "SELECT product_id FROM products WHERE name = @name LIMIT 1;";
-                                    using (var lookup = new MySqlCommand(lookupQuery, conn, tran))
-                                    {
-                                        lookup.Parameters.AddWithValue("@name", productName);
-                                        object result = lookup.ExecuteScalar();
+                                    lookup.Parameters.AddWithValue("@sku", firstSerial);
+                                    object result = lookup.ExecuteScalar();
 
-                                        if (result != null)
-                                        {
-                                            productId = result.ToString();
-                                        }
-                                        else
-                                        {
-                                            throw new Exception($"Product not found for name '{productName}'");
-                                        }
+                                    if (result != null)
+                                    {
+                                        productId = result.ToString();
+                                    }
+                                    else
+                                    {
+                                        throw new Exception($"Product not found for SKU '{firstSerial}'");
                                     }
                                 }
 
@@ -233,7 +231,8 @@ GROUP BY
 
                                 // Quantity
                                 if (!int.TryParse(row.Cells["Quantity"].Value?.ToString(), out int qty))
-                                    throw new Exception("Invalid quantity for product: " + productName);
+                                    throw new Exception("Invalid quantity for product.");
+
                                 cmd.Parameters.AddWithValue("@qty", qty);
 
                                 // Discount
@@ -247,12 +246,10 @@ GROUP BY
                                 // Warranty date
                                 cmd.Parameters.AddWithValue("@warrantyFrom", saleDate);
 
-                                // Execute
                                 cmd.ExecuteNonQuery();
                             }
                         }
 
-                        // ✅ Commit transaction if all goes well
                         tran.Commit();
                         return true;
                     }
@@ -265,6 +262,7 @@ GROUP BY
                 }
             }
         }
+
 
 
     }

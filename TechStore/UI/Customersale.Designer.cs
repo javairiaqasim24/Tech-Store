@@ -451,7 +451,7 @@
             // A4printer
             // 
             this.A4printer.AutoSize = true;
-            this.A4printer.Location = new System.Drawing.Point(12, 910);
+            this.A4printer.Location = new System.Drawing.Point(3, 910);
             this.A4printer.Name = "A4printer";
             this.A4printer.Size = new System.Drawing.Size(112, 24);
             this.A4printer.TabIndex = 123;
