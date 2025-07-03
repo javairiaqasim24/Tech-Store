@@ -6,11 +6,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using TechStore.BL.Models;
 using TechStore.DL;
 using TechStore.Interfaces.BLInterfaces;
+using static QuestPDF.Helpers.Colors;
 
 namespace TechStore.UI
 {
@@ -497,8 +499,8 @@ namespace TechStore.UI
             }
 
 
-            // Now proceed to save bill + items
-            bool saved = _saleBl.SaveCustomerBill(
+                // Now proceed to save bill + items
+                 bool saved = _saleBl.SaveCustomerBill(
                     customerId,
                     DateTime.Now,
                     Convert.ToDecimal(finalpricetxt.Text),
@@ -508,15 +510,22 @@ namespace TechStore.UI
 
                 if (saved)
                 {
-                    ShowMessage("Success", "Sale recorded successfully!");
-                // Clear form here
-                // 🔥 Check PDF print type
-                if (onlypdf.Checked)
+                        ShowMessage("Success", "Sale recorded successfully!");
+                    // Clear form here
+                     // 🔥 Check PDF print type
+                    if (onlypdf.Checked)
+                    {
+                        SavePdfInvoice();  // ← Generate and save PDF only
+                    }
+                if (A4printer.Checked)
                 {
-                    SavePdfInvoice();  // ← Generate and save PDF only
+                    decimal total = long.Parse(finalpricetxt.Text);
+                    decimal paid = long.Parse(txtfinalpaid.Text);
+                    invoices.PrintInvoiceDirectly(dataGridView1, customerName, DateTime.Now, total, paid);
                 }
+
             }
-                else
+            else
                 {
                     ShowMessage("Failure", "Error saving sale.");
                 }
