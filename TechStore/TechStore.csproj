@@ -170,6 +170,12 @@
     <Compile Include="UI\AddBatchform.Designer.cs">
       <DependentUpon>AddBatchform.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Addcategoryform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Addcategoryform.Designer.cs">
+      <DependentUpon>Addcategoryform.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\AddCustomerform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -250,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AddBatchform.resx">
       <DependentUpon>AddBatchform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Addcategoryform.resx">
+      <DependentUpon>Addcategoryform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AddCustomerform.resx">
       <DependentUpon>AddCustomerform.cs</DependentUpon>

@@ -45,6 +45,7 @@ namespace TechStore
             services.AddScoped<ICustomerSaleBL, CustomerSaleBL>();
             services.AddScoped<ICustomerBL, CustomerBL>();
             services.AddScoped<IBatchesBl, BatchesBl>();
+            services.AddTransient<Loadingform>();
 
             //forms
             services.AddTransient<HomeContentform>();
@@ -58,6 +59,8 @@ namespace TechStore
             services.AddTransient<Customerform>();
             services.AddTransient<Customersale>();
             services.AddTransient<AddBatchform>();
+            services.AddTransient<Addcategoryform>();
+
 
 
         }

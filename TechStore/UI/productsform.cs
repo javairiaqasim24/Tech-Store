@@ -270,6 +270,23 @@ namespace TechStore
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+          
+        }
+
+        private void btnstate_Click(object sender, EventArgs e)
+        {
+            var f =Program.ServiceProvider.GetRequiredService<Customersale>();
+            Dashboard.Instance.LoadFormIntoPanel(f);
+        }
+
+        private void btncategory_Click(object sender, EventArgs e)
+        {
+            var f= Program.ServiceProvider.GetRequiredService<Addcategoryform>();
+            f.ShowDialog(this);
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
             string text = textBox1.Text.Trim();
             var list = string.IsNullOrEmpty(text) ? _productBl.getproducts() : _productBl.searchproducts(text);
 
@@ -292,12 +309,6 @@ namespace TechStore
             UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
             UIHelper.AddButtonColumn(dataGridView2, "Delete", "Delete", "Delete");
             UIHelper.ApplyButtonStyles(dataGridView2);
-        }
-
-        private void btnstate_Click(object sender, EventArgs e)
-        {
-            var f =Program.ServiceProvider.GetRequiredService<Customersale>();
-            Dashboard.Instance.LoadFormIntoPanel(f);
         }
 
 
