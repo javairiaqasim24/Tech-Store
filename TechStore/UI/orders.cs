@@ -36,5 +36,10 @@ namespace TechStore.UI
         {
 
         }
+
+        private void btnadd_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
