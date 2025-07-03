@@ -1,8 +1,9 @@
-﻿using System.Configuration;
-using MySql.Data.MySqlClient;
-using System.Data;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Xml.Linq;
 
 namespace KIMS
 {
@@ -141,6 +142,27 @@ namespace KIMS
                 throw new Exception("Error retrieving suppliers: " + ex.Message);
             }
             return suppliers;
+        }
+        internal int getsuppierid(string text)
+        {
+            try
+            {
+                using (var conn = GetConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT supplier_id FROM suppliers WHERE name = @name;";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@name", text);
+                        object result = cmd.ExecuteScalar();
+                        return result != null ? Convert.ToInt32(result) : -1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error retrieving category ID: " + ex.Message);
+            }
         }
     }
 }

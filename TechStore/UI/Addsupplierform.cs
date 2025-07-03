@@ -61,5 +61,10 @@ namespace TechStore.UI
                 MessageBox.Show("An error occurred while adding the product: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void Addsupplierform_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -22,5 +22,10 @@ namespace TechStore.UI
         {
 
         }
+
+        private void combocustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

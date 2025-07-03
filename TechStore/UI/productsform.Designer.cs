@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(productsform));
-            this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.toplbl = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.paneledit = new System.Windows.Forms.Panel();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
@@ -56,33 +57,39 @@
             this.btnlogs = new FontAwesome.Sharp.IconButton();
             this.btncategory = new FontAwesome.Sharp.IconButton();
             this.btnproducts = new FontAwesome.Sharp.IconButton();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.toplbl = new System.Windows.Forms.Label();
-            this.guna2CustomGradientPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.paneledit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // guna2CustomGradientPanel1
+            // panel1
             // 
-            this.guna2CustomGradientPanel1.Controls.Add(this.panel2);
-            this.guna2CustomGradientPanel1.Controls.Add(this.panel1);
-            this.guna2CustomGradientPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2CustomGradientPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(72)))), ((int)(((byte)(99)))));
-            this.guna2CustomGradientPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(125)))), ((int)(((byte)(157)))));
-            this.guna2CustomGradientPanel1.FillColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.guna2CustomGradientPanel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
-            this.guna2CustomGradientPanel1.Size = new System.Drawing.Size(1312, 792);
-            this.guna2CustomGradientPanel1.TabIndex = 0;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
+            this.panel1.Controls.Add(this.toplbl);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1312, 84);
+            this.panel1.TabIndex = 14;
+            // 
+            // toplbl
+            // 
+            this.toplbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.toplbl.AutoSize = true;
+            this.toplbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toplbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.toplbl.Location = new System.Drawing.Point(538, 26);
+            this.toplbl.Name = "toplbl";
+            this.toplbl.Size = new System.Drawing.Size(155, 38);
+            this.toplbl.TabIndex = 6;
+            this.toplbl.Text = "Products";
+            this.toplbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.Transparent;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.BackColor = System.Drawing.Color.SeaShell;
             this.panel2.Controls.Add(this.paneledit);
             this.panel2.Controls.Add(this.iconButton3);
             this.panel2.Controls.Add(this.iconButton2);
@@ -100,7 +107,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 84);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1312, 708);
-            this.panel2.TabIndex = 14;
+            this.panel2.TabIndex = 15;
             // 
             // paneledit
             // 
@@ -116,10 +123,10 @@
             this.paneledit.Controls.Add(this.txtname1);
             this.paneledit.Controls.Add(this.label10);
             this.paneledit.Controls.Add(this.label11);
-            this.paneledit.Location = new System.Drawing.Point(544, 103);
+            this.paneledit.Location = new System.Drawing.Point(546, 103);
             this.paneledit.Name = "paneledit";
-            this.paneledit.Size = new System.Drawing.Size(443, 572);
-            this.paneledit.TabIndex = 112;
+            this.paneledit.Size = new System.Drawing.Size(443, 565);
+            this.paneledit.TabIndex = 138;
             // 
             // iconButton1
             // 
@@ -225,7 +232,6 @@
             this.btncancle1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btncancle1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btncancle1.UseVisualStyleBackColor = false;
-            this.btncancle1.Click += new System.EventHandler(this.btncancle1_Click);
             // 
             // btnsave1
             // 
@@ -250,7 +256,6 @@
             this.btnsave1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnsave1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnsave1.UseVisualStyleBackColor = false;
-            this.btnsave1.Click += new System.EventHandler(this.btnsave1_Click);
             // 
             // label9
             // 
@@ -315,10 +320,10 @@
             this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton3.IconSize = 35;
             this.iconButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton3.Location = new System.Drawing.Point(981, -1);
+            this.iconButton3.Location = new System.Drawing.Point(983, -1);
             this.iconButton3.Name = "iconButton3";
             this.iconButton3.Size = new System.Drawing.Size(201, 34);
-            this.iconButton3.TabIndex = 111;
+            this.iconButton3.TabIndex = 137;
             this.iconButton3.Text = "Batches";
             this.iconButton3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -339,10 +344,10 @@
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton2.IconSize = 35;
             this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton2.Location = new System.Drawing.Point(790, -1);
+            this.iconButton2.Location = new System.Drawing.Point(792, -1);
             this.iconButton2.Name = "iconButton2";
             this.iconButton2.Size = new System.Drawing.Size(201, 34);
-            this.iconButton2.TabIndex = 110;
+            this.iconButton2.TabIndex = 136;
             this.iconButton2.Text = "Batch Details";
             this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -363,10 +368,10 @@
             this.btnadd.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnadd.IconSize = 35;
             this.btnadd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnadd.Location = new System.Drawing.Point(12, 62);
+            this.btnadd.Location = new System.Drawing.Point(14, 62);
             this.btnadd.Name = "btnadd";
             this.btnadd.Size = new System.Drawing.Size(151, 42);
-            this.btnadd.TabIndex = 104;
+            this.btnadd.TabIndex = 135;
             this.btnadd.Text = "Add";
             this.btnadd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnadd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -376,11 +381,11 @@
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Linen;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Lime;
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Linen;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Lime;
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -389,24 +394,24 @@
             this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(242)))), ((int)(((byte)(253)))));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.GridColor = System.Drawing.SystemColors.AppWorkspace;
-            this.dataGridView2.Location = new System.Drawing.Point(12, 133);
+            this.dataGridView2.Location = new System.Drawing.Point(14, 133);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView2.Size = new System.Drawing.Size(1267, 405);
-            this.dataGridView2.TabIndex = 103;
+            this.dataGridView2.TabIndex = 134;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // pictureBox10
             // 
             this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(169, 61);
+            this.pictureBox10.Location = new System.Drawing.Point(171, 61);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(43, 43);
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox10.TabIndex = 102;
+            this.pictureBox10.TabIndex = 133;
             this.pictureBox10.TabStop = false;
             this.pictureBox10.Click += new System.EventHandler(this.pictureBox10_Click);
             // 
@@ -416,11 +421,11 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label4.Location = new System.Drawing.Point(818, 68);
+            this.label4.Location = new System.Drawing.Point(820, 68);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 25);
-            this.label4.TabIndex = 96;
+            this.label4.TabIndex = 130;
             this.label4.Text = "Search :";
             // 
             // button9
@@ -430,11 +435,11 @@
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button9.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button9.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button9.Location = new System.Drawing.Point(1156, 67);
+            this.button9.Location = new System.Drawing.Point(1158, 67);
             this.button9.Margin = new System.Windows.Forms.Padding(4);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(112, 31);
-            this.button9.TabIndex = 98;
+            this.button9.TabIndex = 132;
             this.button9.Text = "Search";
             this.button9.UseVisualStyleBackColor = false;
             // 
@@ -443,12 +448,13 @@
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(904, 67);
+            this.textBox1.Location = new System.Drawing.Point(906, 67);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(230, 29);
-            this.textBox1.TabIndex = 97;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.TabIndex = 131;
+            this.textBox1.Click += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
             // btnstate
             // 
@@ -465,14 +471,15 @@
             this.btnstate.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnstate.IconSize = 35;
             this.btnstate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnstate.Location = new System.Drawing.Point(593, 0);
+            this.btnstate.Location = new System.Drawing.Point(595, 0);
             this.btnstate.Name = "btnstate";
             this.btnstate.Size = new System.Drawing.Size(201, 34);
-            this.btnstate.TabIndex = 94;
+            this.btnstate.TabIndex = 129;
             this.btnstate.Text = "Sell Product";
             this.btnstate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnstate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnstate.UseVisualStyleBackColor = false;
+            this.btnstate.Click += new System.EventHandler(this.btnstate_Click);
             // 
             // btnlogs
             // 
@@ -489,10 +496,10 @@
             this.btnlogs.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnlogs.IconSize = 35;
             this.btnlogs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnlogs.Location = new System.Drawing.Point(395, 0);
+            this.btnlogs.Location = new System.Drawing.Point(397, 0);
             this.btnlogs.Name = "btnlogs";
             this.btnlogs.Size = new System.Drawing.Size(201, 34);
-            this.btnlogs.TabIndex = 93;
+            this.btnlogs.TabIndex = 128;
             this.btnlogs.Text = "Inventory ";
             this.btnlogs.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnlogs.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -513,14 +520,15 @@
             this.btncategory.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btncategory.IconSize = 35;
             this.btncategory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btncategory.Location = new System.Drawing.Point(199, 0);
+            this.btncategory.Location = new System.Drawing.Point(201, 0);
             this.btncategory.Name = "btncategory";
             this.btncategory.Size = new System.Drawing.Size(201, 34);
-            this.btncategory.TabIndex = 92;
+            this.btncategory.TabIndex = 127;
             this.btncategory.Text = "Categories";
             this.btncategory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btncategory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btncategory.UseVisualStyleBackColor = false;
+            this.btncategory.Click += new System.EventHandler(this.btncategory_Click);
             // 
             // btnproducts
             // 
@@ -537,66 +545,56 @@
             this.btnproducts.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnproducts.IconSize = 35;
             this.btnproducts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnproducts.Location = new System.Drawing.Point(1, 0);
+            this.btnproducts.Location = new System.Drawing.Point(3, 0);
             this.btnproducts.Name = "btnproducts";
             this.btnproducts.Size = new System.Drawing.Size(201, 34);
-            this.btnproducts.TabIndex = 91;
+            this.btnproducts.TabIndex = 126;
             this.btnproducts.Text = "Products";
             this.btnproducts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnproducts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnproducts.UseVisualStyleBackColor = false;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.panel1.Controls.Add(this.toplbl);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1312, 84);
-            this.panel1.TabIndex = 13;
-            // 
-            // toplbl
-            // 
-            this.toplbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.toplbl.AutoSize = true;
-            this.toplbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toplbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.toplbl.Location = new System.Drawing.Point(538, 26);
-            this.toplbl.Name = "toplbl";
-            this.toplbl.Size = new System.Drawing.Size(155, 38);
-            this.toplbl.TabIndex = 6;
-            this.toplbl.Text = "Products";
-            this.toplbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // productsform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1312, 792);
-            this.Controls.Add(this.guna2CustomGradientPanel1);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Name = "productsform";
             this.Text = "Inventoryform";
             this.Load += new System.EventHandler(this.Inventoryform_Load);
-            this.guna2CustomGradientPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.paneledit.ResumeLayout(false);
             this.paneledit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label toplbl;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel paneledit;
+        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton btnsave;
+        private System.Windows.Forms.ComboBox txtcategory;
+        private System.Windows.Forms.TextBox txtdescp1;
+        private System.Windows.Forms.Label label7;
+        private FontAwesome.Sharp.IconButton btncancle1;
+        private FontAwesome.Sharp.IconButton btnsave1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtname1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private FontAwesome.Sharp.IconButton iconButton3;
+        private FontAwesome.Sharp.IconButton iconButton2;
         private FontAwesome.Sharp.IconButton btnadd;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.PictureBox pictureBox10;
@@ -607,19 +605,5 @@
         private FontAwesome.Sharp.IconButton btnlogs;
         private FontAwesome.Sharp.IconButton btncategory;
         private FontAwesome.Sharp.IconButton btnproducts;
-        private FontAwesome.Sharp.IconButton iconButton2;
-        private FontAwesome.Sharp.IconButton iconButton3;
-        private System.Windows.Forms.Panel paneledit;
-        private System.Windows.Forms.TextBox txtdescp1;
-        private System.Windows.Forms.Label label7;
-        private FontAwesome.Sharp.IconButton btncancle1;
-        private FontAwesome.Sharp.IconButton btnsave1;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtname1;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox txtcategory;
-        private FontAwesome.Sharp.IconButton iconButton1;
-        private FontAwesome.Sharp.IconButton btnsave;
     }
 }

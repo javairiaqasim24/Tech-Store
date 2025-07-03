@@ -24,7 +24,7 @@ namespace TechStore.UI
             this._customerBL = customerBL;
             paneledit.Visible = false;
 
-            //dataGridView2.CellContentClick += dataGridView2_CellContentClick;
+            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
 
             UIHelper.ApplyButtonStyles(dataGridView2);
         }
@@ -41,17 +41,17 @@ namespace TechStore.UI
             dataGridView2.DataSource = list;
 
             dataGridView2.Columns["Id"].Visible = false;
-            dataGridView2.Columns["_firstname"].HeaderText = "First Name";
-            dataGridView2.Columns["_lastname"].HeaderText = "Last Name";
+            dataGridView2       .Columns["_firstname"].HeaderText = "First Name";
+                    dataGridView2.Columns["_lastname"].HeaderText = "Last Name";
             dataGridView2.Columns["phone"].HeaderText = "Contact Number";
             dataGridView2.Columns["_type"].HeaderText = "Type";
             dataGridView2.Columns["email"].HeaderText = "Email";
             dataGridView2.Columns["address"].HeaderText = "Address";
-
+                
             if (dataGridView2.Columns.Contains("_name"))
                 dataGridView2.Columns["_name"].Visible = false;
          
-            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView2 .AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             // 👇 ADD BUTTONS BEFORE SETTING DISPLAY ORDER
             UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");

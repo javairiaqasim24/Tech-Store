@@ -61,37 +61,6 @@ namespace TechStore.UI
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex < 0)
-                return;
-
-            var row = dataGridView2.Rows[e.RowIndex];
-            selectedProductId = Convert.ToInt32(row.Cells["id"].Value);
-            string columnName = dataGridView2.Columns[e.ColumnIndex].Name;
-
-            if (columnName == "Edit")
-            {
-                txtname1.Text = row.Cells["_name"].Value?.ToString() ?? "";
-                txtaddress.Text = row.Cells["address"].Value?.ToString() ?? "";
-                txtemail.Text = row.Cells["email"].Value?.ToString() ?? "";
-                txtcontact.Text = row.Cells["phone"].Value?.ToString() ?? "";
-
-                UIHelper.RoundPanelCorners(paneledit, 20);
-                UIHelper.ShowCenteredPanel(this, paneledit);
-            }
-            else if (columnName == "Delete")
-            {
-                var confirm = MessageBox.Show("Are you sure you want to delete this supplier?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (confirm == DialogResult.Yes)
-                {
-                    bool result = supplierBL.deletesupplier(selectedProductId);
-                    MessageBox.Show(result ? "Supplier deleted successfully." : "Failed to delete supplier.",
-                                    result ? "Deleted" : "Error",
-                                    MessageBoxButtons.OK,
-                                    result ? MessageBoxIcon.Information : MessageBoxIcon.Error);
-
-                    if (result) LoadSuppliers();
-                }
-            }
         }
 
         private void btnsave1_Click(object sender, EventArgs e)
@@ -157,7 +126,7 @@ namespace TechStore.UI
             }
             else
             {
-                List<Supplier> list = supplierBL.getsuppliers().OfType<Supplier>().ToList();
+                List<Supplier> list =supplierBL.searchsuppliers(search).OfType<Supplier>().ToList();
                 dataGridView2.Columns.Clear();
                 dataGridView2.DataSource = list;
                 dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -174,6 +143,47 @@ namespace TechStore.UI
         private void btncategory_Click(object sender, EventArgs e)
         {
             Dashboard.Instance.LoadFormIntoPanel(Program.ServiceProvider.GetRequiredService<orders>());
+        }
+
+        private void guna2CustomGradientPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            var row = dataGridView2.Rows[e.RowIndex];
+            selectedProductId = Convert.ToInt32(row.Cells["id"].Value);
+            string columnName = dataGridView2.Columns[e.ColumnIndex].Name;
+
+            if (columnName == "Edit")
+            {
+                txtname1.Text = row.Cells["_name"].Value?.ToString() ?? "";
+                txtaddress.Text = row.Cells["address"].Value?.ToString() ?? "";
+                txtemail.Text = row.Cells["email"].Value?.ToString() ?? "";
+                txtcontact.Text = row.Cells["phone"].Value?.ToString() ?? "";
+
+                UIHelper.RoundPanelCorners(paneledit, 20);
+                UIHelper.ShowCenteredPanel(this, paneledit);
+            }
+            else if (columnName == "Delete")
+            {
+                var confirm = MessageBox.Show("Are you sure you want to delete this supplier?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (confirm == DialogResult.Yes)
+                {
+                    bool result = supplierBL.deletesupplier(selectedProductId);
+                    MessageBox.Show(result ? "Supplier deleted successfully." : "Failed to delete supplier.",
+                                    result ? "Deleted" : "Error",
+                                    MessageBoxButtons.OK,
+                                    result ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+
+                    if (result) LoadSuppliers();
+                }
+            }
         }
     }
 }

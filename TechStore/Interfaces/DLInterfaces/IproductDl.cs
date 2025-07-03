@@ -15,6 +15,7 @@ namespace TechStore.Interfaces.DLInterfaces
         List<Products> getproducts();
         List<string> getcategories(string name);
         List<Products> searchproducts(string text);
+        bool addcategory(string name);
 
     }
 }

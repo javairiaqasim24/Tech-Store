@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -84,5 +85,10 @@ namespace TechStore.UI
             }
         }
 
+        private void iconPictureBox1_Click(object sender, EventArgs e)
+        {
+            var f= Program.ServiceProvider.GetRequiredService<Addcategoryform>();
+            f.ShowDialog(this);
+        }
     }
 }

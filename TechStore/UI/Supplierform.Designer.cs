@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Supplierform));
             this.panel1 = new System.Windows.Forms.Panel();
             this.toplbl = new System.Windows.Forms.Label();
-            this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.button9 = new System.Windows.Forms.Button();
             this.paneledit = new System.Windows.Forms.Panel();
             this.txtcontact = new System.Windows.Forms.TextBox();
@@ -58,7 +58,7 @@
             this.btncategory = new FontAwesome.Sharp.IconButton();
             this.btnproducts = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
-            this.guna2CustomGradientPanel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.paneledit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
@@ -87,29 +87,27 @@
             this.toplbl.Text = "Suppliers";
             this.toplbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // guna2CustomGradientPanel1
+            // panel2
             // 
-            this.guna2CustomGradientPanel1.Controls.Add(this.button9);
-            this.guna2CustomGradientPanel1.Controls.Add(this.paneledit);
-            this.guna2CustomGradientPanel1.Controls.Add(this.iconButton3);
-            this.guna2CustomGradientPanel1.Controls.Add(this.iconButton2);
-            this.guna2CustomGradientPanel1.Controls.Add(this.btnadd);
-            this.guna2CustomGradientPanel1.Controls.Add(this.dataGridView2);
-            this.guna2CustomGradientPanel1.Controls.Add(this.pictureBox10);
-            this.guna2CustomGradientPanel1.Controls.Add(this.label4);
-            this.guna2CustomGradientPanel1.Controls.Add(this.textBox1);
-            this.guna2CustomGradientPanel1.Controls.Add(this.btnstate);
-            this.guna2CustomGradientPanel1.Controls.Add(this.btnlogs);
-            this.guna2CustomGradientPanel1.Controls.Add(this.btncategory);
-            this.guna2CustomGradientPanel1.Controls.Add(this.btnproducts);
-            this.guna2CustomGradientPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2CustomGradientPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(72)))), ((int)(((byte)(99)))));
-            this.guna2CustomGradientPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(125)))), ((int)(((byte)(157)))));
-            this.guna2CustomGradientPanel1.FillColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.guna2CustomGradientPanel1.Location = new System.Drawing.Point(0, 84);
-            this.guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
-            this.guna2CustomGradientPanel1.Size = new System.Drawing.Size(1312, 708);
-            this.guna2CustomGradientPanel1.TabIndex = 14;
+            this.panel2.BackColor = System.Drawing.Color.SeaShell;
+            this.panel2.Controls.Add(this.button9);
+            this.panel2.Controls.Add(this.paneledit);
+            this.panel2.Controls.Add(this.iconButton3);
+            this.panel2.Controls.Add(this.iconButton2);
+            this.panel2.Controls.Add(this.btnadd);
+            this.panel2.Controls.Add(this.dataGridView2);
+            this.panel2.Controls.Add(this.pictureBox10);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.btnstate);
+            this.panel2.Controls.Add(this.btnlogs);
+            this.panel2.Controls.Add(this.btncategory);
+            this.panel2.Controls.Add(this.btnproducts);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 84);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1312, 708);
+            this.panel2.TabIndex = 14;
             // 
             // button9
             // 
@@ -122,7 +120,7 @@
             this.button9.Margin = new System.Windows.Forms.Padding(4);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(112, 31);
-            this.button9.TabIndex = 127;
+            this.button9.TabIndex = 153;
             this.button9.Text = "Search";
             this.button9.UseVisualStyleBackColor = false;
             // 
@@ -143,7 +141,7 @@
             this.paneledit.Location = new System.Drawing.Point(601, 55);
             this.paneledit.Name = "paneledit";
             this.paneledit.Size = new System.Drawing.Size(443, 576);
-            this.paneledit.TabIndex = 126;
+            this.paneledit.TabIndex = 152;
             // 
             // txtcontact
             // 
@@ -314,7 +312,7 @@
             this.iconButton3.Location = new System.Drawing.Point(980, -1);
             this.iconButton3.Name = "iconButton3";
             this.iconButton3.Size = new System.Drawing.Size(201, 34);
-            this.iconButton3.TabIndex = 125;
+            this.iconButton3.TabIndex = 151;
             this.iconButton3.Text = "Bill Details";
             this.iconButton3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -338,7 +336,7 @@
             this.iconButton2.Location = new System.Drawing.Point(789, -1);
             this.iconButton2.Name = "iconButton2";
             this.iconButton2.Size = new System.Drawing.Size(201, 34);
-            this.iconButton2.TabIndex = 124;
+            this.iconButton2.TabIndex = 150;
             this.iconButton2.Text = "Supplier Bills";
             this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -362,7 +360,7 @@
             this.btnadd.Location = new System.Drawing.Point(28, 56);
             this.btnadd.Name = "btnadd";
             this.btnadd.Size = new System.Drawing.Size(151, 42);
-            this.btnadd.TabIndex = 121;
+            this.btnadd.TabIndex = 149;
             this.btnadd.Text = "Add";
             this.btnadd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnadd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -372,11 +370,11 @@
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Linen;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Lime;
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Linen;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Lime;
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -392,8 +390,8 @@
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView2.Size = new System.Drawing.Size(1267, 405);
-            this.dataGridView2.TabIndex = 120;
-            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            this.dataGridView2.TabIndex = 148;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick_1);
             // 
             // pictureBox10
             // 
@@ -402,7 +400,7 @@
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(43, 43);
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox10.TabIndex = 119;
+            this.pictureBox10.TabIndex = 147;
             this.pictureBox10.TabStop = false;
             this.pictureBox10.Click += new System.EventHandler(this.pictureBox10_Click);
             // 
@@ -417,7 +415,7 @@
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 25);
-            this.label4.TabIndex = 117;
+            this.label4.TabIndex = 145;
             this.label4.Text = "Search :";
             // 
             // textBox1
@@ -429,7 +427,8 @@
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(230, 29);
-            this.textBox1.TabIndex = 118;
+            this.textBox1.TabIndex = 146;
+            this.textBox1.Click += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // btnstate
@@ -450,7 +449,7 @@
             this.btnstate.Location = new System.Drawing.Point(592, 0);
             this.btnstate.Name = "btnstate";
             this.btnstate.Size = new System.Drawing.Size(201, 34);
-            this.btnstate.TabIndex = 116;
+            this.btnstate.TabIndex = 144;
             this.btnstate.Text = "Price Record";
             this.btnstate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnstate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -474,7 +473,7 @@
             this.btnlogs.Location = new System.Drawing.Point(394, 0);
             this.btnlogs.Name = "btnlogs";
             this.btnlogs.Size = new System.Drawing.Size(201, 34);
-            this.btnlogs.TabIndex = 115;
+            this.btnlogs.TabIndex = 143;
             this.btnlogs.Text = "Supplier Payments";
             this.btnlogs.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnlogs.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -498,12 +497,11 @@
             this.btncategory.Location = new System.Drawing.Point(198, 0);
             this.btncategory.Name = "btncategory";
             this.btncategory.Size = new System.Drawing.Size(201, 34);
-            this.btncategory.TabIndex = 114;
+            this.btncategory.TabIndex = 142;
             this.btncategory.Text = "Give Order";
             this.btncategory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btncategory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btncategory.UseVisualStyleBackColor = false;
-            this.btncategory.Click += new System.EventHandler(this.btncategory_Click);
             // 
             // btnproducts
             // 
@@ -523,7 +521,7 @@
             this.btnproducts.Location = new System.Drawing.Point(0, 0);
             this.btnproducts.Name = "btnproducts";
             this.btnproducts.Size = new System.Drawing.Size(201, 34);
-            this.btnproducts.TabIndex = 113;
+            this.btnproducts.TabIndex = 141;
             this.btnproducts.Text = "Suppliers";
             this.btnproducts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnproducts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -534,15 +532,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1312, 792);
-            this.Controls.Add(this.guna2CustomGradientPanel1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "Supplierform";
             this.Text = "Supplierform";
             this.Load += new System.EventHandler(this.Supplierform_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.guna2CustomGradientPanel1.ResumeLayout(false);
-            this.guna2CustomGradientPanel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.paneledit.ResumeLayout(false);
             this.paneledit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -555,7 +553,8 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label toplbl;
-        private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Panel paneledit;
         private System.Windows.Forms.TextBox txtcontact;
         private System.Windows.Forms.Label label2;
@@ -579,6 +578,5 @@
         private FontAwesome.Sharp.IconButton btnlogs;
         private FontAwesome.Sharp.IconButton btncategory;
         private FontAwesome.Sharp.IconButton btnproducts;
-        private System.Windows.Forms.Button button9;
     }
 }

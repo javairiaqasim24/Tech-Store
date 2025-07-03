@@ -165,4 +165,25 @@ public class ProductDL : IproductDl
             throw new Exception("Error retrieving categories.");
         }
     }
+    public bool addcategory(string name)
+    {
+        try
+        {
+            using (var conn = DatabaseHelper.Instance.GetConnection())
+            {
+                conn.Open();
+                string query = "INSERT INTO categories (name) VALUES (@name);";
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@name", name);
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error adding category: " + ex.Message, ex);
+        }
+    }
 }
