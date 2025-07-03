@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using KIMS;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,13 +17,16 @@ namespace TechStore.UI
     public partial class BatchDetailsform : Form
     {
         private readonly IBatchDetailsBL ibl;
+        private readonly ISupplierBillBl ibr;
         private int selectedBatchDetailId = -1;
 
-        public BatchDetailsform(IBatchDetailsBL ibl)
+        public BatchDetailsform(IBatchDetailsBL ibl,ISupplierBillBl ibr)
         {
             InitializeComponent();
             paneledit.Visible = false;
+            panelbill.Visible = false;
             this.ibl = ibl;
+            this.ibr = ibr;
             UIHelper.ApplyButtonStyles(dataGridView2);
         }
 
@@ -164,6 +168,16 @@ namespace TechStore.UI
             UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
             UIHelper.AddButtonColumn(dataGridView2, "Delete", "Delete", "Delete");
 
+        }
+
+        private void iconButton5_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void iconButton8_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
