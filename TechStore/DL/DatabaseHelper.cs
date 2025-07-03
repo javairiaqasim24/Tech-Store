@@ -164,5 +164,106 @@ namespace KIMS
                 throw new Exception("Error retrieving category ID: " + ex.Message);
             }
         }
+        public List<string> Getproducts(string keyword)
+        {
+            List<string> products = new List<string>();
+            try
+            {
+                using (var conn = GetConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT name FROM products WHERE name LIKE @keyword;";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@keyword", $"%{keyword}%");
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                products.Add(reader.GetString("name"));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error retrieving suppliers: " + ex.Message);
+            }
+            return products;
+        }
+        internal int getproductid(string text)
+        {
+            try
+            {
+                using (var conn = GetConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT product_id FROM products WHERE name = @name;";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@name", text);
+                        object result = cmd.ExecuteScalar();
+                        return result != null ? Convert.ToInt32(result) : -1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error retrieving category ID: " + ex.Message);
+            }
+        }
+        public List<string> Getbatches(string keyword)
+        {
+            List<string> suppliers = new List<string>();
+            try
+            {
+                using (var conn = GetConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT batch_name FROM batches WHERE batch_name LIKE @keyword;";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@keyword", $"%{keyword}%");
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                suppliers.Add(reader.GetString("batch_name"));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error retrieving batches: " + ex.Message);
+            }
+            return suppliers;
+        }
+        internal int getbatchid(string text)
+        {
+            try
+            {
+                using (var conn = GetConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT batch_id FROM batches WHERE batch_name = @name;";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@name", text);
+                        object result = cmd.ExecuteScalar();
+                        return result != null ? Convert.ToInt32(result) : -1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error retrieving batch ID: " + ex.Message);
+            }
+        }
     }
+
 }
