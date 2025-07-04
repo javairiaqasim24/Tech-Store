@@ -1,11 +1,15 @@
-﻿using QuestPDF.Fluent;
+﻿
+using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
+using System.Linq;
+using System.Web.UI.WebControls.WebParts;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -24,7 +28,7 @@ namespace TechStore.DL
                     page.Size(PageSizes.A4);
                     page.Margin(2, Unit.Centimetre);
                     page.PageColor(Colors.White);
-                    page.DefaultTextStyle(x => x.FontSize(12));
+                    page.DefaultTextStyle(x => x.FontSize(12).FontFamily("Consolas"));
 
                     page.Content().Column(content =>
                     {
@@ -44,6 +48,7 @@ namespace TechStore.DL
                                 col.Item().AlignRight().Text("Email: support@techstore.com").FontSize(10);
                             });
                         });
+
                         content.Item().PaddingTop(5).AlignRight().Text($"Bill ID: {billid}").FontSize(12).FontColor(Colors.Blue.Medium);
 
                         content.Item().Element(e =>
@@ -53,7 +58,7 @@ namespace TechStore.DL
                         );
 
                         // Invoice info
-                        content.Item().Text("Sales Invoice").FontSize(20).Bold().AlignCenter();
+                        content.Item().AlignCenter().Text("Sales Invoice").FontSize(20).Bold();
                         content.Item().Text($"Customer: {customerName}").FontSize(14);
                         content.Item().Text($"Date: {saleDate.ToShortDateString()}").FontSize(12);
 
@@ -63,25 +68,27 @@ namespace TechStore.DL
                              .LineColor(Colors.Grey.Lighten2)
                         );
 
-                        // Cart table with row and column separators
+                        // Cart table
                         content.Item().Table(table =>
                         {
                             table.ColumnsDefinition(columns =>
                             {
                                 columns.RelativeColumn(2); // SKU
                                 columns.RelativeColumn(3); // Product Name
-                                columns.RelativeColumn(4); // Description
+                                columns.RelativeColumn(2); // Warranty
+                                columns.RelativeColumn(3); // Description
                                 columns.RelativeColumn(2); // Quantity
                                 columns.RelativeColumn(2); // Unit Price
                                 columns.RelativeColumn(2); // Discount
                                 columns.RelativeColumn(2); // Total
                             });
 
-                            // Header with bottom border and column separators
+                            // Header
                             table.Header(header =>
                             {
                                 header.Cell().BorderBottom(1).BorderRight(1).BorderColor(Colors.Grey.Medium).Text("SKU").Bold();
                                 header.Cell().BorderBottom(1).BorderRight(1).BorderColor(Colors.Grey.Medium).Text("Product").Bold();
+                                header.Cell().BorderBottom(1).BorderRight(1).BorderColor(Colors.Grey.Medium).Text("Warranty").Bold();
                                 header.Cell().BorderBottom(1).BorderRight(1).BorderColor(Colors.Grey.Medium).Text("Description").Bold();
                                 header.Cell().BorderBottom(1).BorderRight(1).BorderColor(Colors.Grey.Medium).Text("Qty").Bold();
                                 header.Cell().BorderBottom(1).BorderRight(1).BorderColor(Colors.Grey.Medium).Text("Price").Bold();
@@ -89,28 +96,44 @@ namespace TechStore.DL
                                 header.Cell().BorderBottom(1).BorderColor(Colors.Grey.Medium).Text("Total").Bold();
                             });
 
-                            // Rows with borders between rows and columns
                             foreach (DataGridViewRow row in cart.Rows)
                             {
                                 if (row.IsNewRow) continue;
 
-                                // First 6 columns with right border
+                                string sku = row.Cells["Sku"]?.Value?.ToString() ?? "";
+                                string name = row.Cells["Name"]?.Value?.ToString() ?? "";
+                                string warranty = row.Cells["Warranty"]?.Value?.ToString() ?? "N/A";
+                                string description = row.Cells["Description"]?.Value?.ToString() ?? "";
+                                string qty = row.Cells["Quantity"]?.Value?.ToString() ?? "0";
+                                string price = row.Cells["Price"]?.Value?.ToString() ?? "0";
+                                string discount = row.Cells["Discount"]?.Value?.ToString() ?? "0";
+                                string total = row.Cells["Total"]?.Value?.ToString() ?? "0";
+
                                 table.Cell().BorderBottom(1).BorderRight(1).BorderColor(Colors.Grey.Lighten2)
-                                    .Text(row.Cells["Sku"]?.Value?.ToString());
+                                    .Text(sku).WrapAnywhere().FontSize(10); // wrapped inside the cell
+
                                 table.Cell().BorderBottom(1).BorderRight(1).BorderColor(Colors.Grey.Lighten2)
-                                    .Text(row.Cells["Name"]?.Value?.ToString());
+                                    .Text(name).WrapAnywhere().FontSize(10); // wrapped inside the cell
+
                                 table.Cell().BorderBottom(1).BorderRight(1).BorderColor(Colors.Grey.Lighten2)
-                                    .Text(row.Cells["Description"]?.Value?.ToString());
+                                    .Text(warranty);
+
                                 table.Cell().BorderBottom(1).BorderRight(1).BorderColor(Colors.Grey.Lighten2)
-                                    .AlignCenter().Text(row.Cells["Quantity"]?.Value?.ToString());
+                                    .Text(description).WrapAnywhere().FontSize(11);
+
                                 table.Cell().BorderBottom(1).BorderRight(1).BorderColor(Colors.Grey.Lighten2)
-                                    .AlignCenter().Text(row.Cells["Price"]?.Value?.ToString());
+                                    .AlignCenter().Text(qty);
+
                                 table.Cell().BorderBottom(1).BorderRight(1).BorderColor(Colors.Grey.Lighten2)
-                                    .AlignCenter().Text(row.Cells["Discount"]?.Value?.ToString());
-                                // Last column without right border
+                                    .AlignCenter().Text(price);
+
+                                table.Cell().BorderBottom(1).BorderRight(1).BorderColor(Colors.Grey.Lighten2)
+                                    .AlignCenter().Text(discount);
+
                                 table.Cell().BorderBottom(1).BorderColor(Colors.Grey.Lighten2)
-                                    .AlignRight().Text(row.Cells["Total"]?.Value?.ToString());
+                                    .AlignRight().Text(total);
                             }
+
                         });
 
                         content.Item().Element(e =>
@@ -129,6 +152,13 @@ namespace TechStore.DL
                     });
                 });
             }).GeneratePdf(filePath);
+        }
+
+        // Helper method
+        public static IEnumerable<string> WrapText(string text, int maxChars)
+        {
+            for (int i = 0; i < text.Length; i += maxChars)
+                yield return text.Substring(i, Math.Min(maxChars, text.Length - i));
         }
 
 
@@ -275,7 +305,7 @@ namespace TechStore.DL
 
             doc.PrintPage += (sender, e) =>
             {
-                DrawThermalReceipt(e, cart, customerName, total, paid,billid);
+                DrawThermalReceipt(e, cart, customerName, total, paid, billid);
             };
 
             PrintDialog dialog = new PrintDialog
@@ -289,57 +319,131 @@ namespace TechStore.DL
                 doc.Print();
         }
 
-        private static void DrawThermalReceipt(PrintPageEventArgs e, DataGridView cart, string customerName, decimal total, decimal paid,int billid)
+        //public static void PrintThermalReceipt(DataGridView cart, string customerName, decimal total, decimal paid, int billid)
+        //{
+        //    PrintDocument doc = new PrintDocument();
+
+        //    // Set to 80mm paper size (width: ~280, height can be dynamic)
+        //    doc.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Receipt", 280, 600);
+
+        //    // Optional: Set the specific printer if needed
+        //    // doc.PrinterSettings.PrinterName = "Black Copper BC-85AC";
+
+        //    doc.PrintPage += (sender, e) =>
+        //    {
+        //        DrawThermalReceipt(e, cart, customerName, total, paid, billid);
+        //    };
+
+        //    // 🔥 Direct print — no dialog shown
+        //    if (doc.PrinterSettings.IsValid)
+        //        doc.Print();
+        //    else
+        //        MessageBox.Show("No valid printer found.");
+        //}
+
+
+        private static void DrawThermalReceipt(PrintPageEventArgs e, DataGridView cart, string customerName, decimal total, decimal paid, int billid)
         {
             Font font = new Font("Consolas", 9);
             float y = 10;
             float lineHeight = font.GetHeight(e.Graphics) + 2;
+            float pageWidth = e.PageBounds.Width;
             float leftMargin = 5;
-
-            float maxWidth = e.PageBounds.Width - 10;
-
             float x = leftMargin;
+
+            // --- Logo ---
+            try
+            {
+                string logoPath = "logo.png";
+                System.Drawing.Image logo = System.Drawing.Image.FromFile(logoPath);
+                int logoWidth = 100;
+                int logoHeight = 50;
+                float centerX = (pageWidth - logoWidth) / 2;
+                e.Graphics.DrawImage(logo, centerX, y, logoWidth, logoHeight);
+                y += logoHeight + 5;
+                logo.Dispose();
+            }
+            catch
+            {
+                e.Graphics.DrawString("MNS Computers", new Font("Consolas", 12, FontStyle.Bold), Brushes.Black, x, y);
+                y += lineHeight + 10;
+            }
+
+            // --- Header ---
+            e.Graphics.DrawString("office # 39 & 40, 1st floor Gallery 3, Rex city, Sitiana Road", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString("Phone: 0300-6634245", font, Brushes.Black, x, y); y += lineHeight;
             e.Graphics.DrawString($"Invoice ID     : #{billid}", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString($"Customer       : {customerName}", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString($"Date           : {DateTime.Now:dd-MMM-yyyy hh:mm tt}", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString("------------------------------------------------", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString("Item         Qty War Price Disc Total", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString("------------------------------------------------", font, Brushes.Black, x, y); y += lineHeight;
 
-            // Header
-            e.Graphics.DrawString("------------------------------------------", font, Brushes.Black, x, y); y += lineHeight;
-            e.Graphics.DrawString("Item        Qty  Price  Disc   Total", font, Brushes.Black, x, y); y += lineHeight;
-            e.Graphics.DrawString("------------------------------------------", font, Brushes.Black, x, y); y += lineHeight;
-
+            // --- Cart Items ---
             decimal totalDiscount = 0;
 
             foreach (DataGridViewRow row in cart.Rows)
             {
                 if (row.IsNewRow) continue;
 
-                string item = Truncate(row.Cells["Name"].Value?.ToString(), 10).PadRight(10);
-                string qty = row.Cells["Quantity"].Value?.ToString().PadLeft(3);
-                string price = row.Cells["Price"].Value?.ToString().PadLeft(6);
-                string discount = row.Cells["Discount"].Value?.ToString().PadLeft(6);
-                string totalPrice = row.Cells["Total"].Value?.ToString().PadLeft(6);
+                string name = row.Cells["Name"].Value?.ToString() ?? "";
+                string qty = row.Cells["Quantity"].Value?.ToString()?.PadLeft(2);
+                string warranty = Truncate(row.Cells["Warranty"].Value?.ToString(), 3).PadRight(3);
+                string price = row.Cells["Price"].Value?.ToString()?.PadLeft(5);
+                string discount = row.Cells["Discount"].Value?.ToString()?.PadLeft(4);
+                string totalPrice = row.Cells["Total"].Value?.ToString()?.PadLeft(6);
 
-                decimal discVal = 0;
-                decimal.TryParse(row.Cells["Discount"].Value?.ToString(), out discVal);
+                decimal.TryParse(row.Cells["Discount"].Value?.ToString(), out decimal discVal);
                 totalDiscount += discVal * Convert.ToInt32(row.Cells["Quantity"].Value);
 
-                string line = $"{item} {qty} {price} {discount} {totalPrice}";
-                e.Graphics.DrawString(line, font, Brushes.Black, x, y); y += lineHeight;
+                // Split name into words
+                string[] nameParts = name.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
+
+                if (nameParts.Length > 0)
+                {
+                    // First word + other columns in first line
+                    string firstWord = nameParts[0];
+                    string firstLine = $"{firstWord,-12}{qty} {warranty} {price} {discount} {totalPrice}";
+                    e.Graphics.DrawString(firstLine, font, Brushes.Black, x, y); y += lineHeight;
+
+                    // Remaining words, aligned under "Item"
+                    for (int i = 1; i < nameParts.Length; i++)
+                    {
+                        e.Graphics.DrawString($"{new string(' ', 0)}{nameParts[i]}", font, Brushes.Black, x + 10, y);
+                        y += lineHeight;
+                    }
+                }
+                else
+                {
+                    // If no name parts, still print something
+                    string line = $"{name,-12}{qty} {warranty} {price} {discount} {totalPrice}";
+                    e.Graphics.DrawString(line, font, Brushes.Black, x, y);
+                    y += lineHeight;
+                }
             }
 
-            e.Graphics.DrawString("------------------------------------------", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString("------------------------------------------------", font, Brushes.Black, x, y); y += lineHeight;
 
             decimal due = total - paid;
 
-            // Summary
-            e.Graphics.DrawString($"Total Price    : Rs. {total:N0}", font, Brushes.Black, x, y); y += lineHeight;
-            e.Graphics.DrawString($"Total Discount : Rs. {totalDiscount:N0}", font, Brushes.Black, x, y); y += lineHeight;
-            e.Graphics.DrawString($"Paid           : Rs. {paid:N0}", font, Brushes.Black, x, y); y += lineHeight;
-            e.Graphics.DrawString($"Due            : Rs. {due:N0}", font, Brushes.Black, x, y); y += lineHeight;
+            // --- Summary ---
+            e.Graphics.DrawString($"Subtotal       : Rs. {total + totalDiscount:N0}", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString($"Discount        : Rs. {totalDiscount:N0}", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString($"Total           : Rs. {total:N0}", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString($"Paid            : Rs. {paid:N0}", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString($"Due             : Rs. {due:N0}", font, Brushes.Black, x, y); y += lineHeight;
 
-            e.Graphics.DrawString("------------------------------------------", font, Brushes.Black, x, y); y += lineHeight;
-            e.Graphics.DrawString("  Thank you for shopping with us!", font, Brushes.Black, x, y); y += lineHeight;
-            e.Graphics.DrawString("------------------------------------------", font, Brushes.Black, x, y);
+            // --- Footer ---
+            e.Graphics.DrawString("------------------------------------------------", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString("   Thank you for your business!", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString("Free diagnostics with any repair", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString("10% discount on next purchase", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString("Ask about our warranty plans!", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString($"Invoice #: INV-{DateTime.Now:yyMMddHHmm}", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString("Powered By:", font, Brushes.Black, x, y); y += lineHeight;
+            e.Graphics.DrawString("abdulahad18022@gmail.com", font, Brushes.Black, x, y); y += lineHeight;
         }
+
 
         // Helper to truncate long product names
         private static string Truncate(string value, int maxLength)
@@ -357,52 +461,96 @@ namespace TechStore.DL
             {
                 container.Page(page =>
                 {
-                    page.Size(226, PageSizes.A4.Height, Unit.Millimetre); // Width: ~80mm (3.15 inches)
+                    page.Size(226, PageSizes.A4.Height, Unit.Point); // 80mm width
                     page.Margin(5);
                     page.DefaultTextStyle(x => x.FontFamily("Consolas").FontSize(9));
 
                     page.Content().Column(column =>
                     {
-                        column.Item().Text("------------------------------------------");
-                        column.Item().Text("Item        Qty  Price  Disc   Total");
-                        column.Item().Text("------------------------------------------");
+                        // --- Logo + Header ---
+                        column.Item().AlignCenter().Image("logo.png", ImageScaling.FitWidth);
+                        column.Item().AlignCenter().Text("MNS Computers").Bold().FontSize(12);
+                        column.Item().AlignCenter().Text("office # 39 & 40, 1st floor Gallery 3, Rex city, Sitiana Road");
+                        column.Item().AlignCenter().Text("Phone: 0300-6634245");
+                        column.Item().PaddingBottom(5).LineHorizontal(0.5f);
 
+                        // --- Invoice Info ---
+                        column.Item().Row(row =>
+                        {
+                            row.RelativeItem().Text($"Customer: {customerName}");
+                            row.RelativeItem().AlignRight().Text($"{DateTime.Now:dd-MMM-yyyy hh:mm tt}");
+                        });
+
+                        column.Item().PaddingBottom(5).LineHorizontal(0.5f);
+
+                        // --- Table Header ---
+                        column.Item().Text("----------------------------------------");
+                        column.Item().Text("ITEM         QTY WAR PRICE DISC TOTAL");
+                        column.Item().Text("----------------------------------------");
+
+                        // --- Cart Items ---
                         decimal totalDiscount = 0;
+                        decimal subTotal = 0;
 
                         foreach (DataGridViewRow row in cart.Rows)
                         {
                             if (row.IsNewRow) continue;
 
-                            string item = Truncate(row.Cells["Name"].Value?.ToString(), 10).PadRight(10);
-                            string qty = row.Cells["Quantity"].Value?.ToString().PadLeft(3);
-                            string price = row.Cells["Price"].Value?.ToString().PadLeft(6);
-                            string discount = row.Cells["Discount"].Value?.ToString().PadLeft(6);
-                            string totalPrice = row.Cells["Total"].Value?.ToString().PadLeft(6);
+                            string name = row.Cells["Name"].Value?.ToString() ?? "";
+                            string qty = row.Cells["Quantity"].Value?.ToString()?.PadLeft(2);
+                            string war = Truncate(row.Cells["Warranty"]?.Value?.ToString(), 3).PadRight(3);
+                            string price = row.Cells["Price"].Value?.ToString()?.PadLeft(5);
+                            string discount = row.Cells["Discount"].Value?.ToString()?.PadLeft(3);
+                            string totalPrice = row.Cells["Total"].Value?.ToString()?.PadLeft(6);
 
                             if (decimal.TryParse(row.Cells["Discount"].Value?.ToString(), out decimal discVal))
                                 totalDiscount += discVal * Convert.ToInt32(row.Cells["Quantity"].Value);
+                            if (decimal.TryParse(row.Cells["Total"].Value?.ToString(), out decimal itemTotal))
+                                subTotal += itemTotal;
 
-                            string line = $"{item} {qty} {price} {discount} {totalPrice}";
-                            column.Item().Text(line);
+                            // Split name across lines
+                            string[] nameParts = name.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
+                            string firstWord = nameParts.Length > 0 ? nameParts[0] : name;
+                            string[] remainingWords = nameParts.Skip(1).ToArray();
+
+                            // First line with first word and all data
+                            string firstLine = $"{firstWord,-12}{qty} {war} {price} {discount} {totalPrice}";
+                            column.Item().Text(firstLine);
+
+                            // Remaining words as new lines
+                            foreach (var word in remainingWords)
+                            {
+                                column.Item().PaddingLeft(10).Text(word);
+                            }
                         }
 
-                        column.Item().Text("------------------------------------------");
+                        // --- Summary ---
+                        column.Item().Text("----------------------------------------");
+                        column.Item().Text($"SUBTOTAL:    Rs. {subTotal + totalDiscount:N0}");
+                        column.Item().Text($"DISCOUNT:    Rs. {totalDiscount:N0}");
+                        column.Item().Text($"TOTAL:       Rs. {total:N0}");
+                        column.Item().Text($"PAID:        Rs. {paid:N0}");
+                        column.Item().Text($"BALANCE:     Rs. {(total - paid):N0}");
+                        column.Item().Text("----------------------------------------");
 
-                        decimal due = total - paid;
-
-                        column.Item().Text($"Total Price    : Rs. {total:N0}");
-                        column.Item().Text($"Total Discount : Rs. {totalDiscount:N0}");
-                        column.Item().Text($"Paid           : Rs. {paid:N0}");
-                        column.Item().Text($"Due            : Rs. {due:N0}");
-
-                        column.Item().Text("------------------------------------------");
-                        column.Item().AlignCenter().Text("Thank you for shopping with us!");
-                        column.Item().Text("------------------------------------------");
+                        // --- Footer ---
+                        column.Item().AlignCenter().Text("Thank you for your shopping here!").Bold();
+                        column.Item().PaddingTop(5).LineHorizontal(0.5f);
+                        column.Item().AlignCenter().Text("** SPECIAL OFFERS **").Bold();
+                        column.Item().AlignCenter().Text("Free diagnostics with any repair");
+                        column.Item().AlignCenter().Text("10% discount on next purchase");
+                        column.Item().AlignCenter().Text("Ask about our warranty plans!");
+                        column.Item().AlignCenter().Text($"Invoice #: INV-{DateTime.Now:yyMMddHHmm}");
+                        column.Item().PaddingTop(5).AlignCenter().Text("Developed By:");
+                        column.Item().PaddingTop(5).AlignCenter().Text("abdulahad18022@gmail.com");
                     });
                 });
             }).GeneratePdf(filePath);
         }
-        
+
+
+
+
 
 
     }

@@ -159,7 +159,7 @@ DELIMITER ;
 
 
 
-
+Paper(80(72) x 3276mm
 
 
 

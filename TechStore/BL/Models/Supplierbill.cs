@@ -17,11 +17,12 @@ namespace TechStore.BL.Models
             paid_price = v5;
             total_price = v4;
         }
-        public Supplierbill(string batch_name,decimal paid,string supplier_name)
+        public Supplierbill(string batch_name,decimal paid,string supplier_name,decimal total_price)
         {
             this.batch_name = batch_name;
             paid_price=paid;
             this.supplier_name = supplier_name;
+            this.total_price = total_price;
         }
         public Supplierbill(int bill_id, string supplier_name, int supplier_id, DateTime date, decimal total_price, decimal paid_price, string batch_name, int batch_id)
         {
