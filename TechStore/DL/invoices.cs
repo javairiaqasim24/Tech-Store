@@ -13,7 +13,7 @@ namespace TechStore.DL
 {
     public class invoices
     {
-        public static void CreateSaleInvoicePdf(DataGridView cart, string filePath, string customerName, DateTime saleDate, decimal totalAmount, decimal paidAmount)
+        public static void CreateSaleInvoicePdf(DataGridView cart, string filePath, string customerName, DateTime saleDate, decimal totalAmount, decimal paidAmount, int billid)
         {
             QuestPDF.Settings.License = LicenseType.Community;
 
@@ -44,6 +44,7 @@ namespace TechStore.DL
                                 col.Item().AlignRight().Text("Email: support@techstore.com").FontSize(10);
                             });
                         });
+                        content.Item().PaddingTop(5).AlignRight().Text($"Bill ID: {billid}").FontSize(12).FontColor(Colors.Blue.Medium);
 
                         content.Item().Element(e =>
                             e.PaddingVertical(10)
@@ -134,7 +135,7 @@ namespace TechStore.DL
 
 
 
-        public static void PrintInvoiceDirectly(DataGridView cart, string customerName, DateTime saleDate, decimal totalAmount, decimal paidAmount)
+        public static void PrintInvoiceDirectly(DataGridView cart, string customerName, DateTime saleDate, decimal totalAmount, decimal paidAmount, int billid)
         {
             if (PrinterSettings.InstalledPrinters.Count == 0)
             {
@@ -145,7 +146,7 @@ namespace TechStore.DL
             PrintDocument printDoc = new PrintDocument();
             printDoc.PrintPage += (sender, e) =>
             {
-                DrawInvoice(e, cart, customerName, saleDate, totalAmount, paidAmount);
+                DrawInvoice(e, cart, customerName, saleDate, totalAmount, paidAmount,billid);
             };
 
             PrintDialog dialog = new PrintDialog
@@ -163,7 +164,7 @@ namespace TechStore.DL
         }
 
 
-        private static void DrawInvoice(PrintPageEventArgs e, DataGridView cart, string customerName, DateTime saleDate, decimal totalAmount, decimal paidAmount)
+        private static void DrawInvoice(PrintPageEventArgs e, DataGridView cart, string customerName, DateTime saleDate, decimal totalAmount, decimal paidAmount,int billid)
         {
             Font titleFont = new Font("Arial", 18, FontStyle.Bold);
             Font headerFont = new Font("Arial", 12, FontStyle.Bold);
@@ -198,6 +199,8 @@ namespace TechStore.DL
             // Invoice Details
             e.Graphics.DrawString("Sales Invoice", titleFont, brush, x + 250, y);
             y += 30;
+            e.Graphics.DrawString($"Bill ID: {billid}", regularFont, brush, x, y);
+            y += 20;
             e.Graphics.DrawString($"Customer: {customerName}", regularFont, brush, x, y);
             y += 20;
             e.Graphics.DrawString($"Date: {saleDate.ToShortDateString()}", regularFont, brush, x, y);
@@ -265,14 +268,14 @@ namespace TechStore.DL
             e.Graphics.DrawString($"Pending: Rs. {(totalAmount - paidAmount):N2}", regularFont, Brushes.Red, x + 400, y);
         }
 
-        public static void PrintThermalReceipt(DataGridView cart, string customerName, decimal total, decimal paid)
+        public static void PrintThermalReceipt(DataGridView cart, string customerName, decimal total, decimal paid, int billid)
         {
             PrintDocument doc = new PrintDocument();
             doc.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Receipt", 280, 600); // Width: ~80mm
 
             doc.PrintPage += (sender, e) =>
             {
-                DrawThermalReceipt(e, cart, customerName, total, paid);
+                DrawThermalReceipt(e, cart, customerName, total, paid,billid);
             };
 
             PrintDialog dialog = new PrintDialog
@@ -286,7 +289,7 @@ namespace TechStore.DL
                 doc.Print();
         }
 
-        private static void DrawThermalReceipt(PrintPageEventArgs e, DataGridView cart, string customerName, decimal total, decimal paid)
+        private static void DrawThermalReceipt(PrintPageEventArgs e, DataGridView cart, string customerName, decimal total, decimal paid,int billid)
         {
             Font font = new Font("Consolas", 9);
             float y = 10;
@@ -296,6 +299,7 @@ namespace TechStore.DL
             float maxWidth = e.PageBounds.Width - 10;
 
             float x = leftMargin;
+            e.Graphics.DrawString($"Invoice ID     : #{billid}", font, Brushes.Black, x, y); y += lineHeight;
 
             // Header
             e.Graphics.DrawString("------------------------------------------", font, Brushes.Black, x, y); y += lineHeight;
@@ -343,6 +347,62 @@ namespace TechStore.DL
             if (string.IsNullOrEmpty(value)) return "";
             return value.Length <= maxLength ? value : value.Substring(0, maxLength);
         }
+
+        //fpr the generation of pdf of thernaml style format
+        public static void CreateThermalReceiptPdf(DataGridView cart, string filePath, string customerName, decimal total, decimal paid)
+        {
+            QuestPDF.Settings.License = LicenseType.Community;
+
+            Document.Create(container =>
+            {
+                container.Page(page =>
+                {
+                    page.Size(226, PageSizes.A4.Height, Unit.Millimetre); // Width: ~80mm (3.15 inches)
+                    page.Margin(5);
+                    page.DefaultTextStyle(x => x.FontFamily("Consolas").FontSize(9));
+
+                    page.Content().Column(column =>
+                    {
+                        column.Item().Text("------------------------------------------");
+                        column.Item().Text("Item        Qty  Price  Disc   Total");
+                        column.Item().Text("------------------------------------------");
+
+                        decimal totalDiscount = 0;
+
+                        foreach (DataGridViewRow row in cart.Rows)
+                        {
+                            if (row.IsNewRow) continue;
+
+                            string item = Truncate(row.Cells["Name"].Value?.ToString(), 10).PadRight(10);
+                            string qty = row.Cells["Quantity"].Value?.ToString().PadLeft(3);
+                            string price = row.Cells["Price"].Value?.ToString().PadLeft(6);
+                            string discount = row.Cells["Discount"].Value?.ToString().PadLeft(6);
+                            string totalPrice = row.Cells["Total"].Value?.ToString().PadLeft(6);
+
+                            if (decimal.TryParse(row.Cells["Discount"].Value?.ToString(), out decimal discVal))
+                                totalDiscount += discVal * Convert.ToInt32(row.Cells["Quantity"].Value);
+
+                            string line = $"{item} {qty} {price} {discount} {totalPrice}";
+                            column.Item().Text(line);
+                        }
+
+                        column.Item().Text("------------------------------------------");
+
+                        decimal due = total - paid;
+
+                        column.Item().Text($"Total Price    : Rs. {total:N0}");
+                        column.Item().Text($"Total Discount : Rs. {totalDiscount:N0}");
+                        column.Item().Text($"Paid           : Rs. {paid:N0}");
+                        column.Item().Text($"Due            : Rs. {due:N0}");
+
+                        column.Item().Text("------------------------------------------");
+                        column.Item().AlignCenter().Text("Thank you for shopping with us!");
+                        column.Item().Text("------------------------------------------");
+                    });
+                });
+            }).GeneratePdf(filePath);
+        }
+        
 
 
     }
