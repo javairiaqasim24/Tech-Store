@@ -49,5 +49,77 @@ namespace TechStore.DL
                 throw new ArgumentException("error getting suppliers");
             }
         }
+        public List<Batches> getbatches()
+        {
+            var list = new List<Batches>();
+            try
+            {
+                using (var conn = DatabaseHelper.Instance.GetConnection())
+                {
+                    conn.Open();
+                    string query = "select b.batch_id ,b.batch_name,b.recieved_date,s.name from batches b join suppliers s on s.supplier_id=b.supplier_id; ";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var batches = new Batches(reader.GetInt32("batch_id"), reader.GetString("batch_name"), reader.GetString("name"), reader.GetDateTime("recieved_date"));
+                                list.Add(batches);
+                            }
+
+                        }
+                    }
+                    return list;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw ex;
+            }
+        }
+        public List<Batches> GetBatches(string searchTerm)
+        {
+            var list = new List<Batches>();
+
+            try
+            {
+                using (var conn = DatabaseHelper.Instance.GetConnection())
+                {
+                    conn.Open();
+                    string query = @"
+                SELECT b.batch_id, b.batch_name, b.recieved_date, s.name
+                FROM batches b
+                JOIN suppliers s ON s.supplier_id = b.supplier_id
+                WHERE b.batch_name LIKE @search OR s.supplier_name LIKE @search;";
+
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@search", "%" + searchTerm + "%");
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var batch = new Batches(
+                                    reader.GetInt32("batch_id"),
+                                    reader.GetString("batch_name"),
+                                    reader.GetString("name"),
+                                    reader.GetDateTime("recieved_date")
+                                );
+                                list.Add(batch);
+                            }
+                        }
+                    }
+                }
+
+                return list;
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error retrieving batches: " + ex.Message, ex);
+            }
+        }
+
     }
 }

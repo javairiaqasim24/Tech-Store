@@ -313,8 +313,8 @@ namespace TechStore
 
         private void iconButton3_Click(object sender, EventArgs e)
         {
-            var f=Program.ServiceProvider.GetRequiredService<AddBatchform>();
-            f.ShowDialog(this);
+            var f=Program.ServiceProvider.GetRequiredService<Batchesform>();
+            Dashboard.Instance.LoadFormIntoPanel(f);
         }
 
         private void iconButton2_Click(object sender, EventArgs e)

@@ -13,7 +13,7 @@ using TechStore.Interfaces.DLInterfaces;
 
 namespace TechStore.DL
 {
-    public class Customersaledl : invoices ,  Icustomersaledl
+    public class Customersaledl:  Icustomersaledl
     {
         public Customersale GetProductBySku(string sku)
         {

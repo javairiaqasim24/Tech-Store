@@ -28,8 +28,16 @@ namespace TechStore.BL.BL
         }
         public List<string> GetSupplierNames(string name)
         {
-         
+
             return _batchesDl.getsuppliernames(name);
+        }
+        public List<Batches> getbatches()
+        {
+            return _batchesDl.getbatches();
+        }
+        public List<Batches> getbatchesbyname(string name)
+        {
+            return _batchesDl.GetBatches(name);
         }
     }
 }
