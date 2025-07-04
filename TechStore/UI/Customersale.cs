@@ -506,6 +506,12 @@ namespace TechStore.UI
 
         private void btnsave_Click(object sender, EventArgs e)
         {
+            if(!thermalprint.Checked && !A4printer.Checked && !onlypdf.Checked)
+            {
+                MessageBox.Show("Please select the option whether you to print or pdf");
+                return;
+            }
+
             if (!ValidatePayment()) return;
 
             string customerType = combocustomer.SelectedItem?.ToString();
@@ -561,8 +567,8 @@ namespace TechStore.UI
                     {
                         decimal total = long.Parse(finalpricetxt.Text);
                         decimal paid = long.Parse(txtfinalpaid.Text);
-                        //invoices.PrintThermalReceipt(dataGridView1, customerName, total, paid, _lastBillId);
-                        SavehthermalPdfInvoice();
+                        invoices.PrintThermalReceipt(dataGridView1, customerName, total, paid, _lastBillId);
+                        //SavehthermalPdfInvoice();
                 }
 
                 }
