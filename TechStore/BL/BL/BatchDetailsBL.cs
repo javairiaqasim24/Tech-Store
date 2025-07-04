@@ -26,8 +26,8 @@ namespace TechStore.BL.BL
             if (string.IsNullOrWhiteSpace(batchDetails.batch_name))
                 throw new ArgumentException("Batch name cannot be null or empty", nameof(batchDetails.batch_name));
 
-            if (string.IsNullOrWhiteSpace(batchDetails.product_name))
-                throw new ArgumentException("Product name cannot be null or empty", nameof(batchDetails.product_name));
+            //if (string.IsNullOrWhiteSpace(batchDetails.product_name))
+            //    throw new ArgumentException("Product name cannot be null or empty", nameof(batchDetails.product_name));
 
             if (batchDetails.quantity <= 0)
                 throw new ArgumentOutOfRangeException(nameof(batchDetails.quantity), "Quantity must be greater than 0");

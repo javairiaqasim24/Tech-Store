@@ -46,21 +46,22 @@ namespace TechStore.DL
                             return new Supplierbill
                             (
                                 Convert.ToInt32(reader["supplier_bill_id"]),
-                               reader["supplier_name"].ToString(),
-                             reader["batch_name"].ToString(),
-                               Convert.ToDecimal(reader["total_price"]),
-                             Convert.ToDateTime(reader["date"]),
-                               Convert.ToDecimal(reader["paid_amount"])
+                                reader["supplier_name"].ToString(),
+                                reader["batch_name"].ToString(),
+                                reader.IsDBNull(reader.GetOrdinal("total_price")) ? 0 : Convert.ToDecimal(reader["total_price"]),
+                                reader.IsDBNull(reader.GetOrdinal("date")) ? DateTime.MinValue : Convert.ToDateTime(reader["date"]),
+                                reader.IsDBNull(reader.GetOrdinal("paid_amount")) ? 0 : Convert.ToDecimal(reader["paid_amount"])
                             );
                         }
                         else
                         {
-                            return null; 
+                            return null;
                         }
                     }
                 }
             }
         }
+
         public bool UpdateBill(Supplierbill s)
         {
             try
@@ -78,13 +79,15 @@ namespace TechStore.DL
                         {
                             // 1. Update the supplier bill
                             string updateQuery = @"UPDATE supplierbills 
-                                           SET paid_amount = @paid_amount 
+                                           SET paid_amount = @paid_amount ,
+                                            total_price=@total
                                            WHERE batch_id = @batch_id AND supplier_id = @supplier_id";
                             using (var cmd = new MySqlCommand(updateQuery, conn, tran))
                             {
                                 cmd.Parameters.AddWithValue("@paid_amount", s.paid_price);
                                 cmd.Parameters.AddWithValue("@batch_id", batch_id);
                                 cmd.Parameters.AddWithValue("@supplier_id", supplier_id);
+                                cmd.Parameters.AddWithValue("@total", s.total_price);
                                 cmd.ExecuteNonQuery();
                             }
 

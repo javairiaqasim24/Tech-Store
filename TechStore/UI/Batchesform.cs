@@ -101,10 +101,10 @@ namespace TechStore.UI
                 MessageBox.Show("Enter a valid paid amount.");
                 return;
             }
-
+            decimal total= Convert.ToInt32( txtTotal.Text.Trim());
             try
             {
-                Supplierbill s = new Supplierbill(batchName, paidAmount, supplier);
+                Supplierbill s = new Supplierbill(batchName, paidAmount, supplier,total);
                 bool success = ibr.updateamount(s);
 
                 if (success)

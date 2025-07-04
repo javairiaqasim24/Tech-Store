@@ -116,5 +116,11 @@ namespace TechStore.BL.BL
                 throw new Exception("Error adding category: " + ex.Message, ex);
             }
         }
+
+        public List<Products> GetProductsByName(string name)
+
+        {
+            return _productDl.GetProductsByName(name);
+        }
     }
 }

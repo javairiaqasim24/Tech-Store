@@ -145,6 +145,7 @@
     <Compile Include="BL\BL\SupplierBillBl.cs" />
     <Compile Include="BL\Models\Supplierbill.cs" />
     <Compile Include="DL\invoices.cs" />
+    <Compile Include="DL\purchaseDL.cs" />
     <Compile Include="Interfaces\DLInterfaces\ISupplierbillDl.cs" />
     <Compile Include="DL\SupplierbillDl.cs" />
     <Compile Include="Interfaces\BLInterfaces\IBatchDetailsBL.cs" />
@@ -174,6 +175,11 @@
     <Compile Include="Interfaces\BLInterfaces\ISupplierBL.cs" />
     <Compile Include="Interfaces\DLInterfaces\IproductDl.cs" />
     <Compile Include="Interfaces\DLInterfaces\IsupplierDl.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UI\AddbatchDetailsform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +278,12 @@
     <Compile Include="UI\productsform.Designer.cs">
       <DependentUpon>productsform.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\PurchaseInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PurchaseInvoice.Designer.cs">
+      <DependentUpon>PurchaseInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Supplierform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,6 +291,9 @@
       <DependentUpon>Supplierform.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\UIHelper.cs" />
+    <None Include="Resources\logoo.png" />
+    <None Include="Resources\logo %282%291.png" />
+    <None Include="Resources\logo %282%29.png" />
     <EmbeddedResource Include="UI\AddbatchDetailsform.resx">
       <DependentUpon>AddbatchDetailsform.cs</DependentUpon>
     </EmbeddedResource>
@@ -320,14 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="UI\Loadingform.resx">
       <DependentUpon>Loadingform.cs</DependentUpon>
     </EmbeddedResource>
@@ -341,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\productsform.resx">
       <DependentUpon>productsform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PurchaseInvoice.resx">
+      <DependentUpon>PurchaseInvoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Supplierform.resx">
       <DependentUpon>Supplierform.cs</DependentUpon>

@@ -13,7 +13,7 @@ namespace TechStore.DL
         public bool AddBatchDetailsWithSerial(Batchdetails b, List<string> serialNumbers, decimal price)
         {
             int batch_id = DatabaseHelper.Instance.getbatchid(b.batch_name);
-            int product_id = DatabaseHelper.Instance.getproductid(b.product_name);
+            //int product_id = DatabaseHelper.Instance.getproductid(b.product_name);
 
             if (serialNumbers == null || serialNumbers.Count != b.quantity)
                 throw new ArgumentException("Number of serial numbers must match the quantity received.");
@@ -32,7 +32,7 @@ namespace TechStore.DL
                             using (var cmd1 = new MySqlCommand(query1, conn, tran))
                             {
                                 cmd1.Parameters.AddWithValue("@batch_id", batch_id);
-                                cmd1.Parameters.AddWithValue("@product_id", product_id);
+                                cmd1.Parameters.AddWithValue("@product_id", b.product_id);
                                 cmd1.Parameters.AddWithValue("@quantity", b.quantity);
                                 cmd1.Parameters.AddWithValue("@price", b.price);
                                 cmd1.ExecuteNonQuery();
@@ -44,7 +44,7 @@ namespace TechStore.DL
                                 foreach (var serial in serialNumbers)
                                 {
                                     cmd2.Parameters.Clear();
-                                    cmd2.Parameters.AddWithValue("@product_id", product_id);
+                                    cmd2.Parameters.AddWithValue("@product_id", b.product_id);
                                     cmd2.Parameters.AddWithValue("@serial_number", serial.Trim());
                                     cmd2.ExecuteNonQuery();
                                 }
@@ -54,7 +54,7 @@ namespace TechStore.DL
                             using (var cmd3 = new MySqlCommand(query3, conn, tran))
                             {
                                 cmd3.Parameters.AddWithValue("@sale_price", price);
-                                cmd3.Parameters.AddWithValue("@product_id", product_id);
+                                cmd3.Parameters.AddWithValue("@product_id", b.product_id);
                                 cmd3.ExecuteNonQuery();
                             }
 
