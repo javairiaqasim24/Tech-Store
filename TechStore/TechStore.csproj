@@ -74,14 +74,17 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.6, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.9.0.6\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=9.0.0.6, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Extensions.DependencyInjection.9.0.6\lib\net462\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=9.0.0.6, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.9.0.6\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=9.3.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.9.3.0\lib\net462\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -144,22 +147,28 @@
     <Compile Include="BL\BL\CustomerBill_SpecificProductsBL.cs" />
     <Compile Include="BL\BL\CustomerBL.cs" />
     <Compile Include="BL\BL\CustomerSaleBL.cs" />
+    <Compile Include="BL\BL\InventoryBl.cs" />
+    <Compile Include="BL\Models\Batches\Batchdetails.cs" />
+    <Compile Include="BL\Models\Batches\Batches.cs" />
+    <Compile Include="BL\Models\Inventory.cs" />
+    <Compile Include="DL\BatchFormPersistence.cs" />
     <Compile Include="DL\BillingRecordsOverviewDL.cs" />
     <Compile Include="DL\CustomerBill_SpecificProductsDL.cs" />
+    <Compile Include="DL\InventoryDl.cs" />
     <Compile Include="Interfaces\BLInterfaces\IBatchesBl.cs" />
+    <Compile Include="Interfaces\BLInterfaces\IInventoryBl.cs" />
     <Compile Include="Interfaces\DLInterfaces\IBatchesDl.cs" />
     <Compile Include="Interfaces\BLInterfaces\ISupplierBillBl.cs" />
     <Compile Include="BL\BL\SupplierBillBl.cs" />
     <Compile Include="BL\Models\Supplierbill.cs" />
     <Compile Include="DL\invoices.cs" />
     <Compile Include="DL\purchaseDL.cs" />
+    <Compile Include="Interfaces\DLInterfaces\IInventoryDl.cs" />
     <Compile Include="Interfaces\DLInterfaces\ISupplierbillDl.cs" />
     <Compile Include="DL\SupplierbillDl.cs" />
     <Compile Include="Interfaces\BLInterfaces\IBatchDetailsBL.cs" />
-    <Compile Include="BL\Models\Batchdetails.cs" />
     <Compile Include="DL\BatchdetailsDl.cs" />
     <Compile Include="Interfaces\DLInterfaces\IBatchdetailsDl.cs" />
-    <Compile Include="BL\Models\Batches.cs" />
     <Compile Include="BL\Models\Customersale.cs" />
     <Compile Include="DL\BatchesDl.cs" />
     <Compile Include="DL\Customersaledl .cs" />
@@ -279,6 +288,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Inventoryform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Inventoryform.Designer.cs">
+      <DependentUpon>Inventoryform.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Loadingform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -362,6 +377,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Inventoryform.resx">
+      <DependentUpon>Inventoryform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Loadingform.resx">
       <DependentUpon>Loadingform.cs</DependentUpon>
