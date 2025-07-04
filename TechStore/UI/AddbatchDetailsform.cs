@@ -1,10 +1,12 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.Extensions.DependencyInjection;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using TechStore.BL.BL;
 using TechStore.BL.Models;
+using TechStore.DL;
 using TechStore.Interfaces.BLInterfaces;
 
 namespace TechStore.UI
@@ -17,19 +19,60 @@ namespace TechStore.UI
         private int? selectedProductId;
         private string selectedProductName;
         private string selectedProductDescription;
+   
 
         public AddbatchDetailsform(IBatchDetailsBL batchDetailsBL, IproductBl ibl)
         {
             InitializeComponent();
             this.batchDetailsBL = batchDetailsBL;
             this.ibl = ibl;
+            panel1.Visible = checkBox1.Checked;
+
         }
 
         private void AddbatchDetailsform_Load(object sender, EventArgs e)
         {
             load();
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+            checkBox1_CheckedChanged(null, null); // Apply initial state
+
+            var temp = BatchFormPersistence.Load();
+            if (temp != null)
+            {
+                txtBname.Text = temp.BatchName;
+                txtproducts.Text = temp.ProductName;
+                txtquantity.Text = temp.Quantity.ToString();
+                txtprice.Text = temp.CostPrice.ToString();
+                txtSprice.Text = temp.SalePrice.ToString();
+
+                txtserailnumber.Items.Clear();
+                foreach (var s in temp.SerialNumbers)
+                    txtserailnumber.Items.Add(s);
+
+                selectedProductId = temp.ProductId;
+            }
             this.txtproducts.SelectedIndexChanged += txtproducts_SelectedIndexChanged;
             this.dataGridView2.CellClick += dataGridView2_CellClick;
+        }
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            if (!string.IsNullOrEmpty(txtquantity.Text) && !string.IsNullOrEmpty(txtprice.Text))
+            {
+                var dto = new TempBatchDetailDTO
+                {
+                    BatchName = txtBname.Text.Trim(),
+                    ProductName = txtproducts.Text.Trim(),
+                    ProductId = selectedProductId,
+                    Quantity = int.TryParse(txtquantity.Text.Trim(), out int q) ? q : 0,
+                    CostPrice = decimal.TryParse(txtprice.Text.Trim(), out decimal c) ? c : 0,
+                    SalePrice = decimal.TryParse(txtSprice.Text.Trim(), out decimal s) ? s : 0,
+                    SerialNumbers = txtserailnumber.Items.Cast<string>().ToList()
+                };
+
+                BatchFormPersistence.Save(dto);
+            }
         }
 
         private void load()
@@ -78,19 +121,23 @@ namespace TechStore.UI
                 }
 
                 List<string> serialNumbers = txtserailnumber.Items.Cast<string>().ToList();
-                if (serialNumbers.Count != quantity)
+                bool isSerialized = checkBox1.Checked;
+
+                if (isSerialized && txtserailnumber.Items.Count != quantity)
                 {
                     MessageBox.Show("Serial number count must match the quantity.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                Batchdetails batchDetails = new Batchdetails(0, 0,selectedProductId.Value, "" ,quantity, costPrice, batchname);
+                Batchdetails batchDetails = new Batchdetails(0, 0, selectedProductId.Value, "", quantity, costPrice, batchname);
 
-                var result = batchDetailsBL.AddBatchDetailsWithSerial(batchDetails, serialNumbers, salePrice);
+                var result = batchDetailsBL.AddBatchDetailsWithSerial(batchDetails, serialNumbers, salePrice,isSerialized);
                 if (result)
                 {
                     MessageBox.Show("Batch and serial numbers added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearFields();
+                    BatchFormPersistence.Clear();
+
                 }
                 else
                 {
@@ -101,6 +148,7 @@ namespace TechStore.UI
             {
                 MessageBox.Show("Enter valid numeric values.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+         
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -192,6 +240,23 @@ namespace TechStore.UI
                 // Optionally show confirmation
                 MessageBox.Show($"Selected: ID={selectedProductId}, Name={selectedProductName}, Desc={selectedProductDescription}");
             }
+        }
+
+        private void iconPictureBox2_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<AddBatchform>();
+            f.ShowDialog(this);
+        }
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            bool isVisible = checkBox1.Checked;
+            panel1.Visible = isVisible;
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -185,5 +185,11 @@ namespace TechStore.UI
                 }
             }
         }
+
+        private void btncategory_Click_1(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<PurchaseInvoice>();
+            Dashboard.Instance.LoadFormIntoPanel(f);
+        }
     }
 }

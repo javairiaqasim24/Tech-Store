@@ -222,7 +222,6 @@ namespace TechStore.UI
                 return;
             }
 
-            // Get batch_name from the selected row
             string batchName = dataGridView2.CurrentRow.Cells["batch_name"].Value.ToString();
 
             // Get bill info by batch name

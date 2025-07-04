@@ -41,5 +41,11 @@ namespace TechStore.BL.Models
         public Products((int, string, string, string, int?, double?) value)
         {
         }
+
+        public Products(int id,string name)
+        {
+            this.id = id;
+            this.name = name;
+        }
     }
 }

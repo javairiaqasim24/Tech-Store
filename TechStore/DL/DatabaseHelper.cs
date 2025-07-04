@@ -265,7 +265,22 @@ namespace KIMS
                 throw new Exception("Error retrieving batch ID: " + ex.Message);
             }
         }
-     internal List<Products> GetProductsByName(string name)
+        //internal bool IsProductSerialized(int productId)
+        //{
+        //    using (var conn = GetConnection())
+        //    {
+        //        conn.Open();
+        //        string query = "SELECT is_serialized FROM products WHERE product_id = @id;";
+        //        using (var cmd = new MySqlCommand(query, conn))
+        //        {
+        //            cmd.Parameters.AddWithValue("@id", productId);
+        //            var result = cmd.ExecuteScalar();
+        //            return Convert.ToBoolean(result);
+        //        }
+        //    }
+        //}
+
+        internal List<Products> GetProductsByName(string name)
         {
             var products = new List<Products>();
 
