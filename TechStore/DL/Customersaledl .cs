@@ -1,5 +1,6 @@
 ﻿﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -137,6 +138,25 @@ GROUP BY
             return -1; // Not found
         }
 
+        public static DataTable GetCustomersByType(string customerType)
+        {
+            string query = "SELECT CONCAT(first_name, ' ', last_name) AS name, address FROM customers WHERE type = @type";
+            using (var conn = DatabaseHelper.Instance.GetConnection())
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@type", customerType);
+                    using (var adapter = new MySqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+        }
+
         public int InsertNewWalkInCustomer(string name)
         {
             string[] parts = name.Split(' ');
@@ -145,18 +165,36 @@ GROUP BY
 
             using (var conn = DatabaseHelper.Instance.GetConnection())
             {
-                conn.Open(); // ✅ Must open the connection
+                conn.Open();
 
+                // 🔍 Step 1: Try to find the customer
+                string checkQuery = @"SELECT customer_id FROM customers 
+                              WHERE type = 'Walk-in' AND first_name = @first AND last_name = @last";
+
+                using (var checkCmd = new MySqlCommand(checkQuery, conn))
+                {
+                    checkCmd.Parameters.AddWithValue("@first", firstName);
+                    checkCmd.Parameters.AddWithValue("@last", lastName);
+
+                    object result = checkCmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);  // ✅ Customer already exists
+                    }
+                }
+
+                // 🧾 Step 2: Insert if not found
                 string insertQuery = @"INSERT INTO customers (type, first_name, last_name)
                                VALUES ('Walk-in', @first, @last);";
 
-                using (var cmd = new MySqlCommand(insertQuery, conn))
+                using (var insertCmd = new MySqlCommand(insertQuery, conn))
                 {
-                    cmd.Parameters.AddWithValue("@first", firstName);
-                    cmd.Parameters.AddWithValue("@last", lastName);
-                    cmd.ExecuteNonQuery();
+                    insertCmd.Parameters.AddWithValue("@first", firstName);
+                    insertCmd.Parameters.AddWithValue("@last", lastName);
+                    insertCmd.ExecuteNonQuery();
                 }
 
+                // 🔁 Step 3: Return new inserted ID
                 string idQuery = "SELECT LAST_INSERT_ID();";
                 using (var idCmd = new MySqlCommand(idQuery, conn))
                 {
@@ -166,7 +204,94 @@ GROUP BY
         }
 
 
-        public bool SaveCustomerBill(int customerId, DateTime saleDate, decimal total, decimal paid, DataGridView cart)
+
+        //public int SaveCustomerBill(int customerId, DateTime saleDate, decimal total, decimal paid, DataGridView cart)
+        //{
+        //    using (var conn = DatabaseHelper.Instance.GetConnection())
+        //    {
+        //        conn.Open();
+
+        //        using (var tran = conn.BeginTransaction())
+        //        {
+        //            try
+        //            {
+        //                // 1. Insert into customerbills
+        //                string billQuery = @"INSERT INTO customerbills (CustomerID, SaleDate, total_price, paid_amount)
+        //                             VALUES (@cust, @date, @total, @paid);
+        //                             SELECT LAST_INSERT_ID();";
+
+        //                int billId;
+        //                using (var cmd = new MySqlCommand(billQuery, conn, tran))
+        //                {
+        //                    cmd.Parameters.AddWithValue("@cust", customerId);
+        //                    cmd.Parameters.AddWithValue("@date", saleDate);
+        //                    cmd.Parameters.AddWithValue("@total", total);
+        //                    cmd.Parameters.AddWithValue("@paid", paid);
+        //                    billId = Convert.ToInt32(cmd.ExecuteScalar());
+        //                }
+
+        //                // 2. Insert bill details
+        //                foreach (DataGridViewRow row in cart.Rows)
+        //                {
+        //                    if (row.IsNewRow) continue;
+
+        //                    string insertDetail = @"INSERT INTO customer_bill_details 
+        //                                    (Bill_id, product_id, quantity, discount, status, warranty, warranty_from)
+        //                                    VALUES (@bill, @pid, @qty, @disc, 'bill', @warranty, @warrantyFrom);";
+
+        //                    using (var cmd = new MySqlCommand(insertDetail, conn, tran))
+        //                    {
+        //                        cmd.Parameters.AddWithValue("@bill", billId);
+
+        //                        string serialList = row.Cells["Sku"].Value?.ToString()?.Trim();
+        //                        string[] serials = serialList.Split(',');
+        //                        string firstSerial = serials[0].Trim();
+
+        //                        string lookupQuery = "SELECT product_id FROM productsserial WHERE sku = @sku LIMIT 1;";
+        //                        string productId = null;
+
+        //                        using (var lookup = new MySqlCommand(lookupQuery, conn, tran))
+        //                        {
+        //                            lookup.Parameters.AddWithValue("@sku", firstSerial);
+        //                            object result = lookup.ExecuteScalar();
+
+        //                            if (result != null)
+        //                                productId = result.ToString();
+        //                            else
+        //                                throw new Exception($"Product not found for SKU '{firstSerial}'");
+        //                        }
+
+        //                        cmd.Parameters.AddWithValue("@pid", productId);
+
+        //                        if (!int.TryParse(row.Cells["Quantity"].Value?.ToString(), out int qty))
+        //                            throw new Exception("Invalid quantity for product.");
+        //                        cmd.Parameters.AddWithValue("@qty", qty);
+
+        //                        decimal.TryParse(row.Cells["Discount"].Value?.ToString(), out decimal discount);
+        //                        cmd.Parameters.AddWithValue("@disc", discount);
+
+        //                        string warranty = row.Cells["Warranty"]?.Value?.ToString();
+        //                        cmd.Parameters.AddWithValue("@warranty", string.IsNullOrWhiteSpace(warranty) ? DBNull.Value : (object)warranty);
+        //                        cmd.Parameters.AddWithValue("@warrantyFrom", saleDate);
+
+        //                        cmd.ExecuteNonQuery();
+        //                    }
+        //                }
+
+        //                tran.Commit();
+        //                return billId;  // ✅ return BillId
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                tran.Rollback();
+        //                MessageBox.Show("Sale Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //                return -1;  // ❌ indicate failure
+        //            }
+        //        }
+        //    }
+        //}
+
+        public int SaveCustomerBill(int customerId, DateTime saleDate, decimal total, decimal paid, DataGridView cart)
         {
             using (var conn = DatabaseHelper.Instance.GetConnection())
             {
@@ -176,7 +301,7 @@ GROUP BY
                 {
                     try
                     {
-                        // 1. Insert into customerbills
+                        // 1. Insert bill
                         string billQuery = @"INSERT INTO customerbills (CustomerID, SaleDate, total_price, paid_amount)
                                      VALUES (@cust, @date, @total, @paid);
                                      SELECT LAST_INSERT_ID();";
@@ -191,11 +316,55 @@ GROUP BY
                             billId = Convert.ToInt32(cmd.ExecuteScalar());
                         }
 
-                        // 2. Insert products from cart
+                        // 2. Loop through cart rows
                         foreach (DataGridViewRow row in cart.Rows)
                         {
                             if (row.IsNewRow) continue;
 
+                            string productId = null;
+
+                            // Step 1: Try with SKU
+                            string sku = row.Cells["Sku"]?.Value?.ToString()?.Trim();
+                            if (!string.IsNullOrWhiteSpace(sku))
+                            {
+                                string[] serials = sku.Split(',');
+                                string firstSerial = serials[0].Trim();
+
+                                string lookupQuery = "SELECT product_id FROM productsserial WHERE sku = @sku LIMIT 1;";
+                                using (var lookup = new MySqlCommand(lookupQuery, conn, tran))
+                                {
+                                    lookup.Parameters.AddWithValue("@sku", firstSerial);
+                                    object result = lookup.ExecuteScalar();
+                                    if (result != null)
+                                        productId = result.ToString();
+                                }
+                            }
+
+                            // Step 2: If SKU lookup fails, use Name + Description
+                            if (string.IsNullOrEmpty(productId))
+                            {
+                                string name = row.Cells["Name"]?.Value?.ToString()?.Trim();
+                                string desc = row.Cells["Description"]?.Value?.ToString()?.Trim();
+
+                                if (!string.IsNullOrWhiteSpace(name) && !string.IsNullOrWhiteSpace(desc))
+                                {
+                                    string nameQuery = "SELECT product_id FROM products WHERE name = @name AND description = @desc LIMIT 1;";
+                                    using (var cmdName = new MySqlCommand(nameQuery, conn, tran))
+                                    {
+                                        cmdName.Parameters.AddWithValue("@name", name);
+                                        cmdName.Parameters.AddWithValue("@desc", desc);
+                                        object result = cmdName.ExecuteScalar();
+                                        if (result != null)
+                                            productId = result.ToString();
+                                    }
+                                }
+                            }
+
+                            // Step 3: Skip if still not found
+                            if (string.IsNullOrEmpty(productId))
+                                continue;
+
+                            // Step 4: Insert into bill_details
                             string insertDetail = @"INSERT INTO customer_bill_details 
                                             (Bill_id, product_id, quantity, discount, status, warranty, warranty_from)
                                             VALUES (@bill, @pid, @qty, @disc, 'bill', @warranty, @warrantyFrom);";
@@ -203,47 +372,17 @@ GROUP BY
                             using (var cmd = new MySqlCommand(insertDetail, conn, tran))
                             {
                                 cmd.Parameters.AddWithValue("@bill", billId);
-
-                                // 🔍 Get SKU(s) and lookup product_id
-                                string serialList = row.Cells["Sku"].Value?.ToString()?.Trim();
-                                string[] serials = serialList.Split(',');
-                                string firstSerial = serials[0].Trim();
-
-                                string lookupQuery = "SELECT product_id FROM productsserial WHERE sku = @sku LIMIT 1;";
-                                string productId = null;
-
-                                using (var lookup = new MySqlCommand(lookupQuery, conn, tran))
-                                {
-                                    lookup.Parameters.AddWithValue("@sku", firstSerial);
-                                    object result = lookup.ExecuteScalar();
-
-                                    if (result != null)
-                                    {
-                                        productId = result.ToString();
-                                    }
-                                    else
-                                    {
-                                        throw new Exception($"Product not found for SKU '{firstSerial}'");
-                                    }
-                                }
-
                                 cmd.Parameters.AddWithValue("@pid", productId);
 
-                                // Quantity
                                 if (!int.TryParse(row.Cells["Quantity"].Value?.ToString(), out int qty))
                                     throw new Exception("Invalid quantity for product.");
-
                                 cmd.Parameters.AddWithValue("@qty", qty);
 
-                                // Discount
                                 decimal.TryParse(row.Cells["Discount"].Value?.ToString(), out decimal discount);
                                 cmd.Parameters.AddWithValue("@disc", discount);
 
-                                // Warranty
                                 string warranty = row.Cells["Warranty"]?.Value?.ToString();
                                 cmd.Parameters.AddWithValue("@warranty", string.IsNullOrWhiteSpace(warranty) ? DBNull.Value : (object)warranty);
-
-                                // Warranty date
                                 cmd.Parameters.AddWithValue("@warrantyFrom", saleDate);
 
                                 cmd.ExecuteNonQuery();
@@ -251,17 +390,18 @@ GROUP BY
                         }
 
                         tran.Commit();
-                        return true;
+                        return billId;
                     }
                     catch (Exception ex)
                     {
                         tran.Rollback();
                         MessageBox.Show("Sale Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
+                        return -1;
                     }
                 }
             }
         }
+
 
 
 

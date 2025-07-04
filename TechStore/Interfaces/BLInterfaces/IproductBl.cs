@@ -16,5 +16,6 @@ namespace TechStore.Interfaces.BLInterfaces
         List<string> getcategories(string name);
         List<Products> searchproducts(string text);
         bool addcategory(string name);
+        List<Products> GetProductsByName(string name);
     }
 }

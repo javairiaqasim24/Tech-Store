@@ -10,9 +10,10 @@ using System.Web.UI;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using TechStore.BL.Models;
+using TechStore.BL.Models.Person;
 using TechStore.DL;
 using TechStore.Interfaces.BLInterfaces;
-//using static QuestPDF.Helpers.Colors;
+using static QuestPDF.Helpers.Colors;
 
 namespace TechStore.UI
 {
@@ -20,6 +21,8 @@ namespace TechStore.UI
     {
         private readonly ICustomerSaleBL _saleBl;
         private DataGridView dgvProductSearch;
+        private DataGridView dgvCustomerSearch = new DataGridView();
+        private int _lastBillId;
 
         public Customersale(ICustomerSaleBL saleBl)
         {
@@ -27,6 +30,7 @@ namespace TechStore.UI
             InitializeComponent();
             SetupSearchGrid();
             ConfigureCartGrid();
+            SetupCustomerGrid();
         }
 
         private void SetupSearchGrid()
@@ -61,6 +65,35 @@ namespace TechStore.UI
             Controls.Add(dgvProductSearch);
             dgvProductSearch.BringToFront();
         }
+
+        private void SetupCustomerGrid()
+        {
+            dgvCustomerSearch.Visible = false;
+            dgvCustomerSearch.ReadOnly = true;
+            dgvCustomerSearch.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCustomerSearch.AllowUserToAddRows = false;
+            dgvCustomerSearch.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCustomerSearch.Columns.Add("name", "Customer Name");
+            dgvCustomerSearch.Columns.Add("address", "Address");
+
+            this.Controls.Add(dgvCustomerSearch);
+            dgvCustomerSearch.Location = new Point(txtcustomer.Left, txtcustomer.Top - dgvCustomerSearch.Height - 5);
+            dgvCustomerSearch.Size = new Size(dataGridView1.Width/2, 150);
+            dgvCustomerSearch.BringToFront();
+
+            dgvCustomerSearch.CellClick += DgvCustomerSearch_CellClick;
+        }
+
+        private void DgvCustomerSearch_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                txtcustomer.Text = dgvCustomerSearch.Rows[e.RowIndex].Cells["name"].Value.ToString();
+                dgvCustomerSearch.Visible = false;
+            }
+        }
+
+
 
         private void DgvProductSearch_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -469,6 +502,7 @@ namespace TechStore.UI
             return true;
         }
 
+       
 
         private void btnsave_Click(object sender, EventArgs e)
         {
@@ -492,15 +526,15 @@ namespace TechStore.UI
                     return;
                 }
 
-            if (dataGridView1.Rows.Count == 0 || dataGridView1.Rows.Cast<DataGridViewRow>().All(r => r.IsNewRow))
-            {
-                ShowMessage("Cart Empty", "Please add at least one product.");
-                return;
-            }
+                if (dataGridView1.Rows.Count == 0 || dataGridView1.Rows.Cast<DataGridViewRow>().All(r => r.IsNewRow))
+                {
+                    ShowMessage("Cart Empty", "Please add at least one product.");
+                    return;
+                }
 
 
-                // Now proceed to save bill + items
-                 bool saved = _saleBl.SaveCustomerBill(
+            // Now proceed to save bill + items
+            _lastBillId = _saleBl.SaveCustomerBill(
                     customerId,
                     DateTime.Now,
                     Convert.ToDecimal(finalpricetxt.Text),
@@ -508,65 +542,124 @@ namespace TechStore.UI
                     dataGridView1 // Send whole cart
                 );
 
-                if (saved)
+                if (_lastBillId > 0)
                 {
                         ShowMessage("Success", "Sale recorded successfully!");
                     // Clear form here
                      // 🔥 Check PDF print type
-                    //if (onlypdf.Checked)
-                    //{
-                    //    SavePdfInvoice();  // ← Generate and save PDF only
-                    //}
-                if (A4printer.Checked)
-                {
-                    decimal total = long.Parse(finalpricetxt.Text);
-                    decimal paid = long.Parse(txtfinalpaid.Text);
-                    //invoices.PrintInvoiceDirectly(dataGridView1, customerName, DateTime.Now, total, paid);
+                    if (onlypdf.Checked)
+                    {
+                        SavePdfInvoice();  // ← Generate and save PDF only
+                    }
+                    if (A4printer.Checked)
+                    {
+                        decimal total = long.Parse(finalpricetxt.Text);
+                        decimal paid = long.Parse(txtfinalpaid.Text);
+                        invoices.PrintInvoiceDirectly(dataGridView1, customerName, DateTime.Now, total, paid, _lastBillId);
+                    }
+                    if (thermalprint.Checked)
+                    {
+                        decimal total = long.Parse(finalpricetxt.Text);
+                        decimal paid = long.Parse(txtfinalpaid.Text);
+                        //invoices.PrintThermalReceipt(dataGridView1, customerName, total, paid, _lastBillId);
+                        SavehthermalPdfInvoice();
                 }
 
-            }
-            else
+                }
+
+                else
                 {
                     ShowMessage("Failure", "Error saving sale.");
                 }
         }
 
-        //private void SavePdfInvoice()
-        //{
-        //    using (SaveFileDialog saveDialog = new SaveFileDialog())
-        //    {
-        //        saveDialog.Filter = "PDF files (*.pdf)|*.pdf";
-        //        saveDialog.Title = "Save PDF Invoice";
-        //        saveDialog.FileName = $"Invoice_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
+        private void SavePdfInvoice()
+        {
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
+            {
+                saveDialog.Filter = "PDF files (*.pdf)|*.pdf";
+                saveDialog.Title = "Save PDF Invoice";
+                saveDialog.FileName = $"Invoice_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
 
-        //        if (saveDialog.ShowDialog() == DialogResult.OK)
-        //        {
-        //            try
-        //            {
-        //                invoices.CreateSaleInvoicePdf(
-        //                    dataGridView1,
-        //                    saveDialog.FileName,
-        //                    txtcustomer.Text.Trim(),
-        //                    DateTime.Now,
-        //                    Convert.ToDecimal(finalpricetxt.Text),
-        //                    Convert.ToDecimal(txtfinalpaid.Text)
-        //                );
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        invoices.CreateSaleInvoicePdf(
+                            dataGridView1,
+                            saveDialog.FileName,
+                            txtcustomer.Text.Trim(),
+                            DateTime.Now,
+                            Convert.ToDecimal(finalpricetxt.Text),
+                            Convert.ToDecimal(txtfinalpaid.Text),
+                            _lastBillId
+                        );
 
-        //                MessageBox.Show("PDF saved successfully!", "PDF", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                MessageBox.Show("Error generating PDF:\n" + ex.Message, "PDF Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //            }
-        //        }
-        //    }
-        //}
+                        MessageBox.Show("PDF saved successfully!", "PDF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error generating PDF:\n" + ex.Message, "PDF Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void SavehthermalPdfInvoice()
+        {
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
+            {
+                saveDialog.Filter = "PDF files (*.pdf)|*.pdf";
+                saveDialog.Title = "Save PDF Invoice";
+                saveDialog.FileName = $"Invoice_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
+
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        invoices.CreateThermalReceiptPdf(dataGridView1, saveDialog.FileName, txtcustomer.Text.Trim(), Convert.ToDecimal(finalpricetxt.Text), Convert.ToDecimal(txtfinalpaid.Text));
+
+                        MessageBox.Show("PDF saved successfully!", "PDF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error generating PDF:\n" + ex.Message, "PDF Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
 
 
         private void txtcustomer_TextChanged(object sender, EventArgs e)
         {
+            if(combocustomer.Text == "")
+            {
+                MessageBox.Show("Please enter the customer type first.");
+                return;
+            }
+            string keyword = txtcustomer.Text.Trim();
+            string type = combocustomer.SelectedItem?.ToString();
 
+            if (string.IsNullOrWhiteSpace(keyword) || string.IsNullOrWhiteSpace(type))
+            {
+                dgvCustomerSearch.Visible = false;
+                return;
+            }
+
+            DataTable customers = Customersaledl.GetCustomersByType(type); // ✅ Use your DL method
+
+            dgvCustomerSearch.Rows.Clear();
+            foreach (DataRow row in customers.Rows)
+            {
+                if (row["name"].ToString().ToLower().Contains(keyword.ToLower()))
+                {
+                    dgvCustomerSearch.Rows.Add(row["name"], row["address"]);
+                }
+            }
+
+            dgvCustomerSearch.Visible = dgvCustomerSearch.Rows.Count > 0;
         }
+
 
         private void txtwarranty_TextChanged(object sender, EventArgs e)
         {

@@ -57,7 +57,7 @@ namespace TechStore.BL.BL
             }
         }
 
-        public bool SaveCustomerBill(int customerId, DateTime saleDate, decimal total, decimal paid, DataGridView cart)
+        public int SaveCustomerBill(int customerId, DateTime saleDate, decimal total, decimal paid, DataGridView cart)
         {
             try
             {

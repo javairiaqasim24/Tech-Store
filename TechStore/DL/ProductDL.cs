@@ -186,4 +186,17 @@ public class ProductDL : IproductDl
             throw new Exception("Error adding category: " + ex.Message, ex);
         }
     }
+
+    public List<Products> GetProductsByName(string name)
+
+    {
+        try
+        {
+            return DatabaseHelper.Instance.GetProductsByName(name);
+        }
+        catch
+        {
+            throw new Exception();
+        }
+    }
 }

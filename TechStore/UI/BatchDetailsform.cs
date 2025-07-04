@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using KIMS;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,13 +17,16 @@ namespace TechStore.UI
     public partial class BatchDetailsform : Form
     {
         private readonly IBatchDetailsBL ibl;
+        private readonly ISupplierBillBl ibr;
         private int selectedBatchDetailId = -1;
 
-        public BatchDetailsform(IBatchDetailsBL ibl)
+        public BatchDetailsform(IBatchDetailsBL ibl,ISupplierBillBl ibr)
         {
             InitializeComponent();
             paneledit.Visible = false;
+            panelbill.Visible = false;
             this.ibl = ibl;
+            this.ibr = ibr;
             UIHelper.ApplyButtonStyles(dataGridView2);
         }
 
@@ -164,6 +168,92 @@ namespace TechStore.UI
             UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
             UIHelper.AddButtonColumn(dataGridView2, "Delete", "Delete", "Delete");
 
+        }
+
+        private void iconButton5_Click(object sender, EventArgs e)
+        {
+            string batchName = textBox2.Text.Trim(); // Textbox where batch name is shown
+            if (string.IsNullOrEmpty(batchName))
+            {
+                MessageBox.Show("Batch name is required.");
+                return;
+            }
+            string supplier = txtSupplierName.Text.Trim();
+            if (string.IsNullOrEmpty(supplier))
+            {
+                MessageBox.Show("Supplier Name is requires");
+                return;
+            }
+
+            if (!decimal.TryParse(txtPaid.Text.Trim(), out decimal paidAmount) || paidAmount < 0)
+            {
+                MessageBox.Show("Enter a valid paid amount.");
+                return;
+            }
+            decimal total = Convert.ToInt32(txtTotal.Text.Trim());
+            try
+            {
+                Supplierbill s = new Supplierbill(batchName, paidAmount, supplier, total);
+                bool success = ibr.updateamount(s);
+
+                if (success)
+                {
+                    MessageBox.Show("Bill updated successfully.");
+                    panelbill.Visible = false;
+                    load(); // refresh datagridview
+                }
+                else
+                {
+                    MessageBox.Show("Update failed. Please try again.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void iconButton8_Click(object sender, EventArgs e)
+        {
+
+            if (dataGridView2.CurrentRow == null)
+            {
+                MessageBox.Show("Please select a row first.");
+                return;
+            }
+
+            // Get batch_name from the selected row
+            string batchName = dataGridView2.CurrentRow.Cells["batch_name"].Value.ToString();
+
+            // Get bill info by batch name
+            var billData = ibr.getbills(batchName); // implement this method in BL/DL
+
+            if (billData != null)
+            {
+                txtSupplierName.Text = billData.supplier_name;
+                textBox2.Text = billData.batch_name;
+                txtTotal.Text = billData.total_price.ToString("0.00");
+                txtDate.Text = billData.date.ToShortDateString();
+                txtPaid.Text = billData.paid_price.ToString("0.00");
+
+                panelbill.Visible = true;
+                UIHelper.RoundPanelCorners(panelbill, 20);
+                UIHelper.ShowCenteredPanel(this, panelbill);
+            }
+            else
+            {
+                MessageBox.Show("No bill found for selected batch.");
+            }
+        }
+
+        private void pictureBox10_Click(object sender, EventArgs e)
+        {
+            load();
+        }
+
+        private void iconButton4_Click(object sender, EventArgs e)
+        {
+            panelbill.Visible = false;
         }
     }
 }

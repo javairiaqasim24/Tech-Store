@@ -15,6 +15,6 @@ namespace TechStore.Interfaces.BLInterfaces
         List<Customersale> SearchProductsByName(string name);
         int GetCustomerIdByNameAndType(string name, string type);
         int InsertNewWalkInCustomer(string name);
-        bool SaveCustomerBill(int customerId, DateTime saleDate, decimal total, decimal paid, DataGridView cart);
+        int SaveCustomerBill(int customerId, DateTime saleDate, decimal total, decimal paid, DataGridView cart);
     }
 }

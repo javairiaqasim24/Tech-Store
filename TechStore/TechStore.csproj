@@ -139,18 +139,23 @@
     <Compile Include="BL\BL\batchesBl.cs" />
     <Compile Include="BL\BL\CustomerBL.cs" />
     <Compile Include="BL\BL\CustomerSaleBL.cs" />
+    <Compile Include="Interfaces\BLInterfaces\IBatchesBl.cs" />
+    <Compile Include="Interfaces\DLInterfaces\IBatchesDl.cs" />
+    <Compile Include="Interfaces\BLInterfaces\ISupplierBillBl.cs" />
+    <Compile Include="BL\BL\SupplierBillBl.cs" />
+    <Compile Include="BL\Models\Supplierbill.cs" />
     <Compile Include="DL\invoices.cs" />
     <Compile Include="DL\purchaseDL.cs" />
+    <Compile Include="Interfaces\DLInterfaces\ISupplierbillDl.cs" />
+    <Compile Include="DL\SupplierbillDl.cs" />
     <Compile Include="Interfaces\BLInterfaces\IBatchDetailsBL.cs" />
     <Compile Include="BL\Models\Batchdetails.cs" />
     <Compile Include="DL\BatchdetailsDl.cs" />
     <Compile Include="Interfaces\DLInterfaces\IBatchdetailsDl.cs" />
-    <Compile Include="Interfaces\BLInterfaces\IBatchesBl.cs" />
     <Compile Include="BL\Models\Batches.cs" />
     <Compile Include="BL\Models\Customersale.cs" />
     <Compile Include="DL\BatchesDl.cs" />
     <Compile Include="DL\Customersaledl .cs" />
-    <Compile Include="Interfaces\DLInterfaces\IBatchesDl.cs" />
     <Compile Include="Interfaces\DLInterfaces\Icustomersaledl.cs" />
     <Compile Include="Interfaces\BLInterfaces\ICustomerSaleBL.cs" />
     <Compile Include="Interfaces\Ipersons.cs" />
@@ -216,6 +221,18 @@
     </Compile>
     <Compile Include="UI\BatchDetailsform.Designer.cs">
       <DependentUpon>BatchDetailsform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Batchesform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Batchesform.Designer.cs">
+      <DependentUpon>Batchesform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Billform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Billform.Designer.cs">
+      <DependentUpon>Billform.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Customerform.cs">
       <SubType>Form</SubType>
@@ -297,6 +314,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BatchDetailsform.resx">
       <DependentUpon>BatchDetailsform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Batchesform.resx">
+      <DependentUpon>Batchesform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Billform.resx">
+      <DependentUpon>Billform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Customerform.resx">
       <DependentUpon>Customerform.cs</DependentUpon>
