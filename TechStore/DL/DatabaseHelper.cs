@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Xml.Linq;
+using TechStore.BL.Models;
 
 namespace KIMS
 {
@@ -264,6 +265,38 @@ namespace KIMS
                 throw new Exception("Error retrieving batch ID: " + ex.Message);
             }
         }
+     internal List<Products> GetProductsByName(string name)
+        {
+            var products = new List<Products>();
+
+            using (var conn = DatabaseHelper.Instance.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT product_id, name, description FROM products WHERE name = @name";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@name", name);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            products.Add(new Products
+                            (
+                                 Convert.ToInt32(reader["product_id"]),
+                                 reader["name"].ToString(),
+                                 reader["description"].ToString()));
+                            
+                        }
+                    }
+                }
+            }
+
+            return products;
+        }
+
+
     }
 
 }

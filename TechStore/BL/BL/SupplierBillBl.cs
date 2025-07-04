@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,10 @@ namespace TechStore.BL.BL
         }
         public bool updateamount(Supplierbill b)
         {
+            if(b.total_price<b.paid_price)
+            {
+                throw new ArgumentException("Total price canot be less than paid amount");
+            }
             try
             {
                 return ibl.UpdateBill(b);
