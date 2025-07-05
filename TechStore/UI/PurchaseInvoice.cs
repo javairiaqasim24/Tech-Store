@@ -224,5 +224,26 @@ namespace TechStore.UI
                 MessageBox.Show("Please select a row to delete.");
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Validate data
+            if (dgvInvoice.Rows.Count == 0)
+            {
+                MessageBox.Show("No items to print in invoice.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Get Supplier Name
+            string supplierName = cmbSupplierName.SelectedIndex > 0
+                ? cmbSupplierName.Text
+                : "Unknown Supplier";
+
+            // Get Purchase Date
+            DateTime purchaseDate = dtpPurchaseDate.Value;
+
+            // Call the print function
+            purchaseDL.PrintPurchaseInvoiceDirectly(dgvInvoice, supplierName, purchaseDate);
+        }
     }
 }
