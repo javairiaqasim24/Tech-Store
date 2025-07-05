@@ -156,6 +156,7 @@
     <Compile Include="BL\Models\Batches\Batches.cs" />
     <Compile Include="BL\Models\Inventory.cs" />
     <Compile Include="BL\Models\inventorylog.cs" />
+    <Compile Include="BL\Models\TemporaryInvoice.cs" />
     <Compile Include="DL\BatchFormPersistence.cs" />
     <Compile Include="DL\BillingRecordsOverviewDL.cs" />
     <Compile Include="DL\CustomerBill_SpecificProductsDL.cs" />
