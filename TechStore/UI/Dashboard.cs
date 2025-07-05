@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TechStore.BL.Models;
 using TechStore.UI;
 
 namespace TechStore
@@ -43,7 +44,7 @@ namespace TechStore
             if (activeForm != null)
             {
                 await FadeOutFormAsync(activeForm);
-                panel2.Controls.Remove(activeForm);
+                panelinventory.Controls.Remove(activeForm);
                 activeForm.Dispose();
             }
 
@@ -52,7 +53,7 @@ namespace TechStore
             newForm.FormBorderStyle = FormBorderStyle.None;
             newForm.Dock = DockStyle.Fill;
             newForm.Opacity = 0;
-            panel2.Controls.Add(newForm);
+            panel10.Controls.Add(newForm);
             newForm.Show();
 
             await FadeInFormAsync(newForm);
@@ -110,7 +111,23 @@ namespace TechStore
 
             LoadFormIntoPanel(new HomeContentform());
         }
+        private void CollapsePanel(Panel panel, int collapsedHeight)
+        {
+            panel.Height = collapsedHeight;
+        }
 
+        private void ExpandPanel(Panel panel, int expandedHeight)
+        {
+            panel.Height = expandedHeight;
+        }
+
+        private void TogglePanel(Panel panel, int collapsedHeight, int expandedHeight)
+        {
+            if (panel.Height == expandedHeight)
+                CollapsePanel(panel, collapsedHeight);
+            else
+                ExpandPanel(panel, expandedHeight);
+        }
         private void Dashboard_Load(object sender, EventArgs e)
         {
             activebutton(btndashboard, Color.FromArgb(0, 126, 249));
@@ -193,6 +210,86 @@ namespace TechStore
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnrecord_Click(object sender, EventArgs e)
+        {
+            var f=Program.ServiceProvider.GetRequiredService<Inventorylogform>();
+            LoadFormIntoPanel(f);
+        }
+
+        private void btninventory_Click_1(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<Inventoryform>();
+            LoadFormIntoPanel(f);
+        }
+
+        private void btnproducts_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<productsform>();
+            LoadFormIntoPanel(f);
+        }
+
+        private void btncategories_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<Addcategoryform>();
+            f.ShowDialog(this);
+        }
+
+        private void btnbatches_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<Batchesform>();
+            LoadFormIntoPanel(f);
+        }
+
+        private void iconButton10_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<BatchDetailsform>();
+            LoadFormIntoPanel(f);
+        }
+
+        private void iconButton9_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<Inventoryform>();
+            f.ShowDialog(this);
+        }
+
+        private void btnsale_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<Customersale>();
+            LoadFormIntoPanel(f);
+        }
+        private void iconPictureBox2_Click(object sender, EventArgs e)
+        {
+            TogglePanel(panelbatch, 60, 183);
+
+        }
+
+        private void iconPictureBox4_Click(object sender, EventArgs e)
+        {
+            TogglePanel(panelcust, 60, 251);
+        }
+
+        private void iconPictureBox5_Click(object sender, EventArgs e)
+        {
+            TogglePanel(panelsupp, 60, 251);
+
+        }
+
+        private void iconPictureBox6_Click(object sender, EventArgs e)
+        {
+            TogglePanel(panelreturn, 60, 182);
+        }
+
+        private void iconPictureBox1_Click(object sender, EventArgs e)
+        {
+            TogglePanel(panelinventory, 60, 251);
+        }
+
+        private void btnbatches_Click_1(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<Batchesform>();
+            LoadFormIntoPanel(f);
         }
     }
 }
