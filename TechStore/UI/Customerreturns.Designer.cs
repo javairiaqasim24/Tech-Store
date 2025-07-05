@@ -56,6 +56,7 @@
             this.idsearchtxt = new System.Windows.Forms.TextBox();
             this.toplbl = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbActionTaken = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panelreturn.SuspendLayout();
@@ -97,6 +98,7 @@
             // panelreturn
             // 
             this.panelreturn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(200)))), ((int)(((byte)(254)))));
+            this.panelreturn.Controls.Add(this.cbActionTaken);
             this.panelreturn.Controls.Add(this.label6);
             this.panelreturn.Controls.Add(this.txtreturnedamount);
             this.panelreturn.Controls.Add(this.label5);
@@ -242,7 +244,6 @@
             this.txtserialmanually.Name = "txtserialmanually";
             this.txtserialmanually.Size = new System.Drawing.Size(352, 43);
             this.txtserialmanually.TabIndex = 152;
-            this.txtserialmanually.ReadOnly = false;
             this.txtserialmanually.TextChanged += new System.EventHandler(this.txtserialmanually_TextChanged_1);
             // 
             // txtproduct
@@ -356,7 +357,6 @@
             this.txtscamserial.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtscamserial.Multiline = true;
             this.txtscamserial.Name = "txtscamserial";
-            this.txtscamserial.ReadOnly = false;
             this.txtscamserial.Size = new System.Drawing.Size(352, 43);
             this.txtscamserial.TabIndex = 131;
             this.txtscamserial.TextChanged += new System.EventHandler(this.txtscamserial_TextChanged_1);
@@ -455,6 +455,14 @@
             this.panel2.Size = new System.Drawing.Size(1863, 89);
             this.panel2.TabIndex = 17;
             // 
+            // cbActionTaken
+            // 
+            this.cbActionTaken.FormattingEnabled = true;
+            this.cbActionTaken.Location = new System.Drawing.Point(594, 298);
+            this.cbActionTaken.Name = "cbActionTaken";
+            this.cbActionTaken.Size = new System.Drawing.Size(121, 28);
+            this.cbActionTaken.TabIndex = 162;
+            // 
             // Customerreturns
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -504,5 +512,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtreturnedamount;
+        private System.Windows.Forms.ComboBox cbActionTaken;
     }
 }

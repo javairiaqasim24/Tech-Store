@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TechStore.DAL;
+using TechStore.DL;
 
 namespace TechStore.UI
 {
     public partial class Customerreturns : Form
     {
+        private int _currentBillId;
+
         public Customerreturns()
         {
             InitializeComponent();
@@ -45,6 +47,15 @@ namespace TechStore.UI
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
+                HeaderText = "SKU",
+                DataPropertyName = "sku",   // Keep this as the column name from SQL
+                Name = "sku",
+                Visible = false // 👈 hides it from the user
+            });
+
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
                 HeaderText = "Product",
                 DataPropertyName = "Product",
                 Name = "Product",
@@ -53,9 +64,9 @@ namespace TechStore.UI
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
-                HeaderText = "SKU",
-                DataPropertyName = "sku",
-                Name = "sku",
+                HeaderText = "Descripton",
+                DataPropertyName = "description",
+                Name = "description",
                 ReadOnly = true
             });
 
@@ -187,12 +198,12 @@ namespace TechStore.UI
                 MessageBox.Show("Please select a product row to return.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
+            
             DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
 
             // Set values in the return panel
             txtproduct.Text = selectedRow.Cells["Product"].Value?.ToString();
-            txtdescription.Text = selectedRow.Cells["sku"].Value?.ToString(); // SKU is used as Description for now
+            txtdescription.Text = selectedRow.Cells["description"].Value?.ToString(); // SKU is used as Description for now
             txtquantity.Text = "";
             txtscamserial.Text = "";
             txtserialmanually.Text = "";
@@ -203,7 +214,10 @@ namespace TechStore.UI
             panelreturn.Tag = new ReturnMetadata
             {
                 ExpectedSKU = selectedRow.Cells["sku"].Value?.ToString(),
-                MaxQuantity = Convert.ToInt32(selectedRow.Cells["quantity"].Value)
+                MaxQuantity = Convert.ToInt32(selectedRow.Cells["quantity"].Value),
+
+                BillId = _currentBillId,  // ✅ Use class-level variable                                          // 💥 This was missing
+                ProductId = CustomerReturnDL.GetProductIdByName(selectedRow.Cells["Product"].Value?.ToString()) // You must fetch this too
             };
 
             panelreturn.Visible = true;
@@ -219,7 +233,22 @@ namespace TechStore.UI
                 return;
             }
 
-            // 1. Quantity check
+            string scannedOrManualSerial = string.IsNullOrWhiteSpace(txtscamserial.Text)
+                ? txtserialmanually.Text.Trim()
+                : txtscamserial.Text.Trim();
+
+            string[] enteredSkus = scannedOrManualSerial.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                                                         .Select(s => s.Trim()).ToArray();
+
+            string[] expectedSkus = metadata.ExpectedSKU.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                                                         .Select(s => s.Trim()).ToArray();
+
+            if (enteredSkus.Any(sku => !expectedSkus.Contains(sku)))
+            {
+                MessageBox.Show("One or more entered serial numbers do not match the original sale.", "Serial Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (!int.TryParse(txtquantity.Text.Trim(), out int returnQty) || returnQty <= 0)
             {
                 MessageBox.Show("Enter a valid return quantity.", "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -232,51 +261,53 @@ namespace TechStore.UI
                 return;
             }
 
-            // 2. Get combined serial input
-            string enteredSerials = string.IsNullOrWhiteSpace(txtscamserial.Text)
-                ? txtserialmanually.Text.Trim()
-                : txtscamserial.Text.Trim();
-
-            var enteredSerialList = enteredSerials
-                .Split(',')
-                .Select(s => s.Trim())
-                .Where(s => !string.IsNullOrWhiteSpace(s))
-                .ToList();
-
-            if (enteredSerialList.Count != returnQty)
+            if (enteredSkus.Length != returnQty)
             {
-                MessageBox.Show($"You must enter exactly {returnQty} serial number(s).", "Serial Count Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Number of entered serials must match the return quantity.", "Serial Count Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 3. Check for duplicates in entered serials
-            if (enteredSerialList.Count != enteredSerialList.Distinct().Count())
+            int? returnedAmount = null;
+            if (!string.IsNullOrWhiteSpace(txtreturnedamount.Text) &&
+                int.TryParse(txtreturnedamount.Text.Trim(), out int amt))
             {
-                MessageBox.Show("Duplicate serial numbers entered.", "Serial Duplicate", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                returnedAmount = amt;
+            }
+
+            string productName = txtproduct.Text.Trim();
+            string productDesc = txtdescription.Text.Trim();
+
+            int? productId = CustomerReturnDL.GetProductId(productName, productDesc);
+
+            if (!productId.HasValue)
+            {
+                MessageBox.Show("Product ID not found. Cannot save return.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // 4. Compare with expected SKUs
-            var validSKUList = metadata.ExpectedSKU
-                .Split(',')
-                .Select(s => s.Trim())
-                .ToList();
-
-            var invalidSerials = enteredSerialList.Except(validSKUList).ToList();
-
-            if (invalidSerials.Any())
+            try
             {
-                MessageBox.Show("Some serial numbers are not part of the original sale:\n" + string.Join(", ", invalidSerials),
-                    "Invalid Serials", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                CustomerReturnDL.SaveReturnToDatabase(
+                    productId.Value,
+                    metadata.BillId,
+                    DateTime.Now.Date,
+                    txtreason.Text.Trim(),
+                    returnQty,
+                    cbActionTaken.SelectedItem?.ToString() ?? "Refunded",
+                    returnedAmount,
+                    string.Join(",", enteredSkus)
+                );
+
+                MessageBox.Show("Return saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                panelreturn.Visible = false;
+                ClearReturnPanel();
             }
-
-            // ✅ All validation passed
-            MessageBox.Show("Return validated successfully. Proceed with DB logic here.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            panelreturn.Visible = false;
-            ClearReturnPanel();
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to save return: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void ClearReturnPanel()
         {
@@ -290,11 +321,14 @@ namespace TechStore.UI
             panelreturn.Tag = null;
         }
 
-        private class ReturnMetadata
+        public class ReturnMetadata
         {
-            public string ExpectedSKU { get; set; }
-            public int MaxQuantity { get; set; }
+            public int BillId { get; set; }
+            public int ProductId { get; set; }
+            public string ExpectedSKU { get; set; } // original comma-separated serials
+            public int MaxQuantity { get; set; }    // sold quantity
         }
+
 
 
         private void btncancle1_Click(object sender, EventArgs e)

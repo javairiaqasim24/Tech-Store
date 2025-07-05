@@ -85,6 +85,7 @@ namespace TechStore
             services.AddTransient<BillingRecordsOverviewDL>();
             services.AddTransient<Inventorylogform>();
             services.AddTransient<PurchaseInvoice>();
+            services.AddTransient<Customerreturns>();
 
 
         }
