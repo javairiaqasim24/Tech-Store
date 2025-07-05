@@ -30,7 +30,7 @@ namespace TechStore
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var mainForm = ServiceProvider.GetRequiredService<Customerreturns>();
+            var mainForm = ServiceProvider.GetRequiredService<SupplierBillingRecordsOverview>();
             Application.Run(mainForm);
         }
         public static void configureServices(IServiceCollection services)
@@ -43,12 +43,12 @@ namespace TechStore
             services.AddScoped<IBatchesDl, BatchesDl>();
             services.AddScoped<IBatchdetailsDl, BatchdetailsDl>();
             services.AddScoped<ISupplierbillDl, SupplierbillDl>();
-            services.AddScoped<IInventorylogDl,InventorylogDl>();
+            services.AddScoped<IInventorylogDl, InventorylogDl>();
 
 
             //BL
             services.AddScoped<IproductBl, ProductBL>();
-            services.AddScoped<ISupplierBL, SupplierBl>();
+            //services.AddScoped<ISupplierBL, SupplierBl>();
             services.AddScoped<ICustomerSaleBL, CustomerSaleBL>();
             services.AddScoped<ICustomerBL, CustomerBL>();
             services.AddScoped<IBatchesBl, BatchesBl>();
@@ -82,6 +82,8 @@ namespace TechStore
             services.AddTransient<BillingRecordsOverviewDL>();
             services.AddTransient<Inventorylogform>();
             services.AddTransient<Customerreturns>();
+            services.AddTransient<SupplierBillingRecordsOverview>();
+            services.AddTransient<SupplierBillDetails>();
 
 
         }

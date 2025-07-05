@@ -7,7 +7,7 @@ using TechStore.Interfaces.DLInterfaces;
 
 namespace TechStore.BL.BL
 {
-    public class SupplierBl : ISupplierBL
+    public class SupplierBl 
     {
         private readonly IsupplierDl _supplierDL;
 
