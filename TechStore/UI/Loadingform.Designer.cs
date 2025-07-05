@@ -97,7 +97,7 @@
             this.panelmenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelmenu.Location = new System.Drawing.Point(0, 0);
             this.panelmenu.Name = "panelmenu";
-            this.panelmenu.Size = new System.Drawing.Size(270, 1175);
+            this.panelmenu.Size = new System.Drawing.Size(270, 1055);
             this.panelmenu.TabIndex = 11;
             // 
             // pictureBox1
@@ -857,7 +857,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1393, 1175);
+            this.ClientSize = new System.Drawing.Size(1393, 1055);
             this.Controls.Add(this.panelmenu);
             this.Name = "Loadingform";
             this.Text = "Loadingform";

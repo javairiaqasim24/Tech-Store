@@ -40,7 +40,7 @@
             this.iconButton2 = new FontAwesome.Sharp.IconButton();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.btnedit = new FontAwesome.Sharp.IconButton();
-            this.date = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.dtpPurchaseDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbSupplierName = new System.Windows.Forms.ComboBox();
             this.txtQuantity = new System.Windows.Forms.TextBox();
@@ -48,6 +48,7 @@
             this.btndelete = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.toplbl = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoice)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -120,10 +121,10 @@
             // 
             this.btnsave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnsave.Font = new System.Drawing.Font("Palatino Linotype", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnsave.Location = new System.Drawing.Point(494, 684);
+            this.btnsave.Location = new System.Drawing.Point(374, 689);
             this.btnsave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnsave.Name = "btnsave";
-            this.btnsave.Size = new System.Drawing.Size(134, 50);
+            this.btnsave.Size = new System.Drawing.Size(185, 50);
             this.btnsave.TabIndex = 135;
             this.btnsave.Text = "Save PDF";
             this.btnsave.UseVisualStyleBackColor = true;
@@ -147,10 +148,11 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.SeaShell;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.iconButton2);
             this.panel1.Controls.Add(this.iconButton1);
             this.panel1.Controls.Add(this.btnedit);
-            this.panel1.Controls.Add(this.date);
+            this.panel1.Controls.Add(this.dtpPurchaseDate);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.cmbSupplierName);
             this.panel1.Controls.Add(this.label8);
@@ -245,21 +247,22 @@
             this.btnedit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnedit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnedit.UseVisualStyleBackColor = false;
+            this.btnedit.Click += new System.EventHandler(this.btnedit_Click);
             // 
-            // date
+            // dtpPurchaseDate
             // 
-            this.date.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.date.Checked = true;
-            this.date.FillColor = System.Drawing.Color.White;
-            this.date.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.date.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.date.Location = new System.Drawing.Point(786, 626);
-            this.date.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.date.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.date.Name = "date";
-            this.date.Size = new System.Drawing.Size(336, 36);
-            this.date.TabIndex = 164;
-            this.date.Value = new System.DateTime(2025, 7, 4, 2, 11, 10, 2);
+            this.dtpPurchaseDate.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.dtpPurchaseDate.Checked = true;
+            this.dtpPurchaseDate.FillColor = System.Drawing.Color.White;
+            this.dtpPurchaseDate.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtpPurchaseDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtpPurchaseDate.Location = new System.Drawing.Point(786, 626);
+            this.dtpPurchaseDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpPurchaseDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpPurchaseDate.Name = "dtpPurchaseDate";
+            this.dtpPurchaseDate.Size = new System.Drawing.Size(336, 36);
+            this.dtpPurchaseDate.TabIndex = 164;
+            this.dtpPurchaseDate.Value = new System.DateTime(2025, 7, 4, 2, 11, 10, 2);
             // 
             // label2
             // 
@@ -287,6 +290,7 @@
             this.cmbSupplierName.Name = "cmbSupplierName";
             this.cmbSupplierName.Size = new System.Drawing.Size(287, 30);
             this.cmbSupplierName.TabIndex = 162;
+            this.cmbSupplierName.SelectedIndexChanged += new System.EventHandler(this.cmbSupplierName_SelectedIndexChanged);
             // 
             // txtQuantity
             // 
@@ -348,6 +352,7 @@
             this.btndelete.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btndelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btndelete.UseVisualStyleBackColor = false;
+            this.btndelete.Click += new System.EventHandler(this.btndelete_Click);
             // 
             // panel2
             // 
@@ -371,6 +376,19 @@
             this.toplbl.TabIndex = 6;
             this.toplbl.Text = "Purchase Invoice";
             this.toplbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Font = new System.Drawing.Font("Palatino Linotype", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(673, 689);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(203, 50);
+            this.button1.TabIndex = 169;
+            this.button1.Text = "Print Invoice";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // PurchaseInvoice
             // 
@@ -407,9 +425,10 @@
         private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbSupplierName;
-        private Guna.UI2.WinForms.Guna2DateTimePicker date;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpPurchaseDate;
         private FontAwesome.Sharp.IconButton btnedit;
         private FontAwesome.Sharp.IconButton iconButton1;
         private FontAwesome.Sharp.IconButton iconButton2;
+        private System.Windows.Forms.Button button1;
     }
 }

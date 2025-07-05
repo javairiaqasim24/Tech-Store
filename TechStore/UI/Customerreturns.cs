@@ -129,8 +129,19 @@ namespace TechStore.UI
             {
                 try
                 {
-                    InitializeGrid(); // Setup columns
+                    InitializeGrid(); // Always initialize before setting data
+
                     DataTable billDetails = CustomerReturnDL.GetBillDetailsById(billId);
+
+                    if (billDetails == null || billDetails.Rows.Count == 0)
+                    {
+                        MessageBox.Show($"No records found for Bill ID: {billId}.", "No Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dataGridView1.DataSource = null;
+                        _currentBillId = 0; // Reset if not found
+                        return;
+                    }
+
+                    _currentBillId = billId;  // ✅ Save bill ID for later use
                     dataGridView1.DataSource = billDetails;
                 }
                 catch (Exception ex)
@@ -140,11 +151,12 @@ namespace TechStore.UI
             }
             else
             {
-                MessageBox.Show("Please enter a valid Bill ID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please enter a valid numeric Bill ID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-              
+
+
 
         private void panelreturn_Paint(object sender, PaintEventArgs e)
         {
