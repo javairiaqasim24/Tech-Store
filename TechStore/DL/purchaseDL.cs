@@ -15,12 +15,13 @@ using System.Drawing.Printing;
 using System.IO;
 
 using System.Xml.Linq;
+using TechStore.Interfaces.DLInterfaces;
 
 namespace TechStore.DL
 {
-    internal class purchaseDL
+    internal class purchaseDL :IPurchaseDl
     {
-        public static DataTable GetProducts()
+        public DataTable GetProducts()
         {
             using (var conn = DatabaseHelper.Instance.GetConnection())
             {
@@ -36,23 +37,8 @@ namespace TechStore.DL
             }
         }
 
-        public static DataTable GetSuppliers()
-        {
-            using (var conn = DatabaseHelper.Instance.GetConnection())
-            {
-                string query = "SELECT name FROM suppliers";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    conn.Open();
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    return dt;
-                }
-            }
-        }
 
-        public static void CreateSaleInvoicePdf(DataGridView cart, string filePath, string Name, DateTime saleDate)
+        public void CreateSaleInvoicePdf(DataGridView cart, string filePath, string Name, DateTime saleDate)
         {
 
             QuestPDF.Settings.License = LicenseType.Community;

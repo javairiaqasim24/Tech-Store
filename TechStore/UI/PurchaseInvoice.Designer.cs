@@ -245,6 +245,7 @@
             this.btnedit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnedit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnedit.UseVisualStyleBackColor = false;
+            this.btnedit.Click += new System.EventHandler(this.btnedit_Click);
             // 
             // date
             // 
@@ -287,6 +288,7 @@
             this.cmbSupplierName.Name = "cmbSupplierName";
             this.cmbSupplierName.Size = new System.Drawing.Size(287, 30);
             this.cmbSupplierName.TabIndex = 162;
+            this.cmbSupplierName.SelectedIndexChanged += new System.EventHandler(this.cmbSupplierName_SelectedIndexChanged);
             // 
             // txtQuantity
             // 
@@ -348,6 +350,7 @@
             this.btndelete.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btndelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btndelete.UseVisualStyleBackColor = false;
+            this.btndelete.Click += new System.EventHandler(this.btndelete_Click);
             // 
             // panel2
             // 
