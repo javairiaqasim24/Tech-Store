@@ -303,8 +303,8 @@ GROUP BY
                     {
                         // 1. Insert bill
                         string billQuery = @"INSERT INTO customerbills (CustomerID, SaleDate, total_price, paid_amount)
-                                     VALUES (@cust, @date, @total, @paid);
-                                     SELECT LAST_INSERT_ID();";
+                              VALUES (@cust, @date, @total, @paid);
+                              SELECT LAST_INSERT_ID();";
 
                         int billId;
                         using (var cmd = new MySqlCommand(billQuery, conn, tran))
@@ -364,10 +364,10 @@ GROUP BY
                             if (string.IsNullOrEmpty(productId))
                                 continue;
 
-                            // Step 4: Insert into bill_details
+                            // Step 4: Insert into bill_details (now includes SKU)
                             string insertDetail = @"INSERT INTO customer_bill_details 
-                                            (Bill_id, product_id, quantity, discount, status, warranty, warranty_from)
-                                            VALUES (@bill, @pid, @qty, @disc, 'bill', @warranty, @warrantyFrom);";
+                                     (Bill_id, product_id, quantity, discount, status, warranty, warranty_from, sku)
+                                     VALUES (@bill, @pid, @qty, @disc, 'bill', @warranty, @warrantyFrom, @sku);";
 
                             using (var cmd = new MySqlCommand(insertDetail, conn, tran))
                             {
@@ -385,6 +385,9 @@ GROUP BY
                                 cmd.Parameters.AddWithValue("@warranty", string.IsNullOrWhiteSpace(warranty) ? DBNull.Value : (object)warranty);
                                 cmd.Parameters.AddWithValue("@warrantyFrom", saleDate);
 
+                                // ✅ Add SKU as-is (can be multiple, comma-separated)
+                                cmd.Parameters.AddWithValue("@sku", string.IsNullOrWhiteSpace(sku) ? DBNull.Value : (object)sku);
+
                                 cmd.ExecuteNonQuery();
                             }
                         }
@@ -401,6 +404,7 @@ GROUP BY
                 }
             }
         }
+
 
 
 

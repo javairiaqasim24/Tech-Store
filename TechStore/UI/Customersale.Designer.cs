@@ -81,6 +81,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1583, 89);
             this.panel2.TabIndex = 15;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // toplbl
             // 
@@ -94,6 +95,7 @@
             this.toplbl.TabIndex = 6;
             this.toplbl.Text = "Customer Sale";
             this.toplbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toplbl.Click += new System.EventHandler(this.toplbl_Click);
             // 
             // panel1
             // 
@@ -139,6 +141,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1583, 953);
             this.panel1.TabIndex = 16;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_1);
             // 
             // label1
             // 
@@ -149,6 +152,7 @@
             this.label1.Size = new System.Drawing.Size(138, 29);
             this.label1.TabIndex = 163;
             this.label1.Text = "Apply barcode";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtserial
             // 
@@ -170,6 +174,7 @@
             this.label9.Size = new System.Drawing.Size(87, 24);
             this.label9.TabIndex = 161;
             this.label9.Text = "Total Price";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // label8
             // 
@@ -180,6 +185,7 @@
             this.label8.Size = new System.Drawing.Size(101, 24);
             this.label8.TabIndex = 160;
             this.label8.Text = "Specification";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label7
             // 
@@ -190,6 +196,7 @@
             this.label7.Size = new System.Drawing.Size(80, 24);
             this.label7.TabIndex = 159;
             this.label7.Text = "Unit Price";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label6
             // 
@@ -200,6 +207,7 @@
             this.label6.Size = new System.Drawing.Size(72, 24);
             this.label6.TabIndex = 158;
             this.label6.Text = "Quantity";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label5
             // 
@@ -210,6 +218,7 @@
             this.label5.Size = new System.Drawing.Size(73, 24);
             this.label5.TabIndex = 157;
             this.label5.Text = "Discount";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label4
             // 
@@ -220,6 +229,7 @@
             this.label4.Size = new System.Drawing.Size(113, 24);
             this.label4.TabIndex = 156;
             this.label4.Text = "Product name";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // quantity
             // 
@@ -299,6 +309,7 @@
             this.label3.Size = new System.Drawing.Size(137, 29);
             this.label3.TabIndex = 149;
             this.label3.Text = "Total Discount";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // finaldiscounttxt
             // 
@@ -324,6 +335,7 @@
             this.label2.Size = new System.Drawing.Size(126, 29);
             this.label2.TabIndex = 147;
             this.label2.Text = "Total amount";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // finalpricetxt
             // 
@@ -346,6 +358,7 @@
             this.label12.Size = new System.Drawing.Size(74, 24);
             this.label12.TabIndex = 144;
             this.label12.Text = "warranty";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // txtwarranty
             // 
@@ -370,6 +383,7 @@
             this.label10.Size = new System.Drawing.Size(122, 29);
             this.label10.TabIndex = 143;
             this.label10.Text = "Paid amount";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // txtfinalpaid
             // 
@@ -436,6 +450,7 @@
             this.btnadcust.Text = "add";
             this.btnadcust.UseVisualStyleBackColor = true;
             this.btnadcust.TextChanged += new System.EventHandler(this.btnadcust_Click);
+            this.btnadcust.Click += new System.EventHandler(this.btnadcust_Click_1);
             // 
             // label11
             // 
@@ -449,6 +464,7 @@
             this.label11.Size = new System.Drawing.Size(173, 29);
             this.label11.TabIndex = 137;
             this.label11.Text = "Name of customer";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // txtcustomer
             // 
@@ -488,6 +504,7 @@
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.Size = new System.Drawing.Size(1520, 311);
             this.dataGridView1.TabIndex = 134;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
             // 
             // button9
             // 
