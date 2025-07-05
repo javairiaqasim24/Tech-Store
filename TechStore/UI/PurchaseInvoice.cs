@@ -286,7 +286,7 @@ namespace TechStore.UI
                 }
             }
             DateTime purchaseDate = dtpPurchaseDate.Value;
-            purchaseDL.PrintPurchaseInvoiceDirectly(dgvInvoice, supplierName, purchaseDate);
+            p.PrintPurchaseInvoiceDirectly(dgvInvoice, supplierName, purchaseDate);
         }
 
         private void SaveTempInvoice()
@@ -325,6 +325,16 @@ namespace TechStore.UI
             {
                 dgvInvoice.Rows.Add(item.ProductName, item.Description, item.Quantity);
             }
+        }
+
+        private void PurchaseInvoice_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveTempInvoice();
+        }
+
+        private void PurchaseInvoice_Load(object sender, EventArgs e)
+        {
+            LoadTempInvoice();
         }
     }
 }
