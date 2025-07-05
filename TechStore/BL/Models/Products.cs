@@ -47,5 +47,10 @@ namespace TechStore.BL.Models
             this.id = id;
             this.name = name;
         }
+        public Products(string name,string description)
+        {
+            this.name=name;
+            this.description = description;
+        }
     }
 }
