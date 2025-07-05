@@ -30,7 +30,7 @@ namespace TechStore
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var mainForm = ServiceProvider.GetRequiredService<Dashboard>();
+            var mainForm = ServiceProvider.GetRequiredService<Customerreturns>();
             Application.Run(mainForm);
         }
         public static void configureServices(IServiceCollection services)
@@ -81,6 +81,7 @@ namespace TechStore
             services.AddTransient<BillingRecordsOverviewBL>();
             services.AddTransient<BillingRecordsOverviewDL>();
             services.AddTransient<Inventorylogform>();
+            services.AddTransient<Customerreturns>();
 
 
         }

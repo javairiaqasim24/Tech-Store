@@ -156,6 +156,7 @@
     <Compile Include="DL\BatchFormPersistence.cs" />
     <Compile Include="DL\BillingRecordsOverviewDL.cs" />
     <Compile Include="DL\CustomerBill_SpecificProductsDL.cs" />
+    <Compile Include="DL\CustomerReturnDL.cs" />
     <Compile Include="Interfaces\BLInterfaces\IInventorylogBl.cs" />
     <Compile Include="Interfaces\DLInterfaces\IInventorylogDl.cs" />
     <Compile Include="DL\InventoryDl.cs" />
@@ -267,6 +268,12 @@
     <Compile Include="UI\Customerform.Designer.cs">
       <DependentUpon>Customerform.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Customerreturns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Customerreturns.Designer.cs">
+      <DependentUpon>Customerreturns.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Customersale.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -371,6 +378,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Customerform.resx">
       <DependentUpon>Customerform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Customerreturns.resx">
+      <DependentUpon>Customerreturns.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Customersale.resx">
       <DependentUpon>Customersale.cs</DependentUpon>
