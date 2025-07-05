@@ -12,7 +12,7 @@ using TechStore.Interfaces.DLInterfaces;
 using TechStore.UI;
 using TechStore;
 using TechStore.BL;
-using TechStore.DL;
+using TechStore.BL.Models;
 namespace TechStore
 {
     internal static class Program
@@ -43,6 +43,8 @@ namespace TechStore
             services.AddScoped<IBatchesDl, BatchesDl>();
             services.AddScoped<IBatchdetailsDl, BatchdetailsDl>();
             services.AddScoped<ISupplierbillDl, SupplierbillDl>();
+            services.AddScoped<IInventorylogDl,InventorylogDl>();
+
 
             //BL
             services.AddScoped<IproductBl, ProductBL>();
@@ -52,6 +54,11 @@ namespace TechStore
             services.AddScoped<IBatchesBl, BatchesBl>();
             services.AddScoped<IBatchDetailsBL, BatchDetailsBL>();
             services.AddScoped<ISupplierBillBl, SupplierBillBl>();
+            services.AddScoped<IInventorylogBl, InventorylogBl>();
+
+
+
+
 
             //forms
             services.AddTransient<HomeContentform>();
@@ -70,13 +77,10 @@ namespace TechStore
             services.AddTransient<BatchDetailsform>();
             services.AddTransient<AddbatchDetailsform>();
             services.AddTransient<Batchesform>();
-
-
             services.AddTransient<BillingRecordsOverview>();
-
-            //Register your business and data layer services
-services.AddTransient<BillingRecordsOverviewBL>();
+            services.AddTransient<BillingRecordsOverviewBL>();
             services.AddTransient<BillingRecordsOverviewDL>();
+            services.AddTransient<Inventorylogform>();
 
 
         }

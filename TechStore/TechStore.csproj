@@ -148,13 +148,18 @@
     <Compile Include="BL\BL\CustomerBL.cs" />
     <Compile Include="BL\BL\CustomerSaleBL.cs" />
     <Compile Include="BL\BL\InventoryBl.cs" />
+    <Compile Include="BL\BL\InventorylogBl.cs" />
     <Compile Include="BL\Models\Batches\Batchdetails.cs" />
     <Compile Include="BL\Models\Batches\Batches.cs" />
     <Compile Include="BL\Models\Inventory.cs" />
+    <Compile Include="BL\Models\inventorylog.cs" />
     <Compile Include="DL\BatchFormPersistence.cs" />
     <Compile Include="DL\BillingRecordsOverviewDL.cs" />
     <Compile Include="DL\CustomerBill_SpecificProductsDL.cs" />
+    <Compile Include="Interfaces\BLInterfaces\IInventorylogBl.cs" />
+    <Compile Include="Interfaces\DLInterfaces\IInventorylogDl.cs" />
     <Compile Include="DL\InventoryDl.cs" />
+    <Compile Include="DL\InventorylogDl.cs" />
     <Compile Include="Interfaces\BLInterfaces\IBatchesBl.cs" />
     <Compile Include="Interfaces\BLInterfaces\IInventoryBl.cs" />
     <Compile Include="Interfaces\DLInterfaces\IBatchesDl.cs" />
@@ -294,6 +299,12 @@
     <Compile Include="UI\Inventoryform.Designer.cs">
       <DependentUpon>Inventoryform.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Inventorylogform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Inventorylogform.Designer.cs">
+      <DependentUpon>Inventorylogform.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Loadingform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -380,6 +391,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Inventoryform.resx">
       <DependentUpon>Inventoryform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Inventorylogform.resx">
+      <DependentUpon>Inventorylogform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Loadingform.resx">
       <DependentUpon>Loadingform.cs</DependentUpon>
