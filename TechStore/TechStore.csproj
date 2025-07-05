@@ -345,19 +345,22 @@
     <Compile Include="UI\PurchaseInvoice.Designer.cs">
       <DependentUpon>PurchaseInvoice.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Supplier returnsform.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Supplier returnsform.Designer.cs">
-      <DependentUpon>Supplier returnsform.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\Supplierform.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Supplierform.Designer.cs">
       <DependentUpon>Supplierform.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Supplier_eturnsform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Supplier_eturnsform.Designer.cs">
+      <DependentUpon>Supplier_eturnsform.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\UIHelper.cs" />
+    <EmbeddedResource Include="UI\Supplier_eturnsform.resx">
+      <DependentUpon>Supplier_eturnsform.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Resources\logoo.png" />
     <None Include="Resources\logo %282%291.png" />
     <None Include="Resources\logo %282%29.png" />
@@ -431,9 +434,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\PurchaseInvoice.resx">
       <DependentUpon>PurchaseInvoice.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Supplier returnsform.resx">
-      <DependentUpon>Supplier returnsform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Supplierform.resx">
       <DependentUpon>Supplierform.cs</DependentUpon>

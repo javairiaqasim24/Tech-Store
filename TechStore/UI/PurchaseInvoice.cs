@@ -16,7 +16,7 @@ namespace TechStore.UI
     public partial class PurchaseInvoice : Form
     {
         private DataGridView dgvProductSearch;
-        private DataTable allProducts; // holds all products from DB or dummy
+        private DataTable allProducts; 
         purchaseDL p=new purchaseDL();
         
         
@@ -33,7 +33,7 @@ namespace TechStore.UI
             List<string> suppliersList = DatabaseHelper.Instance.GetSuppliers(searchKeyword);  
             suppliersList.Insert(0, "-- Select Supplier --");
 
-            cmbSupplierName.DataSource = null; // Reset first (optional but safe)
+            cmbSupplierName.DataSource = null;
             cmbSupplierName.DataSource = suppliersList;
 
 
