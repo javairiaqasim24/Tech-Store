@@ -13,6 +13,7 @@ using TechStore.UI;
 using TechStore;
 using TechStore.BL;
 using TechStore.BL.Models;
+using QuestPDF.Infrastructure;
 namespace TechStore
 {
     internal static class Program
@@ -22,6 +23,7 @@ namespace TechStore
         [STAThread]
         static void Main()
         {
+            
 
             var services = new ServiceCollection();
             configureServices(services);
@@ -44,6 +46,7 @@ namespace TechStore
             services.AddScoped<IBatchdetailsDl, BatchdetailsDl>();
             services.AddScoped<ISupplierbillDl, SupplierbillDl>();
             services.AddScoped<IInventorylogDl,InventorylogDl>();
+            services.AddScoped<IPurchaseDl, purchaseDL>();
 
 
             //BL
@@ -81,6 +84,7 @@ namespace TechStore
             services.AddTransient<BillingRecordsOverviewBL>();
             services.AddTransient<BillingRecordsOverviewDL>();
             services.AddTransient<Inventorylogform>();
+            services.AddTransient<PurchaseInvoice>();
             services.AddTransient<Customerreturns>();
             services.AddTransient<PurchaseInvoice>();
 
