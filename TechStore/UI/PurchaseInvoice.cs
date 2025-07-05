@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using KIMS;
 using TechStore.DL;
 
 namespace TechStore.UI
@@ -15,8 +16,10 @@ namespace TechStore.UI
     public partial class PurchaseInvoice : Form
     {
         private DataGridView dgvProductSearch;
-        private DataTable allProducts; // holds all products from DB or dummy
-        DataTable suppliersTable = purchaseDL.GetSuppliers();
+        private DataTable allProducts; 
+        purchaseDL p=new purchaseDL();
+        
+        
         public PurchaseInvoice()
         {
             InitializeComponent();
@@ -24,23 +27,21 @@ namespace TechStore.UI
             SetupSearchGrid();
             LoadProductData(); // Fill allProducts
             dgvInvoice.AllowUserToAddRows = false;
-            
+                    
+            string searchKeyword = cmbSupplierName.Text.Trim(); 
 
-            // Add placeholder row manually
-            DataRow placeholder = suppliersTable.NewRow();
-            placeholder["name"] = "Select Supplier...";
-            suppliersTable.Rows.InsertAt(placeholder, 0);
+            List<string> suppliersList = DatabaseHelper.Instance.GetSuppliers(searchKeyword);  
+            suppliersList.Insert(0, "-- Select Supplier --");
 
-            // Bind to ComboBox
-            cmbSupplierName.DataSource = suppliersTable;
-            cmbSupplierName.DisplayMember = "name";
-            cmbSupplierName.SelectedIndex = 0; // Show placeholder initially
+            cmbSupplierName.DataSource = null;
+            cmbSupplierName.DataSource = suppliersList;
+
 
         }
 
         private void LoadProductData()
         {
-            allProducts = purchaseDL.GetProducts();
+            allProducts = p.GetProducts();
            
         }
 
@@ -78,42 +79,49 @@ namespace TechStore.UI
             dgvProductSearch.CellClick += DgvProductSearch_CellClick;
             this.Controls.Add(dgvProductSearch);
         }
-        //private void cmbProducts_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (cmb.SelectedItem != null)
-        //    {
-        //        DataRowView row = (DataRowView)cmb.SelectedItem;
-        //        txtProductName.Text = row["name"].ToString();
-        //        txtdescription.Text = row["description"].ToString();
-        //    }
-        //}
 
         private void btnadd_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtProductName.Text) && !string.IsNullOrWhiteSpace(txtQuantity.Text))
+            if (string.IsNullOrWhiteSpace(txtProductName.Text) || string.IsNullOrWhiteSpace(txtQuantity.Text))
             {
-                dgvInvoice.Rows.Add(
+                MessageBox.Show("Please fill in product name and quantity.");
+                return;
+            }
 
+            if (editingRowIndex != null)
+            {
+                // Update existing row
+                dgvInvoice.Rows[(int)editingRowIndex].SetValues(
                     txtProductName.Text,
                     txtdescription.Text,
-
                     txtQuantity.Text
-
                 );
 
-                // Clear fields
-                txtProductName.Clear();
-                txtdescription.Clear();
-                txtQuantity.Clear();
+                editingRowIndex = null; // Clear edit state
+                MessageBox.Show("Row updated successfully!");
             }
+            else
+            {
+                // Add new row
+                dgvInvoice.Rows.Add(
+                    txtProductName.Text,
+                    txtdescription.Text,
+                    txtQuantity.Text
+                );
+            }
+
+            // Clear fields
+            txtProductName.Clear();
+            txtdescription.Clear();
+            txtQuantity.Clear();
         }
 
         private void btnsave_Click(object sender, EventArgs e)
         {
             // 2. Get supplier name from ComboBox
             string supplierName = cmbSupplierName.SelectedIndex > 0
-            ? cmbSupplierName.Text
-            : "Unknown Supplier";
+           ? cmbSupplierName.SelectedItem.ToString()
+           : "Unknown Supplier";
 
             // 3. Get today's date
             DateTime saleDate = DateTime.Now;
@@ -126,7 +134,7 @@ namespace TechStore.UI
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string filePath = saveFileDialog.FileName;
-                purchaseDL.CreateSaleInvoicePdf(dgvInvoice, filePath, supplierName, DateTime.Now);
+                p.CreateSaleInvoicePdf(dgvInvoice, filePath, supplierName, DateTime.Now);
                 MessageBox.Show("PDF Generated Successfully..");
             }
 
@@ -181,6 +189,61 @@ namespace TechStore.UI
         private void iconButton1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbSupplierName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private int? editingRowIndex = null;
+        private void btnedit_Click(object sender, EventArgs e)
+        {
+            if (dgvInvoice.SelectedRows.Count > 0)
+            {
+                var row = dgvInvoice.SelectedRows[0];
+                txtProductName.Text = row.Cells["Name"].Value?.ToString();
+                txtdescription.Text = row.Cells["Description"].Value?.ToString();
+                txtQuantity.Text = row.Cells["Quantity"].Value?.ToString();
+
+                editingRowIndex = row.Index; // Store the row index to update later
+            }
+            else
+            {
+                MessageBox.Show("Please select a row to edit.");
+            }
+        }
+
+        private void btndelete_Click(object sender, EventArgs e)
+        {
+            if (dgvInvoice.SelectedRows.Count > 0)
+            {
+                dgvInvoice.Rows.RemoveAt(dgvInvoice.SelectedRows[0].Index);
+            }
+            else
+            {
+                MessageBox.Show("Please select a row to delete.");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Validate data
+            if (dgvInvoice.Rows.Count == 0)
+            {
+                MessageBox.Show("No items to print in invoice.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Get Supplier Name
+            string supplierName = cmbSupplierName.SelectedIndex > 0
+                ? cmbSupplierName.Text
+                : "Unknown Supplier";
+
+            // Get Purchase Date
+            DateTime purchaseDate = dtpPurchaseDate.Value;
+
+            // Call the print function
+            purchaseDL.PrintPurchaseInvoiceDirectly(dgvInvoice, supplierName, purchaseDate);
         }
     }
 }

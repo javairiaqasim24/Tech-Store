@@ -13,6 +13,7 @@ using TechStore.UI;
 using TechStore;
 using TechStore.BL;
 using TechStore.BL.Models;
+using QuestPDF.Infrastructure;
 namespace TechStore
 {
     internal static class Program
@@ -22,6 +23,7 @@ namespace TechStore
         [STAThread]
         static void Main()
         {
+            
 
             var services = new ServiceCollection();
             configureServices(services);
@@ -30,7 +32,7 @@ namespace TechStore
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var mainForm = ServiceProvider.GetRequiredService<SupplierBillingRecordsOverview>();
+            var mainForm = ServiceProvider.GetRequiredService<Dashboard>();
             Application.Run(mainForm);
         }
         public static void configureServices(IServiceCollection services)
@@ -43,7 +45,10 @@ namespace TechStore
             services.AddScoped<IBatchesDl, BatchesDl>();
             services.AddScoped<IBatchdetailsDl, BatchdetailsDl>();
             services.AddScoped<ISupplierbillDl, SupplierbillDl>();
-            services.AddScoped<IInventorylogDl, InventorylogDl>();
+            services.AddScoped<IInventorylogDl,InventorylogDl>();
+            services.AddScoped<ISreturnsDl,SreturnsDl>();
+
+            services.AddScoped<IPurchaseDl, purchaseDL>();
 
 
             //BL
@@ -55,6 +60,8 @@ namespace TechStore
             services.AddScoped<IBatchDetailsBL, BatchDetailsBL>();
             services.AddScoped<ISupplierBillBl, SupplierBillBl>();
             services.AddScoped<IInventorylogBl, InventorylogBl>();
+            services.AddScoped<IsreturnBl,SreturnBl>();
+
 
 
 
@@ -81,9 +88,10 @@ namespace TechStore
             services.AddTransient<BillingRecordsOverviewBL>();
             services.AddTransient<BillingRecordsOverviewDL>();
             services.AddTransient<Inventorylogform>();
+            services.AddTransient<PurchaseInvoice>();
             services.AddTransient<Customerreturns>();
-            services.AddTransient<SupplierBillingRecordsOverview>();
-            services.AddTransient<SupplierBillDetails>();
+            services.AddTransient<Supplier_eturnsform>();
+            services.AddTransient<PurchaseInvoice>();
 
 
         }

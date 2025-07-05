@@ -777,7 +777,8 @@ namespace TechStore.UI
 
         private void btnadcust_Click_1(object sender, EventArgs e)
         {
-
+            var f = Program.ServiceProvider.GetRequiredService<AddCustomerform>();
+            f.ShowDialog(this);
         }
 
         private void label11_Click(object sender, EventArgs e)

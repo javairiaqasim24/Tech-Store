@@ -15,12 +15,13 @@ using System.Drawing.Printing;
 using System.IO;
 
 using System.Xml.Linq;
+using TechStore.Interfaces.DLInterfaces;
 
 namespace TechStore.DL
 {
-    internal class purchaseDL
+    internal class purchaseDL :IPurchaseDl
     {
-        public static DataTable GetProducts()
+        public DataTable GetProducts()
         {
             using (var conn = DatabaseHelper.Instance.GetConnection())
             {
@@ -36,23 +37,8 @@ namespace TechStore.DL
             }
         }
 
-        public static DataTable GetSuppliers()
-        {
-            using (var conn = DatabaseHelper.Instance.GetConnection())
-            {
-                string query = "SELECT name FROM suppliers";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    conn.Open();
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    return dt;
-                }
-            }
-        }
 
-        public static void CreateSaleInvoicePdf(DataGridView cart, string filePath, string Name, DateTime saleDate)
+        public void CreateSaleInvoicePdf(DataGridView cart, string filePath, string Name, DateTime saleDate)
         {
 
             QuestPDF.Settings.License = LicenseType.Community;
@@ -73,7 +59,7 @@ namespace TechStore.DL
                         {
                             row.RelativeItem(1).Column(col =>
                             {
-                                col.Item().Image("logoo.png", ImageScaling.FitWidth);
+                                col.Item().Image("logo.png", ImageScaling.FitWidth);
                             });
 
                             row.RelativeItem(3).Column(col =>
@@ -147,6 +133,125 @@ namespace TechStore.DL
                 });
             }).GeneratePdf(filePath);
         }
+
+        public static void PrintPurchaseInvoiceDirectly(DataGridView cart, string supplierName, DateTime purchaseDate)
+        {
+            if (PrinterSettings.InstalledPrinters.Count == 0)
+            {
+                MessageBox.Show("No printers are installed on this system.", "Printer Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            PrintDocument printDoc = new PrintDocument();
+            printDoc.PrintPage += (sender, e) =>
+            {
+                DrawPurchaseInvoice(e, cart, supplierName, purchaseDate);
+            };
+
+            PrintDialog dialog = new PrintDialog
+            {
+                Document = printDoc,
+                AllowSomePages = false,
+                UseEXDialog = true
+            };
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                printDoc.Print();
+                MessageBox.Show("Purchase Invoice sent to printer.", "Printed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private static void DrawPurchaseInvoice(PrintPageEventArgs e, DataGridView cart, string supplierName, DateTime purchaseDate)
+        {
+            Font titleFont = new Font("Arial", 18, FontStyle.Bold);
+            Font headerFont = new Font("Arial", 12, FontStyle.Bold);
+            Font regularFont = new Font("Arial", 11);
+            Pen borderPen = new Pen(System.Drawing.Color.Gray, 0.5f);
+            Brush brush = Brushes.Black;
+
+            float x = 50, y = 60;
+            float pageWidth = e.PageBounds.Width - 100;
+
+            // Logo (optional)
+            try
+            {
+                System.Drawing.Image logo = System.Drawing.Image.FromFile("logoo.png");
+                e.Graphics.DrawImage(logo, x, y, 100, 50);
+            }
+            catch { }
+
+            // Company Info
+            e.Graphics.DrawString("Tech Store", titleFont, brush, x + 400, y);
+            y += 25;
+            e.Graphics.DrawString("123 Market Road, CityName", regularFont, brush, x + 400, y);
+            y += 18;
+            e.Graphics.DrawString("Phone: +92-300-1234567", regularFont, brush, x + 400, y);
+            y += 18;
+            e.Graphics.DrawString("Email: support@techstore.com", regularFont, brush, x + 400, y);
+
+            y += 40;
+            e.Graphics.DrawLine(Pens.Gray, x, y, x + pageWidth, y);
+            y += 10;
+
+            // Invoice Header
+            e.Graphics.DrawString("Purchase Invoice", titleFont, brush, x + 250, y);
+            y += 30;
+            e.Graphics.DrawString($"Supplier: {supplierName}", regularFont, brush, x, y);
+            y += 20;
+            e.Graphics.DrawString($"Date: {purchaseDate.ToShortDateString()}", regularFont, brush, x, y);
+            y += 25;
+
+            // Table Headers
+            string[] headers = { "Product Name", "Description", "Quantity" };
+            float[] widths = { 200, 300, 100 };
+            float tableX = x;
+            float rowHeight = 25;
+
+            for (int i = 0; i < headers.Length; i++)
+            {
+                e.Graphics.FillRectangle(Brushes.LightGray, tableX, y, widths[i], rowHeight);
+                e.Graphics.DrawRectangle(borderPen, tableX, y, widths[i], rowHeight);
+                e.Graphics.DrawString(headers[i], headerFont, brush, tableX + 3, y + 5);
+                tableX += widths[i];
+            }
+
+            y += rowHeight;
+
+            // Table Rows
+            foreach (DataGridViewRow row in cart.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                string[] values =
+                {
+            row.Cells["Name"]?.Value?.ToString(),
+            row.Cells["Description"]?.Value?.ToString(),
+            row.Cells["Quantity"]?.Value?.ToString()
+        };
+
+                tableX = x;
+                for (int i = 0; i < values.Length; i++)
+                {
+                    e.Graphics.DrawRectangle(borderPen, tableX, y, widths[i], rowHeight);
+                    e.Graphics.DrawString(values[i], regularFont, brush, new RectangleF(tableX + 3, y + 5, widths[i] - 6, rowHeight - 6));
+                    tableX += widths[i];
+                }
+
+                y += rowHeight;
+
+                // Page break logic
+                if (y + rowHeight > e.PageBounds.Height - 100)
+                {
+                    e.HasMorePages = true;
+                    return;
+                }
+            }
+
+            y += 10;
+            e.Graphics.DrawLine(Pens.Gray, x, y, x + pageWidth, y);
+        }
+
 
     }
 }
