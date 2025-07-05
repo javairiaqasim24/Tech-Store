@@ -37,7 +37,7 @@ namespace TechStore.DL
                         {
                             row.RelativeItem(1).Column(col =>
                             {
-                                col.Item().Image("logo.png", ImageScaling.FitWidth);
+                                col.Item().Image("logo.jpg", ImageScaling.FitWidth);
                             });
 
                             row.RelativeItem(3).Column(col =>
