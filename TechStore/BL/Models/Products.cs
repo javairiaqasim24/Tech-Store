@@ -42,10 +42,6 @@ namespace TechStore.BL.Models
         {
         }
 
-        public Products(int id,string name)
-        {
-            this.id = id;
-            this.name = name;
-        }
+       
     }
 }

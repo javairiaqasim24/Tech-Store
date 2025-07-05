@@ -123,15 +123,7 @@ namespace TechStore
         {
             Dashboard.Instance.LoadFormIntoPanel(new Loadingform());
         }
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;
-                return cp;
-            }
-        }
+     
         private void Inventoryform_Load(object sender, EventArgs e)
         {
             //dataGridView2.CellContentClick -= dataGridView2_CellContentClick;
@@ -152,21 +144,7 @@ namespace TechStore
                 txtcategory.SelectionStart = txtcategory.Text.Length;
             }
         }
-        public void RoundPanelCorners(Panel panel, int radius)
-        {
-            var bounds = new Rectangle(0, 0, panel.Width, panel.Height);
-            int diameter = radius * 2;
-
-            GraphicsPath path = new GraphicsPath();
-            path.StartFigure();
-            path.AddArc(bounds.Left, bounds.Top, diameter, diameter, 180, 90);
-            path.AddArc(bounds.Right - diameter, bounds.Top, diameter, diameter, 270, 90);
-            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90);
-            path.AddArc(bounds.Left, bounds.Bottom - diameter, diameter, diameter, 90, 90);
-            path.CloseFigure();
-
-            panel.Region = new Region(path);
-        }
+        
 
         private void btnedit_Click(object sender, EventArgs e)
         {
@@ -191,13 +169,7 @@ namespace TechStore
             }
 
         }
-        public void ShowCenteredPanel(Panel panel)
-        {
-            panel.Left = (this.ClientSize.Width - panel.Width) / 2;
-            panel.Top = (this.ClientSize.Height - panel.Height) / 2;
-            panel.BringToFront();
-            panel.Visible = true;
-        }
+       
 
   
 
@@ -324,36 +296,5 @@ namespace TechStore
         }
 
 
-        //private void dataGridView2_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        //{
-        //    if (e.RowIndex < 0 || e.ColumnIndex < 0)
-        //        return;
-
-        //    var column = dataGridView2.Columns[e.ColumnIndex];
-
-        //    if (column.Name == "Edit" || column.Name == "Delete")
-        //    {
-        //        e.PaintBackground(e.CellBounds, true);
-
-        //        string text = column.Name;
-        //        Color backColor = text == "Edit" ? Color.SteelBlue : Color.IndianRed;
-        //        Color textColor = Color.White;
-
-        //        using (Brush b = new SolidBrush(backColor))
-        //        {
-        //            e.Graphics.FillRectangle(b, e.CellBounds);
-        //        }
-
-        //        TextRenderer.DrawText(
-        //            e.Graphics,
-        //            text,
-        //            dataGridView2.Font,
-        //            e.CellBounds,
-        //            textColor,
-        //            TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
-
-        //        e.Handled = true;
-        //    }
-        //}
     }
 }

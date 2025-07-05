@@ -36,7 +36,7 @@ namespace TechStore.UI
 
             List<string> suppliersList = DatabaseHelper.Instance.GetSuppliers(searchKeyword);
 
-            cmbSupplierName.DataSource = null; // Reset first (optional but safe)
+            cmbSupplierName.DataSource = null;
             cmbSupplierName.DataSource = suppliersList;
 
 
