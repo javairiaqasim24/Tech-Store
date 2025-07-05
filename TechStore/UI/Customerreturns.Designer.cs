@@ -30,11 +30,12 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnsearch = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.idsearchtxt = new System.Windows.Forms.TextBox();
             this.toplbl = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -59,9 +60,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.SeaShell;
+            this.panel1.Controls.Add(this.btn);
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Controls.Add(this.btnsearch);
             this.panel1.Controls.Add(this.idsearchtxt);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 89);
@@ -70,21 +72,24 @@
             this.panel1.Size = new System.Drawing.Size(1863, 880);
             this.panel1.TabIndex = 18;
             // 
-            // btnsearch
+            // button1
             // 
-            this.btnsearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnsearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(64)))));
-            this.btnsearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnsearch.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnsearch.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnsearch.Location = new System.Drawing.Point(1745, 42);
-            this.btnsearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnsearch.Name = "btnsearch";
-            this.btnsearch.Size = new System.Drawing.Size(93, 68);
-            this.btnsearch.TabIndex = 133;
-            this.btnsearch.Text = "Search";
-            this.btnsearch.UseVisualStyleBackColor = false;
-            this.btnsearch.Click += new System.EventHandler(this.btnsearch_Click);
+            this.button1.Location = new System.Drawing.Point(35, 42);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(114, 62);
+            this.button1.TabIndex = 136;
+            this.button1.Text = "Return";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1292, 63);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(161, 26);
+            this.label1.TabIndex = 135;
+            this.label1.Text = "Enter the bill ID";
             // 
             // idsearchtxt
             // 
@@ -122,15 +127,15 @@
             this.panel2.Size = new System.Drawing.Size(1863, 89);
             this.panel2.TabIndex = 17;
             // 
-            // label1
+            // btn
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1292, 63);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(161, 26);
-            this.label1.TabIndex = 135;
-            this.label1.Text = "Enter the bill ID";
+            this.btn.Location = new System.Drawing.Point(1760, 42);
+            this.btn.Name = "btn";
+            this.btn.Size = new System.Drawing.Size(75, 62);
+            this.btn.TabIndex = 137;
+            this.btn.Text = "button2";
+            this.btn.UseVisualStyleBackColor = true;
+            this.btn.Click += new System.EventHandler(this.btn_Click);
             // 
             // Customerreturns
             // 
@@ -153,10 +158,11 @@
         #endregion
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnsearch;
         private System.Windows.Forms.TextBox idsearchtxt;
         private System.Windows.Forms.Label toplbl;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn;
     }
 }

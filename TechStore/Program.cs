@@ -28,7 +28,7 @@ namespace TechStore
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var mainForm = ServiceProvider.GetRequiredService<Customersale>();
+            var mainForm = ServiceProvider.GetRequiredService<Customerreturns>();
             Application.Run(mainForm);
         }
         public static void configureServices(IServiceCollection services)
@@ -68,6 +68,8 @@ namespace TechStore
             services.AddTransient<BatchDetailsform>();
             services.AddTransient<AddbatchDetailsform>();
             services.AddTransient<Batchesform>();
+            services.AddTransient<addcustomerreturn>();
+            services.AddTransient<Customerreturns>();
             services.AddTransient<BillingRecordsOverview>();
 
 
