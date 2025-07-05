@@ -226,5 +226,17 @@ namespace TechStore.UI
         {
             paneledit.Visible = false;
         }
+
+        private void iconButton3_Click(object sender, EventArgs e)
+        {
+            var f=Program.ServiceProvider.GetService<CustomerBill_SpecificProducts>();
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetService<BillingRecordsOverview>();
+            Dashboard.Instance.LoadFormIntoPanel(f);
+
+        }
     }
 }

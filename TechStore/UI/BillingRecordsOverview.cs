@@ -31,6 +31,7 @@ namespace TechStore
             InitializeComponent();
             _billingBL = new BillingRecordsOverviewBL();
             this.Load += BillingRecordsOverview_Load;
+            panelmenu.Visible= false;
         }
 
         private void BillingRecordsOverview_Load(object sender, EventArgs e)
@@ -310,5 +311,10 @@ namespace TechStore
             }
         }
         #endregion
+
+        private void BillingRecordsOverview_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

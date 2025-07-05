@@ -65,19 +65,17 @@
             this.panelmenu.Controls.Add(this.btnlogout);
             this.panelmenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelmenu.Location = new System.Drawing.Point(0, 0);
-            this.panelmenu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelmenu.Name = "panelmenu";
-            this.panelmenu.Size = new System.Drawing.Size(303, 1078);
+            this.panelmenu.Size = new System.Drawing.Size(270, 862);
             this.panelmenu.TabIndex = 8;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Image = global::TechStore.Properties.Resources.Screenshot_2025_06_28_221639_Photoroom;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 4);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(298, 220);
+            this.pictureBox1.Size = new System.Drawing.Size(265, 176);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -98,10 +96,9 @@
             this.btndashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btndashboard.IconSize = 40;
             this.btndashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btndashboard.Location = new System.Drawing.Point(3, 232);
-            this.btndashboard.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btndashboard.Location = new System.Drawing.Point(3, 185);
             this.btndashboard.Name = "btndashboard";
-            this.btndashboard.Size = new System.Drawing.Size(300, 75);
+            this.btndashboard.Size = new System.Drawing.Size(267, 60);
             this.btndashboard.TabIndex = 1;
             this.btndashboard.Text = "DashBoard";
             this.btndashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -125,10 +122,9 @@
             this.btninventory.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btninventory.IconSize = 40;
             this.btninventory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btninventory.Location = new System.Drawing.Point(3, 315);
-            this.btninventory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btninventory.Location = new System.Drawing.Point(3, 251);
             this.btninventory.Name = "btninventory";
-            this.btninventory.Size = new System.Drawing.Size(298, 75);
+            this.btninventory.Size = new System.Drawing.Size(265, 60);
             this.btninventory.TabIndex = 2;
             this.btninventory.Text = "Inventory";
             this.btninventory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -152,10 +148,9 @@
             this.btnrepair.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnrepair.IconSize = 40;
             this.btnrepair.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnrepair.Location = new System.Drawing.Point(3, 398);
-            this.btnrepair.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnrepair.Location = new System.Drawing.Point(3, 317);
             this.btnrepair.Name = "btnrepair";
-            this.btnrepair.Size = new System.Drawing.Size(304, 75);
+            this.btnrepair.Size = new System.Drawing.Size(270, 60);
             this.btnrepair.TabIndex = 4;
             this.btnrepair.Text = "repairs";
             this.btnrepair.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -179,10 +174,9 @@
             this.btnreport.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnreport.IconSize = 40;
             this.btnreport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnreport.Location = new System.Drawing.Point(3, 481);
-            this.btnreport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnreport.Location = new System.Drawing.Point(3, 383);
             this.btnreport.Name = "btnreport";
-            this.btnreport.Size = new System.Drawing.Size(304, 75);
+            this.btnreport.Size = new System.Drawing.Size(270, 60);
             this.btnreport.TabIndex = 7;
             this.btnreport.Text = "Reports";
             this.btnreport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -206,10 +200,9 @@
             this.btnsupplier.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnsupplier.IconSize = 40;
             this.btnsupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsupplier.Location = new System.Drawing.Point(3, 564);
-            this.btnsupplier.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnsupplier.Location = new System.Drawing.Point(3, 449);
             this.btnsupplier.Name = "btnsupplier";
-            this.btnsupplier.Size = new System.Drawing.Size(304, 75);
+            this.btnsupplier.Size = new System.Drawing.Size(270, 60);
             this.btnsupplier.TabIndex = 6;
             this.btnsupplier.Text = "Suppliers";
             this.btnsupplier.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -233,10 +226,9 @@
             this.btnsales.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnsales.IconSize = 40;
             this.btnsales.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsales.Location = new System.Drawing.Point(3, 647);
-            this.btnsales.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnsales.Location = new System.Drawing.Point(3, 515);
             this.btnsales.Name = "btnsales";
-            this.btnsales.Size = new System.Drawing.Size(304, 75);
+            this.btnsales.Size = new System.Drawing.Size(270, 60);
             this.btnsales.TabIndex = 3;
             this.btnsales.Text = "Sales";
             this.btnsales.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -260,10 +252,9 @@
             this.btncustomers.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btncustomers.IconSize = 40;
             this.btncustomers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btncustomers.Location = new System.Drawing.Point(3, 730);
-            this.btncustomers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btncustomers.Location = new System.Drawing.Point(3, 581);
             this.btncustomers.Name = "btncustomers";
-            this.btncustomers.Size = new System.Drawing.Size(304, 75);
+            this.btncustomers.Size = new System.Drawing.Size(270, 60);
             this.btncustomers.TabIndex = 5;
             this.btncustomers.Text = "Customers";
             this.btncustomers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -287,10 +278,9 @@
             this.btnlogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnlogout.IconSize = 40;
             this.btnlogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnlogout.Location = new System.Drawing.Point(3, 813);
-            this.btnlogout.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnlogout.Location = new System.Drawing.Point(3, 647);
             this.btnlogout.Name = "btnlogout";
-            this.btnlogout.Size = new System.Drawing.Size(304, 75);
+            this.btnlogout.Size = new System.Drawing.Size(270, 60);
             this.btnlogout.TabIndex = 8;
             this.btnlogout.Text = "Logout";
             this.btnlogout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -306,17 +296,18 @@
             this.panel2.Controls.Add(this.lblTitle);
             this.panel2.Controls.Add(this.dgvBillingRecords);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(303, 0);
+            this.panel2.Location = new System.Drawing.Point(270, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1575, 1078);
+            this.panel2.Size = new System.Drawing.Size(1399, 862);
             this.panel2.TabIndex = 10;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(500, 234);
+            this.btnSearch.Location = new System.Drawing.Point(444, 187);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(101, 30);
+            this.btnSearch.Size = new System.Drawing.Size(90, 24);
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -324,16 +315,18 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(216, 234);
+            this.txtSearch.Location = new System.Drawing.Point(192, 187);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(257, 26);
+            this.txtSearch.Size = new System.Drawing.Size(229, 22);
             this.txtSearch.TabIndex = 3;
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(634, 234);
+            this.btnRefresh.Location = new System.Drawing.Point(564, 187);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(88, 30);
+            this.btnRefresh.Size = new System.Drawing.Size(78, 24);
             this.btnRefresh.TabIndex = 2;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -342,9 +335,9 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(587, 47);
+            this.lblTitle.Location = new System.Drawing.Point(522, 38);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(187, 20);
+            this.lblTitle.Size = new System.Drawing.Size(158, 16);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "Customer Billing Records";
             // 
@@ -357,28 +350,29 @@
             this.dgvBillingRecords.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(239)))), ((int)(((byte)(236)))));
             this.dgvBillingRecords.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvBillingRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBillingRecords.Location = new System.Drawing.Point(83, 340);
+            this.dgvBillingRecords.Location = new System.Drawing.Point(74, 272);
+            this.dgvBillingRecords.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvBillingRecords.Name = "dgvBillingRecords";
             this.dgvBillingRecords.RowHeadersWidth = 62;
             this.dgvBillingRecords.RowTemplate.Height = 28;
-            this.dgvBillingRecords.Size = new System.Drawing.Size(1395, 566);
+            this.dgvBillingRecords.Size = new System.Drawing.Size(1240, 453);
             this.dgvBillingRecords.TabIndex = 0;
             this.dgvBillingRecords.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBillingRecords_CellClick);
             // 
             // BillingRecordsOverview
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(239)))), ((int)(((byte)(236)))));
-            this.ClientSize = new System.Drawing.Size(1878, 1078);
+            this.ClientSize = new System.Drawing.Size(1669, 862);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelmenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "BillingRecordsOverview";
             this.Text = "Customer Payments";
             this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.BillingRecordsOverview_Load_1);
             this.panelmenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);

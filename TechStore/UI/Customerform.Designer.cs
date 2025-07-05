@@ -56,6 +56,7 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.paneledit = new System.Windows.Forms.Panel();
+            this.btncancle1 = new FontAwesome.Sharp.IconButton();
             this.txtemail = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
             this.txtaddress = new System.Windows.Forms.TextBox();
@@ -70,7 +71,6 @@
             this.txtname = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btncancle1 = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.panel1.SuspendLayout();
@@ -359,6 +359,7 @@
             this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton2.UseVisualStyleBackColor = false;
+            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
             // 
             // iconButton3
             // 
@@ -383,6 +384,7 @@
             this.iconButton3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton3.UseVisualStyleBackColor = false;
+            this.iconButton3.Click += new System.EventHandler(this.iconButton3_Click);
             // 
             // label12
             // 
@@ -570,6 +572,31 @@
             this.paneledit.Size = new System.Drawing.Size(443, 687);
             this.paneledit.TabIndex = 139;
             // 
+            // btncancle1
+            // 
+            this.btncancle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(64)))));
+            this.btncancle1.FlatAppearance.BorderColor = System.Drawing.Color.Indigo;
+            this.btncancle1.FlatAppearance.BorderSize = 2;
+            this.btncancle1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btncancle1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            this.btncancle1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btncancle1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btncancle1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btncancle1.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
+            this.btncancle1.IconColor = System.Drawing.Color.Red;
+            this.btncancle1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btncancle1.IconSize = 35;
+            this.btncancle1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btncancle1.Location = new System.Drawing.Point(223, 630);
+            this.btncancle1.Name = "btncancle1";
+            this.btncancle1.Size = new System.Drawing.Size(151, 42);
+            this.btncancle1.TabIndex = 200;
+            this.btncancle1.Text = "Cancel";
+            this.btncancle1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btncancle1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btncancle1.UseVisualStyleBackColor = false;
+            this.btncancle1.Click += new System.EventHandler(this.btncancle1_Click);
+            // 
             // txtemail
             // 
             this.txtemail.BackColor = System.Drawing.Color.Gainsboro;
@@ -743,31 +770,6 @@
             this.label2.TabIndex = 191;
             this.label2.Text = "Add Customers";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btncancle1
-            // 
-            this.btncancle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(64)))));
-            this.btncancle1.FlatAppearance.BorderColor = System.Drawing.Color.Indigo;
-            this.btncancle1.FlatAppearance.BorderSize = 2;
-            this.btncancle1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
-            this.btncancle1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            this.btncancle1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btncancle1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btncancle1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btncancle1.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
-            this.btncancle1.IconColor = System.Drawing.Color.Red;
-            this.btncancle1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btncancle1.IconSize = 35;
-            this.btncancle1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btncancle1.Location = new System.Drawing.Point(223, 630);
-            this.btncancle1.Name = "btncancle1";
-            this.btncancle1.Size = new System.Drawing.Size(151, 42);
-            this.btncancle1.TabIndex = 200;
-            this.btncancle1.Text = "Cancel";
-            this.btncancle1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btncancle1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btncancle1.UseVisualStyleBackColor = false;
-            this.btncancle1.Click += new System.EventHandler(this.btncancle1_Click);
             // 
             // Customerform
             // 

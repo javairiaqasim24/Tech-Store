@@ -10,13 +10,15 @@ namespace TechStore.DL
 {
     public class BatchdetailsDl : IBatchdetailsDl
     {
-        public bool AddBatchDetailsWithSerial(Batchdetails b, List<string> serialNumbers, decimal price)
+        public bool AddBatchDetailsWithSerial(Batchdetails b, List<string> serialNumbers, decimal price,bool isSerialized)
         {
             int batch_id = DatabaseHelper.Instance.getbatchid(b.batch_name);
-            //int product_id = DatabaseHelper.Instance.getproductid(b.product_name);
 
-            if (serialNumbers == null || serialNumbers.Count != b.quantity)
-                throw new ArgumentException("Number of serial numbers must match the quantity received.");
+            // 🧠 Check whether the product requires serial numbers
+            //bool isSerialized = DatabaseHelper.Instance.IsProductSerialized(b.product_id);
+
+            if (isSerialized && (serialNumbers == null || serialNumbers.Count != b.quantity))
+                throw new ArgumentException("Number of serial numbers must match the quantity received for serialized product.");
 
             try
             {
@@ -38,15 +40,18 @@ namespace TechStore.DL
                                 cmd1.ExecuteNonQuery();
                             }
 
-                            string query2 = "INSERT INTO productsserial (product_id, sku, status) VALUES (@product_id, @serial_number, 'in_stock');";
-                            using (var cmd2 = new MySqlCommand(query2, conn, tran))
+                            if (isSerialized)
                             {
-                                foreach (var serial in serialNumbers)
+                                string query2 = "INSERT INTO productsserial (product_id, sku, status) VALUES (@product_id, @serial_number, 'in_stock');";
+                                using (var cmd2 = new MySqlCommand(query2, conn, tran))
                                 {
-                                    cmd2.Parameters.Clear();
-                                    cmd2.Parameters.AddWithValue("@product_id", b.product_id);
-                                    cmd2.Parameters.AddWithValue("@serial_number", serial.Trim());
-                                    cmd2.ExecuteNonQuery();
+                                    foreach (var serial in serialNumbers)
+                                    {
+                                        cmd2.Parameters.Clear();
+                                        cmd2.Parameters.AddWithValue("@product_id", b.product_id);
+                                        cmd2.Parameters.AddWithValue("@serial_number", serial.Trim());
+                                        cmd2.ExecuteNonQuery();
+                                    }
                                 }
                             }
 
@@ -74,6 +79,7 @@ namespace TechStore.DL
                 throw new Exception("Error adding batch details with serials: " + ex.Message, ex);
             }
         }
+
 
         public bool deletebatchdetails(int batch_details_id)
         {
@@ -231,7 +237,7 @@ namespace TechStore.DL
 
             return batchDetailsList;
         }
-
+        
 
     }
 

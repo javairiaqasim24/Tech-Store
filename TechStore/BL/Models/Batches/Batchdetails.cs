@@ -24,5 +24,18 @@ namespace TechStore.BL.Models {
             this.price = price;
             this.batch_name = batch_name;
         }
+
     }
+    [Serializable]
+    public class TempBatchDetailDTO
+    {
+        public string BatchName { get; set; }
+        public string ProductName { get; set; }
+        public int? ProductId { get; set; }
+        public int Quantity { get; set; }
+        public decimal CostPrice { get; set; }
+        public decimal SalePrice { get; set; }
+        public List<string> SerialNumbers { get; set; }
+    }
+
 }

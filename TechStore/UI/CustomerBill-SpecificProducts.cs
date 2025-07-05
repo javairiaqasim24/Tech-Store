@@ -16,6 +16,7 @@ namespace TechStore
         private IconButton currentBtn;
         private readonly CustomerBill_SpecificProductsBL _billBL;
         private int _currentBillId;
+        
 
         private readonly Color[] sidebarColors = new Color[]
         {
@@ -33,7 +34,7 @@ namespace TechStore
             InitializeComponent();
             _billBL = new CustomerBill_SpecificProductsBL();
             _currentBillId = billId;
-
+            panelmenu.Visible = false;
             this.Load += CustomerBill_SpecificProducts_Load;
             btnBack.Click += BtnBack_Click;
         }
@@ -270,6 +271,11 @@ namespace TechStore
                 form.Opacity = 1;
             }
             catch (ObjectDisposedException) { /* Safe exit */ }
+        }
+
+        private void CustomerBill_SpecificProducts_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
