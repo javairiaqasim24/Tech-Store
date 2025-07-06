@@ -21,23 +21,23 @@ namespace TechStore.DL
             {
                 using (var reader = DatabaseHelper.Instance.ExecuteReader(
                     @"SELECT 
-    p.product_id, 
-    p.name, 
-    ps.sku, 
-    p.description, 
-    c.name AS category_name, 
-    p.category_id,
-    i.quantity_in_stock AS total_quantity, 
-    i.sale_price
-FROM products p
-JOIN productsserial ps ON p.product_id = ps.product_id
-JOIN inventory i ON p.product_id = i.product_id
-JOIN categories c ON p.category_id = c.category_id
-WHERE ps.sku = @sku
-GROUP BY 
-    p.product_id, p.name, ps.sku, p.description, 
-    c.name, p.category_id, i.quantity_in_stock, i.sale_price;
-",
+                    p.product_id, 
+                    p.name, 
+                    ps.sku, 
+                    p.description, 
+                    c.name AS category_name, 
+                    p.category_id,
+                    i.quantity_in_stock AS total_quantity, 
+                    i.sale_price
+                FROM products p
+                JOIN productsserial ps ON p.product_id = ps.product_id
+                JOIN inventory i ON p.product_id = i.product_id
+                JOIN categories c ON p.category_id = c.category_id
+                WHERE ps.sku = @sku
+                GROUP BY 
+                p.product_id, p.name, ps.sku, p.description, 
+                c.name, p.category_id, i.quantity_in_stock, i.sale_price;
+                ",
                     new MySqlParameter[] { new MySqlParameter("@sku", sku) }))
                 {
                     if (reader.Read())
@@ -76,15 +76,16 @@ GROUP BY
                 var products = new List<Customersale>();
                 using (var reader = DatabaseHelper.Instance.ExecuteReader(
                     @"SELECT p.product_id, p.name, p.description, 
-                             c.name as category_name, p.category_id,
-                             i.quantity_in_stock as total_quantity, 
-                             i.sale_price
-                      FROM products p
-                      JOIN inventory i ON p.product_id = i.product_id
-                      JOIN categories c ON p.category_id = c.category_id
-                      WHERE p.name LIKE @name
-                      GROUP BY p.product_id, p.name, p.description, 
-                               c.name, p.category_id, i.quantity_in_stock, i.sale_price",
+                     c.name as category_name, p.category_id,
+                     i.quantity_in_stock as total_quantity, 
+                     i.sale_price
+              FROM products p
+              JOIN inventory i ON p.product_id = i.product_id
+              JOIN categories c ON p.category_id = c.category_id
+              LEFT JOIN productsserial ps ON p.product_id = ps.product_id
+              WHERE p.name LIKE @name AND ps.sku IS NULL
+              GROUP BY p.product_id, p.name, p.description, 
+                       c.name, p.category_id, i.quantity_in_stock, i.sale_price",
                     new MySqlParameter[] { new MySqlParameter("@name", $"%{name}%") }))
                 {
                     int productIdOrdinal = reader.GetOrdinal("product_id");
@@ -114,6 +115,7 @@ GROUP BY
                 throw new Exception("DB Error: " + ex.Message, ex);
             }
         }
+
 
         public int GetCustomerIdByNameAndType(string name, string type)
         {
@@ -201,95 +203,7 @@ GROUP BY
                     return Convert.ToInt32(idCmd.ExecuteScalar());
                 }
             }
-        }
-
-
-
-        //public int SaveCustomerBill(int customerId, DateTime saleDate, decimal total, decimal paid, DataGridView cart)
-        //{
-        //    using (var conn = DatabaseHelper.Instance.GetConnection())
-        //    {
-        //        conn.Open();
-
-        //        using (var tran = conn.BeginTransaction())
-        //        {
-        //            try
-        //            {
-        //                // 1. Insert into customerbills
-        //                string billQuery = @"INSERT INTO customerbills (CustomerID, SaleDate, total_price, paid_amount)
-        //                             VALUES (@cust, @date, @total, @paid);
-        //                             SELECT LAST_INSERT_ID();";
-
-        //                int billId;
-        //                using (var cmd = new MySqlCommand(billQuery, conn, tran))
-        //                {
-        //                    cmd.Parameters.AddWithValue("@cust", customerId);
-        //                    cmd.Parameters.AddWithValue("@date", saleDate);
-        //                    cmd.Parameters.AddWithValue("@total", total);
-        //                    cmd.Parameters.AddWithValue("@paid", paid);
-        //                    billId = Convert.ToInt32(cmd.ExecuteScalar());
-        //                }
-
-        //                // 2. Insert bill details
-        //                foreach (DataGridViewRow row in cart.Rows)
-        //                {
-        //                    if (row.IsNewRow) continue;
-
-        //                    string insertDetail = @"INSERT INTO customer_bill_details 
-        //                                    (Bill_id, product_id, quantity, discount, status, warranty, warranty_from)
-        //                                    VALUES (@bill, @pid, @qty, @disc, 'bill', @warranty, @warrantyFrom);";
-
-        //                    using (var cmd = new MySqlCommand(insertDetail, conn, tran))
-        //                    {
-        //                        cmd.Parameters.AddWithValue("@bill", billId);
-
-        //                        string serialList = row.Cells["Sku"].Value?.ToString()?.Trim();
-        //                        string[] serials = serialList.Split(',');
-        //                        string firstSerial = serials[0].Trim();
-
-        //                        string lookupQuery = "SELECT product_id FROM productsserial WHERE sku = @sku LIMIT 1;";
-        //                        string productId = null;
-
-        //                        using (var lookup = new MySqlCommand(lookupQuery, conn, tran))
-        //                        {
-        //                            lookup.Parameters.AddWithValue("@sku", firstSerial);
-        //                            object result = lookup.ExecuteScalar();
-
-        //                            if (result != null)
-        //                                productId = result.ToString();
-        //                            else
-        //                                throw new Exception($"Product not found for SKU '{firstSerial}'");
-        //                        }
-
-        //                        cmd.Parameters.AddWithValue("@pid", productId);
-
-        //                        if (!int.TryParse(row.Cells["Quantity"].Value?.ToString(), out int qty))
-        //                            throw new Exception("Invalid quantity for product.");
-        //                        cmd.Parameters.AddWithValue("@qty", qty);
-
-        //                        decimal.TryParse(row.Cells["Discount"].Value?.ToString(), out decimal discount);
-        //                        cmd.Parameters.AddWithValue("@disc", discount);
-
-        //                        string warranty = row.Cells["Warranty"]?.Value?.ToString();
-        //                        cmd.Parameters.AddWithValue("@warranty", string.IsNullOrWhiteSpace(warranty) ? DBNull.Value : (object)warranty);
-        //                        cmd.Parameters.AddWithValue("@warrantyFrom", saleDate);
-
-        //                        cmd.ExecuteNonQuery();
-        //                    }
-        //                }
-
-        //                tran.Commit();
-        //                return billId;  // ✅ return BillId
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                tran.Rollback();
-        //                MessageBox.Show("Sale Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //                return -1;  // ❌ indicate failure
-        //            }
-        //        }
-        //    }
-        //}
+        }        
 
         public int SaveCustomerBill(int customerId, DateTime saleDate, decimal total, decimal paid, DataGridView cart)
         {
