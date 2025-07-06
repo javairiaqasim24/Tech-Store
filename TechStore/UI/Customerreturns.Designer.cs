@@ -31,6 +31,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelreturn = new System.Windows.Forms.Panel();
+            this.cbActionTaken = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtreturnedamount = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -39,8 +40,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtreason = new System.Windows.Forms.TextBox();
             this.txtquantity = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtserialmanually = new System.Windows.Forms.TextBox();
             this.txtproduct = new System.Windows.Forms.TextBox();
             this.txtdescription = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -56,7 +55,6 @@
             this.idsearchtxt = new System.Windows.Forms.TextBox();
             this.toplbl = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.cbActionTaken = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panelreturn.SuspendLayout();
@@ -107,8 +105,6 @@
             this.panelreturn.Controls.Add(this.label3);
             this.panelreturn.Controls.Add(this.txtreason);
             this.panelreturn.Controls.Add(this.txtquantity);
-            this.panelreturn.Controls.Add(this.label2);
-            this.panelreturn.Controls.Add(this.txtserialmanually);
             this.panelreturn.Controls.Add(this.txtproduct);
             this.panelreturn.Controls.Add(this.txtdescription);
             this.panelreturn.Controls.Add(this.label7);
@@ -124,6 +120,14 @@
             this.panelreturn.Size = new System.Drawing.Size(742, 868);
             this.panelreturn.TabIndex = 139;
             this.panelreturn.Paint += new System.Windows.Forms.PaintEventHandler(this.panelreturn_Paint);
+            // 
+            // cbActionTaken
+            // 
+            this.cbActionTaken.FormattingEnabled = true;
+            this.cbActionTaken.Location = new System.Drawing.Point(594, 298);
+            this.cbActionTaken.Name = "cbActionTaken";
+            this.cbActionTaken.Size = new System.Drawing.Size(121, 28);
+            this.cbActionTaken.TabIndex = 162;
             // 
             // label6
             // 
@@ -220,31 +224,6 @@
             this.txtquantity.Size = new System.Drawing.Size(352, 43);
             this.txtquantity.TabIndex = 154;
             this.txtquantity.TextChanged += new System.EventHandler(this.txtquantity_TextChanged_1);
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label2.Location = new System.Drawing.Point(381, 75);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(262, 36);
-            this.label2.TabIndex = 153;
-            this.label2.Text = "enter serial manually";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtserialmanually
-            // 
-            this.txtserialmanually.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtserialmanually.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtserialmanually.Location = new System.Drawing.Point(387, 115);
-            this.txtserialmanually.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtserialmanually.Multiline = true;
-            this.txtserialmanually.Name = "txtserialmanually";
-            this.txtserialmanually.Size = new System.Drawing.Size(352, 43);
-            this.txtserialmanually.TabIndex = 152;
-            this.txtserialmanually.TextChanged += new System.EventHandler(this.txtserialmanually_TextChanged_1);
             // 
             // txtproduct
             // 
@@ -353,7 +332,7 @@
             // 
             this.txtscamserial.BackColor = System.Drawing.Color.Gainsboro;
             this.txtscamserial.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtscamserial.Location = new System.Drawing.Point(3, 115);
+            this.txtscamserial.Location = new System.Drawing.Point(194, 115);
             this.txtscamserial.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtscamserial.Multiline = true;
             this.txtscamserial.Name = "txtscamserial";
@@ -367,7 +346,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label10.Location = new System.Drawing.Point(3, 75);
+            this.label10.Location = new System.Drawing.Point(188, 70);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(186, 36);
             this.label10.TabIndex = 130;
@@ -455,14 +434,6 @@
             this.panel2.Size = new System.Drawing.Size(1863, 89);
             this.panel2.TabIndex = 17;
             // 
-            // cbActionTaken
-            // 
-            this.cbActionTaken.FormattingEnabled = true;
-            this.cbActionTaken.Location = new System.Drawing.Point(594, 298);
-            this.cbActionTaken.Name = "cbActionTaken";
-            this.cbActionTaken.Size = new System.Drawing.Size(121, 28);
-            this.cbActionTaken.TabIndex = 162;
-            // 
             // Customerreturns
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -493,8 +464,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btn;
         private System.Windows.Forms.Panel panelreturn;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtserialmanually;
         private System.Windows.Forms.TextBox txtproduct;
         private System.Windows.Forms.TextBox txtdescription;
         private System.Windows.Forms.Label label7;
