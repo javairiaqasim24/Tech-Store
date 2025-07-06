@@ -164,6 +164,7 @@ namespace TechStore.UI
                     string filePath = saveFileDialog.FileName;
                     p.CreateSaleInvoicePdf(dgvInvoice, filePath, supplierName, DateTime.Now);
                     MessageBox.Show("PDF Generated Successfully..");
+                    ClearInvoiceForm();
                 }
 
             }
@@ -287,6 +288,17 @@ namespace TechStore.UI
             }
             DateTime purchaseDate = dtpPurchaseDate.Value;
             p.PrintPurchaseInvoiceDirectly(dgvInvoice, supplierName, purchaseDate);
+
+            
+            if (File.Exists("TempInvoice.json"))
+            {
+                File.Delete("TempInvoice.json");
+            }
+
+           
+            ClearInvoiceForm();
+
+            MessageBox.Show("Invoice printed", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void SaveTempInvoice()
@@ -335,6 +347,13 @@ namespace TechStore.UI
         private void PurchaseInvoice_Load(object sender, EventArgs e)
         {
             LoadTempInvoice();
+        }
+
+        private void ClearInvoiceForm()
+        {
+            cmbSupplierName.Text = "";
+            dtpPurchaseDate.Value = DateTime.Today;
+            dgvInvoice.Rows.Clear();
         }
     }
 }
