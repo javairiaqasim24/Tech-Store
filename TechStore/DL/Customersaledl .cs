@@ -301,10 +301,10 @@ GROUP BY
                 {
                     try
                     {
-                        // 1. Insert bill
+                        // 1. Insert into customerbills
                         string billQuery = @"INSERT INTO customerbills (CustomerID, SaleDate, total_price, paid_amount)
-                              VALUES (@cust, @date, @total, @paid);
-                              SELECT LAST_INSERT_ID();";
+                                     VALUES (@cust, @date, @total, @paid);
+                                     SELECT LAST_INSERT_ID();";
 
                         int billId;
                         using (var cmd = new MySqlCommand(billQuery, conn, tran))
@@ -316,15 +316,15 @@ GROUP BY
                             billId = Convert.ToInt32(cmd.ExecuteScalar());
                         }
 
-                        // 2. Loop through cart rows
+                        // 2. Process cart rows
                         foreach (DataGridViewRow row in cart.Rows)
                         {
                             if (row.IsNewRow) continue;
 
                             string productId = null;
-
-                            // Step 1: Try with SKU
                             string sku = row.Cells["Sku"]?.Value?.ToString()?.Trim();
+
+                            // Step 1: Try to resolve product ID using SKU
                             if (!string.IsNullOrWhiteSpace(sku))
                             {
                                 string[] serials = sku.Split(',');
@@ -340,7 +340,7 @@ GROUP BY
                                 }
                             }
 
-                            // Step 2: If SKU lookup fails, use Name + Description
+                            // Step 2: Fallback to Name + Description
                             if (string.IsNullOrEmpty(productId))
                             {
                                 string name = row.Cells["Name"]?.Value?.ToString()?.Trim();
@@ -360,15 +360,16 @@ GROUP BY
                                 }
                             }
 
-                            // Step 3: Skip if still not found
                             if (string.IsNullOrEmpty(productId))
                                 continue;
 
-                            // Step 4: Insert into bill_details (now includes SKU)
+                            // Step 3: Insert into customer_bill_details
                             string insertDetail = @"INSERT INTO customer_bill_details 
-                                     (Bill_id, product_id, quantity, discount, status, warranty, warranty_from, sku)
-                                     VALUES (@bill, @pid, @qty, @disc, 'bill', @warranty, @warrantyFrom, @sku);";
+                                            (Bill_id, product_id, quantity, discount, status, warranty, warranty_from)
+                                            VALUES (@bill, @pid, @qty, @disc, 'bill', @warranty, @warrantyFrom);
+                                            SELECT LAST_INSERT_ID();";
 
+                            int billDetailId;
                             using (var cmd = new MySqlCommand(insertDetail, conn, tran))
                             {
                                 cmd.Parameters.AddWithValue("@bill", billId);
@@ -385,13 +386,32 @@ GROUP BY
                                 cmd.Parameters.AddWithValue("@warranty", string.IsNullOrWhiteSpace(warranty) ? DBNull.Value : (object)warranty);
                                 cmd.Parameters.AddWithValue("@warrantyFrom", saleDate);
 
-                                // ✅ Add SKU as-is (can be multiple, comma-separated)
-                                cmd.Parameters.AddWithValue("@sku", string.IsNullOrWhiteSpace(sku) ? DBNull.Value : (object)sku);
+                                billDetailId = Convert.ToInt32(cmd.ExecuteScalar());
+                            }
 
-                                cmd.ExecuteNonQuery();
+                            // Step 4: Insert each serial into bill_detail_serials
+                            if (!string.IsNullOrWhiteSpace(sku))
+                            {
+                                string[] serials = sku.Split(',');
+                                foreach (string serial in serials)
+                                {
+                                    string trimmedSerial = serial.Trim();
+                                    if (string.IsNullOrWhiteSpace(trimmedSerial)) continue;
+
+                                    string insertSerial = @"INSERT INTO bill_detail_serials 
+                                                    (bill_detail_id, product_id, serial_number, status)
+                                                    VALUES (@detailId, @pid, @serial, 'sold');";
+
+                                    using (var cmdSerial = new MySqlCommand(insertSerial, conn, tran))
+                                    {
+                                        cmdSerial.Parameters.AddWithValue("@detailId", billDetailId);
+                                        cmdSerial.Parameters.AddWithValue("@pid", productId);
+                                        cmdSerial.Parameters.AddWithValue("@serial", trimmedSerial);
+                                        cmdSerial.ExecuteNonQuery();
+                                    }
+                                }
                             }
                         }
-
                         tran.Commit();
                         return billId;
                     }
@@ -404,10 +424,5 @@ GROUP BY
                 }
             }
         }
-
-
-
-
-
     }
 }
