@@ -21,11 +21,38 @@ namespace TechStore.UI
             InitializeComponent();
             this.billid = billid;
         }
+      
+
+        private void LoadPriceRecords(int billId)
+        {
+            try
+            {
+                var list = sbillDetailsDl.getrecord (billId); // or your injected DL call
+                dataGridView1.Columns.Clear();
+                dataGridView1.DataSource = list;
+
+                // Hide sensitive/internal columns
+                dataGridView1.Columns["name"].Visible = false;
+                dataGridView1.Columns["suppid"].Visible = false;
+                dataGridView1.Columns["bill_id"].Visible = false;
+                dataGridView1.Columns["id"].Visible = false;
+                dataGridView1.Columns["date"].HeaderText = "Date";
+                dataGridView1.Columns["payement"].HeaderText = "Payment";
+                dataGridView1.Columns["remarks"].HeaderText = "Remarks";
+
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading records: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void Sbilldetailform_Load(object sender, EventArgs e)
         {
             LoadDetails();
             LoadHeaderInfo();
+            LoadPriceRecords(billid);
         }
         private void LoadDetails()
         {
@@ -49,5 +76,6 @@ namespace TechStore.UI
               lblpending .Text = " Rs. " + bill.pending.ToString("N2");
             }
         }
+
     }
 }

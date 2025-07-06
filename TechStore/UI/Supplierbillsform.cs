@@ -9,16 +9,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TechStore.BL.BL;
 using TechStore.BL.Models;
+using TechStore.Interfaces;
 
 namespace TechStore.UI
 {
     public partial class Supplierbillsform : Form
     {
         private readonly ISupplierBillBl ibl;
-        public Supplierbillsform(ISupplierBillBl ibl)
+        private readonly IsbilldetailsBl idl;
+        public Supplierbillsform(ISupplierBillBl ibl,IsbilldetailsBl idl)
         {
             InitializeComponent();
             this.ibl = ibl;
+            this.idl = idl;
+            paneledit.Visible = false;
             UIHelper.StyleGridView(dataGridView2);
 
         }
@@ -93,7 +97,66 @@ namespace TechStore.UI
                         detailsForm.ShowDialog();
                     }
                 }
+                if (columnName == "Addpay")
+                {
+                    var selectedBill = dataGridView2.Rows[e.RowIndex].DataBoundItem as Supplierbill;
+
+                    if (selectedBill != null)
+                    {
+                        // Assign data to panel textboxes (ensure these exist on your form)
+                        txtname1.Text = selectedBill.supplier_name;
+                        txtamount.Text = selectedBill.pending.ToString("0.00");
+                        txtbill.Text = selectedBill.bill_id.ToString();
+                        txtdate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+
+                        // Show the panel centered
+                        UIHelper.RoundPanelCorners(paneledit, 20);
+                        UIHelper.ShowCenteredPanel(this, paneledit);
+                    }
+                }
+
             }
+        }
+
+        private void btnsave1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string supplierName = txtname1.Text.Trim();
+                int billId = Convert.ToInt32(txtbill.Text.Trim());
+                decimal payment = Convert.ToDecimal(txtpayment.Text.Trim());
+                string remarks = txtremarks.Text.Trim();
+                DateTime date = Convert.ToDateTime(txtdate.Text.Trim());
+
+                // Optional input validation
+                if (string.IsNullOrWhiteSpace(supplierName) || string.IsNullOrWhiteSpace(remarks))
+                {
+                    MessageBox.Show("Supplier name and remarks are required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var record = new Spricerecord(0, supplierName, payment, date, billId, remarks);
+                    bool success=idl.addrecord(record);
+                if (success)
+                {
+                    MessageBox.Show("Payment saved successfully.");
+                    paneledit.Visible = false;
+                    load(); // Refresh main grid
+                }
+                else
+                {
+                    MessageBox.Show("Payment not saved.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void btncancle1_Click(object sender, EventArgs e)
+        {
+            paneledit.Visible=false;
         }
     }
 }

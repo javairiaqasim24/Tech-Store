@@ -414,6 +414,7 @@
             this.button1.TabIndex = 138;
             this.button1.Text = "Search";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // iconButton6
             // 
@@ -647,7 +648,7 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Walk_in",
+            "Walk-in",
             "Regular"});
             this.comboBox1.Location = new System.Drawing.Point(66, 267);
             this.comboBox1.Name = "comboBox1";
