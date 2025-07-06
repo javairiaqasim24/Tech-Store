@@ -43,5 +43,27 @@ namespace TechStore.BL.BL
                 throw new Exception("error" + e.Message);
             }
         }
+
+        public List<Supplierbill> getbillbyname(string text)
+        {
+            try
+            {
+                return ibl.getbills(text);
+            }
+            catch
+            {
+                throw new ArgumentException("error");
+            }
+        }
+
+        public List<Supplierbill> getbill()
+        {
+            return ibl.getbill();
+        }
+
+        public List<Supplierbill> getbills(int billid)
+        {
+            return ibl.getbills(billid);
+        }
     }
 }

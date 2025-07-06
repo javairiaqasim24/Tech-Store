@@ -134,6 +134,130 @@ namespace TechStore.DL
             }
         }
 
+        public List<Supplierbill> getbills(string text)
+        {
+            try
+            {
+                using(var conn=DatabaseHelper.Instance.GetConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT    sb.supplier_Bill_ID, sb.batch_id,sb.supplier_id,  sb.paid_amount,   sb.total_price,    (sb.total_price-sb.paid_amount) as pending,   sb.Date,    s.name,    b.batch_name FROM   supplierbills sb      JOIN   suppliers s ON s.supplier_id = sb.supplier_id      JOIN    batches b ON b.batch_id = sb.batch_id    where s.name like @text or batch_name like @text;";
+                    using (var cmd =new MySqlCommand(query,conn))
+                    {
+                        var list = new List<Supplierbill>();
+                        cmd.Parameters.AddWithValue("@text", "%" + text + "%");
+                        using (var reader=cmd.ExecuteReader())
+                        {
+                            while(reader.Read())
+                            {
+                                int billid = reader.GetInt32("supplier_Bill_ID");
+                                string suppname = reader.GetString("name");
+                                string Bname = reader.GetString("batch_name");
+                                decimal paidamount = reader.GetDecimal("paid_amount");
+                                decimal totalamount = reader.GetDecimal("total_price");
+                                DateTime date=reader.GetDateTime("date");
+                                decimal pending = reader.GetDecimal("pending");
+                                int batch_id = reader.GetInt32("batch_id");
+                                int suppid = reader.GetInt32("supplier_id");
+                                var bills = new Supplierbill(billid, suppname, date, totalamount, paidamount, Bname, pending, batch_id, suppid);
+                                list.Add(bills);
 
+
+
+                            }
+                        }
+                        return list;
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error retrieving batches: " + ex.Message, ex);
+            }
+        }
+        public List<Supplierbill> getbill()
+        {
+            try
+            {
+                using (var conn = DatabaseHelper.Instance.GetConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT    sb.supplier_Bill_ID,   sb.paid_amount, sb.batch_id,sb.supplier_id,   sb.total_price,    (sb.total_price-sb.paid_amount) as pending,   sb.Date,    s.name,    b.batch_name FROM   supplierbills sb      JOIN   suppliers s ON s.supplier_id = sb.supplier_id      JOIN    batches b ON b.batch_id = sb.batch_id ";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        var list = new List<Supplierbill>();
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int billid = reader.GetInt32("supplier_Bill_ID");
+                                string suppname = reader.GetString("name");
+                                string Bname = reader.GetString("batch_name");
+                                decimal paidamount = reader.GetDecimal("paid_amount");
+                                decimal totalamount = reader.GetDecimal("total_price");
+                                decimal pendingamount = reader.GetDecimal("pending");
+                                DateTime date = reader.GetDateTime("date");
+                                int batch_id = reader.GetInt32("batch_id");
+                                int suppid = reader.GetInt32("supplier_id");
+                                var bills = new Supplierbill(billid, suppname, date, totalamount, paidamount, Bname, pendingamount,batch_id,suppid);
+
+                                list.Add(bills);
+
+
+
+                            }
+                        }
+                        return list;
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error retrieving batches: " + ex.Message, ex);
+            }
+        }
+        public List<Supplierbill> getbills(int billid)
+        {
+            try
+            {
+                using (var conn = DatabaseHelper.Instance.GetConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT    sb.supplier_Bill_ID,   sb.paid_amount, sb.batch_id,sb.supplier_id,  sb.total_price,    (sb.total_price-sb.paid_amount) as pending,   sb.Date,    s.name,    b.batch_name FROM   supplierbills sb      JOIN   suppliers s ON s.supplier_id = sb.supplier_id      JOIN    batches b ON b.batch_id = sb.batch_id    where sb.supplier_bill_id=@billid";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        var list = new List<Supplierbill>();
+                        cmd.Parameters.AddWithValue("@billid",billid);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int billsid = reader.GetInt32("supplier_Bill_ID");
+                                string suppname = reader.GetString("name");
+                                string Bname = reader.GetString("batch_name");
+                                decimal paidamount = reader.GetDecimal("paid_amount");
+                                decimal totalamount = reader.GetDecimal("total_price");
+                                decimal pendingamount = reader.GetDecimal("pending");
+                                DateTime date = reader.GetDateTime("date");
+
+                                int batch_id = reader.GetInt32("batch_id");
+                                int suppid = reader.GetInt32("supplier_id");
+                                var bills = new Supplierbill(billsid, suppname, date, totalamount, paidamount, Bname, pendingamount, batch_id, suppid);
+
+                                list.Add(bills);
+
+
+
+                            }
+                        }
+                        return list;
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error retrieving batches: " + ex.Message, ex);
+            }
+        }
     }
 }

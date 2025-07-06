@@ -1,4 +1,5 @@
-﻿using TechStore.BL.Models;
+﻿using System.Collections.Generic;
+using TechStore.BL.Models;
 
 namespace TechStore.BL.BL
 {
@@ -6,5 +7,8 @@ namespace TechStore.BL.BL
     {
         Supplierbill getbills(string batchname);
         bool updateamount(Supplierbill b);
+        List<Supplierbill> getbillbyname(string text);
+        List<Supplierbill> getbill();
+        List<Supplierbill> getbills(int billid);
     }
 }

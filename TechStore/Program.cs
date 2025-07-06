@@ -32,7 +32,8 @@ namespace TechStore
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var mainForm = ServiceProvider.GetRequiredService<Customersale>();
+            var mainForm = ServiceProvider.GetRequiredService<Supplierbillsform>();
+
             Application.Run(mainForm);
         }
         public static void configureServices(IServiceCollection services)
@@ -87,7 +88,8 @@ namespace TechStore
             services.AddTransient<PurchaseInvoice>();
             services.AddTransient<Customerreturns>();
             services.AddTransient<PurchaseInvoice>();
-
+            services.AddTransient<CustomerBill_SpecificProducts>();
+            services.AddTransient<Supplierbillsform>();
 
         }
     }
