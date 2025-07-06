@@ -33,13 +33,13 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toplbl = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblsales = new System.Windows.Forms.Label();
             this.iconPictureBox4 = new FontAwesome.Sharp.IconPictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lblbest = new System.Windows.Forms.Label();
             this.iconPictureBox6 = new FontAwesome.Sharp.IconPictureBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lbljsj = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.pieChart1 = new LiveCharts.WinForms.PieChart();
@@ -47,25 +47,25 @@
             this.panel11 = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label18 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbltotalp = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.label15 = new System.Windows.Forms.Label();
+            this.lblbills = new System.Windows.Forms.Label();
             this.iconPictureBox8 = new FontAwesome.Sharp.IconPictureBox();
             this.label16 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
+            this.lblreturn = new System.Windows.Forms.Label();
             this.iconPictureBox7 = new FontAwesome.Sharp.IconPictureBox();
             this.label14 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblsupp = new System.Windows.Forms.Label();
             this.iconPictureBox5 = new FontAwesome.Sharp.IconPictureBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.ser = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblcustomers = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblrepairs = new System.Windows.Forms.Label();
             this.iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -107,9 +107,8 @@
             this.panel1.Controls.Add(this.toplbl);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1476, 105);
+            this.panel1.Size = new System.Drawing.Size(1312, 84);
             this.panel1.TabIndex = 10;
             // 
             // toplbl
@@ -118,24 +117,24 @@
             this.toplbl.AutoSize = true;
             this.toplbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toplbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.toplbl.Location = new System.Drawing.Point(605, 32);
+            this.toplbl.Location = new System.Drawing.Point(538, 26);
             this.toplbl.Name = "toplbl";
-            this.toplbl.Size = new System.Drawing.Size(131, 46);
+            this.toplbl.Size = new System.Drawing.Size(108, 38);
             this.toplbl.TabIndex = 6;
             this.toplbl.Text = "Home";
             this.toplbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // lblsales
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(3, 138);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 96);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "0";
+            this.lblsales.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblsales.AutoSize = true;
+            this.lblsales.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblsales.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblsales.Location = new System.Drawing.Point(3, 110);
+            this.lblsales.Name = "lblsales";
+            this.lblsales.Size = new System.Drawing.Size(70, 81);
+            this.lblsales.TabIndex = 2;
+            this.lblsales.Text = "0";
             // 
             // iconPictureBox4
             // 
@@ -145,11 +144,10 @@
             this.iconPictureBox4.IconChar = FontAwesome.Sharp.IconChar.Newspaper;
             this.iconPictureBox4.IconColor = System.Drawing.SystemColors.ButtonHighlight;
             this.iconPictureBox4.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox4.IconSize = 63;
-            this.iconPictureBox4.Location = new System.Drawing.Point(283, 4);
-            this.iconPictureBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.iconPictureBox4.IconSize = 55;
+            this.iconPictureBox4.Location = new System.Drawing.Point(250, 3);
             this.iconPictureBox4.Name = "iconPictureBox4";
-            this.iconPictureBox4.Size = new System.Drawing.Size(63, 69);
+            this.iconPictureBox4.Size = new System.Drawing.Size(56, 55);
             this.iconPictureBox4.TabIndex = 1;
             this.iconPictureBox4.TabStop = false;
             // 
@@ -158,36 +156,36 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label4.Location = new System.Drawing.Point(19, 16);
+            this.label4.Location = new System.Drawing.Point(17, 13);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(163, 30);
+            this.label4.Size = new System.Drawing.Size(134, 25);
             this.label4.TabIndex = 0;
             this.label4.Text = "Total Products";
             // 
             // panel7
             // 
-            this.panel7.BackColor = System.Drawing.Color.CadetBlue;
-            this.panel7.Controls.Add(this.label11);
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(61)))), ((int)(((byte)(147)))));
+            this.panel7.Controls.Add(this.lblbest);
             this.panel7.Controls.Add(this.iconPictureBox6);
-            this.panel7.Controls.Add(this.label12);
+            this.panel7.Controls.Add(this.lbljsj);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(366, 268);
-            this.panel7.Margin = new System.Windows.Forms.Padding(3, 4, 11, 4);
+            this.panel7.Location = new System.Drawing.Point(326, 214);
+            this.panel7.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(349, 244);
+            this.panel7.Size = new System.Drawing.Size(310, 195);
             this.panel7.TabIndex = 9;
             // 
-            // label11
+            // lblbest
             // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label11.Location = new System.Drawing.Point(3, 142);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(81, 96);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "0";
+            this.lblbest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblbest.AutoSize = true;
+            this.lblbest.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblbest.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblbest.Location = new System.Drawing.Point(3, 114);
+            this.lblbest.Name = "lblbest";
+            this.lblbest.Size = new System.Drawing.Size(70, 81);
+            this.lblbest.TabIndex = 2;
+            this.lblbest.Text = "0";
             // 
             // iconPictureBox6
             // 
@@ -197,24 +195,23 @@
             this.iconPictureBox6.IconChar = FontAwesome.Sharp.IconChar.Laptop;
             this.iconPictureBox6.IconColor = System.Drawing.SystemColors.ButtonHighlight;
             this.iconPictureBox6.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox6.IconSize = 63;
-            this.iconPictureBox6.Location = new System.Drawing.Point(282, 4);
-            this.iconPictureBox6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.iconPictureBox6.IconSize = 55;
+            this.iconPictureBox6.Location = new System.Drawing.Point(251, 3);
             this.iconPictureBox6.Name = "iconPictureBox6";
-            this.iconPictureBox6.Size = new System.Drawing.Size(63, 69);
+            this.iconPictureBox6.Size = new System.Drawing.Size(56, 55);
             this.iconPictureBox6.TabIndex = 1;
             this.iconPictureBox6.TabStop = false;
             // 
-            // label12
+            // lbljsj
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label12.Location = new System.Drawing.Point(19, 16);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(132, 30);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Best laptop";
+            this.lbljsj.AutoSize = true;
+            this.lbljsj.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbljsj.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lbljsj.Location = new System.Drawing.Point(17, 13);
+            this.lbljsj.Name = "lbljsj";
+            this.lbljsj.Size = new System.Drawing.Size(121, 25);
+            this.lbljsj.TabIndex = 0;
+            this.lbljsj.Text = "Best Product";
             // 
             // tableLayoutPanel2
             // 
@@ -224,13 +221,12 @@
             this.tableLayoutPanel2.Controls.Add(this.panel10, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel11, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(11, 528);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(10, 422);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1454, 422);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1292, 389);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // panel10
@@ -239,19 +235,18 @@
             this.panel10.Controls.Add(this.pieChart1);
             this.panel10.Controls.Add(this.label17);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(3, 12);
-            this.panel10.Margin = new System.Windows.Forms.Padding(3, 12, 11, 4);
+            this.panel10.Location = new System.Drawing.Point(3, 10);
+            this.panel10.Margin = new System.Windows.Forms.Padding(3, 10, 10, 3);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(713, 406);
+            this.panel10.Size = new System.Drawing.Size(633, 376);
             this.panel10.TabIndex = 0;
             // 
             // pieChart1
             // 
             this.pieChart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pieChart1.Location = new System.Drawing.Point(0, 40);
-            this.pieChart1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pieChart1.Location = new System.Drawing.Point(0, 36);
             this.pieChart1.Name = "pieChart1";
-            this.pieChart1.Size = new System.Drawing.Size(713, 366);
+            this.pieChart1.Size = new System.Drawing.Size(633, 340);
             this.pieChart1.TabIndex = 1;
             this.pieChart1.Text = "pieChart1";
             // 
@@ -264,7 +259,7 @@
             this.label17.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label17.Location = new System.Drawing.Point(0, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(332, 40);
+            this.label17.Size = new System.Drawing.Size(279, 36);
             this.label17.TabIndex = 0;
             this.label17.Text = "Products/Category";
             // 
@@ -274,10 +269,10 @@
             this.panel11.Controls.Add(this.chart1);
             this.panel11.Controls.Add(this.label18);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel11.Location = new System.Drawing.Point(730, 12);
-            this.panel11.Margin = new System.Windows.Forms.Padding(3, 12, 11, 4);
+            this.panel11.Location = new System.Drawing.Point(649, 10);
+            this.panel11.Margin = new System.Windows.Forms.Padding(3, 10, 10, 3);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(713, 406);
+            this.panel11.Size = new System.Drawing.Size(633, 376);
             this.panel11.TabIndex = 1;
             this.panel11.Paint += new System.Windows.Forms.PaintEventHandler(this.panel11_Paint);
             // 
@@ -290,8 +285,7 @@
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(0, 40);
-            this.chart1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.chart1.Location = new System.Drawing.Point(0, 36);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             series1.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.Center;
@@ -304,7 +298,7 @@
             series1.MarkerBorderWidth = 3;
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(713, 366);
+            this.chart1.Size = new System.Drawing.Size(633, 340);
             this.chart1.TabIndex = 2;
             this.chart1.Text = "chart1";
             // 
@@ -317,21 +311,21 @@
             this.label18.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label18.Location = new System.Drawing.Point(0, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(203, 40);
+            this.label18.Size = new System.Drawing.Size(170, 36);
             this.label18.TabIndex = 1;
             this.label18.Text = "Sale Trend";
             // 
-            // label3
+            // lbltotalp
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label3.Location = new System.Drawing.Point(3, 135);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 96);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "0";
+            this.lbltotalp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbltotalp.AutoSize = true;
+            this.lbltotalp.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltotalp.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lbltotalp.Location = new System.Drawing.Point(3, 107);
+            this.lbltotalp.Name = "lbltotalp";
+            this.lbltotalp.Size = new System.Drawing.Size(70, 81);
+            this.lbltotalp.TabIndex = 2;
+            this.lbltotalp.Text = "0";
             // 
             // tableLayoutPanel1
             // 
@@ -349,41 +343,40 @@
             this.tableLayoutPanel1.Controls.Add(this.panel4, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel14, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(11, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 12, 0, 12);
+            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1454, 528);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1292, 422);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel9
             // 
-            this.panel9.BackColor = System.Drawing.Color.Purple;
-            this.panel9.Controls.Add(this.label15);
+            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(61)))), ((int)(((byte)(147)))));
+            this.panel9.Controls.Add(this.lblbills);
             this.panel9.Controls.Add(this.iconPictureBox8);
             this.panel9.Controls.Add(this.label16);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(1092, 268);
-            this.panel9.Margin = new System.Windows.Forms.Padding(3, 4, 11, 4);
+            this.panel9.Location = new System.Drawing.Point(972, 214);
+            this.panel9.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.panel9.Name = "panel9";
-            this.panel9.Padding = new System.Windows.Forms.Padding(0, 12, 0, 0);
-            this.panel9.Size = new System.Drawing.Size(351, 244);
+            this.panel9.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.panel9.Size = new System.Drawing.Size(310, 195);
             this.panel9.TabIndex = 11;
             // 
-            // label15
+            // lblbills
             // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label15.Location = new System.Drawing.Point(3, 142);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(81, 96);
-            this.label15.TabIndex = 2;
-            this.label15.Text = "0";
+            this.lblbills.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblbills.AutoSize = true;
+            this.lblbills.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblbills.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblbills.Location = new System.Drawing.Point(3, 114);
+            this.lblbills.Name = "lblbills";
+            this.lblbills.Size = new System.Drawing.Size(70, 81);
+            this.lblbills.TabIndex = 2;
+            this.lblbills.Text = "0";
             // 
             // iconPictureBox8
             // 
@@ -393,11 +386,10 @@
             this.iconPictureBox8.IconChar = FontAwesome.Sharp.IconChar.Print;
             this.iconPictureBox8.IconColor = System.Drawing.SystemColors.ButtonHighlight;
             this.iconPictureBox8.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox8.IconSize = 63;
-            this.iconPictureBox8.Location = new System.Drawing.Point(283, 16);
-            this.iconPictureBox8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.iconPictureBox8.IconSize = 55;
+            this.iconPictureBox8.Location = new System.Drawing.Point(250, 13);
             this.iconPictureBox8.Name = "iconPictureBox8";
-            this.iconPictureBox8.Size = new System.Drawing.Size(63, 69);
+            this.iconPictureBox8.Size = new System.Drawing.Size(56, 55);
             this.iconPictureBox8.TabIndex = 1;
             this.iconPictureBox8.TabStop = false;
             // 
@@ -406,36 +398,36 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label16.Location = new System.Drawing.Point(19, 30);
+            this.label16.Location = new System.Drawing.Point(17, 24);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(136, 30);
+            this.label16.Size = new System.Drawing.Size(213, 25);
             this.label16.TabIndex = 0;
-            this.label16.Text = "Best Printer";
+            this.label16.Text = "Pending Bills(Suppliers)";
             // 
             // panel8
             // 
-            this.panel8.BackColor = System.Drawing.Color.SteelBlue;
-            this.panel8.Controls.Add(this.label13);
+            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(61)))), ((int)(((byte)(147)))));
+            this.panel8.Controls.Add(this.lblreturn);
             this.panel8.Controls.Add(this.iconPictureBox7);
             this.panel8.Controls.Add(this.label14);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(729, 268);
-            this.panel8.Margin = new System.Windows.Forms.Padding(3, 4, 11, 4);
+            this.panel8.Location = new System.Drawing.Point(649, 214);
+            this.panel8.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(349, 244);
+            this.panel8.Size = new System.Drawing.Size(310, 195);
             this.panel8.TabIndex = 10;
             // 
-            // label13
+            // lblreturn
             // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label13.Location = new System.Drawing.Point(3, 142);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(81, 96);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "0";
+            this.lblreturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblreturn.AutoSize = true;
+            this.lblreturn.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblreturn.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblreturn.Location = new System.Drawing.Point(3, 114);
+            this.lblreturn.Name = "lblreturn";
+            this.lblreturn.Size = new System.Drawing.Size(70, 81);
+            this.lblreturn.TabIndex = 2;
+            this.lblreturn.Text = "0";
             // 
             // iconPictureBox7
             // 
@@ -445,11 +437,10 @@
             this.iconPictureBox7.IconChar = FontAwesome.Sharp.IconChar.DesktopAlt;
             this.iconPictureBox7.IconColor = System.Drawing.SystemColors.ButtonHighlight;
             this.iconPictureBox7.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox7.IconSize = 63;
-            this.iconPictureBox7.Location = new System.Drawing.Point(282, 4);
-            this.iconPictureBox7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.iconPictureBox7.IconSize = 55;
+            this.iconPictureBox7.Location = new System.Drawing.Point(251, 3);
             this.iconPictureBox7.Name = "iconPictureBox7";
-            this.iconPictureBox7.Size = new System.Drawing.Size(63, 69);
+            this.iconPictureBox7.Size = new System.Drawing.Size(56, 55);
             this.iconPictureBox7.TabIndex = 1;
             this.iconPictureBox7.TabStop = false;
             // 
@@ -458,36 +449,36 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label14.Location = new System.Drawing.Point(19, 16);
+            this.label14.Location = new System.Drawing.Point(17, 13);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(168, 30);
+            this.label14.Size = new System.Drawing.Size(229, 25);
             this.label14.TabIndex = 0;
-            this.label14.Text = "Best Computer";
+            this.label14.Text = "Returns Today(Customer)";
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.panel6.Controls.Add(this.label9);
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(61)))), ((int)(((byte)(147)))));
+            this.panel6.Controls.Add(this.lblsupp);
             this.panel6.Controls.Add(this.iconPictureBox5);
-            this.panel6.Controls.Add(this.label10);
+            this.panel6.Controls.Add(this.ser);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(3, 268);
-            this.panel6.Margin = new System.Windows.Forms.Padding(3, 4, 11, 4);
+            this.panel6.Location = new System.Drawing.Point(3, 214);
+            this.panel6.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(349, 244);
+            this.panel6.Size = new System.Drawing.Size(310, 195);
             this.panel6.TabIndex = 8;
             // 
-            // label9
+            // lblsupp
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label9.Location = new System.Drawing.Point(3, 142);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(81, 96);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "0";
+            this.lblsupp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblsupp.AutoSize = true;
+            this.lblsupp.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblsupp.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblsupp.Location = new System.Drawing.Point(3, 114);
+            this.lblsupp.Name = "lblsupp";
+            this.lblsupp.Size = new System.Drawing.Size(70, 81);
+            this.lblsupp.TabIndex = 2;
+            this.lblsupp.Text = "0";
             // 
             // iconPictureBox5
             // 
@@ -497,85 +488,84 @@
             this.iconPictureBox5.IconChar = FontAwesome.Sharp.IconChar.MoneyBillAlt;
             this.iconPictureBox5.IconColor = System.Drawing.SystemColors.ButtonHighlight;
             this.iconPictureBox5.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox5.IconSize = 63;
-            this.iconPictureBox5.Location = new System.Drawing.Point(282, 4);
-            this.iconPictureBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.iconPictureBox5.IconSize = 55;
+            this.iconPictureBox5.Location = new System.Drawing.Point(251, 3);
             this.iconPictureBox5.Name = "iconPictureBox5";
-            this.iconPictureBox5.Size = new System.Drawing.Size(63, 69);
+            this.iconPictureBox5.Size = new System.Drawing.Size(56, 55);
             this.iconPictureBox5.TabIndex = 1;
             this.iconPictureBox5.TabStop = false;
             // 
-            // label10
+            // ser
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label10.Location = new System.Drawing.Point(19, 16);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(185, 30);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Revenue(Month)";
+            this.ser.AutoSize = true;
+            this.ser.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ser.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.ser.Location = new System.Drawing.Point(17, 13);
+            this.ser.Name = "ser";
+            this.ser.Size = new System.Drawing.Size(137, 25);
+            this.ser.TabIndex = 0;
+            this.ser.Text = "Total Suppliers";
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.Orange;
-            this.panel5.Controls.Add(this.label7);
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(61)))), ((int)(((byte)(147)))));
+            this.panel5.Controls.Add(this.lblcustomers);
             this.panel5.Controls.Add(this.iconPictureBox4);
             this.panel5.Controls.Add(this.label8);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(1092, 16);
-            this.panel5.Margin = new System.Windows.Forms.Padding(3, 4, 11, 12);
+            this.panel5.Location = new System.Drawing.Point(972, 13);
+            this.panel5.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(351, 236);
+            this.panel5.Size = new System.Drawing.Size(310, 188);
             this.panel5.TabIndex = 7;
             // 
-            // label7
+            // lblcustomers
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label7.Location = new System.Drawing.Point(3, 135);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(81, 96);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "0";
+            this.lblcustomers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblcustomers.AutoSize = true;
+            this.lblcustomers.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcustomers.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblcustomers.Location = new System.Drawing.Point(3, 107);
+            this.lblcustomers.Name = "lblcustomers";
+            this.lblcustomers.Size = new System.Drawing.Size(70, 81);
+            this.lblcustomers.TabIndex = 2;
+            this.lblcustomers.Text = "0";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label8.Location = new System.Drawing.Point(19, 16);
+            this.label8.Location = new System.Drawing.Point(17, 13);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(180, 30);
+            this.label8.Size = new System.Drawing.Size(148, 25);
             this.label8.TabIndex = 0;
             this.label8.Text = "Total Customers";
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.Red;
-            this.panel3.Controls.Add(this.label5);
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(61)))), ((int)(((byte)(147)))));
+            this.panel3.Controls.Add(this.lblrepairs);
             this.panel3.Controls.Add(this.iconPictureBox3);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(729, 16);
-            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 11, 12);
+            this.panel3.Location = new System.Drawing.Point(649, 13);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(349, 236);
+            this.panel3.Size = new System.Drawing.Size(310, 188);
             this.panel3.TabIndex = 6;
             // 
-            // label5
+            // lblrepairs
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label5.Location = new System.Drawing.Point(3, 135);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 96);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "0";
+            this.lblrepairs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblrepairs.AutoSize = true;
+            this.lblrepairs.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblrepairs.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblrepairs.Location = new System.Drawing.Point(3, 107);
+            this.lblrepairs.Name = "lblrepairs";
+            this.lblrepairs.Size = new System.Drawing.Size(70, 81);
+            this.lblrepairs.TabIndex = 2;
+            this.lblrepairs.Text = "0";
             // 
             // iconPictureBox3
             // 
@@ -585,11 +575,10 @@
             this.iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.ScrewdriverWrench;
             this.iconPictureBox3.IconColor = System.Drawing.SystemColors.ButtonHighlight;
             this.iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox3.IconSize = 63;
-            this.iconPictureBox3.Location = new System.Drawing.Point(282, 4);
-            this.iconPictureBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.iconPictureBox3.IconSize = 55;
+            this.iconPictureBox3.Location = new System.Drawing.Point(251, 3);
             this.iconPictureBox3.Name = "iconPictureBox3";
-            this.iconPictureBox3.Size = new System.Drawing.Size(63, 69);
+            this.iconPictureBox3.Size = new System.Drawing.Size(56, 55);
             this.iconPictureBox3.TabIndex = 1;
             this.iconPictureBox3.TabStop = false;
             // 
@@ -598,23 +587,23 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label6.Location = new System.Drawing.Point(19, 16);
+            this.label6.Location = new System.Drawing.Point(17, 13);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(160, 30);
+            this.label6.Size = new System.Drawing.Size(134, 25);
             this.label6.TabIndex = 0;
             this.label6.Text = "Active Repairs";
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.panel4.Controls.Add(this.label2);
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(61)))), ((int)(((byte)(147)))));
+            this.panel4.Controls.Add(this.lblsales);
             this.panel4.Controls.Add(this.iconPictureBox1);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(366, 16);
-            this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 11, 9);
+            this.panel4.Location = new System.Drawing.Point(326, 13);
+            this.panel4.Margin = new System.Windows.Forms.Padding(3, 3, 10, 7);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(349, 239);
+            this.panel4.Size = new System.Drawing.Size(310, 191);
             this.panel4.TabIndex = 5;
             // 
             // iconPictureBox1
@@ -625,11 +614,10 @@
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Coins;
             this.iconPictureBox1.IconColor = System.Drawing.SystemColors.ButtonHighlight;
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 63;
-            this.iconPictureBox1.Location = new System.Drawing.Point(282, 4);
-            this.iconPictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.iconPictureBox1.IconSize = 55;
+            this.iconPictureBox1.Location = new System.Drawing.Point(251, 3);
             this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(63, 69);
+            this.iconPictureBox1.Size = new System.Drawing.Size(56, 55);
             this.iconPictureBox1.TabIndex = 1;
             this.iconPictureBox1.TabStop = false;
             // 
@@ -638,23 +626,23 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(19, 16);
+            this.label1.Location = new System.Drawing.Point(17, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 30);
+            this.label1.Size = new System.Drawing.Size(111, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Sales Today";
             // 
             // panel14
             // 
-            this.panel14.BackColor = System.Drawing.Color.SeaGreen;
-            this.panel14.Controls.Add(this.label3);
+            this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(61)))), ((int)(((byte)(147)))));
+            this.panel14.Controls.Add(this.lbltotalp);
             this.panel14.Controls.Add(this.iconPictureBox2);
             this.panel14.Controls.Add(this.label4);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel14.Location = new System.Drawing.Point(3, 16);
-            this.panel14.Margin = new System.Windows.Forms.Padding(3, 4, 11, 12);
+            this.panel14.Location = new System.Drawing.Point(3, 13);
+            this.panel14.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(349, 236);
+            this.panel14.Size = new System.Drawing.Size(310, 188);
             this.panel14.TabIndex = 4;
             // 
             // iconPictureBox2
@@ -665,11 +653,10 @@
             this.iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.BoxesStacked;
             this.iconPictureBox2.IconColor = System.Drawing.SystemColors.ButtonHighlight;
             this.iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox2.IconSize = 63;
-            this.iconPictureBox2.Location = new System.Drawing.Point(282, 4);
-            this.iconPictureBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.iconPictureBox2.IconSize = 55;
+            this.iconPictureBox2.Location = new System.Drawing.Point(251, 3);
             this.iconPictureBox2.Name = "iconPictureBox2";
-            this.iconPictureBox2.Size = new System.Drawing.Size(63, 69);
+            this.iconPictureBox2.Size = new System.Drawing.Size(56, 55);
             this.iconPictureBox2.TabIndex = 1;
             this.iconPictureBox2.TabStop = false;
             // 
@@ -680,30 +667,29 @@
             this.panel2.Controls.Add(this.tableLayoutPanel1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(11, 0, 11, 0);
-            this.panel2.Size = new System.Drawing.Size(1476, 950);
+            this.panel2.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.panel2.Size = new System.Drawing.Size(1312, 811);
             this.panel2.TabIndex = 1;
             // 
             // panel15
             // 
             this.panel15.Controls.Add(this.panel2);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel15.Location = new System.Drawing.Point(0, 105);
-            this.panel15.Margin = new System.Windows.Forms.Padding(3, 12, 11, 4);
+            this.panel15.Location = new System.Drawing.Point(0, 84);
+            this.panel15.Margin = new System.Windows.Forms.Padding(3, 10, 10, 3);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(1476, 950);
+            this.panel15.Size = new System.Drawing.Size(1312, 811);
             this.panel15.TabIndex = 11;
             // 
             // HomeContentform
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1476, 1055);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1312, 895);
             this.Controls.Add(this.panel15);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "HomeContentform";
             this.Text = "HomeContentform";
             this.Load += new System.EventHandler(this.HomeContentform_Load);
@@ -750,13 +736,13 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label toplbl;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblsales;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblbest;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox6;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lbljsj;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Panel panel10;
         private LiveCharts.WinForms.PieChart pieChart1;
@@ -764,25 +750,25 @@
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbltotalp;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lblbills;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox8;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblreturn;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox7;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblsupp;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox5;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label ser;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblcustomers;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblrepairs;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel4;

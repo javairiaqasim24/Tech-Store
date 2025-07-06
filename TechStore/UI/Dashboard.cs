@@ -116,7 +116,8 @@ namespace TechStore
         {
             activebutton(sender, System.Drawing.Color.FromArgb(0, 126, 249));
 
-            LoadFormIntoPanel(new HomeContentform());
+            var f = Program.ServiceProvider.GetRequiredService<HomeContentform>();
+            LoadFormIntoPanel(f);
         }
         private void CollapsePanel(Panel panel, int collapsedHeight)
         {
@@ -138,7 +139,8 @@ namespace TechStore
         private void Dashboard_Load(object sender, EventArgs e)
         {
             activebutton(btndashboard, Color.FromArgb(0, 126, 249));
-            LoadFormIntoPanel(new HomeContentform());
+            var f = Program.ServiceProvider.GetRequiredService<HomeContentform>();
+            LoadFormIntoPanel(f);
 
         }
         private void activebutton(object senderbtn, System.Drawing.Color color)

@@ -48,6 +48,9 @@ namespace TechStore
             services.AddScoped<ISupplierbillDl, SupplierbillDl>();
             services.AddScoped<IInventorylogDl,InventorylogDl>();
             services.AddScoped<IPurchaseDl, purchaseDL>();
+            services.AddScoped<IInventoryDl,InventoryDl>();
+            services.AddScoped<ISreturnsDl,SreturnsDl>();
+            services.AddScoped<ISbilldetailsDl,SbilldetailsDl>();
 
 
             //BL
@@ -59,7 +62,11 @@ namespace TechStore
             services.AddScoped<IBatchDetailsBL, BatchDetailsBL>();
             services.AddScoped<ISupplierBillBl, SupplierBillBl>();
             services.AddScoped<IInventorylogBl, InventorylogBl>();
-
+            services.AddScoped<IInventoryBl,InventoryBl>();
+            services.AddScoped<IsreturnBl, SreturnBl>();
+            services.AddScoped<IInventorylogBl, InventorylogBl>();
+            services.AddScoped<IsbilldetailsBl,SbilldetailsBl>();
+            services.AddScoped<Idashboard,Dashboardservice>();
 
 
 
@@ -90,7 +97,9 @@ namespace TechStore
             services.AddTransient<PurchaseInvoice>();
             services.AddTransient<CustomerBill_SpecificProducts>();
             services.AddTransient<Supplierbillsform>();
-
+            services.AddTransient<Inventoryform>();
+            services.AddTransient<Supplier_eturnsform>();
+            services.AddTransient<DashboardDl>();
         }
     }
 }

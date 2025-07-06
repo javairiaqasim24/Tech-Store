@@ -97,7 +97,7 @@ public class ProductDL : IproductDl
                             reader.GetString("name"),
                             reader.GetString("description"),
                             reader.GetString("category_name")
-                         
+
                         );
                         products.Add(product);
                     }
@@ -138,7 +138,7 @@ public class ProductDL : IproductDl
                                 reader.GetString("name"),
                                 reader.GetString("description"),
                                 reader.GetString("category_name")
-                           
+
                             );
                             products.Add(product);
                         }
@@ -199,4 +199,6 @@ public class ProductDL : IproductDl
             throw new Exception();
         }
     }
-}
+   
+
+} 
