@@ -121,14 +121,12 @@ namespace TechStore.DL
                             }
                         });
 
-                        // Footer line
-                        content.Item().Element(e =>
-                            e.PaddingTop(10)
-                             .LineHorizontal(1)
-                             .LineColor(Colors.Grey.Lighten2)
-                        );
-
-                        content.Item().AlignCenter().Text("Thank you for your business!").FontSize(12).Italic();
+                        // ✅ Add this footer
+                        page.Footer().AlignCenter().Column(col =>
+                        {
+                            col.Item().LineHorizontal(1).LineColor(Colors.Grey.Lighten2);
+                            col.Item().Text("Thank you for your business!").FontSize(12).Italic();
+                        });
                     });
                 });
             }).GeneratePdf(filePath);
@@ -250,6 +248,13 @@ namespace TechStore.DL
 
             y += 10;
             e.Graphics.DrawLine(Pens.Gray, x, y, x + pageWidth, y);
+
+            // --- Footer at bottom ---
+            float footerY = e.PageBounds.Height - 60;
+            e.Graphics.DrawLine(Pens.Gray, x, footerY, x + pageWidth, footerY);
+            e.Graphics.DrawString("Thank you for your business!", new Font("Arial", 10, FontStyle.Italic), brush, x + pageWidth / 2 - 80, footerY + 5);
+
+
         }
 
 
