@@ -19,7 +19,7 @@ using TechStore.Interfaces.DLInterfaces;
 
 namespace TechStore.DL
 {
-    internal class purchaseDL :IPurchaseDl
+    internal class purchaseDL : IPurchaseDl
     {
         public DataTable GetProducts()
         {
@@ -59,7 +59,7 @@ namespace TechStore.DL
                         {
                             row.RelativeItem(1).Column(col =>
                             {
-                                col.Item().Image("logo.jpg", ImageScaling.FitWidth);
+                                col.Item().Image("logo.png", ImageScaling.FitWidth);
                             });
 
                             row.RelativeItem(3).Column(col =>
@@ -134,7 +134,7 @@ namespace TechStore.DL
             }).GeneratePdf(filePath);
         }
 
-        public static void PrintPurchaseInvoiceDirectly(DataGridView cart, string supplierName, DateTime purchaseDate)
+        public void PrintPurchaseInvoiceDirectly(DataGridView cart, string supplierName, DateTime purchaseDate)
         {
             if (PrinterSettings.InstalledPrinters.Count == 0)
             {
@@ -162,7 +162,7 @@ namespace TechStore.DL
             }
         }
 
-        private static void DrawPurchaseInvoice(PrintPageEventArgs e, DataGridView cart, string supplierName, DateTime purchaseDate)
+        public void DrawPurchaseInvoice(PrintPageEventArgs e, DataGridView cart, string supplierName, DateTime purchaseDate)
         {
             Font titleFont = new Font("Arial", 18, FontStyle.Bold);
             Font headerFont = new Font("Arial", 12, FontStyle.Bold);

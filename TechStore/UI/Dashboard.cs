@@ -164,6 +164,8 @@ namespace TechStore
         private void btnsales_Click(object sender, EventArgs e)
         {
             activebutton(sender, sidebarColors[4]);
+            var f = Program.ServiceProvider.GetRequiredService<Customersale>();
+            LoadFormIntoPanel(f);
 
         }
 
@@ -289,6 +291,30 @@ namespace TechStore
         private void btnbatches_Click_1(object sender, EventArgs e)
         {
             var f = Program.ServiceProvider.GetRequiredService<Batchesform>();
+            LoadFormIntoPanel(f);
+        }
+
+        private void btnbatchdetails_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<BatchDetailsform>();
+            LoadFormIntoPanel(f);
+        }
+
+        private void btnadddetails_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<AddbatchDetailsform>();
+            f.ShowDialog(this);
+        }
+
+        private void btnSreturn_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<Supplier_eturnsform>();
+            LoadFormIntoPanel(f);
+        }
+
+        private void btnorder_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<PurchaseInvoice>();
             LoadFormIntoPanel(f);
         }
     }

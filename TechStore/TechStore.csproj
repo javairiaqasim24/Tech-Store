@@ -152,14 +152,20 @@
     <Compile Include="BL\BL\CustomerSaleBL.cs" />
     <Compile Include="BL\BL\InventoryBl.cs" />
     <Compile Include="BL\BL\InventorylogBl.cs" />
+    <Compile Include="BL\BL\SreturnBl.cs" />
     <Compile Include="BL\Models\Batches\Batchdetails.cs" />
     <Compile Include="BL\Models\Batches\Batches.cs" />
     <Compile Include="BL\Models\Inventory.cs" />
     <Compile Include="BL\Models\inventorylog.cs" />
+    <Compile Include="BL\Models\TemporaryInvoice.cs" />
+    <Compile Include="BL\Models\Supplierreturn.cs" />
     <Compile Include="DL\BatchFormPersistence.cs" />
     <Compile Include="DL\BillingRecordsOverviewDL.cs" />
     <Compile Include="DL\CustomerBill_SpecificProductsDL.cs" />
     <Compile Include="DL\CustomerReturnDL.cs" />
+    <Compile Include="Interfaces\BLInterfaces\IsreturnBl.cs" />
+    <Compile Include="Interfaces\DLInterfaces\ISreturnsDl.cs" />
+    <Compile Include="DL\SreturnsDl.cs" />
     <Compile Include="Interfaces\BLInterfaces\IInventorylogBl.cs" />
     <Compile Include="Interfaces\DLInterfaces\IInventorylogDl.cs" />
     <Compile Include="DL\InventoryDl.cs" />
@@ -346,7 +352,16 @@
     <Compile Include="UI\Supplierform.Designer.cs">
       <DependentUpon>Supplierform.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Supplier_eturnsform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Supplier_eturnsform.Designer.cs">
+      <DependentUpon>Supplier_eturnsform.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\UIHelper.cs" />
+    <EmbeddedResource Include="UI\Supplier_eturnsform.resx">
+      <DependentUpon>Supplier_eturnsform.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Resources\logoo.png" />
     <None Include="Resources\logo %282%291.png" />
     <None Include="Resources\logo %282%29.png" />

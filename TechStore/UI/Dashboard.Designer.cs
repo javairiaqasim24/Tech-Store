@@ -278,7 +278,7 @@
             this.panelbatch.Controls.Add(this.btnbatches);
             this.panelbatch.Location = new System.Drawing.Point(3, 321);
             this.panelbatch.Name = "panelbatch";
-            this.panelbatch.Size = new System.Drawing.Size(270, 62);
+            this.panelbatch.Size = new System.Drawing.Size(270, 67);
             this.panelbatch.TabIndex = 11;
             // 
             // iconPictureBox2
@@ -320,6 +320,7 @@
             this.btnadddetails.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnadddetails.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnadddetails.UseVisualStyleBackColor = false;
+            this.btnadddetails.Click += new System.EventHandler(this.btnadddetails_Click);
             // 
             // btnbatchdetails
             // 
@@ -345,6 +346,7 @@
             this.btnbatchdetails.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnbatchdetails.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnbatchdetails.UseVisualStyleBackColor = false;
+            this.btnbatchdetails.Click += new System.EventHandler(this.btnbatchdetails_Click);
             // 
             // btnbatches
             // 
@@ -378,7 +380,7 @@
             this.panel4.Controls.Add(this.iconButton1);
             this.panel4.Controls.Add(this.iconButton8);
             this.panel4.Controls.Add(this.btnsale);
-            this.panel4.Location = new System.Drawing.Point(3, 389);
+            this.panel4.Location = new System.Drawing.Point(3, 394);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(270, 61);
             this.panel4.TabIndex = 12;
@@ -467,7 +469,7 @@
             this.panelcust.Controls.Add(this.btnCbilldetails);
             this.panelcust.Controls.Add(this.btncustomerbill);
             this.panelcust.Controls.Add(this.btncustomers);
-            this.panelcust.Location = new System.Drawing.Point(3, 456);
+            this.panelcust.Location = new System.Drawing.Point(3, 461);
             this.panelcust.Name = "panelcust";
             this.panelcust.Size = new System.Drawing.Size(270, 63);
             this.panelcust.TabIndex = 12;
@@ -595,7 +597,7 @@
             this.panelsupp.Controls.Add(this.Sbilldetails);
             this.panelsupp.Controls.Add(this.btnSbills);
             this.panelsupp.Controls.Add(this.btnsuppliers);
-            this.panelsupp.Location = new System.Drawing.Point(3, 525);
+            this.panelsupp.Location = new System.Drawing.Point(3, 530);
             this.panelsupp.Name = "panelsupp";
             this.panelsupp.Size = new System.Drawing.Size(270, 66);
             this.panelsupp.TabIndex = 13;
@@ -723,9 +725,9 @@
             this.panelreturn.Controls.Add(this.btnSreturn);
             this.panelreturn.Controls.Add(this.bntcustomerreturn);
             this.panelreturn.Controls.Add(this.btnreturns);
-            this.panelreturn.Location = new System.Drawing.Point(3, 597);
+            this.panelreturn.Location = new System.Drawing.Point(3, 602);
             this.panelreturn.Name = "panelreturn";
-            this.panelreturn.Size = new System.Drawing.Size(270, 66);
+            this.panelreturn.Size = new System.Drawing.Size(270, 64);
             this.panelreturn.TabIndex = 14;
             // 
             // iconPictureBox6
@@ -767,6 +769,7 @@
             this.btnSreturn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSreturn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSreturn.UseVisualStyleBackColor = false;
+            this.btnSreturn.Click += new System.EventHandler(this.btnSreturn_Click);
             // 
             // bntcustomerreturn
             // 
@@ -833,7 +836,7 @@
             this.btnorder.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnorder.IconSize = 40;
             this.btnorder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnorder.Location = new System.Drawing.Point(3, 669);
+            this.btnorder.Location = new System.Drawing.Point(3, 672);
             this.btnorder.Name = "btnorder";
             this.btnorder.Size = new System.Drawing.Size(267, 60);
             this.btnorder.TabIndex = 15;
@@ -841,6 +844,7 @@
             this.btnorder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnorder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnorder.UseVisualStyleBackColor = false;
+            this.btnorder.Click += new System.EventHandler(this.btnorder_Click);
             // 
             // btnlogout
             // 
@@ -858,7 +862,7 @@
             this.btnlogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnlogout.IconSize = 40;
             this.btnlogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnlogout.Location = new System.Drawing.Point(3, 735);
+            this.btnlogout.Location = new System.Drawing.Point(3, 738);
             this.btnlogout.Name = "btnlogout";
             this.btnlogout.Size = new System.Drawing.Size(270, 60);
             this.btnlogout.TabIndex = 16;

@@ -9,7 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using KIMS;
+using Newtonsoft.Json;
+using TechStore.BL.Models;
 using TechStore.DL;
+using System.IO;
 
 namespace TechStore.UI
 {
@@ -17,23 +20,23 @@ namespace TechStore.UI
     {
         private DataGridView dgvProductSearch;
         private DataTable allProducts; // holds all products from DB or dummy
-        purchaseDL p=new purchaseDL();
-        
-        
+        purchaseDL p = new purchaseDL();
+
+
         public PurchaseInvoice()
         {
             InitializeComponent();
+            cmbSupplierName.DropDownStyle = ComboBoxStyle.DropDown;
             ConfigureInvoiceGrid();
             SetupSearchGrid();
             LoadProductData(); // Fill allProducts
             dgvInvoice.AllowUserToAddRows = false;
-                    
-            string searchKeyword = cmbSupplierName.Text.Trim(); 
 
-            List<string> suppliersList = DatabaseHelper.Instance.GetSuppliers(searchKeyword);  
-            suppliersList.Insert(0, "-- Select Supplier --");
+            string searchKeyword = cmbSupplierName.Text.Trim();
 
-            cmbSupplierName.DataSource = null; // Reset first (optional but safe)
+            List<string> suppliersList = DatabaseHelper.Instance.GetSuppliers(searchKeyword);
+
+            cmbSupplierName.DataSource = null;
             cmbSupplierName.DataSource = suppliersList;
 
 
@@ -42,7 +45,7 @@ namespace TechStore.UI
         private void LoadProductData()
         {
             allProducts = p.GetProducts();
-           
+
         }
 
         private void ConfigureInvoiceGrid()
@@ -88,6 +91,14 @@ namespace TechStore.UI
                 return;
             }
 
+
+            if (!int.TryParse(txtQuantity.Text.Trim(), out int quantity))
+            {
+                MessageBox.Show("Quantity should be in digits only.", "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtQuantity.Focus();
+                return;
+            }
+
             if (editingRowIndex != null)
             {
                 // Update existing row
@@ -97,7 +108,7 @@ namespace TechStore.UI
                     txtQuantity.Text
                 );
 
-                editingRowIndex = null; // Clear edit state
+                editingRowIndex = null;
                 MessageBox.Show("Row updated successfully!");
             }
             else
@@ -118,26 +129,44 @@ namespace TechStore.UI
 
         private void btnsave_Click(object sender, EventArgs e)
         {
-            // 2. Get supplier name from ComboBox
-            string supplierName = cmbSupplierName.SelectedIndex > 0
-           ? cmbSupplierName.SelectedItem.ToString()
-           : "Unknown Supplier";
+            string supplierName = cmbSupplierName.Text.Trim();
 
-            // 3. Get today's date
-            DateTime saleDate = DateTime.Now;
-
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
-            saveFileDialog.Title = "Save Purchase Invoice";
-            saveFileDialog.FileName = "PurchaseInvoice.pdf";
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            if (string.IsNullOrWhiteSpace(supplierName))
             {
-                string filePath = saveFileDialog.FileName;
-                p.CreateSaleInvoicePdf(dgvInvoice, filePath, supplierName, DateTime.Now);
-                MessageBox.Show("PDF Generated Successfully..");
-            }
+                DialogResult result = MessageBox.Show(
+                    "Don't you want to select or enter a supplier?",
+                    "Supplier Not Specified",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
 
+                if (result == DialogResult.Yes)
+                {
+                    supplierName = "";
+                }
+                else
+                {
+                    MessageBox.Show("Please type or select a supplier before continuing.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    cmbSupplierName.Focus();
+                    return;
+                }
+
+                // 3. Get today's date
+                DateTime saleDate = DateTime.Now;
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
+                saveFileDialog.Title = "Save Purchase Invoice";
+                saveFileDialog.FileName = "PurchaseInvoice.pdf";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName;
+                    p.CreateSaleInvoicePdf(dgvInvoice, filePath, supplierName, DateTime.Now);
+                    MessageBox.Show("PDF Generated Successfully..");
+                }
+
+            }
         }
 
         private void txtProductName_TextChanged(object sender, EventArgs e)
@@ -234,16 +263,78 @@ namespace TechStore.UI
                 return;
             }
 
-            // Get Supplier Name
-            string supplierName = cmbSupplierName.SelectedIndex > 0
-                ? cmbSupplierName.Text
-                : "Unknown Supplier";
+            string supplierName = cmbSupplierName.Text.Trim();
 
-            // Get Purchase Date
+            if (string.IsNullOrWhiteSpace(supplierName))
+            {
+                DialogResult result = MessageBox.Show(
+                    "Don't you want to select or enter a supplier?",
+                    "Supplier Not Specified",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    supplierName = "";
+                }
+                else
+                {
+                    MessageBox.Show("Please type or select a supplier before continuing.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    cmbSupplierName.Focus();
+                    return;
+                }
+            }
             DateTime purchaseDate = dtpPurchaseDate.Value;
+            p.PrintPurchaseInvoiceDirectly(dgvInvoice, supplierName, purchaseDate);
+        }
 
-            // Call the print function
-            purchaseDL.PrintPurchaseInvoiceDirectly(dgvInvoice, supplierName, purchaseDate);
+        private void SaveTempInvoice()
+        {
+            var data = new TempInvoiceData
+            {
+                SupplierName = cmbSupplierName.Text,
+                PurchaseDate = dtpPurchaseDate.Value,
+                Items = dgvInvoice.Rows
+                    .Cast<DataGridViewRow>()
+                    .Where(r => !r.IsNewRow)
+                    .Select(r => new InvoiceItem
+                    {
+                        ProductName = r.Cells["Name"].Value?.ToString(),
+                        Description = r.Cells["Description"].Value?.ToString(),
+                        Quantity = int.TryParse(r.Cells["Quantity"].Value?.ToString(), out int q) ? q : 0
+                    }).ToList()
+            };
+
+            string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+            File.WriteAllText("TempInvoice.json", json);
+        }
+
+        private void LoadTempInvoice()
+        {
+            if (!File.Exists("TempInvoice.json")) return;
+
+            string json = File.ReadAllText("TempInvoice.json");
+            var data = JsonConvert.DeserializeObject<TempInvoiceData>(json);
+
+            cmbSupplierName.Text = data.SupplierName;
+            dtpPurchaseDate.Value = data.PurchaseDate;
+
+            dgvInvoice.Rows.Clear();
+            foreach (var item in data.Items)
+            {
+                dgvInvoice.Rows.Add(item.ProductName, item.Description, item.Quantity);
+            }
+        }
+
+        private void PurchaseInvoice_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveTempInvoice();
+        }
+
+        private void PurchaseInvoice_Load(object sender, EventArgs e)
+        {
+            LoadTempInvoice();
         }
     }
 }
