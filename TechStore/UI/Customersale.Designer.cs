@@ -233,7 +233,7 @@
             // 
             // quantity
             // 
-            this.quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quantity.Location = new System.Drawing.Point(790, 151);
             this.quantity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.quantity.Multiline = true;
@@ -245,7 +245,7 @@
             // 
             // priceafterdisc
             // 
-            this.priceafterdisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priceafterdisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.priceafterdisc.Location = new System.Drawing.Point(1213, 151);
             this.priceafterdisc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.priceafterdisc.Multiline = true;
@@ -256,7 +256,7 @@
             // 
             // txtsaleprice
             // 
-            this.txtsaleprice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtsaleprice.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtsaleprice.Location = new System.Drawing.Point(578, 151);
             this.txtsaleprice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtsaleprice.Multiline = true;
@@ -267,7 +267,7 @@
             // 
             // discount
             // 
-            this.discount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.discount.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.discount.Location = new System.Drawing.Point(1010, 150);
             this.discount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.discount.Multiline = true;
@@ -278,6 +278,7 @@
             // 
             // txtdescription
             // 
+            this.txtdescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtdescription.Location = new System.Drawing.Point(295, 151);
             this.txtdescription.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtdescription.Multiline = true;
@@ -288,7 +289,7 @@
             // 
             // txtproductname
             // 
-            this.txtproductname.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtproductname.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtproductname.Location = new System.Drawing.Point(16, 124);
             this.txtproductname.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtproductname.Multiline = true;
@@ -314,7 +315,7 @@
             // finaldiscounttxt
             // 
             this.finaldiscounttxt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.finaldiscounttxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.finaldiscounttxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.finaldiscounttxt.Location = new System.Drawing.Point(888, 790);
             this.finaldiscounttxt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.finaldiscounttxt.Multiline = true;
@@ -340,7 +341,7 @@
             // finalpricetxt
             // 
             this.finalpricetxt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.finalpricetxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.finalpricetxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.finalpricetxt.Location = new System.Drawing.Point(1099, 789);
             this.finalpricetxt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.finalpricetxt.Multiline = true;
@@ -362,7 +363,7 @@
             // 
             // txtwarranty
             // 
-            this.txtwarranty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtwarranty.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtwarranty.Location = new System.Drawing.Point(16, 216);
             this.txtwarranty.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtwarranty.Multiline = true;
@@ -388,7 +389,7 @@
             // txtfinalpaid
             // 
             this.txtfinalpaid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtfinalpaid.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtfinalpaid.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtfinalpaid.Location = new System.Drawing.Point(1313, 789);
             this.txtfinalpaid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtfinalpaid.Multiline = true;
@@ -469,7 +470,7 @@
             // txtcustomer
             // 
             this.txtcustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtcustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtcustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtcustomer.Location = new System.Drawing.Point(267, 769);
             this.txtcustomer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtcustomer.Multiline = true;
@@ -525,7 +526,7 @@
             // manualserialtxt
             // 
             this.manualserialtxt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.manualserialtxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manualserialtxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manualserialtxt.Location = new System.Drawing.Point(1251, 42);
             this.manualserialtxt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.manualserialtxt.Multiline = true;

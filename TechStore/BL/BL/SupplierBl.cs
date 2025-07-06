@@ -7,7 +7,7 @@ using TechStore.Interfaces.DLInterfaces;
 
 namespace TechStore.BL.BL
 {
-    public class SupplierBl : ISupplierBL
+    public class SupplierBl :ISupplierBL
     {
         private readonly IsupplierDl _supplierDL;
 
@@ -110,6 +110,11 @@ namespace TechStore.BL.BL
 
             if (string.IsNullOrWhiteSpace(supplier.address))
                 throw new ArgumentException("Supplier address is required.");
+        }
+
+        public object GetSupplierById(int supplierId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

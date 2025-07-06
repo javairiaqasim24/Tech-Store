@@ -48,9 +48,9 @@ namespace TechStore.UI
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = "SKU",
-                DataPropertyName = "sku",   // Keep this as the column name from SQL
-                Name = "sku",
-                Visible = false // 👈 hides it from the user
+                DataPropertyName = "SerialNumbers",   // Keep this as the column name from SQL
+                Name = "serial_number",
+                Visible = true // 👈 hides it from the user
             });
 
 
@@ -218,14 +218,14 @@ namespace TechStore.UI
             txtdescription.Text = selectedRow.Cells["description"].Value?.ToString(); // SKU is used as Description for now
             txtquantity.Text = "";
             txtscamserial.Text = "";
-            txtserialmanually.Text = "";
+            //txtserialmanually.Text = "";
             txtreason.Text = "";
             txtreturnedamount.Text = "";
 
             // Optional: Store required data in Tag or variables for validation later
             panelreturn.Tag = new ReturnMetadata
             {
-                ExpectedSKU = selectedRow.Cells["sku"].Value?.ToString(),
+                ExpectedSKU = selectedRow.Cells["serial_number"].Value?.ToString(),
                 MaxQuantity = Convert.ToInt32(selectedRow.Cells["quantity"].Value),
 
                 BillId = _currentBillId,  // ✅ Use class-level variable                                          // 💥 This was missing
@@ -245,15 +245,22 @@ namespace TechStore.UI
                 return;
             }
 
-            string scannedOrManualSerial = string.IsNullOrWhiteSpace(txtscamserial.Text)
-                ? txtserialmanually.Text.Trim()
-                : txtscamserial.Text.Trim();
+            // Only using scanned serials now
+            string scannedSerial = txtscamserial.Text.Trim();
 
-            string[] enteredSkus = scannedOrManualSerial.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                                                         .Select(s => s.Trim()).ToArray();
+            if (string.IsNullOrWhiteSpace(scannedSerial))
+            {
+                MessageBox.Show("Please scan at least one serial number.", "Missing Serial", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string[] enteredSkus = scannedSerial.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                                                .Select(s => s.Trim())
+                                                .ToArray();
 
             string[] expectedSkus = metadata.ExpectedSKU.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                                                         .Select(s => s.Trim()).ToArray();
+                                                        .Select(s => s.Trim())
+                                                        .ToArray();
 
             if (enteredSkus.Any(sku => !expectedSkus.Contains(sku)))
             {
@@ -297,18 +304,22 @@ namespace TechStore.UI
                 return;
             }
 
+            int billDetailId = CustomerReturnDL.GetBillDetailId(metadata.BillId, productId.Value, enteredSkus[0]);
+
+
             try
             {
                 CustomerReturnDL.SaveReturnToDatabase(
-                    productId.Value,
-                    metadata.BillId,
-                    DateTime.Now.Date,
-                    txtreason.Text.Trim(),
-                    returnQty,
-                    cbActionTaken.SelectedItem?.ToString() ?? "Refunded",
-                    returnedAmount,
-                    string.Join(",", enteredSkus)
+                productId.Value,
+                billDetailId,
+                DateTime.Now.Date,
+                txtreason.Text.Trim(),
+                returnQty,
+                cbActionTaken.SelectedItem?.ToString() ?? "Refunded",
+                returnedAmount,
+                string.Join(",", enteredSkus)
                 );
+
 
                 MessageBox.Show("Return saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 panelreturn.Visible = false;
@@ -321,13 +332,14 @@ namespace TechStore.UI
         }
 
 
+
         private void ClearReturnPanel()
         {
             txtproduct.Text = "";
             txtdescription.Text = "";
             txtquantity.Text = "";
             txtscamserial.Text = "";
-            txtserialmanually.Text = "";
+            //txtserialmanually.Text = "";
             txtreason.Text = "";
             txtreturnedamount.Text = "";
             panelreturn.Tag = null;

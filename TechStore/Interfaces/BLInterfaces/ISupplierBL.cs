@@ -16,6 +16,6 @@ namespace TechStore.Interfaces.BLInterfaces
         List<Ipersons> getsuppliers();
         List<string> getsuppliernames(string name);
         List<Ipersons> searchsuppliers(string text);
-
+        object GetSupplierById(int supplierId);
     }
 }

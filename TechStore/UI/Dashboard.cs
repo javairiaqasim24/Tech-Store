@@ -317,5 +317,10 @@ namespace TechStore
             var f = Program.ServiceProvider.GetRequiredService<PurchaseInvoice>();
             LoadFormIntoPanel(f);
         }
+
+        private void panel10_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
