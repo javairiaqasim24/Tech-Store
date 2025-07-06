@@ -59,7 +59,7 @@ namespace TechStore.DL
                         {
                             row.RelativeItem(1).Column(col =>
                             {
-                                col.Item().Image("logo.png", ImageScaling.FitWidth);
+                                col.Item().Image("logo.jpg", ImageScaling.FitWidth);
                             });
 
                             row.RelativeItem(3).Column(col =>
@@ -203,10 +203,10 @@ namespace TechStore.DL
             y += 25;
 
             // Table Headers
-            string[] headers = { "Product Name", "Description", "Quantity" };
-            float[] widths = { 200, 300, 100 };
+            string[] headers = { "Product Name", "Description", "Qty" };
+            float[] widths = { 300, 450, 50 };
             float tableX = x;
-            float rowHeight = 25;
+            float rowHeight = 30;
 
             for (int i = 0; i < headers.Length; i++)
             {

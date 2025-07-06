@@ -194,7 +194,7 @@ namespace TechStore.DL
         }
 
 
-        private static void DrawInvoice(PrintPageEventArgs e, DataGridView cart, string customerName, DateTime saleDate, decimal totalAmount, decimal paidAmount,int billid)
+        private static void DrawInvoice(PrintPageEventArgs e, DataGridView cart, string customerName, DateTime saleDate, decimal totalAmount, decimal paidAmount, int billid)
         {
             Font titleFont = new Font("Arial", 18, FontStyle.Bold);
             Font headerFont = new Font("Arial", 12, FontStyle.Bold);
@@ -205,16 +205,18 @@ namespace TechStore.DL
             float x = 50, y = 60;
             float pageWidth = e.PageBounds.Width - 100;
 
-            // Logo (if exists)
-            try
+            StringFormat wrapFormat = new StringFormat
             {
-                System.Drawing.Image logo = System.Drawing.Image.FromFile("logo.png");
-                e.Graphics.DrawImage(logo, x, y, 100, 50);
-            }
-            catch { }
+                FormatFlags = StringFormatFlags.LineLimit,
+                Trimming = StringTrimming.Word
+            };
+
+            // Draw logo from resources
+            System.Drawing.Image logo = Properties.Resources.logoo;
+            e.Graphics.DrawImage(logo, x, y, 100, 50);
 
             // Company Info
-            e.Graphics.DrawString("Tech Store", titleFont, brush, x + 400, y);
+            e.Graphics.DrawString("MNS Computers", titleFont, brush, x + 400, y);
             y += 25;
             e.Graphics.DrawString("123 Market Road, CityName", regularFont, brush, x + 400, y);
             y += 18;
@@ -226,7 +228,7 @@ namespace TechStore.DL
             e.Graphics.DrawLine(Pens.Gray, x, y, x + pageWidth, y);
             y += 10;
 
-            // Invoice Details
+            // Invoice Info
             e.Graphics.DrawString("Sales Invoice", titleFont, brush, x + 250, y);
             y += 30;
             e.Graphics.DrawString($"Bill ID: {billid}", regularFont, brush, x, y);
@@ -237,8 +239,8 @@ namespace TechStore.DL
             y += 25;
 
             // Table Header
-            string[] headers = { "SKU", "Product", "Description", "Qty", "Price", "Discount", "Total" };
-            float[] widths = { 70, 120, 140, 50, 70, 70, 80 };
+            string[] headers = { "SKU", "Product", "Description", "Qty", "Price", "Discount", "Warranty", "Total" };
+            float[] widths = { 100, 130, 170, 40, 65, 65, 45, 70 }; // Adjust widths for 8 columns
             float tableX = x;
             float rowHeight = 25;
 
@@ -246,7 +248,7 @@ namespace TechStore.DL
             {
                 e.Graphics.FillRectangle(Brushes.LightGray, tableX, y, widths[i], rowHeight);
                 e.Graphics.DrawRectangle(borderPen, tableX, y, widths[i], rowHeight);
-                e.Graphics.DrawString(headers[i], headerFont, brush, tableX + 3, y + 5);
+                e.Graphics.DrawString(headers[i], headerFont, brush, new RectangleF(tableX + 3, y + 5, widths[i] - 6, rowHeight - 6), wrapFormat);
                 tableX += widths[i];
             }
 
@@ -259,24 +261,37 @@ namespace TechStore.DL
 
                 string[] values =
                 {
-            row.Cells["Sku"]?.Value?.ToString(),
-            row.Cells["Name"]?.Value?.ToString(),
-            row.Cells["Description"]?.Value?.ToString(),
-            row.Cells["Quantity"]?.Value?.ToString(),
-            row.Cells["Price"]?.Value?.ToString(),
-            row.Cells["Discount"]?.Value?.ToString(),
-            row.Cells["Total"]?.Value?.ToString()
+            row.Cells["Sku"]?.Value?.ToString() ?? "",
+            row.Cells["Name"]?.Value?.ToString() ?? "",
+            row.Cells["Description"]?.Value?.ToString() ?? "",
+            row.Cells["Quantity"]?.Value?.ToString() ?? "",
+            row.Cells["Price"]?.Value?.ToString() ?? "",
+            row.Cells["Discount"]?.Value?.ToString() ?? "",
+            row.Cells["Warranty"]?.Value?.ToString() ?? "",
+            row.Cells["Total"]?.Value?.ToString() ?? ""
         };
 
                 tableX = x;
+                float maxRowHeight = rowHeight;
+
+                // Calculate required row height based on wrapped content
                 for (int i = 0; i < values.Length; i++)
                 {
-                    e.Graphics.DrawRectangle(borderPen, tableX, y, widths[i], rowHeight);
-                    e.Graphics.DrawString(values[i], regularFont, brush, new RectangleF(tableX + 3, y + 5, widths[i] - 6, rowHeight - 6));
+                    SizeF size = e.Graphics.MeasureString(values[i], regularFont, (int)widths[i], wrapFormat);
+                    float neededHeight = size.Height + 10;
+                    if (neededHeight > maxRowHeight)
+                        maxRowHeight = neededHeight;
+                }
+
+                // Draw wrapped cells
+                for (int i = 0; i < values.Length; i++)
+                {
+                    e.Graphics.DrawRectangle(borderPen, tableX, y, widths[i], maxRowHeight);
+                    e.Graphics.DrawString(values[i], regularFont, brush, new RectangleF(tableX + 3, y + 5, widths[i] - 6, maxRowHeight - 6), wrapFormat);
                     tableX += widths[i];
                 }
 
-                y += rowHeight;
+                y += maxRowHeight;
 
                 // Page break
                 if (y + rowHeight > e.PageBounds.Height - 100)
@@ -297,6 +312,8 @@ namespace TechStore.DL
             y += 20;
             e.Graphics.DrawString($"Pending: Rs. {(totalAmount - paidAmount):N2}", regularFont, Brushes.Red, x + 400, y);
         }
+
+
 
         public static void PrintThermalReceipt(DataGridView cart, string customerName, decimal total, decimal paid, int billid)
         {
@@ -354,8 +371,7 @@ namespace TechStore.DL
             // --- Logo ---
             try
             {
-                string logoPath = "logo.png";
-                System.Drawing.Image logo = System.Drawing.Image.FromFile(logoPath);
+                System.Drawing.Image logo = Properties.Resources.logoo; // From resources
                 int logoWidth = 100;
                 int logoHeight = 50;
                 float centerX = (pageWidth - logoWidth) / 2;
@@ -396,26 +412,26 @@ namespace TechStore.DL
                 decimal.TryParse(row.Cells["Discount"].Value?.ToString(), out decimal discVal);
                 totalDiscount += discVal * Convert.ToInt32(row.Cells["Quantity"].Value);
 
-                // Split name into words
-                string[] nameParts = name.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
+                string headerLine = $"{qty} {warranty} {price} {discount} {totalPrice}";
 
-                if (nameParts.Length > 0)
+                int maxNameWidth = 140; // Adjust based on font and paper
+                List<string> wrappedName = WrapText(name, font, e.Graphics, maxNameWidth);
+
+                // First line with item + columns
+                if (wrappedName.Count > 0)
                 {
-                    // First word + other columns in first line
-                    string firstWord = nameParts[0];
-                    string firstLine = $"{firstWord,-12}{qty} {warranty} {price} {discount} {totalPrice}";
-                    e.Graphics.DrawString(firstLine, font, Brushes.Black, x, y); y += lineHeight;
+                    string line = wrappedName[0].PadRight(12).Substring(0, Math.Min(12, wrappedName[0].Length)) + " " + headerLine;
+                    e.Graphics.DrawString(line, font, Brushes.Black, x, y); y += lineHeight;
 
-                    // Remaining words, aligned under "Item"
-                    for (int i = 1; i < nameParts.Length; i++)
+                    // Rest of the name on new lines
+                    for (int i = 1; i < wrappedName.Count; i++)
                     {
-                        e.Graphics.DrawString($"{new string(' ', 0)}{nameParts[i]}", font, Brushes.Black, x + 10, y);
+                        e.Graphics.DrawString(wrappedName[i], font, Brushes.Black, x + 10, y);
                         y += lineHeight;
                     }
                 }
                 else
                 {
-                    // If no name parts, still print something
                     string line = $"{name,-12}{qty} {warranty} {price} {discount} {totalPrice}";
                     e.Graphics.DrawString(line, font, Brushes.Black, x, y);
                     y += lineHeight;
@@ -443,6 +459,42 @@ namespace TechStore.DL
             e.Graphics.DrawString("Powered By:", font, Brushes.Black, x, y); y += lineHeight;
             e.Graphics.DrawString("abdulahad18022@gmail.com", font, Brushes.Black, x, y); y += lineHeight;
         }
+
+        private static List<string> WrapText(string text, Font font, Graphics g, int maxWidth)
+        {
+            List<string> lines = new List<string>();
+            string[] words = text.Split(' ');
+            string currentLine = "";
+
+            foreach (string word in words)
+            {
+                string testLine = string.IsNullOrEmpty(currentLine) ? word : currentLine + " " + word;
+                SizeF size = g.MeasureString(testLine, font);
+                if (size.Width > maxWidth)
+                {
+                    if (!string.IsNullOrEmpty(currentLine))
+                    {
+                        lines.Add(currentLine);
+                        currentLine = word;
+                    }
+                    else
+                    {
+                        lines.Add(word);
+                        currentLine = "";
+                    }
+                }
+                else
+                {
+                    currentLine = testLine;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(currentLine))
+                lines.Add(currentLine);
+
+            return lines;
+        }
+
 
 
         // Helper to truncate long product names

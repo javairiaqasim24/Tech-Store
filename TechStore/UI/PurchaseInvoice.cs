@@ -150,25 +150,29 @@ namespace TechStore.UI
                     cmbSupplierName.Focus();
                     return;
                 }
+            }
 
-                // 3. Get today's date
-                DateTime saleDate = DateTime.Now;
+            // ✅ Move the actual logic outside the if
+            DateTime saleDate = DateTime.Now;
 
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
-                saveFileDialog.Title = "Save Purchase Invoice";
-                saveFileDialog.FileName = "PurchaseInvoice.pdf";
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
+            saveFileDialog.Title = "Save Purchase Invoice";
+            saveFileDialog.FileName = "PurchaseInvoice.pdf";
 
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string filePath = saveFileDialog.FileName;
-                    p.CreateSaleInvoicePdf(dgvInvoice, filePath, supplierName, DateTime.Now);
-                    MessageBox.Show("PDF Generated Successfully..");
-                    ClearInvoiceForm();
-                }
-
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+                p.CreateSaleInvoicePdf(dgvInvoice, filePath, supplierName, saleDate);
+                MessageBox.Show("PDF Generated Successfully.");
+                ClearInvoiceForm();
+            }
+            else
+            {
+                MessageBox.Show("PDF generation was cancelled.");
             }
         }
+
 
         private void txtProductName_TextChanged(object sender, EventArgs e)
         {
