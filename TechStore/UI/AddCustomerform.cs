@@ -57,10 +57,10 @@ namespace TechStore.UI
                     if (string.IsNullOrWhiteSpace(address))
                         throw new ArgumentException("Address is required for Regular customers.");
                 }
-                else if (!type.Equals("Walk_in", StringComparison.OrdinalIgnoreCase))
-                {
-                    throw new ArgumentException("Invalid customer type. Must be 'Walk_in' or 'Regular'.");
-                }
+                //else if (!type.Equals("Walk_in", StringComparison.OrdinalIgnoreCase))
+                //{
+                //    throw new ArgumentException("Invalid customer type. Must be 'Walk_in' or 'Regular'.");
+                //}
 
                 Ipersons p = new Customer(0, email, address, name, lastname, type, phone);
  

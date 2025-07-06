@@ -14,6 +14,7 @@ namespace TechStore.BL.Models
         public DateTime date { get; set; }
         public int bill_id { get; set; }
         public string remarks { get; set; }
+        public int suppid { get; set; }
         public Spricerecord(int id,string name,decimal payement,DateTime date,int bill_id,string remarks)
         {
             this.id = id;
@@ -22,6 +23,15 @@ namespace TechStore.BL.Models
             this.date = date;
             this.bill_id=bill_id;
             this.remarks = remarks;
+        }
+        public Spricerecord(int id, int suppid, decimal payement, DateTime date, int bill_id, string remarks)
+        {
+            this.id = id;
+            this.payement = payement;
+            this.date = date;
+            this.bill_id = bill_id;
+            this.remarks = remarks;
+            this.suppid=suppid;
         }
     }
 
