@@ -230,6 +230,22 @@ namespace TechStore.DL
                             billId = Convert.ToInt32(cmd.ExecuteScalar());
                         }
 
+                        // 1.1 Insert into customerpricerecord (new addition)
+                        string priceRecordQuery = @"INSERT INTO customerpricerecord 
+                            (customer_id, BillID, date, payment, remarks)
+                            VALUES (@cust, @bill, @date, @payment, @remarks);";
+
+                        using (var priceCmd = new MySqlCommand(priceRecordQuery, conn, tran))
+                        {
+                            priceCmd.Parameters.AddWithValue("@cust", customerId);
+                            priceCmd.Parameters.AddWithValue("@bill", billId);
+                            priceCmd.Parameters.AddWithValue("@date", saleDate);
+                            priceCmd.Parameters.AddWithValue("@payment", paid);
+                            priceCmd.Parameters.AddWithValue("@remarks", DBNull.Value); // Or you can insert custom remarks here
+                            priceCmd.ExecuteNonQuery();
+                        }
+
+
                         // 2. Process cart rows
                         foreach (DataGridViewRow row in cart.Rows)
                         {

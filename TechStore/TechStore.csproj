@@ -377,6 +377,7 @@
       <DependentUpon>Supplier_eturnsform.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\UIHelper.cs" />
+    <None Include="Resources\logo.jpg" />
     <EmbeddedResource Include="UI\Sbilldetailform.resx">
       <DependentUpon>Sbilldetailform.cs</DependentUpon>
     </EmbeddedResource>
