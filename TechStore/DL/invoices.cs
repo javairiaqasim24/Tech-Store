@@ -468,7 +468,7 @@ namespace TechStore.DL
                     page.Content().Column(column =>
                     {
                         // --- Logo + Header ---
-                        column.Item().AlignCenter().Image("logo.png", ImageScaling.FitWidth);
+                        column.Item().AlignCenter().Image("logo.jpg", ImageScaling.FitWidth);
                         column.Item().AlignCenter().Text("MNS Computers").Bold().FontSize(12);
                         column.Item().AlignCenter().Text("office # 39 & 40, 1st floor Gallery 3, Rex city, Sitiana Road");
                         column.Item().AlignCenter().Text("Phone: 0300-6634245");

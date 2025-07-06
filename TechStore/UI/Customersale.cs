@@ -567,8 +567,8 @@ namespace TechStore.UI
                     {
                         decimal total = long.Parse(finalpricetxt.Text);
                         decimal paid = long.Parse(txtfinalpaid.Text);
-                        invoices.PrintThermalReceipt(dataGridView1, customerName, total, paid, _lastBillId);
-                        //SavehthermalPdfInvoice();
+                        //invoices.PrintThermalReceipt(dataGridView1, customerName, total, paid, _lastBillId);
+                    SavehthermalPdfInvoice();
                 }
 
                 }

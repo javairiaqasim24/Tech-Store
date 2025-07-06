@@ -23,6 +23,7 @@ namespace TechStore.UI
             InitializeComponent();
             this._customerBL = customerBL;
             paneledit.Visible = false;
+            this.textBox1.TextChanged += textBox1_TextChanged;
 
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
 
@@ -191,15 +192,14 @@ namespace TechStore.UI
             dataGridView2.DataSource = list;
 
             dataGridView2.Columns["Id"].Visible = false;
-            dataGridView2.Columns["firstname"].HeaderText = "First Name";
-            dataGridView2.Columns["lastname"].HeaderText = "Last Name";
+            dataGridView2.Columns["_firstname"].HeaderText = "First Name";
+            dataGridView2.Columns["_lastname"].HeaderText = "Last Name";
             dataGridView2.Columns["phone"].HeaderText = "Contact Number";
-            dataGridView2.Columns["type"].HeaderText = "Type";
+            dataGridView2.Columns["_type"].HeaderText = "Type";
             dataGridView2.Columns["email"].HeaderText = "Email";
             dataGridView2.Columns["address"].HeaderText = "Address";
 
-            if (dataGridView2.Columns.Contains("name"))
-                dataGridView2.Columns["name"].Visible = false;
+          
 
             
 
@@ -236,6 +236,11 @@ namespace TechStore.UI
         {
             var f = Program.ServiceProvider.GetService<BillingRecordsOverview>();
             Dashboard.Instance.LoadFormIntoPanel(f);
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
 
         }
     }
