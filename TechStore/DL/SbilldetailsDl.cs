@@ -1,6 +1,7 @@
 ﻿using KIMS;
 using MySql.Data.MySqlClient;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ using TechStore.BL.Models;
 
 namespace TechStore.DL
 {
-    public class SbilldetailsDl
+    public class SbilldetailsDl : ISbilldetailsDl
     {
         public List<Supplierpayment> getdetails(int billid)
         {
@@ -55,9 +56,40 @@ namespace TechStore.DL
             }
             catch (Exception ex)
             {
-                throw new Exception("error"+ex.Message, ex);
+                throw new Exception("error" + ex.Message, ex);
             }
 
+        }
+        public bool addrecord(Spricerecord s)
+        {
+            int supplier_id = DatabaseHelper.Instance.getsuppierid(s.name);
+            try
+            {
+                using (var conn = DatabaseHelper.Instance.GetConnection())
+                {
+                    conn.Open();
+                    string query = @"INSERT INTO supplierpricerecord
+                             (supplier_id, supplier_bill_id, date, payment, remarks)
+                             VALUES (@supp_id, @billid, @date, @payment, @remarks);";
+
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@supp_id", supplier_id);
+                        cmd.Parameters.AddWithValue("@billid", s.bill_id);
+                        cmd.Parameters.AddWithValue("@date", s.date);
+                        cmd.Parameters.AddWithValue("@payment", s.payement);
+                        cmd.Parameters.AddWithValue("@remarks", s.remarks);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                throw new Exception("error" + ex.Message, ex);
+            }
+        }
+
     }
 }

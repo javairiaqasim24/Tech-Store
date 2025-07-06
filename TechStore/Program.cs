@@ -48,6 +48,7 @@ namespace TechStore
             services.AddScoped<ISupplierbillDl, SupplierbillDl>();
             services.AddScoped<IInventorylogDl,InventorylogDl>();
             services.AddScoped<IPurchaseDl, purchaseDL>();
+            services.AddScoped<ISbilldetailsDl,SbilldetailsDl>();
 
 
             //BL
@@ -59,6 +60,7 @@ namespace TechStore
             services.AddScoped<IBatchDetailsBL, BatchDetailsBL>();
             services.AddScoped<ISupplierBillBl, SupplierBillBl>();
             services.AddScoped<IInventorylogBl, InventorylogBl>();
+            services.AddScoped<IsbilldetailsBl, SbilldetailsBl>();
 
 
 
