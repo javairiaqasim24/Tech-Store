@@ -649,7 +649,7 @@
             this.panelreturn.Controls.Add(this.btnreturns);
             this.panelreturn.Location = new System.Drawing.Point(3, 600);
             this.panelreturn.Name = "panelreturn";
-            this.panelreturn.Size = new System.Drawing.Size(270, 63);
+            this.panelreturn.Size = new System.Drawing.Size(270, 195);
             this.panelreturn.TabIndex = 14;
             // 
             // iconPictureBox6
@@ -759,7 +759,7 @@
             this.btnorder.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnorder.IconSize = 40;
             this.btnorder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnorder.Location = new System.Drawing.Point(3, 669);
+            this.btnorder.Location = new System.Drawing.Point(3, 801);
             this.btnorder.Name = "btnorder";
             this.btnorder.Size = new System.Drawing.Size(267, 60);
             this.btnorder.TabIndex = 15;
@@ -785,7 +785,7 @@
             this.btnlogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnlogout.IconSize = 40;
             this.btnlogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnlogout.Location = new System.Drawing.Point(3, 735);
+            this.btnlogout.Location = new System.Drawing.Point(3, 867);
             this.btnlogout.Name = "btnlogout";
             this.btnlogout.Size = new System.Drawing.Size(270, 60);
             this.btnlogout.TabIndex = 16;
@@ -797,6 +797,7 @@
             // 
             // panel10
             // 
+            this.panel10.AutoScroll = true;
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel10.Location = new System.Drawing.Point(270, 0);
             this.panel10.Name = "panel10";

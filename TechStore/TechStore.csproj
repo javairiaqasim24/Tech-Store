@@ -169,6 +169,7 @@
     <Compile Include="DL\CustomerBill_SpecificProductsDL.cs" />
     <Compile Include="DL\CustomerReturnDL.cs" />
     <Compile Include="DL\DashboardDl.cs" />
+    <Compile Include="Interfaces\DLInterfaces\Idashboard.cs" />
     <Compile Include="Interfaces\DLInterfaces\ISbilldetailsDl.cs" />
     <Compile Include="DL\SbilldetailsDl.cs" />
     <Compile Include="Interfaces\BLInterfaces\IsreturnBl.cs" />
@@ -198,7 +199,6 @@
     <Compile Include="DL\Customersaledl .cs" />
     <Compile Include="Interfaces\DLInterfaces\Icustomersaledl.cs" />
     <Compile Include="Interfaces\BLInterfaces\ICustomerSaleBL.cs" />
-    <Compile Include="Interfaces\Idashboard.cs" />
     <Compile Include="Interfaces\Ipersons.cs" />
     <Compile Include="Interfaces\BLInterfaces\ICustomerBL.cs" />
     <Compile Include="BL\Models\Person\Customer.cs" />
