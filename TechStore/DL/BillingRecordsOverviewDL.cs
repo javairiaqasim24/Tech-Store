@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using TechStore.BL.Models;
 
 namespace TechStore.DL
 {
@@ -92,7 +93,7 @@ namespace TechStore.DL
                     JOIN 
                         inventory i ON p.product_id = i.product_id
                     WHERE 
-                        cbd.Bill_id = @billId";
+                        cbd.bill_id = @billId";
 
                 using (var conn = _dbHelper.GetConnection())
                 {
@@ -154,6 +155,94 @@ namespace TechStore.DL
             }
 
             return dt;
+        }
+        public static bool AddRecord(Customerrecord s)
+        {
+            int customerId = DatabaseHelper.Instance.getcustid(s.name);
+
+            try
+            {
+                using (var conn = DatabaseHelper.Instance.GetConnection())
+                {
+                    conn.Open();
+                    using (var transaction = conn.BeginTransaction())
+                    {
+                        // Insert into customerpricerecord
+                        string insertQuery = @"
+                    INSERT INTO customerpricerecord
+                    (customer_id, billid, date, payment, remarks)
+                    VALUES (@cust_id, @billid, @date, @payment, @remarks);";
+
+                        using (var insertCmd = new MySqlCommand(insertQuery, conn, transaction))
+                        {
+                            insertCmd.Parameters.AddWithValue("@cust_id", customerId);
+                            insertCmd.Parameters.AddWithValue("@billid", s.bill_id);
+                            insertCmd.Parameters.AddWithValue("@date", s.date);
+                            insertCmd.Parameters.AddWithValue("@payment",s.payement);
+                            insertCmd.Parameters.AddWithValue("@remarks", s.remarks);
+
+                            insertCmd.ExecuteNonQuery();
+                        }
+
+                        // Update paid_amount in customerbills
+                        string updateQuery = @"
+                    UPDATE customerbills
+                    SET paid_amount = paid_amount + @payment
+                    WHERE billid = @billid;";
+
+                        using (var updateCmd = new MySqlCommand(updateQuery, conn, transaction))
+                        {
+                            updateCmd.Parameters.AddWithValue("@payment", s.payement);
+                            updateCmd.Parameters.AddWithValue("@billid", s.bill_id);
+
+                            updateCmd.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error adding payment record and updating bill: " + ex.Message, ex);
+            }
+        }
+
+
+        public static List<Customerrecord> getrecord(int billid)
+        {
+            try
+            {
+                using (var conn = DatabaseHelper.Instance.GetConnection())
+                {
+                    var listt = new List<Customerrecord>();
+                    conn.Open();
+                    string query = "select * from customerpricerecord where BillID=@billid;";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@billid", billid);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32("record_id");
+                                int billsid = reader.GetInt32("BillID");
+                                int custid = reader.GetInt32("customer_id");
+                                DateTime date = reader.GetDateTime("date");
+                                decimal payments = reader.GetDecimal("payment");
+                                string remarks = reader["remarks"] == DBNull.Value ? "" : reader.GetString("remarks");
+
+                                var record = new Customerrecord(id, custid, payments, date, billsid, remarks);
+
+                                listt.Add(record);
+                            }
+                        }
+                        return listt;
+                    }
+                }
+            }
+            catch (Exception ex) { throw new Exception("error" + ex.Message, ex); }
         }
     }
 }

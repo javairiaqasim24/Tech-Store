@@ -346,9 +346,8 @@ namespace TechStore.UI
             txtproductname.Clear();
             txtdescription.Clear();
             txtsaleprice.Clear();
-            quantity.Text = "1";
             txtwarranty.Clear();
-            discount.Text = "00";
+            discount.Text = "0";
             priceafterdisc.Clear();
             dgvProductSearch.Visible = false;
         }

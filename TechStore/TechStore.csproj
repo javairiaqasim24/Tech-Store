@@ -157,6 +157,7 @@
     <Compile Include="BL\Dashboardservice.cs" />
     <Compile Include="BL\Models\Batches\Batchdetails.cs" />
     <Compile Include="BL\Models\Batches\Batches.cs" />
+    <Compile Include="BL\Models\Customerrecord.cs" />
     <Compile Include="BL\Models\DashboardModel.cs" />
     <Compile Include="BL\Models\Inventory.cs" />
     <Compile Include="BL\Models\inventorylog.cs" />

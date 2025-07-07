@@ -202,7 +202,7 @@ namespace TechStore.DL
 
             // Table Headers
             string[] headers = { "Product Name", "Description", "Qty" };
-            float[] widths = { 250, 400, 50 };
+            float[] widths = { 300, 450, 50 };
             float tableX = x;
             float rowHeight = 30;
 

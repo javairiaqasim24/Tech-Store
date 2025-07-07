@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using TechStore.BL.Models;
 using TechStore.DL;
 using System.IO;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TechStore.UI
 {
@@ -31,6 +32,7 @@ namespace TechStore.UI
             SetupSearchGrid();
             LoadProductData(); // Fill allProducts
             dgvInvoice.AllowUserToAddRows = false;
+            this.VisibleChanged += PurchaseInvoice_VisibleChanged;
 
             string searchKeyword = cmbSupplierName.Text.Trim();
 
@@ -222,7 +224,8 @@ namespace TechStore.UI
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-
+            var f = Program.ServiceProvider.GetRequiredService<Addsupplierform>();
+            f.ShowDialog(this);
         }
 
         private void cmbSupplierName_SelectedIndexChanged(object sender, EventArgs e)
@@ -352,12 +355,25 @@ namespace TechStore.UI
         {
             LoadTempInvoice();
         }
+        private void PurchaseInvoice_VisibleChanged(object sender, EventArgs e)
+        {
+            if (!this.Visible)
+            {
+                SaveTempInvoice();
+            }
+        }
 
         private void ClearInvoiceForm()
         {
             cmbSupplierName.Text = "";
             dtpPurchaseDate.Value = DateTime.Today;
             dgvInvoice.Rows.Clear();
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<addproductform>();
+            f.ShowDialog(this);
         }
     }
 }

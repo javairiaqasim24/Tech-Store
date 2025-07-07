@@ -239,8 +239,8 @@ namespace TechStore.DL
             y += 25;
 
             // Table Header
-            string[] headers = { "SKU", "Product", "Description", "Qty", "Price", "Disc", "War", "Total" };
-            float[] widths = { 100, 120, 170, 50, 65, 70, 45, 70 }; // Adjust widths for 8 columns
+            string[] headers = { "SKU", "Product", "Description", "Qty", "Price", "Discount", "Warranty", "Total" };
+            float[] widths = { 100, 130, 170, 40, 65, 65, 45, 70 }; // Adjust widths for 8 columns
             float tableX = x;
             float rowHeight = 25;
 
