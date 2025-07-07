@@ -338,6 +338,34 @@ namespace TechStore.DL
 
             return result;
         }
-
+        public int getpendingbills()
+        {
+            try
+            {
+                using(var conn=DatabaseHelper.Instance.GetConnection())
+                {
+                    conn.Open();
+                    string query = "select count(*) as pending from supplierbills where payment_status='Due';";
+                    using (var cmd=new MySqlCommand(query,conn))
+                    {
+                        using (var reader=cmd.ExecuteReader())
+                        {
+                            if(reader.Read())
+                            {
+                                return reader.GetInt32("pending");
+                            }
+                            else
+                            {
+                                return 0;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting sales trends: " + ex.Message, ex);
+            }
+        }
     }
 }

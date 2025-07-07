@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -134,9 +135,9 @@ namespace TechStore.UI
             string address = txtaddress.Text.Trim();
             string type = comboBox1.Text;
 
-            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(lname) || string.IsNullOrWhiteSpace(phone) || string.IsNullOrWhiteSpace(type))
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(lname) || string.IsNullOrWhiteSpace(type))
             {
-                MessageBox.Show("First name, Last name, Type, and Phone are required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("First name, Last name, Type, ", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -161,9 +162,17 @@ namespace TechStore.UI
                     LoadCustomers();
                 }
             }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Database error occurred while Updating: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show("Validation error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Error updating customer: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred while updating : " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -188,6 +197,7 @@ namespace TechStore.UI
             }
 
             List<Customer> list = _customerBL.SearchCustomers(searchText).OfType<Customer>().ToList();
+            MessageBox.Show("Search Results: " + list.Count.ToString());
             dataGridView2.Columns.Clear();
             dataGridView2.DataSource = list;
 
@@ -199,9 +209,11 @@ namespace TechStore.UI
             dataGridView2.Columns["email"].HeaderText = "Email";
             dataGridView2.Columns["address"].HeaderText = "Address";
 
-          
 
-            
+            if (dataGridView2.Columns.Contains("_name"))
+                dataGridView2.Columns["_name"].Visible = false;
+
+
 
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
@@ -241,7 +253,76 @@ namespace TechStore.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string searchText = textBox1.Text.Trim();
 
+            if (string.IsNullOrEmpty(searchText))
+            {
+                LoadCustomers();
+                return;
+            }
+
+            List<Customer> list = _customerBL.SearchCustomers(searchText).OfType<Customer>().ToList();
+            MessageBox.Show("Search Results: " + list.Count.ToString());
+            MessageBox.Show("TextChanged event triggered!");
+
+            dataGridView2.Columns.Clear();
+            dataGridView2.DataSource = list;
+
+            dataGridView2.Columns["Id"].Visible = false;
+            dataGridView2.Columns["_firstname"].HeaderText = "First Name";
+            dataGridView2.Columns["_lastname"].HeaderText = "Last Name";
+            dataGridView2.Columns["phone"].HeaderText = "Contact Number";
+            dataGridView2.Columns["_type"].HeaderText = "Type";
+            dataGridView2.Columns["email"].HeaderText = "Email";
+            dataGridView2.Columns["address"].HeaderText = "Address";
+
+            if (dataGridView2.Columns.Contains("_name"))
+                dataGridView2.Columns["_name"].Visible = false;
+
+
+
+
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
+            UIHelper.AddButtonColumn(dataGridView2, "Delete", "Delete", "Delete");
+
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = textBox5.Text.Trim();
+
+            if (string.IsNullOrEmpty(searchText))
+            {
+                LoadCustomers();
+                return;
+            }
+
+            List<Customer> list = _customerBL.SearchCustomers(searchText).OfType<Customer>().ToList();
+
+
+            dataGridView2.Columns.Clear();
+            dataGridView2.DataSource = list;
+
+            dataGridView2.Columns["Id"].Visible = false;
+            dataGridView2.Columns["_firstname"].HeaderText = "First Name";
+            dataGridView2.Columns["_lastname"].HeaderText = "Last Name";
+            dataGridView2.Columns["phone"].HeaderText = "Contact Number";
+            dataGridView2.Columns["_type"].HeaderText = "Type";
+            dataGridView2.Columns["email"].HeaderText = "Email";
+            dataGridView2.Columns["address"].HeaderText = "Address";
+
+            if (dataGridView2.Columns.Contains("_name"))
+                dataGridView2.Columns["_name"].Visible = false;
+
+
+
+
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
+            UIHelper.AddButtonColumn(dataGridView2, "Delete", "Delete", "Delete");
         }
     }
 }

@@ -79,12 +79,11 @@ namespace TechStore.DL
                         {
                             // 1. Update the supplier bill
                             string updateQuery = @"UPDATE supplierbills 
-                                           SET paid_amount = @paid_amount ,
+                                          set
                                             total_price=@total
                                            WHERE batch_id = @batch_id AND supplier_id = @supplier_id";
                             using (var cmd = new MySqlCommand(updateQuery, conn, tran))
                             {
-                                cmd.Parameters.AddWithValue("@paid_amount", s.paid_price);
                                 cmd.Parameters.AddWithValue("@batch_id", batch_id);
                                 cmd.Parameters.AddWithValue("@supplier_id", supplier_id);
                                 cmd.Parameters.AddWithValue("@total", s.total_price);

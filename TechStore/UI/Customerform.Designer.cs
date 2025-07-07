@@ -522,7 +522,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(230, 29);
             this.textBox5.TabIndex = 133;
-            this.textBox5.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
             // dataGridView2
             // 

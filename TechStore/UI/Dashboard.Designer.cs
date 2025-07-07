@@ -570,7 +570,7 @@
             this.panelsupp.Controls.Add(this.btnsuppliers);
             this.panelsupp.Location = new System.Drawing.Point(3, 530);
             this.panelsupp.Name = "panelsupp";
-            this.panelsupp.Size = new System.Drawing.Size(270, 64);
+            this.panelsupp.Size = new System.Drawing.Size(270, 132);
             this.panelsupp.TabIndex = 13;
             // 
             // iconPictureBox5
@@ -647,9 +647,9 @@
             this.panelreturn.Controls.Add(this.btnSreturn);
             this.panelreturn.Controls.Add(this.bntcustomerreturn);
             this.panelreturn.Controls.Add(this.btnreturns);
-            this.panelreturn.Location = new System.Drawing.Point(3, 600);
+            this.panelreturn.Location = new System.Drawing.Point(3, 668);
             this.panelreturn.Name = "panelreturn";
-            this.panelreturn.Size = new System.Drawing.Size(270, 195);
+            this.panelreturn.Size = new System.Drawing.Size(270, 62);
             this.panelreturn.TabIndex = 14;
             // 
             // iconPictureBox6
@@ -759,7 +759,7 @@
             this.btnorder.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnorder.IconSize = 40;
             this.btnorder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnorder.Location = new System.Drawing.Point(3, 801);
+            this.btnorder.Location = new System.Drawing.Point(3, 736);
             this.btnorder.Name = "btnorder";
             this.btnorder.Size = new System.Drawing.Size(267, 60);
             this.btnorder.TabIndex = 15;
@@ -785,7 +785,7 @@
             this.btnlogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnlogout.IconSize = 40;
             this.btnlogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnlogout.Location = new System.Drawing.Point(3, 867);
+            this.btnlogout.Location = new System.Drawing.Point(3, 802);
             this.btnlogout.Name = "btnlogout";
             this.btnlogout.Size = new System.Drawing.Size(270, 60);
             this.btnlogout.TabIndex = 16;

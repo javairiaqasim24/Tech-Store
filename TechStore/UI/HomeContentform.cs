@@ -56,6 +56,7 @@ namespace TechStore.UI
             lblsupp.Text = idl.GetDashboardSummary().totalsuppliers.ToString();
             lblcustomers.Text = idl.GetDashboardSummary().totalcustomers.ToString();
             lblreturn.Text = idl.GetDashboardSummary().returns.ToString();
+            lblbills.Text = idl.GetDashboardSummary().pendingbills.ToString();
             LoadChartData();
             LoadCategoryPieChart();
             //LoadSupplierChart();

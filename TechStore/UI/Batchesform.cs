@@ -64,7 +64,7 @@ namespace TechStore.UI
                 textBox2.Text = billData.batch_name;
                 txtTotal.Text = billData.total_price.ToString("0.00");
                 txtDate.Text = billData.date.ToShortDateString();
-                txtPaid.Text = billData.paid_price.ToString("0.00");
+                //txtPaid.Text = billData.paid_price.ToString("0.00");
 
                 panelbill.Visible = true;
                 UIHelper.RoundPanelCorners(panelbill, 20);
@@ -96,15 +96,11 @@ namespace TechStore.UI
                 return;
             }
 
-            if (!decimal.TryParse(txtPaid.Text.Trim(), out decimal paidAmount) || paidAmount < 0)
-            {
-                MessageBox.Show("Enter a valid paid amount.");
-                return;
-            }
+           
             decimal total= Convert.ToInt32( txtTotal.Text.Trim());
             try
             {
-                Supplierbill s = new Supplierbill(batchName, paidAmount, supplier,total);
+                Supplierbill s = new Supplierbill(batchName,0, supplier,total);
                 bool success = ibr.updateamount(s);
 
                 if (success)

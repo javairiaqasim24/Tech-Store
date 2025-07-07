@@ -99,8 +99,8 @@ namespace TechStore.BL.BL
             if (string.IsNullOrWhiteSpace(customer._type))
                 throw new ArgumentException("Customer type is required.");
 
-            if (string.IsNullOrWhiteSpace(customer.phone))
-                throw new ArgumentException("Phone number is required.");
+            //if (string.IsNullOrWhiteSpace(customer.phone))
+            //    throw new ArgumentException("Phone number is required.");
         }
     }
 }

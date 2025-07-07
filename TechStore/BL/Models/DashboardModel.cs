@@ -15,7 +15,7 @@ namespace TechStore.BL.Models
         public int totalsuppliers { get; set; }
         public string bestproduct { get; set; }
         public int returns{ get; set; }
-        //public int supplierreturns { get; set; }
+        public int pendingbills { get; set; }
         public DashboardModel() { }
     }
 }

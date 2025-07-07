@@ -284,7 +284,7 @@ namespace TechStore
 
         private void iconPictureBox5_Click(object sender, EventArgs e)
         {
-            TogglePanel(panelsupp, 60, 119);
+            TogglePanel(panelsupp, 60, 132);
 
         }
 
