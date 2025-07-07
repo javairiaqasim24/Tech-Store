@@ -242,7 +242,7 @@ namespace TechStore.UI
                 txtdescription.Text = row.Cells["Description"].Value?.ToString();
                 txtQuantity.Text = row.Cells["Quantity"].Value?.ToString();
 
-                editingRowIndex = row.Index; // Store the row index to update later
+                editingRowIndex = row.Index; 
             }
             else
             {

@@ -313,5 +313,10 @@ namespace TechStore.UI
                 MessageBox.Show("Failed to process returns.");
             }
         }
+
+        private void btncancle1_Click(object sender, EventArgs e)
+        {
+            panelreturn.Visible=false;
+        }
     }
 }
