@@ -68,6 +68,7 @@ namespace TechStore.UI
                     txtname1.Clear();
                     txtsale.Clear();
                     txtstock.Clear();
+                    load();
                    }
                 else
                 {

@@ -25,8 +25,9 @@ namespace TechStore.BL
                 totalsuppliers = idl.totalsuppliers(),
                 bestproduct = idl.bestproduct(),
                 salestodays = idl.salestoday(),
-                returns = idl.totalreturns()
-
+                returns = idl.totalreturns(),
+                pendingbills=idl.getpendingbills()
+                
 
             };
         }

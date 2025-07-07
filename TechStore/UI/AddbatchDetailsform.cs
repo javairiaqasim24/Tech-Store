@@ -148,10 +148,18 @@ namespace TechStore.UI
             {
                 MessageBox.Show("Enter valid numeric values.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-         
+
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Database error occurred while adding: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show("Validation error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred while adding batch: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

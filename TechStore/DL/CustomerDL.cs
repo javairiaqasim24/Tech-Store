@@ -136,7 +136,7 @@ namespace TechStore.DL
                                 reader.GetString("first_name"),
                                     reader.GetString("last_name"),
                                     reader.GetString("type"),
-                                    reader.GetString("phone")
+                                    reader.IsDBNull(reader.GetOrdinal("phone"))?"":reader.GetString("phone")
                                 );
                                 customers.Add(customer);
                             }
@@ -181,7 +181,7 @@ namespace TechStore.DL
                                     reader.GetString("first_name"),
                                     reader.GetString("last_name"),
                                     reader.GetString("type"),
-                                    reader.GetString("phone")
+                                    reader.IsDBNull(reader.GetOrdinal("phone")) ? "" : reader.GetString("phone")
                                 );
                                 customers.Add(customer);
                             }

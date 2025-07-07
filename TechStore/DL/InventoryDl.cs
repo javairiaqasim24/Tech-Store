@@ -92,7 +92,6 @@ namespace TechStore.DL
                        p.product_id,
                        p.name,
                        p.description
-
                 FROM inventory i
                 JOIN products p ON i.product_id = p.product_id
                 WHERE p.name LIKE CONCAT('%', @name, '%');";
@@ -112,9 +111,7 @@ namespace TechStore.DL
                                 string productName = reader.GetString("name");
                                 string desc = reader.GetString("description");
 
-
-                                // Assuming Inventory constructor takes these values
-                                Inventory inv = new Inventory(inventoryId, salePrice, quantity, productId, productName,desc);
+                                Inventory inv = new Inventory(inventoryId, salePrice, quantity, productId, productName, desc);
                                 inventoryList.Add(inv);
                             }
                         }
@@ -128,6 +125,7 @@ namespace TechStore.DL
 
             return inventoryList;
         }
+
 
     }
 }

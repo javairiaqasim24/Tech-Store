@@ -1,5 +1,6 @@
 ﻿using KIMS;
 using Microsoft.Extensions.DependencyInjection;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -115,6 +116,15 @@ namespace TechStore.UI
                     MessageBox.Show("Update failed.");
                 }
             }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Database error occurred while Updating: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show("Validation error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+           
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
@@ -207,6 +217,15 @@ namespace TechStore.UI
                     MessageBox.Show("Update failed. Please try again.");
                 }
             }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Database error occurred while generating bill: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show("Validation error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+           
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);

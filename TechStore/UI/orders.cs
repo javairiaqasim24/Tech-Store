@@ -41,5 +41,10 @@ namespace TechStore.UI
         {
 
         }
+
+        private void btnsave1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
