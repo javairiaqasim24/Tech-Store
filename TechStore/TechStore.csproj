@@ -154,8 +154,10 @@
     <Compile Include="BL\BL\InventorylogBl.cs" />
     <Compile Include="BL\BL\SbilldetailsBl.cs" />
     <Compile Include="BL\BL\SreturnBl.cs" />
+    <Compile Include="BL\Dashboardservice.cs" />
     <Compile Include="BL\Models\Batches\Batchdetails.cs" />
     <Compile Include="BL\Models\Batches\Batches.cs" />
+    <Compile Include="BL\Models\DashboardModel.cs" />
     <Compile Include="BL\Models\Inventory.cs" />
     <Compile Include="BL\Models\inventorylog.cs" />
     <Compile Include="BL\Models\Spricerecord.cs" />
@@ -166,6 +168,7 @@
     <Compile Include="DL\BillingRecordsOverviewDL.cs" />
     <Compile Include="DL\CustomerBill_SpecificProductsDL.cs" />
     <Compile Include="DL\CustomerReturnDL.cs" />
+    <Compile Include="DL\DashboardDl.cs" />
     <Compile Include="Interfaces\DLInterfaces\ISbilldetailsDl.cs" />
     <Compile Include="DL\SbilldetailsDl.cs" />
     <Compile Include="Interfaces\BLInterfaces\IsreturnBl.cs" />
@@ -195,6 +198,7 @@
     <Compile Include="DL\Customersaledl .cs" />
     <Compile Include="Interfaces\DLInterfaces\Icustomersaledl.cs" />
     <Compile Include="Interfaces\BLInterfaces\ICustomerSaleBL.cs" />
+    <Compile Include="Interfaces\Idashboard.cs" />
     <Compile Include="Interfaces\Ipersons.cs" />
     <Compile Include="Interfaces\BLInterfaces\ICustomerBL.cs" />
     <Compile Include="BL\Models\Person\Customer.cs" />
