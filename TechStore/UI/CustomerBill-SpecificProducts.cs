@@ -282,5 +282,10 @@ namespace TechStore
         {
 
         }
+
+        private void dgvBillDetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

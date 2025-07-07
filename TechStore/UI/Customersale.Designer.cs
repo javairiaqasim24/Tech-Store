@@ -240,7 +240,6 @@
             this.quantity.Name = "quantity";
             this.quantity.Size = new System.Drawing.Size(152, 63);
             this.quantity.TabIndex = 155;
-            this.quantity.Text = "1";
             this.quantity.TextChanged += new System.EventHandler(this.quantity_TextChanged);
             // 
             // priceafterdisc

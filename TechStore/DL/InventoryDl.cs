@@ -91,6 +91,7 @@ namespace TechStore.DL
                        i.quantity_in_stock,
                        p.product_id,
                        p.name,
+                       p.description
 
                 FROM inventory i
                 JOIN products p ON i.product_id = p.product_id
