@@ -26,6 +26,7 @@ namespace TechStore
             InitializeComponent();
             Instance = this;
             this.Activated += Dashboard_Activated;
+            panel10.Height = 1500;
 
         }
 
@@ -289,7 +290,7 @@ namespace TechStore
 
         private void iconPictureBox6_Click(object sender, EventArgs e)
         {
-            TogglePanel(panelreturn, 60, 155);
+            TogglePanel(panelreturn, 60, 195);
         }
 
         private void iconPictureBox1_Click(object sender, EventArgs e)

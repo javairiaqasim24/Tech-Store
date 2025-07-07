@@ -30,5 +30,25 @@ namespace TechStore.BL
 
             };
         }
+
+        public List<(string MonthName, decimal TotalSales)> GetMonthlySalesComparison()
+        {
+            return idl.GetMonthlySalesComparison();
+        }
+
+        public List<(DateTime Day, decimal TotalSales)> GetMonthlySalesTrend()
+        {
+            return idl.GetMonthlySalesTrend();
+        }
+
+        public List<(string Category, int ProductCount)> GetProductCategoryDistribution()
+        {
+            return idl.GetProductCategoryDistribution();        
+        }
+
+        public List<(string SupplierName, int TotalBatches)> GetTopSupplierContributions()
+        {
+            return idl.GetTopSupplierContributions();
+        }
     }
 }

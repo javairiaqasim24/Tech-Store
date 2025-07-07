@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TechStore.DL
 {
-    public class DashboardDl
+    public class DashboardDl 
     {
         public string bestproduct()
         {
@@ -196,5 +196,148 @@ namespace TechStore.DL
                 throw new Exception("Error: " + ex.Message, ex);
             }
         }
+        public List<(DateTime Day, decimal TotalSales)> GetMonthlySalesTrend()
+        {
+            var result = new List<(DateTime, decimal)>();
+
+            try
+            {
+                using (var conn = DatabaseHelper.Instance.GetConnection())
+                {
+                    conn.Open();
+                    string query = @"
+                SELECT 
+                    DATE(Saledate) AS sale_day,
+                    SUM(total_price) AS total_sales
+                FROM 
+                    customerbills
+                WHERE 
+                    MONTH(Saledate) = MONTH(CURDATE())
+                    AND YEAR(Saledate) = YEAR(CURDATE())
+                GROUP BY 
+                    sale_day
+                ORDER BY 
+                    sale_day;
+            ";
+
+                    using (var cmd = new MySqlCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var date = reader.GetDateTime("sale_day");
+                            var total = reader.GetDecimal("total_sales");
+                            result.Add((date, total));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting sales trends: " + ex.Message, ex);
+            }
+
+            return result;
+        }
+        public List<(string Category, int ProductCount)> GetProductCategoryDistribution()
+        {
+            var result = new List<(string, int)>();
+
+            using (var conn = DatabaseHelper.Instance.GetConnection())
+            {
+                conn.Open();
+                string query = @"SELECT c.name, COUNT(*) AS total_products 
+                         FROM products p 
+                         JOIN categories c ON c.category_id = p.category_id 
+                         GROUP BY c.name;";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string category = reader.GetString("name");
+                        int count = reader.GetInt32("total_products");
+                        result.Add((category, count));
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public List<(string MonthName, decimal TotalSales)> GetMonthlySalesComparison()
+        {
+            var result = new List<(string, decimal)>();
+
+            using (var conn = DatabaseHelper.Instance.GetConnection())
+            {
+                conn.Open();
+                string query = @"
+            SELECT 
+                DATE_FORMAT(Saledate, '%b') AS month_name,
+                MONTH(Saledate) AS month_number,
+                SUM(total_price) AS total_sales
+            FROM 
+                customerbills
+            WHERE 
+                YEAR(Saledate) = YEAR(CURDATE())
+            GROUP BY 
+                month_name, month_number
+            ORDER BY 
+                month_number;";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string month = reader.GetString("month_name");
+                        decimal total = reader.GetDecimal("total_sales");
+                        result.Add((month, total));
+                    }
+                }
+            }
+
+            return result;
+        }
+
+
+        public List<(string SupplierName, int TotalBatches)> GetTopSupplierContributions()
+        {
+            var result = new List<(string, int)>();
+
+            using (var conn = DatabaseHelper.Instance.GetConnection())
+            {
+                conn.Open();
+                string query = @"
+            SELECT 
+                s.name AS supplier_name,
+                COUNT(*) AS total_batches
+            FROM 
+                batches b
+            JOIN 
+                suppliers s ON s.supplier_id = b.supplier_id
+            GROUP BY 
+                s.supplier_id
+            ORDER BY 
+                total_batches DESC
+            LIMIT 5;";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string supplier = reader.GetString("supplier_name");
+                        int batches = reader.GetInt32("total_batches");
+                        result.Add((supplier, batches));
+                    }
+                }
+            }
+
+            return result;
+        }
+
     }
 }
