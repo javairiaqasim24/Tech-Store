@@ -15,7 +15,6 @@ namespace TechStore.DL
         {
             try
             {
-                
                 using (var conn = DatabaseHelper.Instance.GetConnection())
                 {
                     conn.Open();
@@ -24,14 +23,14 @@ namespace TechStore.DL
                         foreach (var sr in returns)
                         {
                             string insertQuery = @"
-                    INSERT INTO supplier_returns 
-                    (supplier_bill_detail_id, product_id, sku, return_date, action_taken, amount_refunded, quantity_returned) 
-                    VALUES (@bill_detail_id, @product_id, @sku, @return_date, @action_taken, @amount, @quantity);";
+                        INSERT INTO supplier_returns 
+                        (supplier_bill_detail_id, product_id, sku, return_date, action_taken, amount_refunded, quantity_returned) 
+                        VALUES (@bill_detail_id, @product_id, @sku, @return_date, @action_taken, @amount, @quantity);";
 
                             using (var cmd = new MySqlCommand(insertQuery, conn, tran))
                             {
                                 cmd.Parameters.AddWithValue("@bill_detail_id", sr.bill_detail_id);
-                                cmd.Parameters.AddWithValue("@product_id", sr.p.id);  // ✅ Make sure `p.id` is populated correctly
+                                cmd.Parameters.AddWithValue("@product_id", sr.p.id);
                                 cmd.Parameters.AddWithValue("@sku", (object)sr.sku ?? DBNull.Value);
                                 cmd.Parameters.AddWithValue("@return_date", sr.return_date);
                                 cmd.Parameters.AddWithValue("@action_taken", sr.action_taken);
@@ -42,11 +41,12 @@ namespace TechStore.DL
 
                             if (!string.IsNullOrEmpty(sr.sku))
                             {
-                                string updateQuery = "UPDATE productsserial SET status = 'returned' WHERE sku = @sku;";
-                                using (var cmdUpdate = new MySqlCommand(updateQuery, conn, tran))
+                                // ❌ Previously was update; now delete from productsserial
+                                string deleteQuery = "DELETE FROM productsserial WHERE sku = @sku;";
+                                using (var cmdDelete = new MySqlCommand(deleteQuery, conn, tran))
                                 {
-                                    cmdUpdate.Parameters.AddWithValue("@sku", sr.sku);
-                                    cmdUpdate.ExecuteNonQuery();
+                                    cmdDelete.Parameters.AddWithValue("@sku", sr.sku);
+                                    cmdDelete.ExecuteNonQuery();
                                 }
                             }
                         }
