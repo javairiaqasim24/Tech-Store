@@ -36,7 +36,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtcategory = new System.Windows.Forms.ComboBox();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.btnsave = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -128,7 +127,7 @@
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.PlusSquare;
             this.iconPictureBox1.IconColor = System.Drawing.SystemColors.Control;
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 80;
+            this.iconPictureBox1.IconSize = 30;
             this.iconPictureBox1.Location = new System.Drawing.Point(383, 182);
             this.iconPictureBox1.Name = "iconPictureBox1";
             this.iconPictureBox1.Size = new System.Drawing.Size(30, 32);
@@ -136,30 +135,6 @@
             this.iconPictureBox1.TabIndex = 152;
             this.iconPictureBox1.TabStop = false;
             this.iconPictureBox1.Click += new System.EventHandler(this.iconPictureBox1_Click);
-            // 
-            // iconButton1
-            // 
-            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(64)))));
-            this.iconButton1.FlatAppearance.BorderColor = System.Drawing.Color.Indigo;
-            this.iconButton1.FlatAppearance.BorderSize = 2;
-            this.iconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
-            this.iconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
-            this.iconButton1.IconColor = System.Drawing.Color.Red;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 35;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(241, 577);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(151, 42);
-            this.iconButton1.TabIndex = 148;
-            this.iconButton1.Text = "Cancel";
-            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton1.UseVisualStyleBackColor = false;
             // 
             // btnsave
             // 
@@ -176,7 +151,7 @@
             this.btnsave.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnsave.IconSize = 35;
             this.btnsave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsave.Location = new System.Drawing.Point(28, 577);
+            this.btnsave.Location = new System.Drawing.Point(120, 571);
             this.btnsave.Name = "btnsave";
             this.btnsave.Size = new System.Drawing.Size(151, 42);
             this.btnsave.TabIndex = 147;
@@ -195,7 +170,6 @@
             this.Controls.Add(this.txtcategory);
             this.Controls.Add(this.txtdescp);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.iconButton1);
             this.Controls.Add(this.btnsave);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtname);
@@ -215,7 +189,6 @@
 
         private System.Windows.Forms.TextBox txtdescp;
         private System.Windows.Forms.Label label2;
-        private FontAwesome.Sharp.IconButton iconButton1;
         private FontAwesome.Sharp.IconButton btnsave;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtname;

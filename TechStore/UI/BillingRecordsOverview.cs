@@ -422,5 +422,10 @@ namespace TechStore
         {
 
         }
+
+        private void btncancle1_Click(object sender, EventArgs e)
+        {
+            paneledit.Visible=false;
+        }
     }
 }
