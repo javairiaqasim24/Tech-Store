@@ -268,7 +268,8 @@ namespace TechStore.UI
                     row.Cells["Quantity"].Value = currentQty + addedQty;
 
                     decimal unitPrice = Convert.ToDecimal(row.Cells["Price"].Value ?? 0);
-                    decimal discount = Convert.ToDecimal(row.Cells["Discount"].Value ?? 0);
+                    decimal discount = 0;
+                    discount = Convert.ToDecimal(row.Cells["Discount"].Value ?? 0);
                     decimal total = (unitPrice - discount) * (currentQty + addedQty);
                     row.Cells["Total"].Value = total.ToString();
 
@@ -557,19 +558,19 @@ namespace TechStore.UI
                     {
                         SavePdfInvoice();  // ← Generate and save PDF only
                     }
-                    if (A4printer.Checked)
+                    else if (A4printer.Checked)
                     {
                         decimal total = long.Parse(finalpricetxt.Text);
                         decimal paid = long.Parse(txtfinalpaid.Text);
                         invoices.PrintInvoiceDirectly(dataGridView1, customerName, DateTime.Now, total, paid, _lastBillId);
                     }
-                    if (thermalprint.Checked)
+                    else if (thermalprint.Checked)
                     {
                         decimal total = long.Parse(finalpricetxt.Text);
                         decimal paid = long.Parse(txtfinalpaid.Text);
                         //invoices.PrintThermalReceipt(dataGridView1, customerName, total, paid, _lastBillId);
-                    SavehthermalPdfInvoice();
-                }
+                        SavehthermalPdfInvoice();
+                    }
 
                 }
 
