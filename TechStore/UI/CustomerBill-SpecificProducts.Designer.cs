@@ -74,7 +74,7 @@
             this.dgvBillDetails.Name = "dgvBillDetails";
             this.dgvBillDetails.RowHeadersWidth = 62;
             this.dgvBillDetails.RowTemplate.Height = 28;
-            this.dgvBillDetails.Size = new System.Drawing.Size(1364, 453);
+            this.dgvBillDetails.Size = new System.Drawing.Size(754, 453);
             this.dgvBillDetails.TabIndex = 0;
             // 
             // lblTitle

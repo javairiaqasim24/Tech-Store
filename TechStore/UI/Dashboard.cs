@@ -338,14 +338,14 @@ namespace TechStore
 
         private void iconPictureBox4_Click(object sender, EventArgs e)
         {
-            if (panelcust.Height == 251)
+            if (panelcust.Height == 130)
             {
                 CollapsePanel(panelcust, 60); // collapse if already expanded
             }
             else
             {
                 CollapseAllTogglePanels();    // collapse all first
-                ExpandPanel(panelcust, 251);  // then expand this one
+                ExpandPanel(panelcust, 130);  // then expand this one
             }
         }
 
