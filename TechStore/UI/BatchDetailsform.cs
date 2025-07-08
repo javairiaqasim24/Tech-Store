@@ -181,6 +181,10 @@ namespace TechStore.UI
             var list=ibl.GetBatchDetailsByName(text);
             dataGridView2.Columns.Clear();
             dataGridView2.DataSource = list;
+            dataGridView2.Columns["batch_details_id"].Visible = false;
+            dataGridView2.Columns["batch_id"].Visible = false;
+
+            dataGridView2.Columns["product_id"].Visible = false;
             UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
             UIHelper.AddButtonColumn(dataGridView2, "Delete", "Delete", "Delete");
 
@@ -241,7 +245,6 @@ namespace TechStore.UI
 
         private void iconButton8_Click(object sender, EventArgs e)
         {
-
             if (dataGridView2.CurrentRow == null)
             {
                 MessageBox.Show("Please select a row first.");
@@ -251,34 +254,38 @@ namespace TechStore.UI
             string batchName = dataGridView2.CurrentRow.Cells["batch_name"].Value.ToString();
 
             // Get bill info by batch name
-            var billData = ibr.getbills(batchName); // implement this method in BL/DL
+            var billData = ibr.getbills(batchName); // Make sure this doesn't return null
+
             if (billData != null)
             {
+                if (billData.total_price != 0 && billData.paid_price != 0)
+                {
+                    MessageBox.Show("Bill already generated. Go to Supplier Bills to add payment.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Fill the form if bill is editable
                 txtSupplierName.Text = billData.supplier_name;
                 textBox2.Text = billData.batch_name;
                 txtTotal.Text = billData.total_price.ToString("0.00");
                 txtDate.Text = billData.date.ToShortDateString();
                 txtPaid.Text = billData.paid_price.ToString("0.00");
 
-                bool makeReadOnly = billData.total_price != 0 && billData.paid_price != 0;
-
-                // Set ReadOnly or Editable based on bill values
-                txtSupplierName.ReadOnly = makeReadOnly;
-                textBox2.ReadOnly = makeReadOnly;
-                txtTotal.ReadOnly = makeReadOnly;
-                //txtDate.ReadOnly = makeReadOnly;
-                txtPaid.ReadOnly = makeReadOnly;
+                txtSupplierName.ReadOnly = false;
+                textBox2.ReadOnly = false;
+                txtTotal.ReadOnly = false;
+                txtPaid.ReadOnly = false;
 
                 panelbill.Visible = true;
                 UIHelper.RoundPanelCorners(panelbill, 20);
                 UIHelper.ShowCenteredPanel(this, panelbill);
             }
-
             else
             {
                 MessageBox.Show("No bill found for selected batch.");
             }
         }
+
 
         private void pictureBox10_Click(object sender, EventArgs e)
         {

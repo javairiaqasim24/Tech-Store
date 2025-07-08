@@ -64,6 +64,8 @@ namespace TechStore.UI
             dataGridView2.Columns.Clear();
             dataGridView2.DataSource= list;
             dataGridView2.AutoSizeColumnsMode= DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView2.Columns["supplier_id"].Visible = false;
+            dataGridView2.Columns["batch_id"].Visible = false;
             UIHelper.AddButtonColumn(dataGridView2, "Details", "View Details", "Details");
             UIHelper.AddButtonColumn(dataGridView2, "Addpay", "Add payment", "payement");
 

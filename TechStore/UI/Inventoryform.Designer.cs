@@ -107,7 +107,7 @@
             this.paneledit.Controls.Add(this.label11);
             this.paneledit.Location = new System.Drawing.Point(537, 29);
             this.paneledit.Name = "paneledit";
-            this.paneledit.Size = new System.Drawing.Size(443, 486);
+            this.paneledit.Size = new System.Drawing.Size(443, 423);
             this.paneledit.TabIndex = 138;
             // 
             // txtsale
@@ -135,7 +135,7 @@
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.IconSize = 35;
             this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(262, 384);
+            this.iconButton1.Location = new System.Drawing.Point(262, 329);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Size = new System.Drawing.Size(151, 42);
             this.iconButton1.TabIndex = 150;
@@ -160,7 +160,7 @@
             this.btnsave.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnsave.IconSize = 35;
             this.btnsave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsave.Location = new System.Drawing.Point(73, 384);
+            this.btnsave.Location = new System.Drawing.Point(73, 329);
             this.btnsave.Name = "btnsave";
             this.btnsave.Size = new System.Drawing.Size(151, 42);
             this.btnsave.TabIndex = 149;

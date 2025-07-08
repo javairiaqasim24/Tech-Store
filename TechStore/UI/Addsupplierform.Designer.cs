@@ -180,6 +180,8 @@
             this.Controls.Add(this.txtname);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Addsupplierform";
             this.Text = "Addsupplierform";
             this.Load += new System.EventHandler(this.Addsupplierform_Load);
