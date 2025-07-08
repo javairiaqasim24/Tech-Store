@@ -99,10 +99,11 @@ namespace TechStore.DL
 
                         foreach (string serial in serials)
                         {
+                            // Step 1: Update status to 'Return'
                             string updateQuery = @"
-                        UPDATE bill_detail_serials
-                        SET status = 'Return'
-                        WHERE serial_number = @serial AND bill_detail_id = @billDetailId";
+        UPDATE bill_detail_serials
+        SET status = 'Return'
+        WHERE serial_number = @serial AND bill_detail_id = @billDetailId";
 
                             using (var updateCmd = new MySqlCommand(updateQuery, conn, tran))
                             {
@@ -110,7 +111,20 @@ namespace TechStore.DL
                                 updateCmd.Parameters.AddWithValue("@billDetailId", billDetailId);
                                 updateCmd.ExecuteNonQuery();
                             }
+
+                            // Step 2: Delete the row after updating status
+                            string deleteQuery = @"
+        DELETE FROM bill_detail_serials 
+        WHERE serial_number = @serial AND bill_detail_id = @billDetailId";
+
+                            using (var deleteCmd = new MySqlCommand(deleteQuery, conn, tran))
+                            {
+                                deleteCmd.Parameters.AddWithValue("@serial", serial);
+                                deleteCmd.Parameters.AddWithValue("@billDetailId", billDetailId);
+                                deleteCmd.ExecuteNonQuery();
+                            }
                         }
+
 
                         tran.Commit();
                     }

@@ -23,8 +23,6 @@ namespace TechStore
         [STAThread]
         static void Main()
         {
-            
-
             var services = new ServiceCollection();
             configureServices(services);
             ServiceProvider = services.BuildServiceProvider();

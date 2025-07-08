@@ -246,6 +246,8 @@ namespace TechStore.UI
 
             if (!ValidateSaleProduct()) return;
 
+            int addedQty = int.TryParse(quantity.Text.Trim(), out int parsedQty) ? parsedQty : 1;
+
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.IsNewRow) continue;
@@ -255,7 +257,6 @@ namespace TechStore.UI
 
                 if (existingName == productName)
                 {
-                    // If serial already exists, ignore adding again
                     var existingSerialList = existingSkus.Split(',').Select(s => s.Trim()).ToList();
                     if (!existingSerialList.Contains(newSku))
                     {
@@ -263,14 +264,12 @@ namespace TechStore.UI
                         row.Cells["Sku"].Value = string.Join(", ", existingSerialList);
                     }
 
-                    // Increase quantity
                     int currentQty = Convert.ToInt32(row.Cells["Quantity"].Value);
-                    row.Cells["Quantity"].Value = currentQty + 1;
+                    row.Cells["Quantity"].Value = currentQty + addedQty;
 
-                    // Recalculate total
                     decimal unitPrice = Convert.ToDecimal(row.Cells["Price"].Value ?? 0);
                     decimal discount = Convert.ToDecimal(row.Cells["Discount"].Value ?? 0);
-                    decimal total = (unitPrice - discount) * (currentQty + 1);
+                    decimal total = (unitPrice - discount) * (currentQty + addedQty);
                     row.Cells["Total"].Value = total.ToString();
 
                     UpdateFinalTotals();
@@ -281,12 +280,12 @@ namespace TechStore.UI
 
             // New product row
             dataGridView1.Rows.Add(
-                newSku,                                // Sku (serials) column
+                newSku,
                 productName,
                 txtdescription.Text.Trim(),
                 txtwarranty.Text.Trim(),
                 txtsaleprice.Text.Trim(),
-                "1",
+                addedQty.ToString(),                            // ✅ use actual quantity
                 discount.Text.Trim(),
                 priceafterdisc.Text.Trim()
             );
@@ -295,6 +294,7 @@ namespace TechStore.UI
             ClearProductFields();
             txtserial.Focus();
         }
+
 
 
 
