@@ -66,8 +66,8 @@ namespace TechStore.UI
             dgvProductSearch = new DataGridView
             {
                 Location = new Point(txtProductName.Left, txtProductName.Bottom + 5),
-                Width = txtProductName.Width + 100,
-                Height = 180,
+                Width = txtProductName.Width + 1200,
+                Height = 580,
                 Visible = false,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
@@ -374,6 +374,11 @@ namespace TechStore.UI
         {
             var f = Program.ServiceProvider.GetRequiredService<addproductform>();
             f.ShowDialog(this);
+        }
+
+        private void dgvInvoice_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
