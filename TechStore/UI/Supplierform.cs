@@ -30,6 +30,7 @@ namespace TechStore.UI
         {
             InitializeComponent();
             this.supplierBL = supplierBL;
+            UIHelper.StyleGridView(dataGridView2);
 
             paneledit.Visible = false;
              UIHelper.ApplyButtonStyles(dataGridView2);

@@ -29,6 +29,7 @@ namespace TechStore.UI
             this.ibl = ibl;
             this.ibr = ibr;
             UIHelper.ApplyButtonStyles(dataGridView2);
+            UIHelper.StyleGridView(dataGridView2);
         }
 
         private void btnadd_Click(object sender, EventArgs e)
@@ -147,8 +148,13 @@ namespace TechStore.UI
             dataGridView2.Columns.Clear();
             dataGridView2.DataSource = list;
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView2.Columns["batch_details_id"].Visible=false;
+            dataGridView2.Columns["batch_id"].Visible = false;
 
-            UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
+            dataGridView2.Columns["product_id"].Visible = false;
+            UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", 
+                  
+                "Edit");
             UIHelper.AddButtonColumn(dataGridView2, "Delete", "Delete", "Delete");
 
             // Load products
@@ -200,6 +206,7 @@ namespace TechStore.UI
                 MessageBox.Show("Enter a valid paid amount.");
                 return;
             }
+
             decimal total = Convert.ToInt32(txtTotal.Text.Trim());
             try
             {
@@ -245,7 +252,6 @@ namespace TechStore.UI
 
             // Get bill info by batch name
             var billData = ibr.getbills(batchName); // implement this method in BL/DL
-
             if (billData != null)
             {
                 txtSupplierName.Text = billData.supplier_name;
@@ -254,10 +260,20 @@ namespace TechStore.UI
                 txtDate.Text = billData.date.ToShortDateString();
                 txtPaid.Text = billData.paid_price.ToString("0.00");
 
+                bool makeReadOnly = billData.total_price != 0 && billData.paid_price != 0;
+
+                // Set ReadOnly or Editable based on bill values
+                txtSupplierName.ReadOnly = makeReadOnly;
+                textBox2.ReadOnly = makeReadOnly;
+                txtTotal.ReadOnly = makeReadOnly;
+                //txtDate.ReadOnly = makeReadOnly;
+                txtPaid.ReadOnly = makeReadOnly;
+
                 panelbill.Visible = true;
                 UIHelper.RoundPanelCorners(panelbill, 20);
                 UIHelper.ShowCenteredPanel(this, panelbill);
             }
+
             else
             {
                 MessageBox.Show("No bill found for selected batch.");

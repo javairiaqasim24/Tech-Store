@@ -26,6 +26,8 @@ namespace TechStore
             paneledit.Visible = false;
             //paneladd.Visible = false;
             _productBl = ibl;
+            UIHelper.StyleGridView(dataGridView2);
+
 
         }
 

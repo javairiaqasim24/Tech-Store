@@ -359,5 +359,10 @@ namespace TechStore.UI
         {
             panelreturn.Visible = false;
         }
+
+        private void Customerreturns_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

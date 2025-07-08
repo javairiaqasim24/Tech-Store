@@ -25,6 +25,7 @@ namespace TechStore.UI
             InitializeComponent();
             this.ibl = ibl;
             panelreturn.Visible = false;
+            UIHelper.StyleGridView(dataGridView1);
 
             txtreturnedamount.Enabled = false;
             btnsave1.Enabled = false;
