@@ -113,7 +113,7 @@
             this.btnsearch.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnsearch.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btnsearch.Location = new System.Drawing.Point(1187, 43);
-            this.btnsearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnsearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnsearch.Name = "btnsearch";
             this.btnsearch.Size = new System.Drawing.Size(112, 31);
             this.btnsearch.TabIndex = 163;
@@ -239,10 +239,10 @@
             // 
             // cbActionTaken
             // 
+            this.cbActionTaken.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbActionTaken.FormattingEnabled = true;
             this.cbActionTaken.Items.AddRange(new object[] {
-            "Refunded",
-            "replaced"});
+            "Refunded"});
             this.cbActionTaken.Location = new System.Drawing.Point(684, 240);
             this.cbActionTaken.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbActionTaken.Name = "cbActionTaken";

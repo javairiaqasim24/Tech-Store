@@ -136,6 +136,15 @@ namespace TechStore.UI
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            string text= textBox1.Text.Trim();
+            if (string.IsNullOrEmpty(text))
+            {
+                load();
+            }
+            var list=ibl.getbatchesbyname(text);
+            dataGridView2.DataSource = list;
+            dataGridView2.AutoSizeColumnsMode=DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView2.Columns["batch_id"].Visible = false;
 
         }
     }

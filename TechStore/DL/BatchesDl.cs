@@ -91,7 +91,7 @@ namespace TechStore.DL
                 SELECT b.batch_id, b.batch_name, b.recieved_date, s.name
                 FROM batches b
                 JOIN suppliers s ON s.supplier_id = b.supplier_id
-                WHERE b.batch_name LIKE @search OR s.supplier_name LIKE @search;";
+                WHERE b.batch_name LIKE @search OR s.name LIKE @search;";
 
                     using (var cmd = new MySqlCommand(query, conn))
                     {

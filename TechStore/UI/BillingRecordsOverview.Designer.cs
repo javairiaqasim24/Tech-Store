@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
-            this.Addpayment = new FontAwesome.Sharp.IconButton();
             this.paneledit = new System.Windows.Forms.Panel();
             this.txtremarks = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -73,7 +72,6 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.Addpayment);
             this.panel2.Controls.Add(this.paneledit);
             this.panel2.Controls.Add(this.panel1);
             this.panel2.Controls.Add(this.btnSearch);
@@ -86,31 +84,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1399, 862);
             this.panel2.TabIndex = 10;
-            // 
-            // Addpayment
-            // 
-            this.Addpayment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(64)))));
-            this.Addpayment.FlatAppearance.BorderColor = System.Drawing.Color.Indigo;
-            this.Addpayment.FlatAppearance.BorderSize = 2;
-            this.Addpayment.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
-            this.Addpayment.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            this.Addpayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Addpayment.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Addpayment.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.Addpayment.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
-            this.Addpayment.IconColor = System.Drawing.Color.LimeGreen;
-            this.Addpayment.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Addpayment.IconSize = 35;
-            this.Addpayment.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Addpayment.Location = new System.Drawing.Point(0, 253);
-            this.Addpayment.Name = "Addpayment";
-            this.Addpayment.Size = new System.Drawing.Size(151, 42);
-            this.Addpayment.TabIndex = 156;
-            this.Addpayment.Text = "Add";
-            this.Addpayment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Addpayment.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.Addpayment.UseVisualStyleBackColor = false;
-            this.Addpayment.Click += new System.EventHandler(this.Addpayment_Click);
             // 
             // paneledit
             // 
@@ -714,7 +687,6 @@
         private System.Windows.Forms.TextBox txtname1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private FontAwesome.Sharp.IconButton Addpayment;
     }
 }
 

@@ -35,7 +35,7 @@ namespace TechStore.BL.Models
             this.batch_name = batch_name;
             this.batch_id = batch_id;
         }
-        public Supplierbill(int bill_id, string supplier_name,  DateTime date, decimal total_price, decimal paid_price, string batch_name,decimal pending,int batch_id,int supplier_id)
+        public Supplierbill(int bill_id, string supplier_name,  DateTime date, decimal total_price, decimal paid_price, string batch_name,decimal pending,int batch_id,int supplier_id,string status)
         {
             this.bill_id = bill_id;
             this.supplier_name = supplier_name;
@@ -46,6 +46,7 @@ namespace TechStore.BL.Models
             this.pending = pending;
             this.batch_id = batch_id;
             this.supplier_id= supplier_id;
+            this.status = status;
         }
 
         public int bill_id { get;private set; }
@@ -57,6 +58,7 @@ namespace TechStore.BL.Models
         public string batch_name { get; private set; }
         public int batch_id { get; private set; }
         public decimal pending { get; private set; }
+        public string status { get; private set; }
         
     }
 }
