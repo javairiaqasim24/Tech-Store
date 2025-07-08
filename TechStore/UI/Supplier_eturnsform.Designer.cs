@@ -419,6 +419,7 @@
             this.btncancle1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btncancle1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btncancle1.UseVisualStyleBackColor = false;
+            this.btncancle1.Click += new System.EventHandler(this.btncancle1_Click);
             // 
             // btnsave1
             // 

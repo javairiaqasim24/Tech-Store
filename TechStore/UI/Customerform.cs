@@ -25,6 +25,7 @@ namespace TechStore.UI
             this._customerBL = customerBL;
             paneledit.Visible = false;
             this.textBox1.TextChanged += textBox1_TextChanged;
+            UIHelper.StyleGridView(dataGridView2);
 
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
 

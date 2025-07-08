@@ -68,29 +68,58 @@ namespace TechStore.DL
                 using (var conn = DatabaseHelper.Instance.GetConnection())
                 {
                     conn.Open();
-                    string query = @"INSERT INTO supplierpricerecord
-                             (supplier_id, supplier_bill_id, date, payment, remarks)
-                             VALUES (@supp_id, @billid, @date, @payment, @remarks);";
 
-                    using (var cmd = new MySqlCommand(query, conn))
+                    using (var tran = conn.BeginTransaction())
                     {
-                        cmd.Parameters.AddWithValue("@supp_id", supplier_id);
-                        cmd.Parameters.AddWithValue("@billid", s.bill_id);
-                        cmd.Parameters.AddWithValue("@date", s.date);
-                        cmd.Parameters.AddWithValue("@payment", s.payement);
-                        cmd.Parameters.AddWithValue("@remarks", s.remarks);
+                        try
+                        {
+                            // 1. Insert into supplierpricerecord
+                            string insertQuery = @"INSERT INTO supplierpricerecord
+                                           (supplier_id, supplier_bill_id, date, payment, remarks)
+                                           VALUES (@supp_id, @billid, @date, @payment, @remarks);";
 
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0;
+                            using (var cmd = new MySqlCommand(insertQuery, conn, tran))
+                            {
+                                cmd.Parameters.AddWithValue("@supp_id", supplier_id);
+                                cmd.Parameters.AddWithValue("@billid", s.bill_id);
+                                cmd.Parameters.AddWithValue("@date", s.date);
+                                cmd.Parameters.AddWithValue("@payment", s.payement);
+                                cmd.Parameters.AddWithValue("@remarks", s.remarks);
+
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            // 2. Update paid_amount in supplierbills
+                            string updateQuery = @"UPDATE supplierbills 
+                                           SET paid_amount = paid_amount + @payment
+                                           WHERE supplier_bill_id = @billid";
+
+                            using (var cmd = new MySqlCommand(updateQuery, conn, tran))
+                            {
+                                cmd.Parameters.AddWithValue("@payment", s.payement);
+                                cmd.Parameters.AddWithValue("@billid", s.bill_id);
+
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            tran.Commit();
+                            return true;
+                        }
+                        catch (Exception ex)
+                        {
+                            tran.Rollback();
+                            throw new Exception("Transaction failed: " + ex.Message, ex);
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("error" + ex.Message, ex);
+                throw new Exception("Error: " + ex.Message, ex);
             }
         }
-        public  List<Spricerecord>getrecord(int billid)
+
+        public List<Spricerecord>getrecord(int billid)
         {
             try
             {

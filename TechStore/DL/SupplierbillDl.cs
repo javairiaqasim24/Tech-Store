@@ -79,14 +79,15 @@ namespace TechStore.DL
                         {
                             // 1. Update the supplier bill
                             string updateQuery = @"UPDATE supplierbills 
-                                          set
-                                            total_price=@total
+                                           SET total_price = @total,
+                                               paid_amount = paid_amount + @paid
                                            WHERE batch_id = @batch_id AND supplier_id = @supplier_id";
                             using (var cmd = new MySqlCommand(updateQuery, conn, tran))
                             {
                                 cmd.Parameters.AddWithValue("@batch_id", batch_id);
                                 cmd.Parameters.AddWithValue("@supplier_id", supplier_id);
                                 cmd.Parameters.AddWithValue("@total", s.total_price);
+                                cmd.Parameters.AddWithValue("@paid", s.paid_price);
                                 cmd.ExecuteNonQuery();
                             }
 
@@ -152,10 +153,10 @@ namespace TechStore.DL
                                 int billid = reader.GetInt32("supplier_Bill_ID");
                                 string suppname = reader.GetString("name");
                                 string Bname = reader.GetString("batch_name");
-                                decimal paidamount = reader.GetDecimal("paid_amount");
-                                decimal totalamount = reader.GetDecimal("total_price");
-                                DateTime date=reader.GetDateTime("date");
-                                decimal pending = reader.GetDecimal("pending");
+                                decimal paidamount = reader.IsDBNull(reader.GetOrdinal("paid_amount")) ? 0 : reader.GetDecimal(reader.GetOrdinal("paid_amount"));
+                                decimal totalamount = reader.IsDBNull(reader.GetOrdinal("total_price")) ? 0 : reader.GetDecimal(reader.GetOrdinal("total_price"));
+                                decimal pending = reader.IsDBNull(reader.GetOrdinal("pending")) ? 0 : reader.GetDecimal(reader.GetOrdinal("pending"));
+                                DateTime date =reader.GetDateTime("date");
                                 int batch_id = reader.GetInt32("batch_id");
                                 int suppid = reader.GetInt32("supplier_id");
                                 var bills = new Supplierbill(billid, suppname, date, totalamount, paidamount, Bname, pending, batch_id, suppid);
@@ -192,13 +193,14 @@ namespace TechStore.DL
                                 int billid = reader.GetInt32("supplier_Bill_ID");
                                 string suppname = reader.GetString("name");
                                 string Bname = reader.GetString("batch_name");
-                                decimal paidamount = reader.GetDecimal("paid_amount");
-                                decimal totalamount = reader.GetDecimal("total_price");
-                                decimal pendingamount = reader.GetDecimal("pending");
+                                decimal paidamount = reader.IsDBNull(reader.GetOrdinal("paid_amount")) ? 0 : reader.GetDecimal(reader.GetOrdinal("paid_amount"));
+                                decimal totalamount = reader.IsDBNull(reader.GetOrdinal("total_price")) ? 0 : reader.GetDecimal(reader.GetOrdinal("total_price"));
+                                decimal pending = reader.IsDBNull(reader.GetOrdinal("pending")) ? 0 : reader.GetDecimal(reader.GetOrdinal("pending"));
+
                                 DateTime date = reader.GetDateTime("date");
                                 int batch_id = reader.GetInt32("batch_id");
                                 int suppid = reader.GetInt32("supplier_id");
-                                var bills = new Supplierbill(billid, suppname, date, totalamount, paidamount, Bname, pendingamount,batch_id,suppid);
+                                var bills = new Supplierbill(billid, suppname, date, totalamount, paidamount, Bname, pending,batch_id,suppid);
 
                                 list.Add(bills);
 
@@ -234,14 +236,15 @@ namespace TechStore.DL
                                 int billsid = reader.GetInt32("supplier_Bill_ID");
                                 string suppname = reader.GetString("name");
                                 string Bname = reader.GetString("batch_name");
-                                decimal paidamount = reader.GetDecimal("paid_amount");
-                                decimal totalamount = reader.GetDecimal("total_price");
-                                decimal pendingamount = reader.GetDecimal("pending");
+                                decimal paidamount = reader.IsDBNull(reader.GetOrdinal("paid_amount")) ? 0 : reader.GetDecimal(reader.GetOrdinal("paid_amount"));
+                                decimal totalamount = reader.IsDBNull(reader.GetOrdinal("total_price")) ? 0 : reader.GetDecimal(reader.GetOrdinal("total_price"));
+                                decimal pending = reader.IsDBNull(reader.GetOrdinal("pending")) ? 0 : reader.GetDecimal(reader.GetOrdinal("pending"));
+
                                 DateTime date = reader.GetDateTime("date");
 
                                 int batch_id = reader.GetInt32("batch_id");
                                 int suppid = reader.GetInt32("supplier_id");
-                                var bills = new Supplierbill(billsid, suppname, date, totalamount, paidamount, Bname, pendingamount, batch_id, suppid);
+                                var bills = new Supplierbill(billsid, suppname, date, totalamount, paidamount, Bname, pending, batch_id, suppid);
 
                                 list.Add(bills);
 

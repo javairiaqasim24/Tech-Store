@@ -25,6 +25,7 @@ namespace TechStore.UI
             InitializeComponent();
             this.ibl = ibl;
             panelreturn.Visible = false;
+            UIHelper.StyleGridView(dataGridView1);
 
             txtreturnedamount.Enabled = false;
             btnsave1.Enabled = false;
@@ -312,6 +313,11 @@ namespace TechStore.UI
             {
                 MessageBox.Show("Failed to process returns.");
             }
+        }
+
+        private void btncancle1_Click(object sender, EventArgs e)
+        {
+            panelreturn.Visible=false;
         }
     }
 }

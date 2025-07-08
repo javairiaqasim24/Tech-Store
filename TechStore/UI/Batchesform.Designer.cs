@@ -60,6 +60,8 @@
             this.btnlogs = new FontAwesome.Sharp.IconButton();
             this.btncategory = new FontAwesome.Sharp.IconButton();
             this.btnproducts = new FontAwesome.Sharp.IconButton();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelbill.SuspendLayout();
@@ -141,6 +143,8 @@
             // panelbill
             // 
             this.panelbill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(200)))), ((int)(((byte)(254)))));
+            this.panelbill.Controls.Add(this.textBox3);
+            this.panelbill.Controls.Add(this.label1);
             this.panelbill.Controls.Add(this.txtSupplierName);
             this.panelbill.Controls.Add(this.textBox2);
             this.panelbill.Controls.Add(this.label12);
@@ -183,7 +187,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label12.Location = new System.Drawing.Point(68, 287);
+            this.label12.Location = new System.Drawing.Point(68, 360);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(60, 30);
             this.label12.TabIndex = 155;
@@ -192,7 +196,7 @@
             // 
             // txtDate
             // 
-            this.txtDate.Location = new System.Drawing.Point(70, 330);
+            this.txtDate.Location = new System.Drawing.Point(70, 403);
             this.txtDate.Name = "txtDate";
             this.txtDate.Size = new System.Drawing.Size(316, 22);
             this.txtDate.TabIndex = 154;
@@ -599,6 +603,28 @@
             this.btnproducts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnproducts.UseVisualStyleBackColor = false;
             // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.Color.Gainsboro;
+            this.textBox3.Location = new System.Drawing.Point(73, 307);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(313, 37);
+            this.textBox3.TabIndex = 159;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
+            this.label1.Location = new System.Drawing.Point(68, 274);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 30);
+            this.label1.TabIndex = 158;
+            this.label1.Text = "Payment";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Batchesform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -653,5 +679,7 @@
         private FontAwesome.Sharp.IconButton btnlogs;
         private FontAwesome.Sharp.IconButton btncategory;
         private FontAwesome.Sharp.IconButton btnproducts;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label1;
     }
 }

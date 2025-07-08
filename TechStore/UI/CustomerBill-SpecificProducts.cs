@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using TechStore.BL;
+using TechStore.DL;
 using TechStore.UI;
 
 namespace TechStore
@@ -43,7 +44,22 @@ namespace TechStore
         {
             activebutton(btnreport, sidebarColors[5]);
             LoadBillData();
+            LoadPayments();
             StyleDataGridView();
+        }
+        private void LoadPayments()
+        {
+            var list = BillingRecordsOverviewDL.getrecord(_currentBillId);
+            dataGridView1.DataSource = list;
+
+            // Apply styles
+            StylePaymentsGrid();
+
+            // Hide internal columns if needed
+            dataGridView1.Columns["name"].Visible = false;
+            dataGridView1.Columns["suppid"].Visible = false;
+            dataGridView1.Columns["bill_id"].Visible = false;
+            dataGridView1.Columns["id"].Visible = false;
         }
 
         private void LoadBillData()
@@ -272,6 +288,25 @@ namespace TechStore
             }
             catch (ObjectDisposedException) { /* Safe exit */ }
         }
+        private void StylePaymentsGrid()
+        {
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.ReadOnly = true;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(5, 51, 69);
+            dataGridView1.EnableHeadersVisualStyles = false;
+
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 126, 250);
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
+        }
 
         private void CustomerBill_SpecificProducts_Load_1(object sender, EventArgs e)
         {
@@ -283,7 +318,7 @@ namespace TechStore
 
         }
 
-        private void dgvBillDetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
