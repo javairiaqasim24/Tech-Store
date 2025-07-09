@@ -2,6 +2,8 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using TechStore.BL.BL;
+using TechStore.BL.Models;
 
 namespace TechStore.DL
 {
@@ -381,6 +383,76 @@ namespace TechStore.DL
             {
                 throw new Exception("Error getting pending bills: " + ex.Message, ex);
             }
+        }
+
+        public List<Products> outofstock()
+        {
+            var result = new List<Products>();
+
+            try
+            {
+                using (var conn = DatabaseHelper.Instance.GetConnection())
+                {
+                    conn.Open();
+                    string query = @"
+                        SELECT  p.name,p.description from products p join inventory i on i.product_id=p.product_id   where i.quantity_in_stock=0;";
+
+                    using (var cmd = new MySqlCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string supplier = reader.GetString("name");
+                            string description = reader.GetString("description");
+                            var stock=new Products(0,supplier, description);
+                            result.Add((stock));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting supplier contributions: " + ex.Message, ex);
+            }
+
+            return result;
+        }
+        public List<inventorylog> recentlogs()
+        {
+            var result = new List<inventorylog>();
+
+            try
+            {
+                using (var conn = DatabaseHelper.Instance.GetConnection())
+                {
+                    conn.Open();
+                    string query = @"
+    SELECT p.name, i.change_type, i.quantity_change 
+    FROM inventory_log i 
+    JOIN products p ON p.product_id = i.product_id 
+    ORDER BY i.log_date DESC 
+    LIMIT 15;";
+
+                    using (var cmd = new MySqlCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string supplier = reader.GetString("name");
+                            string description = reader.GetString("change_type");
+                            int quantity = reader.GetInt32("quantity_change");
+                            var log = new inventorylog(supplier, description, quantity);
+                            result.Add(log);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting supplier contributions: " + ex.Message, ex);
+            }
+
+            return result;
         }
     }
 }

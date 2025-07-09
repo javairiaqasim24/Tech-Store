@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Markup;
+using TechStore.BL.Models;
 using TechStore.Interfaces;
 
 namespace TechStore.UI
@@ -30,6 +31,8 @@ namespace TechStore.UI
             chart1.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
             chart1.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
             panel2.Height = 2000;
+            UIHelper.StyleGridView(dataGridView1);
+            UIHelper.StyleGridView(dataGridView2);
         }
 
 
@@ -47,6 +50,9 @@ namespace TechStore.UI
         private void HomeContentform_Load(object sender, EventArgs e)
         {
             load();
+            loadgrid();
+            timer1.Start();
+
         }
         private void load()
         {
@@ -59,11 +65,24 @@ namespace TechStore.UI
             lblbills.Text = idl.GetDashboardSummary().pendingbills.ToString();
             LoadChartData();
             LoadCategoryPieChart();
-            //LoadSupplierChart();
-            //LoadCompareChart();
+            LoadSupplierChart();
+            LoadCompareChart();
         }
 
+        private void loadgrid()
+        {
+            var list = idl.recentlogs();
+            dataGridView1.DataSource = list;
+            dataGridView1.Columns["log_date"].Visible = false;
+            dataGridView1.Columns["remark"].Visible = false;
 
+            var lists = idl.outofstock();
+            dataGridView2.DataSource = lists;
+            dataGridView2.Columns["id"].Visible = false;
+            dataGridView2.Columns["category"].Visible = false;
+
+
+        }
         private void panel11_Paint(object sender, PaintEventArgs e)
         {
 
@@ -137,105 +156,132 @@ namespace TechStore.UI
             }
         }
 
-        //private void LoadCompareChart()
-        //{
-        //    coparechart.Series.Clear();
-        //    coparechart.ChartAreas.Clear();
-        //    coparechart.Titles.Clear();
-        //    coparechart.Legends.Clear();
+        private void LoadCompareChart()
+        {
+            chart2.Series.Clear();
+            chart2.ChartAreas.Clear();
+            chart2.Titles.Clear();
+            chart2.Legends.Clear();
 
-        //    // Chart Area
-        //    var area = new ChartArea("CompareArea");
-        //    area.AxisX.MajorGrid.LineColor = Color.LightGray;
-        //    area.AxisY.MajorGrid.LineColor = Color.LightGray;
-        //    area.AxisX.Title = "Month";
-        //    area.AxisY.Title = "Sales (Rs)";
-        //    area.AxisX.Interval = 1;
-        //    area.AxisX.LabelStyle.Angle = -45;
-        //    area.BackColor = Color.White;
-        //    coparechart.ChartAreas.Add(area);
+            // Chart Area
+            var area = new ChartArea("CompareArea")
+            {
+                BackColor = Color.FromArgb(21, 61, 147),
+            };
+            area.AxisX.MajorGrid.Enabled = false;
+            area.AxisY.MajorGrid.Enabled = false;
+            area.AxisX.LineColor = Color.White;
+            area.AxisY.LineColor = Color.White;
+            area.AxisX.Title = "Month";
+            area.AxisY.Title = "Sales (Rs)";
+            area.AxisX.TitleFont = new Font("Segoe UI", 10, FontStyle.Bold);
+            area.AxisY.TitleFont = new Font("Segoe UI", 10, FontStyle.Bold);
+            area.AxisX.LabelStyle.ForeColor = Color.White;
+            area.AxisY.LabelStyle.ForeColor = Color.White;
+            area.AxisX.TitleForeColor = Color.White;
+            area.AxisY.TitleForeColor = Color.White;
+            area.AxisX.LabelStyle.Angle = -45;
+            area.AxisX.Interval = 1;
+            chart2.ChartAreas.Add(area);
 
-        //    // Legend
-        //    var legend = new Legend("CompareLegend");
-        //    legend.Docking = Docking.Top;
-        //    legend.Alignment = StringAlignment.Center;
-        //    legend.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-        //    coparechart.Legends.Add(legend);
+            // Legend
+            var legend = new Legend("CompareLegend")
+            {
+                Docking = Docking.Top,
+                Alignment = StringAlignment.Center,
+                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                ForeColor = Color.Black
+            };
+            chart2.Legends.Add(legend);
 
-        //    // Series
-        //    var series = new Series("Monthly Sales")
-        //    {
-        //        ChartType = SeriesChartType.Column,
-        //        Color = Color.FromArgb(0, 153, 76), // Green
-        //        Font = new Font("Segoe UI", 8),
-        //        IsValueShownAsLabel = true,
-        //        XValueType = ChartValueType.String
-        //    };
-        //    coparechart.Series.Add(series);
+            // Series
+            var series = new Series("Monthly Sales")
+            {
+                ChartType = SeriesChartType.Column,
+                Color = Color.FromArgb(255, 191, 0),
+                Font = new Font("Segoe UI", 9, FontStyle.Regular),
+                IsValueShownAsLabel = true,
+                XValueType = ChartValueType.String,
+                LabelForeColor = Color.White
+            };
+            chart2.Series.Add(series);
 
-        //    // Title
-        //    coparechart.Titles.Add("Monthly Sales - Current Year");
-        //    coparechart.Titles[0].Font = new Font("Segoe UI", 12, FontStyle.Bold);
-        //    coparechart.Titles[0].ForeColor = Color.FromArgb(45, 45, 48);
+            // Title
+            chart2.Titles.Add("Monthly Sales - Current Year");
+            chart2.Titles[0].Font = new Font("Segoe UI", 13, FontStyle.Bold);
+            chart2.Titles[0].ForeColor = Color.White;
 
-        //    // Data
-        //    var data = idl.GetMonthlySalesComparison();
-        //    foreach (var entry in data)
-        //    {
-        //        var point = series.Points.AddXY(entry.MonthName, entry.TotalSales);
-        //        series.Points[point].ToolTip = $"{entry.MonthName}: Rs {entry.TotalSales:N0}";
-        //    }
+            // Data
+            var data = idl.GetMonthlySalesComparison();
+            foreach (var entry in data)
+            {
+                var point = series.Points.AddXY(entry.MonthName, entry.TotalSales);
+                series.Points[point].ToolTip = $"{entry.MonthName}: Rs {entry.TotalSales:N0}";
+            }
+        }
 
-        //}
-        //private void LoadSupplierChart()
-        //{
-        //    supplierchart.Series.Clear();
-        //    supplierchart.ChartAreas.Clear();
-        //    supplierchart.Titles.Clear();
-        //    supplierchart.Legends.Clear();
+        private void LoadSupplierChart()
+        {
+            chart3.Series.Clear();
+            chart3.ChartAreas.Clear();
+            chart3.Titles.Clear();
+            chart3.Legends.Clear();
 
-        //    // Chart Area
-        //    var area = new ChartArea("SupplierArea");
-        //    area.AxisX.MajorGrid.LineColor = Color.LightGray;
-        //    area.AxisY.MajorGrid.LineColor = Color.LightGray;
-        //    area.AxisX.Title = "Supplier";
-        //    area.AxisY.Title = "Batches Supplied";
-        //    area.AxisX.LabelStyle.Angle = -45;
-        //    area.BackColor = Color.White;
-        //    supplierchart.ChartAreas.Add(area);
+            // Chart Area
+            var area = new ChartArea("SupplierArea")
+            {
+                BackColor = Color.FromArgb(21, 61, 147)
+            };
+            area.AxisX.MajorGrid.Enabled = false;
+            area.AxisY.MajorGrid.Enabled = false;
+            area.AxisX.LineColor = Color.White;
+            area.AxisY.LineColor = Color.White;
+            area.AxisX.Title = "Supplier";
+            area.AxisY.Title = "Batches Supplied";
+            area.AxisX.TitleFont = new Font("Segoe UI", 10, FontStyle.Bold);
+            area.AxisY.TitleFont = new Font("Segoe UI", 10, FontStyle.Bold);
+            area.AxisX.LabelStyle.ForeColor = Color.White;
+            area.AxisY.LabelStyle.ForeColor = Color.White;
+            area.AxisX.TitleForeColor = Color.White;
+            area.AxisY.TitleForeColor = Color.White;
+            area.AxisX.LabelStyle.Angle = -45;
+            chart3.ChartAreas.Add(area);
 
-        //    // Legend
-        //    var legend = new Legend("SupplierLegend");
-        //    legend.Docking = Docking.Top;
-        //    legend.Alignment = StringAlignment.Center;
-        //    legend.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-        //    supplierchart.Legends.Add(legend);
+            // Legend
+            var legend = new Legend("SupplierLegend")
+            {
+                Docking = Docking.Top,
+                Alignment = StringAlignment.Center,
+                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                ForeColor = Color.Black
+            };
+            chart3.Legends.Add(legend);
 
-        //    // Series
-        //    var series = new Series("Top Suppliers")
-        //    {
-        //        ChartType = SeriesChartType.Bar,
-        //        Color = Color.FromArgb(20, 107, 252), // Orange-brown
-        //        Font = new Font("Segoe UI", 8),
-        //        IsValueShownAsLabel = true,
-        //        XValueType = ChartValueType.String
-        //    };
-        //    supplierchart.Series.Add(series);
+            // Series
+            var series = new Series("Top Suppliers")
+            {
+                ChartType = SeriesChartType.Bar,
+                Color = Color.FromArgb(255, 191, 0), // Bright gold
+                Font = new Font("Segoe UI", 9, FontStyle.Regular),
+                IsValueShownAsLabel = true,
+                XValueType = ChartValueType.String,
+                LabelForeColor = Color.White
+            };
+            chart3.Series.Add(series);
 
-        //    // Title
-        //    supplierchart.Titles.Add("Top Supplier Contributions");
-        //    supplierchart.Titles[0].Font = new Font("Segoe UI", 12, FontStyle.Bold);
-        //    supplierchart.Titles[0].ForeColor = Color.FromArgb(45, 45, 48);
+            // Title
+            chart3.Titles.Add("Top Supplier Contributions");
+            chart3.Titles[0].Font = new Font("Segoe UI", 13, FontStyle.Bold);
+            chart3.Titles[0].ForeColor = Color.White;
 
-        //    // Data
-        //    var data = idl.GetTopSupplierContributions();
-        //    foreach (var entry in data)
-        //    {
-        //        var point = series.Points.AddXY(entry.SupplierName, entry.TotalBatches);
-        //        series.Points[point].ToolTip = $"{entry.SupplierName}: {entry.TotalBatches} batches";
-        //    }
-
-        //}
+            // Data
+            var data = idl.GetTopSupplierContributions();
+            foreach (var entry in data)
+            {
+                var point = series.Points.AddXY(entry.SupplierName, entry.TotalBatches);
+                series.Points[point].ToolTip = $"{entry.SupplierName}: {entry.TotalBatches} batches";
+            }
+        }
 
         private void chart1_Click(object sender, EventArgs e)
         {
@@ -308,6 +354,34 @@ namespace TechStore.UI
         private void supplierchart_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            label9.Text = DateTime.Now.ToString("hh:mm:ss tt");
+
+            // Determine greeting based on time
+            var hour = DateTime.Now.Hour;
+            string greeting;
+
+            if (hour >= 5 && hour < 12)
+                greeting = "Good Morning";
+            else if (hour >= 12 && hour < 17)
+                greeting = "Good Afternoon";
+            else if (hour >= 17 && hour < 21)
+                greeting = "Good Evening";
+            else
+                greeting = "Good Night";
+
+            // Get user's name from session
+            string name = Usersession.FullName ?? "Nadir Jamal";
+
+            label10.Text = $"{greeting}, {name}";
         }
 
     }

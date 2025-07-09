@@ -14,5 +14,7 @@ namespace TechStore.Interfaces
         List<(string Category, int ProductCount)> GetProductCategoryDistribution();
         List<(string SupplierName, int TotalBatches)> GetTopSupplierContributions();
         List<(string MonthName, decimal TotalSales)> GetMonthlySalesComparison();
+        List<Products> outofstock();
+        List<inventorylog> recentlogs();
     }
 }

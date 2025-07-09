@@ -167,6 +167,7 @@
     <Compile Include="BL\Models\Supplierpayment.cs" />
     <Compile Include="BL\Models\TemporaryInvoice.cs" />
     <Compile Include="BL\Models\Supplierreturn.cs" />
+    <Compile Include="BL\Models\Usersession.cs" />
     <Compile Include="DL\BatchFormPersistence.cs" />
     <Compile Include="DL\BillingRecordsOverviewDL.cs" />
     <Compile Include="DL\CustomerBill_SpecificProductsDL.cs" />

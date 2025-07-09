@@ -21,5 +21,12 @@ namespace TechStore.BL.Models
             this.type = type;
             this.remark = remark;
         }
+
+        public inventorylog(string supplier, string description, int quantity)
+        {
+            name = supplier;
+            this.quantity_change = quantity;
+            this.type= description;
+        }
     }
 }

@@ -465,7 +465,7 @@
             this.panelcust.Controls.Add(this.btncustomers);
             this.panelcust.Location = new System.Drawing.Point(3, 461);
             this.panelcust.Name = "panelcust";
-            this.panelcust.Size = new System.Drawing.Size(270, 124);
+            this.panelcust.Size = new System.Drawing.Size(270, 63);
             this.panelcust.TabIndex = 12;
             // 
             // iconPictureBox4
@@ -541,7 +541,7 @@
             this.panelsupp.Controls.Add(this.iconPictureBox5);
             this.panelsupp.Controls.Add(this.btnSbills);
             this.panelsupp.Controls.Add(this.btnsuppliers);
-            this.panelsupp.Location = new System.Drawing.Point(3, 591);
+            this.panelsupp.Location = new System.Drawing.Point(3, 530);
             this.panelsupp.Name = "panelsupp";
             this.panelsupp.Size = new System.Drawing.Size(270, 65);
             this.panelsupp.TabIndex = 13;
@@ -620,7 +620,7 @@
             this.panelreturn.Controls.Add(this.btnSreturn);
             this.panelreturn.Controls.Add(this.bntcustomerreturn);
             this.panelreturn.Controls.Add(this.btnreturns);
-            this.panelreturn.Location = new System.Drawing.Point(3, 662);
+            this.panelreturn.Location = new System.Drawing.Point(3, 601);
             this.panelreturn.Name = "panelreturn";
             this.panelreturn.Size = new System.Drawing.Size(270, 62);
             this.panelreturn.TabIndex = 14;
@@ -732,7 +732,7 @@
             this.btnorder.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnorder.IconSize = 40;
             this.btnorder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnorder.Location = new System.Drawing.Point(3, 730);
+            this.btnorder.Location = new System.Drawing.Point(3, 669);
             this.btnorder.Name = "btnorder";
             this.btnorder.Size = new System.Drawing.Size(267, 60);
             this.btnorder.TabIndex = 15;
@@ -758,7 +758,7 @@
             this.btnlogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnlogout.IconSize = 40;
             this.btnlogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnlogout.Location = new System.Drawing.Point(3, 796);
+            this.btnlogout.Location = new System.Drawing.Point(3, 735);
             this.btnlogout.Name = "btnlogout";
             this.btnlogout.Size = new System.Drawing.Size(270, 60);
             this.btnlogout.TabIndex = 16;

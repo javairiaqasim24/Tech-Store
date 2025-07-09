@@ -51,5 +51,15 @@ namespace TechStore.BL
         {
             return idl.GetTopSupplierContributions();
         }
+
+        public List<Products> outofstock()
+        {
+            return idl.outofstock();
+        }
+
+        public List<inventorylog> recentlogs()
+        {
+            return idl.recentlogs();
+        }
     }
 }

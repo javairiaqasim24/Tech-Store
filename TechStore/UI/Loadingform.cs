@@ -16,8 +16,35 @@ namespace TechStore.UI
         public Loadingform()
         {
             InitializeComponent();
-          
+
+            // panel1 is the outer scrollable container
+            //panel1.AutoScroll = true;
+            //panel1.Dock = DockStyle.Fill;
+
+            //// panel2 is the scroll area container (DO NOT autosize it)
+            //panel2.Dock = DockStyle.Fill;
+
+            //// contentPanel is the actual container that grows vertically
+            //var contentPanel = new Panel
+            //{
+            //    AutoSize = true,
+            //    AutoSizeMode = AutoSizeMode.GrowAndShrink,
+            //    Dock = DockStyle.Top
+            //};
+
+            //// Add growing contentPanel into panel2
+            //panel2.Controls.Add(contentPanel);
+
+            //// Now add all your controls to contentPanel
+            //contentPanel.Controls.Add(tableLayoutPanel1);
+            //contentPanel.Controls.Add(tableLayoutPanel2);
+            //contentPanel.Controls.Add(panel16);
+            //// etc...
+
+            //// Add panel2 into panel1
+            //panel1.Controls.Add(panel2);
         }
+
 
         private void guna2CustomGradientPanel1_Paint(object sender, PaintEventArgs e)
         {
@@ -36,7 +63,7 @@ namespace TechStore.UI
 
         private void iconPictureBox1_Click(object sender, EventArgs e)
         {
-            TogglePanel(panel1, 60, 251);
+            //TogglePanel(panel, 60, 251);
         }
         private void CollapsePanel(Panel panel, int collapsedHeight)
         {
@@ -59,30 +86,35 @@ namespace TechStore.UI
 
         private void Loadingform_Load(object sender, EventArgs e)
         {
-            
 
+            timer1.Start();
         }
 
         private void iconPictureBox2_Click(object sender, EventArgs e)
         {
-            TogglePanel(panel3, 60, 183);
+            //TogglePanel(panel3, 60, 183);
 
         }
 
         private void iconPictureBox4_Click(object sender, EventArgs e)
         {
-            TogglePanel(panel4, 60, 251);
+            //TogglePanel(panel4, 60, 251);
         }
 
         private void iconPictureBox5_Click(object sender, EventArgs e)
         {
-            TogglePanel(panel5, 60, 251);
+            //TogglePanel(panel5, 60, 251);
 
         }
 
         private void iconPictureBox6_Click(object sender, EventArgs e)
         {
-            TogglePanel(panel6, 60, 182);
+            //TogglePanel(panel6, 60, 182);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+           //lbltime.Text = DateTime.Now.ToString("hh:mm:ss tt");
         }
     }
 }
