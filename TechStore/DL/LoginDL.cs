@@ -22,7 +22,7 @@ namespace TechStore.DL
                 using (var cmd = new MySqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@password", password); // 🔒 for now plain, but hash later
+                    cmd.Parameters.AddWithValue("@password", password); 
 
                     object result = cmd.ExecuteScalar();
 

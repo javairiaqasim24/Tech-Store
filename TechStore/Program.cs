@@ -23,7 +23,7 @@ namespace TechStore
         [STAThread]
         static void Main()
         {
-               var services = new ServiceCollection();
+var services = new ServiceCollection();
             configureServices(services);
             ServiceProvider = services.BuildServiceProvider();
 
@@ -36,7 +36,6 @@ namespace TechStore
         }
         public static void configureServices(IServiceCollection services)
         {
-            //DL
             services.AddScoped<IproductDl, ProductDL>();
             services.AddScoped<IsupplierDl, SupplierDl>();
             services.AddScoped<Icustomersaledl, Customersaledl>();
@@ -51,7 +50,6 @@ namespace TechStore
             services.AddScoped<ISbilldetailsDl,SbilldetailsDl>();
 
 
-            //BL
             services.AddScoped<IproductBl, ProductBL>();
             services.AddScoped<ISupplierBL, SupplierBl>();
             services.AddScoped<ICustomerSaleBL, CustomerSaleBL>();
@@ -66,7 +64,6 @@ namespace TechStore
             services.AddScoped<IsbilldetailsBl,SbilldetailsBl>();
             services.AddScoped<Idashboard,Dashboardservice>();
 
-            //forms
             services.AddTransient<HomeContentform>();
             services.AddTransient<Dashboard>();
             services.AddTransient<addproductform>();

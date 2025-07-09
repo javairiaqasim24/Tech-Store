@@ -220,5 +220,10 @@ namespace TechStore.UI
                 MessageBox.Show("Please select a row to delete.");
             }
         }
+
+        private void Services_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

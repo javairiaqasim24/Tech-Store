@@ -46,16 +46,16 @@
             this.btnadd = new FontAwesome.Sharp.IconButton();
             this.btndelete = new FontAwesome.Sharp.IconButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbCustomer = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.Service = new System.Windows.Forms.TextBox();
+            this.btnsave = new FontAwesome.Sharp.IconButton();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtpDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.panel2 = new System.Windows.Forms.Panel();
             this.toplbl = new System.Windows.Forms.Label();
-            this.dtpDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnsave = new FontAwesome.Sharp.IconButton();
-            this.Service = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cmbCustomer = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoice)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -319,81 +319,43 @@
             this.panel1.Size = new System.Drawing.Size(1407, 763);
             this.panel1.TabIndex = 18;
             // 
-            // panel2
+            // cmbCustomer
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.panel2.Controls.Add(this.toplbl);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1407, 71);
-            this.panel2.TabIndex = 17;
+            this.cmbCustomer.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.cmbCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCustomer.FormattingEnabled = true;
+            this.cmbCustomer.Items.AddRange(new object[] {
+            "Walk-in",
+            "Regular"});
+            this.cmbCustomer.Location = new System.Drawing.Point(313, 60);
+            this.cmbCustomer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbCustomer.Name = "cmbCustomer";
+            this.cmbCustomer.Size = new System.Drawing.Size(287, 30);
+            this.cmbCustomer.TabIndex = 174;
             // 
-            // toplbl
+            // label9
             // 
-            this.toplbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.toplbl.AutoSize = true;
-            this.toplbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toplbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.toplbl.Location = new System.Drawing.Point(585, 26);
-            this.toplbl.Name = "toplbl";
-            this.toplbl.Size = new System.Drawing.Size(246, 38);
-            this.toplbl.TabIndex = 6;
-            this.toplbl.Text = "Customer Sale";
-            this.toplbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.label9.Location = new System.Drawing.Point(48, 26);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(116, 24);
+            this.label9.TabIndex = 173;
+            this.label9.Text = "Service Name";
             // 
-            // dtpDate
+            // Service
             // 
-            this.dtpDate.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.dtpDate.Checked = true;
-            this.dtpDate.FillColor = System.Drawing.Color.White;
-            this.dtpDate.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtpDate.Location = new System.Drawing.Point(671, 60);
-            this.dtpDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtpDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(336, 36);
-            this.dtpDate.TabIndex = 165;
-            this.dtpDate.Value = new System.DateTime(2025, 7, 4, 2, 11, 10, 2);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.label1.Location = new System.Drawing.Point(676, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 24);
-            this.label1.TabIndex = 166;
-            this.label1.Text = "Invoice Date";
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.label5.Location = new System.Drawing.Point(356, 26);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(134, 24);
-            this.label5.TabIndex = 167;
-            this.label5.Text = "Customer Name";
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Font = new System.Drawing.Font("Palatino Linotype", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(696, 702);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(203, 50);
-            this.button1.TabIndex = 170;
-            this.button1.Text = "Print Invoice";
-            this.button1.UseVisualStyleBackColor = true;
+            this.Service.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Service.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Service.Location = new System.Drawing.Point(52, 52);
+            this.Service.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Service.Multiline = true;
+            this.Service.Name = "Service";
+            this.Service.Size = new System.Drawing.Size(193, 48);
+            this.Service.TabIndex = 172;
             // 
             // btnsave
             // 
@@ -419,43 +381,81 @@
             this.btnsave.UseVisualStyleBackColor = false;
             this.btnsave.Click += new System.EventHandler(this.btnsave_Click);
             // 
-            // Service
+            // button1
             // 
-            this.Service.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Service.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Service.Location = new System.Drawing.Point(52, 52);
-            this.Service.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Service.Multiline = true;
-            this.Service.Name = "Service";
-            this.Service.Size = new System.Drawing.Size(193, 48);
-            this.Service.TabIndex = 172;
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Font = new System.Drawing.Font("Palatino Linotype", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(696, 702);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(203, 50);
+            this.button1.TabIndex = 170;
+            this.button1.Text = "Print Invoice";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // label9
+            // label5
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.label9.Location = new System.Drawing.Point(48, 26);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(116, 24);
-            this.label9.TabIndex = 173;
-            this.label9.Text = "Service Name";
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.label5.Location = new System.Drawing.Point(356, 26);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(134, 24);
+            this.label5.TabIndex = 167;
+            this.label5.Text = "Customer Name";
             // 
-            // cmbCustomer
+            // label1
             // 
-            this.cmbCustomer.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.cmbCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbCustomer.FormattingEnabled = true;
-            this.cmbCustomer.Items.AddRange(new object[] {
-            "Walk-in",
-            "Regular"});
-            this.cmbCustomer.Location = new System.Drawing.Point(313, 60);
-            this.cmbCustomer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cmbCustomer.Name = "cmbCustomer";
-            this.cmbCustomer.Size = new System.Drawing.Size(287, 30);
-            this.cmbCustomer.TabIndex = 174;
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.label1.Location = new System.Drawing.Point(676, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(105, 24);
+            this.label1.TabIndex = 166;
+            this.label1.Text = "Invoice Date";
+            // 
+            // dtpDate
+            // 
+            this.dtpDate.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.dtpDate.Checked = true;
+            this.dtpDate.FillColor = System.Drawing.Color.White;
+            this.dtpDate.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtpDate.Location = new System.Drawing.Point(671, 60);
+            this.dtpDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(336, 36);
+            this.dtpDate.TabIndex = 165;
+            this.dtpDate.Value = new System.DateTime(2025, 7, 4, 2, 11, 10, 2);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
+            this.panel2.Controls.Add(this.toplbl);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1407, 71);
+            this.panel2.TabIndex = 17;
+            // 
+            // toplbl
+            // 
+            this.toplbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.toplbl.AutoSize = true;
+            this.toplbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toplbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.toplbl.Location = new System.Drawing.Point(585, 26);
+            this.toplbl.Name = "toplbl";
+            this.toplbl.Size = new System.Drawing.Size(294, 38);
+            this.toplbl.TabIndex = 6;
+            this.toplbl.Text = "Customer Service";
+            this.toplbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Services
             // 
@@ -466,6 +466,7 @@
             this.Controls.Add(this.panel2);
             this.Name = "Services";
             this.Text = "Services";
+            this.Load += new System.EventHandler(this.Services_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoice)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
