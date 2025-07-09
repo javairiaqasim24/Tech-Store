@@ -77,7 +77,7 @@ namespace TechStore.UI
             dgvCustomerSearch.Columns.Add("address", "Address");
 
             this.Controls.Add(dgvCustomerSearch);
-            dgvCustomerSearch.Location = new Point(txtcustomer.Left, txtcustomer.Top - dgvCustomerSearch.Height - 5);
+            dgvCustomerSearch.Location = new Point(txtcustomer.Left, txtcustomer.Top - dgvCustomerSearch.Height + 80);
             dgvCustomerSearch.Size = new Size(dataGridView1.Width/2, 150);
             dgvCustomerSearch.BringToFront();
 
@@ -239,49 +239,9 @@ namespace TechStore.UI
             AddToSaleCart();
         }
 
-        //private void AddToSaleCart()
-        //{
-        //    string newSku = txtserial.Text.Trim(); // This is the new serial number (SKU)
-        //    string productName = txtproductname.Text.Trim();
-
-        //    if (!ValidateSaleProduct()) return;
-
-        //    int addedQty = int.TryParse(quantity.Text.Trim(), out int parsedQty) ? parsedQty : 1;
-
-        //    foreach (DataGridViewRow row in dataGridView1.Rows)
-        //    {
-        //        if (row.IsNewRow) continue;
-
-        //        string existingName = row.Cells["Name"].Value?.ToString();
-        //        string existingSkus = row.Cells["Sku"].Value?.ToString() ?? "";
-
-        //        if (existingName == productName)
-        //        {
-        //            var existingSerialList = existingSkus.Split(',').Select(s => s.Trim()).ToList();
-        //            if (!existingSerialList.Contains(newSku))
-        //            {
-        //                existingSerialList.Add(newSku);
-        //                row.Cells["Sku"].Value = string.Join(", ", existingSerialList);
-        //            }
-
-        //            int currentQty = Convert.ToInt32(row.Cells["Quantity"].Value);
-        //            row.Cells["Quantity"].Value = currentQty + addedQty;
-
-        //            decimal unitPrice = Convert.ToDecimal(row.Cells["Price"].Value ?? 0);
-        //            decimal discount = 0;
-        //            discount = Convert.ToDecimal(row.Cells["Discount"].Value ?? 0);
-        //            decimal total = (unitPrice - discount) * (currentQty + addedQty);
-        //            row.Cells["Total"].Value = total.ToString();
-
-        //            UpdateFinalTotals();
-        //            ClearProductFields();
-        //            return;
-        //        }
-        //    }
-
         private void AddToSaleCart()
         {
-            string newSku = txtserial.Text.Trim();
+            string newSku = txtserial.Text.Trim(); // This is the new serial number (SKU)
             string productName = txtproductname.Text.Trim();
 
             if (!ValidateSaleProduct()) return;
@@ -297,20 +257,6 @@ namespace TechStore.UI
 
                 if (existingName == productName)
                 {
-                    // Check if adding this quantity would exceed available stock
-                    int currentQty = Convert.ToInt32(row.Cells["Quantity"].Value);
-                    int totalQtyAfterAdd = currentQty + addedQty;
-
-                    // Get available stock (similar to validation)
-                    int availableStock = GetAvailableStock(productName, newSku);
-
-                    if (totalQtyAfterAdd > availableStock)
-                    {
-                        ShowMessage("Insufficient Stock",
-                            $"Cannot add {addedQty} more. Only {availableStock - currentQty} available to add.");
-                        return;
-                    }
-
                     var existingSerialList = existingSkus.Split(',').Select(s => s.Trim()).ToList();
                     if (!existingSerialList.Contains(newSku))
                     {
@@ -318,11 +264,13 @@ namespace TechStore.UI
                         row.Cells["Sku"].Value = string.Join(", ", existingSerialList);
                     }
 
-                    row.Cells["Quantity"].Value = totalQtyAfterAdd;
+                    int currentQty = Convert.ToInt32(row.Cells["Quantity"].Value);
+                    row.Cells["Quantity"].Value = currentQty + addedQty;
 
                     decimal unitPrice = Convert.ToDecimal(row.Cells["Price"].Value ?? 0);
-                    decimal discount = Convert.ToDecimal(row.Cells["Discount"].Value ?? 0);
-                    decimal total = (unitPrice - discount) * totalQtyAfterAdd;
+                    decimal discount = 0;
+                    discount = Convert.ToDecimal(row.Cells["Discount"].Value ?? 0);
+                    decimal total = (unitPrice - discount) * (currentQty + addedQty);
                     row.Cells["Total"].Value = total.ToString();
 
                     UpdateFinalTotals();
@@ -330,12 +278,11 @@ namespace TechStore.UI
                     return;
                 }
             }
-
             // New product row
             dataGridView1.Rows.Add(
-                newSku,
-                productName,
-                txtdescription.Text.Trim(),
+            newSku,
+            productName,
+            txtdescription.Text.Trim(),
                 txtwarranty.Text.Trim(),
                 txtsaleprice.Text.Trim(),
                 addedQty.ToString(),                            // ✅ use actual quantity
@@ -344,9 +291,78 @@ namespace TechStore.UI
             );
 
             UpdateFinalTotals();
-            ClearProductFields();
-            txtserial.Focus();
+        ClearProductFields();
+        txtserial.Focus();
         }
+
+        //private void AddToSaleCart()
+        //{
+        //    string newSku = txtserial.Text.Trim();
+        //    string productName = txtproductname.Text.Trim();
+
+        //    if (!ValidateSaleProduct()) return;
+
+        //    int addedQty = int.TryParse(quantity.Text.Trim(), out int parsedQty) ? parsedQty : 1;
+
+        //    foreach (DataGridViewRow row in dataGridView1.Rows)
+        //    {
+        //        if (row.IsNewRow) continue;
+
+        //        string existingName = row.Cells["Name"].Value?.ToString();
+        //        string existingSkus = row.Cells["Sku"].Value?.ToString() ?? "";
+
+        //        if (existingName == productName)
+        //        {
+        //            // Check if adding this quantity would exceed available stock
+        //            int currentQty = Convert.ToInt32(row.Cells["Quantity"].Value);
+        //            int totalQtyAfterAdd = currentQty + addedQty;
+
+        //            // Get available stock (similar to validation)
+        //            int availableStock = GetAvailableStock(productName, newSku);
+
+        //            if (totalQtyAfterAdd > availableStock)
+        //            {
+        //                ShowMessage("Insufficient Stock",
+        //                    $"Cannot add {addedQty} more. Only {availableStock - currentQty} available to add.");
+        //                return;
+        //            }
+
+        //            var existingSerialList = existingSkus.Split(',').Select(s => s.Trim()).ToList();
+        //            if (!existingSerialList.Contains(newSku))
+        //            {
+        //                existingSerialList.Add(newSku);
+        //                row.Cells["Sku"].Value = string.Join(", ", existingSerialList);
+        //            }
+
+        //            row.Cells["Quantity"].Value = totalQtyAfterAdd;
+
+        //            decimal unitPrice = Convert.ToDecimal(row.Cells["Price"].Value ?? 0);
+        //            decimal discount = Convert.ToDecimal(row.Cells["Discount"].Value ?? 0);
+        //            decimal total = (unitPrice - discount) * totalQtyAfterAdd;
+        //            row.Cells["Total"].Value = total.ToString();
+
+        //            UpdateFinalTotals();
+        //            ClearProductFields();
+        //            return;
+        //        }
+        //    }
+
+        //    // New product row
+        //    dataGridView1.Rows.Add(
+        //        newSku,
+        //        productName,
+        //        txtdescription.Text.Trim(),
+        //        txtwarranty.Text.Trim(),
+        //        txtsaleprice.Text.Trim(),
+        //        addedQty.ToString(),                            // ✅ use actual quantity
+        //        discount.Text.Trim(),
+        //        priceafterdisc.Text.Trim()
+        //    );
+
+        //    UpdateFinalTotals();
+        //    ClearProductFields();
+        //    txtserial.Focus();
+        //}
 
         private int GetAvailableStock(string productName, string sku)
         {
@@ -391,24 +407,6 @@ namespace TechStore.UI
         }
 
 
-        //private bool ValidateSaleProduct()
-        //{
-        //    if (string.IsNullOrWhiteSpace(txtproductname.Text))
-        //    {
-        //        ShowMessage("Product Required", "Please select a product first");
-        //        return false;
-        //    }
-
-        //    if (!int.TryParse(quantity.Text, out int qty) || qty <= 0)
-        //    {
-        //        ShowMessage("Invalid Quantity", "Please enter a valid quantity");
-        //        quantity.Focus();
-        //        return false;
-        //    }
-
-        //    return true;
-        //}
-
         private bool ValidateSaleProduct()
         {
             if (string.IsNullOrWhiteSpace(txtproductname.Text))
@@ -424,30 +422,48 @@ namespace TechStore.UI
                 return false;
             }
 
-            // Get available stock
-            int availableStock = 0;
-            if (!string.IsNullOrWhiteSpace(txtserial.Text))
-            {
-                // For serialized products, we assume 1 per serial (since they're unique)
-                availableStock = 1;
-            }
-            else
-            {
-                // For non-serialized products, get stock from database
-                var product = _saleBl.GetProductBySku(txtproductname.Text); // Or however you get the product
-                availableStock = product?.quantity ?? 0;
-            }
-
-            // Check if requested quantity exceeds available stock
-            if (qty > availableStock)
-            {
-                ShowMessage("Insufficient Stock", $"Only {availableStock} items available in stock");
-                quantity.Focus();
-                return false;
-            }
-
             return true;
         }
+
+        //private bool ValidateSaleProduct()
+        //{
+        //    if (string.IsNullOrWhiteSpace(txtproductname.Text))
+        //    {
+        //        ShowMessage("Product Required", "Please select a product first");
+        //        return false;
+        //    }
+
+        //    if (!int.TryParse(quantity.Text, out int qty) || qty <= 0)
+        //    {
+        //        ShowMessage("Invalid Quantity", "Please enter a valid quantity");
+        //        quantity.Focus();
+        //        return false;
+        //    }
+
+        //    // Get available stock
+        //    int availableStock = 0;
+        //    if (!string.IsNullOrWhiteSpace(txtserial.Text))
+        //    {
+        //        // For serialized products, we assume 1 per serial (since they're unique)
+        //        availableStock = 1;
+        //    }
+        //    else
+        //    {
+        //        // For non-serialized products, get stock from database
+        //        var product = _saleBl.GetProductBySku(txtproductname.Text); // Or however you get the product
+        //        availableStock = product?.quantity ?? 0;
+        //    }
+
+        //    // Check if requested quantity exceeds available stock
+        //    if (qty > availableStock)
+        //    {
+        //        ShowMessage("Insufficient Stock", $"Only {availableStock} items available in stock");
+        //        quantity.Focus();
+        //        return false;
+        //    }
+
+        //    return true;
+        //}
 
 
 
