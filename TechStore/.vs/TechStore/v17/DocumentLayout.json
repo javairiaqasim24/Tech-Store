@@ -3,19 +3,35 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\ui\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:ui\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|c:\\users\\user\\desktop\\tech-store1\\techstore\\ui\\customersale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:ui\\customersale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\ui\\customersale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:ui\\customersale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\ui\\customerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:ui\\customerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|c:\\users\\user\\desktop\\tech-store1\\techstore\\ui\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:ui\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\ui\\billform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:ui\\billform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|c:\\users\\user\\desktop\\tech-store1\\techstore\\ui\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\ui\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:ui\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -29,10 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\ui\\customerbill-specificproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:ui\\customerbill-specificproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\ui\\inventorylogform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -235,10 +247,6 @@
       "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:ui\\homecontentform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\ui\\customersale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:ui\\customersale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\ui\\customerreturns.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:ui\\customerreturns.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -271,10 +279,6 @@
       "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:ui\\billingrecordsoverview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\bl\\bl\\batchdetailsbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:bl\\bl\\batchdetailsbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -294,7 +298,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "CustomerBill-SpecificProducts.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\CustomerBill-SpecificProducts.cs",
               "RelativeDocumentMoniker": "UI\\CustomerBill-SpecificProducts.cs",
@@ -307,7 +311,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "BillingRecordsOverview.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\BillingRecordsOverview.cs",
               "RelativeDocumentMoniker": "UI\\BillingRecordsOverview.cs",
@@ -333,30 +337,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Login.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Login.cs",
-              "RelativeDocumentMoniker": "UI\\Login.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Login.cs [Design]",
-              "RelativeToolTip": "UI\\Login.cs [Design]",
+              "Title": "Customersale.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Customersale.cs",
+              "RelativeDocumentMoniker": "UI\\Customersale.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Customersale.cs",
+              "RelativeToolTip": "UI\\Customersale.cs",
+              "ViewState": "AgIAAOUBAAAAAAAAAAAwwPkBAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-09T04:53:09.621Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-07-09T06:20:59.991Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Billform.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Billform.cs",
-              "RelativeDocumentMoniker": "UI\\Billform.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Billform.cs [Design]",
-              "RelativeToolTip": "UI\\Billform.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T01:52:04.568Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "Customerform.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Customerform.cs",
               "RelativeDocumentMoniker": "UI\\Customerform.cs",
@@ -368,7 +361,68 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Customersale.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Customersale.cs",
+              "RelativeDocumentMoniker": "UI\\Customersale.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Customersale.cs [Design]",
+              "RelativeToolTip": "UI\\Customersale.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-08T01:26:21.409Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "App.config",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\App.config",
+              "RelativeDocumentMoniker": "App.config",
+              "ToolTip": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\App.config",
+              "RelativeToolTip": "App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAB1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-07-08T06:20:18.567Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Login.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Login.cs",
+              "RelativeDocumentMoniker": "UI\\Login.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Login.cs [Design]",
+              "RelativeToolTip": "UI\\Login.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-09T04:53:09.621Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACAAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-08T06:20:07.454Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Billform.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Billform.cs",
+              "RelativeDocumentMoniker": "UI\\Billform.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Billform.cs [Design]",
+              "RelativeToolTip": "UI\\Billform.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-08T01:52:04.568Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Login.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Login.cs",
               "RelativeDocumentMoniker": "UI\\Login.cs",
@@ -381,19 +435,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAACAAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T06:20:07.454Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "LoginDL.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\DL\\LoginDL.cs",
               "RelativeDocumentMoniker": "DL\\LoginDL.cs",
@@ -405,7 +447,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "Dashboard.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Dashboard.cs",
               "RelativeDocumentMoniker": "UI\\Dashboard.cs",
@@ -417,7 +459,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "Dashboard.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Dashboard.cs",
               "RelativeDocumentMoniker": "UI\\Dashboard.cs",
@@ -428,7 +470,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "CustomerBill-SpecificProducts.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\CustomerBill-SpecificProducts.cs",
               "RelativeDocumentMoniker": "UI\\CustomerBill-SpecificProducts.cs",
@@ -439,7 +481,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "Inventorylogform.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Inventorylogform.cs",
               "RelativeDocumentMoniker": "UI\\Inventorylogform.cs",
@@ -450,7 +492,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "Inventorylogform.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Inventorylogform.cs",
               "RelativeDocumentMoniker": "UI\\Inventorylogform.cs",
@@ -462,7 +504,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "Inventoryform.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Inventoryform.cs",
               "RelativeDocumentMoniker": "UI\\Inventoryform.cs",
@@ -473,7 +515,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "Inventoryform.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Inventoryform.cs",
               "RelativeDocumentMoniker": "UI\\Inventoryform.cs",
@@ -485,7 +527,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "UIHelper.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\UIHelper.cs",
               "RelativeDocumentMoniker": "UI\\UIHelper.cs",
@@ -497,7 +539,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "Supplier_eturnsform.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Supplier_eturnsform.cs",
               "RelativeDocumentMoniker": "UI\\Supplier_eturnsform.cs",
@@ -509,7 +551,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "Supplierbillsform.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Supplierbillsform.cs",
               "RelativeDocumentMoniker": "UI\\Supplierbillsform.cs",
@@ -520,7 +562,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 22,
               "Title": "Supplierform.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Supplierform.cs",
               "RelativeDocumentMoniker": "UI\\Supplierform.cs",
@@ -532,7 +574,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 23,
               "Title": "Supplierform.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Supplierform.cs",
               "RelativeDocumentMoniker": "UI\\Supplierform.cs",
@@ -543,7 +585,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 24,
               "Title": "Sbilldetailform.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Sbilldetailform.cs",
               "RelativeDocumentMoniker": "UI\\Sbilldetailform.cs",
@@ -554,7 +596,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "Supplier_eturnsform.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Supplier_eturnsform.cs",
               "RelativeDocumentMoniker": "UI\\Supplier_eturnsform.cs",
@@ -565,7 +607,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 25,
               "Title": "SreturnsDl.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\DL\\SreturnsDl.cs",
               "RelativeDocumentMoniker": "DL\\SreturnsDl.cs",
@@ -577,7 +619,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 26,
               "Title": "AddbatchDetailsform.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\AddbatchDetailsform.cs",
               "RelativeDocumentMoniker": "UI\\AddbatchDetailsform.cs",
@@ -589,7 +631,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 27,
               "Title": "AddbatchDetailsform.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\AddbatchDetailsform.cs",
               "RelativeDocumentMoniker": "UI\\AddbatchDetailsform.cs",
@@ -600,7 +642,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 28,
               "Title": "orders.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\orders.cs",
               "RelativeDocumentMoniker": "UI\\orders.cs",
@@ -611,7 +653,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 29,
               "Title": "productsform.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\productsform.cs",
               "RelativeDocumentMoniker": "UI\\productsform.cs",
@@ -622,7 +664,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 30,
               "Title": "Dashboard.Designer.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Dashboard.Designer.cs",
               "RelativeDocumentMoniker": "UI\\Dashboard.Designer.cs",
@@ -634,7 +676,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 32,
               "Title": "Customersaledl .cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\DL\\Customersaledl .cs",
               "RelativeDocumentMoniker": "DL\\Customersaledl .cs",
@@ -646,7 +688,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 33,
               "Title": "SupplierbillDl.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\DL\\SupplierbillDl.cs",
               "RelativeDocumentMoniker": "DL\\SupplierbillDl.cs",
@@ -658,7 +700,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 38,
               "Title": "SbilldetailsDl.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\DL\\SbilldetailsDl.cs",
               "RelativeDocumentMoniker": "DL\\SbilldetailsDl.cs",
@@ -670,7 +712,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 35,
               "Title": "Supplierbill.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\BL\\Models\\Supplierbill.cs",
               "RelativeDocumentMoniker": "BL\\Models\\Supplierbill.cs",
@@ -682,7 +724,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 37,
               "Title": "BatchDetailsform.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\BatchDetailsform.cs",
               "RelativeDocumentMoniker": "UI\\BatchDetailsform.cs",
@@ -694,7 +736,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 36,
               "Title": "Supplierbillsform.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Supplierbillsform.cs",
               "RelativeDocumentMoniker": "UI\\Supplierbillsform.cs",
@@ -706,7 +748,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 31,
               "Title": "DashboardDl.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\DL\\DashboardDl.cs",
               "RelativeDocumentMoniker": "DL\\DashboardDl.cs",
@@ -718,7 +760,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 34,
               "Title": "SupplierBillBl.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\BL\\BL\\SupplierBillBl.cs",
               "RelativeDocumentMoniker": "BL\\BL\\SupplierBillBl.cs",
@@ -730,7 +772,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 40,
               "Title": "SbilldetailsBl.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\BL\\BL\\SbilldetailsBl.cs",
               "RelativeDocumentMoniker": "BL\\BL\\SbilldetailsBl.cs",
@@ -742,7 +784,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 39,
               "Title": "SupplierBl.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\BL\\BL\\SupplierBl.cs",
               "RelativeDocumentMoniker": "BL\\BL\\SupplierBl.cs",
@@ -754,7 +796,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 41,
               "Title": "Batchesform.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Batchesform.cs",
               "RelativeDocumentMoniker": "UI\\Batchesform.cs",
@@ -766,7 +808,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 42,
               "Title": "BatchDetailsform.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\BatchDetailsform.cs",
               "RelativeDocumentMoniker": "UI\\BatchDetailsform.cs",
@@ -777,7 +819,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 43,
               "Title": "Addsupplierform.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Addsupplierform.cs",
               "RelativeDocumentMoniker": "UI\\Addsupplierform.cs",
@@ -788,7 +830,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 44,
               "Title": "addproductform.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\addproductform.cs",
               "RelativeDocumentMoniker": "UI\\addproductform.cs",
@@ -799,7 +841,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 45,
               "Title": "Addcategoryform.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Addcategoryform.cs",
               "RelativeDocumentMoniker": "UI\\Addcategoryform.cs",
@@ -810,7 +852,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 46,
               "Title": "AddBatchform.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\AddBatchform.cs",
               "RelativeDocumentMoniker": "UI\\AddBatchform.cs",
@@ -821,7 +863,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 47,
               "Title": "AddCustomerform.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\AddCustomerform.cs",
               "RelativeDocumentMoniker": "UI\\AddCustomerform.cs",
@@ -832,7 +874,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 48,
               "Title": "BatchesDl.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\DL\\BatchesDl.cs",
               "RelativeDocumentMoniker": "DL\\BatchesDl.cs",
@@ -844,7 +886,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 49,
               "Title": "Batchesform.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Batchesform.cs",
               "RelativeDocumentMoniker": "UI\\Batchesform.cs",
@@ -855,7 +897,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 50,
               "Title": "CustomerBill_SpecificProductsDL.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\DL\\CustomerBill_SpecificProductsDL.cs",
               "RelativeDocumentMoniker": "DL\\CustomerBill_SpecificProductsDL.cs",
@@ -867,7 +909,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 51,
               "Title": "BillingRecordsOverviewDL.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\DL\\BillingRecordsOverviewDL.cs",
               "RelativeDocumentMoniker": "DL\\BillingRecordsOverviewDL.cs",
@@ -879,7 +921,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 52,
               "Title": "BatchFormPersistence.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\DL\\BatchFormPersistence.cs",
               "RelativeDocumentMoniker": "DL\\BatchFormPersistence.cs",
@@ -891,7 +933,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 53,
               "Title": "BatchdetailsDl.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\DL\\BatchdetailsDl.cs",
               "RelativeDocumentMoniker": "DL\\BatchdetailsDl.cs",
@@ -903,7 +945,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 54,
               "Title": "CustomerDL.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\DL\\CustomerDL.cs",
               "RelativeDocumentMoniker": "DL\\CustomerDL.cs",
@@ -915,7 +957,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 55,
               "Title": "ProductDL.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\DL\\ProductDL.cs",
               "RelativeDocumentMoniker": "DL\\ProductDL.cs",
@@ -927,7 +969,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 56,
               "Title": "purchaseDL.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\DL\\purchaseDL.cs",
               "RelativeDocumentMoniker": "DL\\purchaseDL.cs",
@@ -939,7 +981,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 57,
               "Title": "batchesBl.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\BL\\BL\\batchesBl.cs",
               "RelativeDocumentMoniker": "BL\\BL\\batchesBl.cs",
@@ -951,7 +993,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 58,
               "Title": "PurchaseInvoice.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\PurchaseInvoice.cs",
               "RelativeDocumentMoniker": "UI\\PurchaseInvoice.cs",
@@ -962,7 +1004,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 59,
               "Title": "productsform.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\productsform.cs",
               "RelativeDocumentMoniker": "UI\\productsform.cs",
@@ -974,7 +1016,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 60,
               "Title": "HomeContentform.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\HomeContentform.cs",
               "RelativeDocumentMoniker": "UI\\HomeContentform.cs",
@@ -985,18 +1027,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
-              "Title": "Customersale.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Customersale.cs",
-              "RelativeDocumentMoniker": "UI\\Customersale.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\computer\\Tech-Store\\TechStore\\UI\\Customersale.cs [Design]",
-              "RelativeToolTip": "..\\..\\computer\\Tech-Store\\TechStore\\UI\\Customersale.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T01:26:21.409Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 61,
               "Title": "Customerreturns.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Customerreturns.cs",
               "RelativeDocumentMoniker": "UI\\Customerreturns.cs",
@@ -1008,7 +1039,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 62,
               "Title": "Customerreturns.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Customerreturns.cs",
               "RelativeDocumentMoniker": "UI\\Customerreturns.cs",
@@ -1019,7 +1050,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 63,
               "Title": "Customerform.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Customerform.cs",
               "RelativeDocumentMoniker": "UI\\Customerform.cs",
@@ -1032,7 +1063,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 64,
               "Title": "Addcategoryform.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Addcategoryform.cs",
               "RelativeDocumentMoniker": "UI\\Addcategoryform.cs",
@@ -1044,7 +1075,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 65,
               "Title": "AddBatchform.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\AddBatchform.cs",
               "RelativeDocumentMoniker": "UI\\AddBatchform.cs",
@@ -1056,7 +1087,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 66,
               "Title": "Loadingform.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\Loadingform.cs",
               "RelativeDocumentMoniker": "UI\\Loadingform.cs",
@@ -1067,7 +1098,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 67,
               "Title": "addproductform.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\addproductform.cs",
               "RelativeDocumentMoniker": "UI\\addproductform.cs",
@@ -1079,7 +1110,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 68,
               "Title": "BillingRecordsOverview.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\BillingRecordsOverview.cs",
               "RelativeDocumentMoniker": "UI\\BillingRecordsOverview.cs",
@@ -1090,19 +1121,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
-              "Title": "App.config",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\App.config",
-              "RelativeDocumentMoniker": "App.config",
-              "ToolTip": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\App.config",
-              "RelativeToolTip": "App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAB7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-07-08T06:20:18.567Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 69,
               "Title": "BatchDetailsBL.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\BL\\BL\\BatchDetailsBL.cs",
               "RelativeDocumentMoniker": "BL\\BL\\BatchDetailsBL.cs",
@@ -1114,7 +1133,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 70,
               "Title": "PurchaseInvoice.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\Tech-Store1\\TechStore\\UI\\PurchaseInvoice.cs",
               "RelativeDocumentMoniker": "UI\\PurchaseInvoice.cs",

@@ -503,6 +503,18 @@ namespace TechStore.UI
             return true;
         }
 
+        private void clearallfields()
+        {
+            txtserial.Clear();
+            txtproductname.Clear();
+            txtdescription.Clear();
+            txtsaleprice.Clear();
+            txtwarranty.Clear();
+            discount.Text = "0";
+            priceafterdisc.Clear();
+            dgvProductSearch.Visible = false;
+            dataGridView1.Rows.Clear();
+        }
        
 
         private void btnsave_Click(object sender, EventArgs e)
@@ -571,7 +583,7 @@ namespace TechStore.UI
                         //invoices.PrintThermalReceipt(dataGridView1, customerName, total, paid, _lastBillId);
                         SavehthermalPdfInvoice();
                     }
-
+                clearallfields();
                 }
 
                 else
