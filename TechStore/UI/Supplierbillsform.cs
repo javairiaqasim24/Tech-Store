@@ -32,20 +32,28 @@ namespace TechStore.UI
         {
             load();
         }
+
         private void load()
         {
             var list = ibl.getbill();
+
+            // Filter out bills where total_price == 0
+            var filteredList = list.Where(b => b.total_price != 0.00m).ToList();
+
             dataGridView2.Columns.Clear();
-            dataGridView2.DataSource = list;
+            dataGridView2.DataSource = filteredList;
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
             dataGridView2.Columns["supplier_id"].Visible = false;
             dataGridView2.Columns["batch_id"].Visible = false;
 
             UIHelper.AddButtonColumn(dataGridView2, "Details", "View Details", "Details");
             UIHelper.AddButtonColumn(dataGridView2, "Addpay", "Add payment", "payement");
-
-
         }
+
+
+
+
 
         private void pictureBox10_Click(object sender, EventArgs e)
         {
@@ -55,33 +63,47 @@ namespace TechStore.UI
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            string text= textBox1.Text;
+            string text = textBox1.Text;
             if (string.IsNullOrEmpty(text))
             {
                 load();
+                return;
             }
+
             var list = ibl.getbillbyname(text);
+
+            // Filter out bills where total_price == 0
+            var filteredList = list.Where(b => b.total_price != 0.00m).ToList();
+
             dataGridView2.Columns.Clear();
-            dataGridView2.DataSource= list;
-            dataGridView2.AutoSizeColumnsMode= DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView2.DataSource = filteredList;
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView2.Columns["supplier_id"].Visible = false;
             dataGridView2.Columns["batch_id"].Visible = false;
             UIHelper.AddButtonColumn(dataGridView2, "Details", "View Details", "Details");
             UIHelper.AddButtonColumn(dataGridView2, "Addpay", "Add payment", "payement");
-
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            int bill_id=Convert.ToInt32(textBox1.Text);
-            var list=ibl.getbills(bill_id);
-            dataGridView2.DataSource = list;
+            int bill_id = Convert.ToInt32(textBox1.Text);
+            var list = ibl.getbills(bill_id);
+
+            // Filter out bills where total_price == 0
+            var filteredList = list.Where(b => b.total_price != 0.00m).ToList();
+
+            dataGridView2.Columns.Clear();
+            dataGridView2.DataSource = filteredList;
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dataGridView2.Columns["supplier_id"].Visible = false;
+            dataGridView2.Columns["batch_id"].Visible = false;
+
             UIHelper.AddButtonColumn(dataGridView2, "Details", "View Details", "Details");
             UIHelper.AddButtonColumn(dataGridView2, "Addpay", "Add payment", "payement");
             UIHelper.ApplyButtonStyles(dataGridView2);
-
         }
+
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

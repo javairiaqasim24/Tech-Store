@@ -45,6 +45,7 @@ namespace TechStore.UI
                     txtname.Clear();
                     comboBox1.SelectedIndex = -1; // Clear the selected supplier
                     dateTimePicker1.Value = DateTime.Now; // Reset to current date
+                    this.Close();
                 }
                 else
                 {
@@ -90,6 +91,7 @@ namespace TechStore.UI
         {
             var f=Program.ServiceProvider.GetRequiredService<Addsupplierform>();
             f.ShowDialog(this);
+            AddBatchform_Load(sender, e);
         }
     }
 }

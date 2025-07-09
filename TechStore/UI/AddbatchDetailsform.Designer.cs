@@ -49,14 +49,17 @@
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtserailnumber = new System.Windows.Forms.ListBox();
+            this.iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // txtprice
             // 
+            this.txtprice.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtprice.BackColor = System.Drawing.Color.Gainsboro;
             this.txtprice.Location = new System.Drawing.Point(28, 316);
             this.txtprice.Multiline = true;
@@ -66,15 +69,18 @@
             // 
             // txtBname
             // 
+            this.txtBname.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtBname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtBname.FormattingEnabled = true;
             this.txtBname.Location = new System.Drawing.Point(31, 102);
             this.txtBname.Name = "txtBname";
             this.txtBname.Size = new System.Drawing.Size(313, 24);
             this.txtBname.TabIndex = 161;
+            this.txtBname.SelectedIndexChanged += new System.EventHandler(this.txtBname_SelectedIndexChanged);
             // 
             // txtproducts
             // 
+            this.txtproducts.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtproducts.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtproducts.FormattingEnabled = true;
             this.txtproducts.Location = new System.Drawing.Point(28, 162);
@@ -85,6 +91,7 @@
             // 
             // txtquantity
             // 
+            this.txtquantity.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtquantity.BackColor = System.Drawing.Color.Gainsboro;
             this.txtquantity.Location = new System.Drawing.Point(31, 243);
             this.txtquantity.Multiline = true;
@@ -94,11 +101,11 @@
             // 
             // label7
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label7.Location = new System.Drawing.Point(23, 200);
+            this.label7.Location = new System.Drawing.Point(27, 210);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(190, 30);
             this.label7.TabIndex = 157;
@@ -107,11 +114,11 @@
             // 
             // label9
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label9.Location = new System.Drawing.Point(26, 129);
+            this.label9.Location = new System.Drawing.Point(27, 129);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(156, 30);
             this.label9.TabIndex = 156;
@@ -120,11 +127,11 @@
             // 
             // label10
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label10.Location = new System.Drawing.Point(26, 57);
+            this.label10.Location = new System.Drawing.Point(27, 69);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(133, 30);
             this.label10.TabIndex = 155;
@@ -137,7 +144,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label11.Location = new System.Drawing.Point(87, 18);
+            this.label11.Location = new System.Drawing.Point(291, 18);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(200, 38);
             this.label11.TabIndex = 154;
@@ -146,11 +153,11 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label1.Location = new System.Drawing.Point(26, 283);
+            this.label1.Location = new System.Drawing.Point(27, 283);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 30);
             this.label1.TabIndex = 163;
@@ -159,11 +166,11 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label3.Location = new System.Drawing.Point(29, 356);
+            this.label3.Location = new System.Drawing.Point(27, 356);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(109, 30);
             this.label3.TabIndex = 167;
@@ -172,6 +179,7 @@
             // 
             // txtSprice
             // 
+            this.txtSprice.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtSprice.BackColor = System.Drawing.Color.Gainsboro;
             this.txtSprice.Location = new System.Drawing.Point(31, 389);
             this.txtSprice.Multiline = true;
@@ -187,9 +195,7 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Teal;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Lime;
             this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(242)))), ((int)(((byte)(253)))));
@@ -201,12 +207,13 @@
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView2.Size = new System.Drawing.Size(468, 241);
+            this.dataGridView2.Size = new System.Drawing.Size(876, 313);
             this.dataGridView2.TabIndex = 170;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             // 
             // iconPictureBox2
             // 
+            this.iconPictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.iconPictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
             this.iconPictureBox2.ForeColor = System.Drawing.SystemColors.Control;
             this.iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.PlusSquare;
@@ -248,9 +255,10 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(362, 344);
+            this.checkBox1.Location = new System.Drawing.Point(357, 402);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(136, 24);
             this.checkBox1.TabIndex = 172;
@@ -259,6 +267,7 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.panel1.Controls.Add(this.txtserialinput);
             this.panel1.Controls.Add(this.iconPictureBox1);
             this.panel1.Controls.Add(this.label2);
@@ -316,11 +325,29 @@
             this.txtserailnumber.Size = new System.Drawing.Size(313, 44);
             this.txtserailnumber.TabIndex = 170;
             // 
+            // iconPictureBox3
+            // 
+            this.iconPictureBox3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.iconPictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
+            this.iconPictureBox3.ForeColor = System.Drawing.SystemColors.Control;
+            this.iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.PlusSquare;
+            this.iconPictureBox3.IconColor = System.Drawing.SystemColors.Control;
+            this.iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox3.IconSize = 37;
+            this.iconPictureBox3.Location = new System.Drawing.Point(350, 162);
+            this.iconPictureBox3.Name = "iconPictureBox3";
+            this.iconPictureBox3.Size = new System.Drawing.Size(47, 37);
+            this.iconPictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.iconPictureBox3.TabIndex = 176;
+            this.iconPictureBox3.TabStop = false;
+            this.iconPictureBox3.Click += new System.EventHandler(this.iconPictureBox3_Click);
+            // 
             // AddbatchDetailsform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(917, 727);
+            this.ClientSize = new System.Drawing.Size(1325, 727);
+            this.Controls.Add(this.iconPictureBox3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.iconPictureBox2);
@@ -348,6 +375,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -375,5 +403,6 @@
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox txtserailnumber;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox3;
     }
 }

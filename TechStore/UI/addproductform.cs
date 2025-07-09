@@ -95,6 +95,7 @@ namespace TechStore.UI
         {
             var f= Program.ServiceProvider.GetRequiredService<Addcategoryform>();
             f.ShowDialog(this);
+            load();
         }
 
         private void iconButton1_Click(object sender, EventArgs e)

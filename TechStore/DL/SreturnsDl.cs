@@ -42,7 +42,7 @@ namespace TechStore.DL
                             if (!string.IsNullOrEmpty(sr.sku))
                             {
                                 // ❌ Previously was update; now delete from productsserial
-                                string deleteQuery = "DELETE FROM productsserial WHERE sku = @sku;";
+                                string deleteQuery = "update  productsserial  set status='returned' WHERE sku = @sku;";
                                 using (var cmdDelete = new MySqlCommand(deleteQuery, conn, tran))
                                 {
                                     cmdDelete.Parameters.AddWithValue("@sku", sr.sku);
@@ -72,11 +72,10 @@ namespace TechStore.DL
                 conn.Open();
 
                 string query = @"
-                SELECT cbd.s_bill_detail_id, p.name,cbd.product_id, p.description, ps.sku, cbd.quantity 
-                FROM supplier_bill_details cbd
-                JOIN products p ON cbd.product_id = p.product_id
-                LEFT JOIN productsserial ps ON ps.product_id = p.product_id
-                WHERE cbd.supplier_bill_id = @billId;";
+            SELECT cbd.s_bill_detail_id, p.name, cbd.product_id, p.description, cbd.quantity 
+            FROM supplier_bill_details cbd
+            JOIN products p ON cbd.product_id = p.product_id
+            WHERE cbd.supplier_bill_id = @billId;";
 
                 using (var cmd = new MySqlCommand(query, conn))
                 {
@@ -87,14 +86,22 @@ namespace TechStore.DL
                         while (reader.Read())
                         {
                             int billDetailId = reader.GetInt32("s_bill_detail_id");
-
                             string name = reader.GetString("name");
                             string description = reader.GetString("description");
-                            string sku = reader["sku"]?.ToString();
                             int quantity = reader.GetInt32("quantity");
-                            int id=reader.GetInt32("product_id");
+                            int productId = reader.GetInt32("product_id");
 
-                            list.Add(new Supplierreturn(billDetailId, DateTime.Now, "", sku, name, description, 0, quantity,id));
+                            // Pass null for SKU since it's removed
+                            list.Add(new Supplierreturn(
+                                billDetailId,
+                                DateTime.Now,
+                                "",               // action_taken default
+                                null,             // sku
+                                name,
+                                description,
+                                0,                // amount refunded default
+                                quantity,
+                                productId));
                         }
                     }
                 }
@@ -102,6 +109,7 @@ namespace TechStore.DL
 
             return list;
         }
+
         public Products GetProductBySku(string sku)
         {
             try

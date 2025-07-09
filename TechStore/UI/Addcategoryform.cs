@@ -31,6 +31,7 @@ namespace TechStore.UI
                 {
                     MessageBox.Show("Category added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtname.Clear(); // Clear the input field after successful addition
+
                 }
                 else
                 {
