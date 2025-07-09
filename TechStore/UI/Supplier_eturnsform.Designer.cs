@@ -239,14 +239,14 @@
             // 
             // cbActionTaken
             // 
+            this.cbActionTaken.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbActionTaken.FormattingEnabled = true;
             this.cbActionTaken.Items.AddRange(new object[] {
-            "Refunded",
-            "replaced"});
+            "Refunded"});
             this.cbActionTaken.Location = new System.Drawing.Point(684, 240);
             this.cbActionTaken.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbActionTaken.Name = "cbActionTaken";
-            this.cbActionTaken.Size = new System.Drawing.Size(160, 24);
+            this.cbActionTaken.Size = new System.Drawing.Size(209, 24);
             this.cbActionTaken.TabIndex = 162;
             // 
             // label6
@@ -411,7 +411,7 @@
             this.btncancle1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btncancle1.IconSize = 35;
             this.btncancle1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btncancle1.Location = new System.Drawing.Point(554, 740);
+            this.btncancle1.Location = new System.Drawing.Point(548, 674);
             this.btncancle1.Name = "btncancle1";
             this.btncancle1.Size = new System.Drawing.Size(151, 42);
             this.btncancle1.TabIndex = 137;
@@ -419,6 +419,7 @@
             this.btncancle1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btncancle1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btncancle1.UseVisualStyleBackColor = false;
+            this.btncancle1.Click += new System.EventHandler(this.btncancle1_Click);
             // 
             // btnsave1
             // 
@@ -435,7 +436,7 @@
             this.btnsave1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnsave1.IconSize = 35;
             this.btnsave1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsave1.Location = new System.Drawing.Point(262, 731);
+            this.btnsave1.Location = new System.Drawing.Point(261, 674);
             this.btnsave1.Name = "btnsave1";
             this.btnsave1.Size = new System.Drawing.Size(151, 42);
             this.btnsave1.TabIndex = 136;
@@ -528,7 +529,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1256, 555);
+            this.dataGridView1.Size = new System.Drawing.Size(1256, 554);
             this.dataGridView1.TabIndex = 134;
             // 
             // idsearchtxt

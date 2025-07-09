@@ -52,6 +52,33 @@ namespace TechStore.DL
             }
         }
 
+        public static int GetBillDetailIdForNonSerial(int billId, int productId)
+        {
+            using (var conn = DatabaseHelper.Instance.GetConnection())
+            {
+                conn.Open();
+                string query = @"
+            SELECT cbd.Bill_detail_ID
+            FROM customer_bill_details cbd
+            WHERE cbd.Bill_id = @billId AND cbd.product_id = @pid
+              AND NOT EXISTS (
+                  SELECT 1 FROM bill_detail_serials s
+                  WHERE s.bill_detail_id = cbd.Bill_detail_ID
+              )
+            LIMIT 1;";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@billId", billId);
+                    cmd.Parameters.AddWithValue("@pid", productId);
+
+                    object result = cmd.ExecuteScalar();
+                    return result != null ? Convert.ToInt32(result)
+                                          : throw new Exception("Bill detail not found for non-serial product.");
+                }
+            }
+        }
+
 
 
         public static void SaveReturnToDatabase(
@@ -99,10 +126,11 @@ namespace TechStore.DL
 
                         foreach (string serial in serials)
                         {
+                            // Step 1: Update status to 'Return'
                             string updateQuery = @"
-                        UPDATE bill_detail_serials
-                        SET status = 'Return'
-                        WHERE serial_number = @serial AND bill_detail_id = @billDetailId";
+        UPDATE bill_detail_serials
+        SET status = 'Return'
+        WHERE serial_number = @serial AND bill_detail_id = @billDetailId";
 
                             using (var updateCmd = new MySqlCommand(updateQuery, conn, tran))
                             {
@@ -110,7 +138,20 @@ namespace TechStore.DL
                                 updateCmd.Parameters.AddWithValue("@billDetailId", billDetailId);
                                 updateCmd.ExecuteNonQuery();
                             }
+
+                            // Step 2: Delete the row after updating status
+                            string deleteQuery = @"
+        DELETE FROM bill_detail_serials 
+        WHERE serial_number = @serial AND bill_detail_id = @billDetailId";
+
+                            using (var deleteCmd = new MySqlCommand(deleteQuery, conn, tran))
+                            {
+                                deleteCmd.Parameters.AddWithValue("@serial", serial);
+                                deleteCmd.Parameters.AddWithValue("@billDetailId", billDetailId);
+                                deleteCmd.ExecuteNonQuery();
+                            }
                         }
+
 
                         tran.Commit();
                     }

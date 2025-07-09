@@ -42,8 +42,8 @@ namespace TechStore.UI
                 if (string.IsNullOrWhiteSpace(lastname))
                     throw new ArgumentException("Last name is required.");
 
-                if (string.IsNullOrWhiteSpace(phone))
-                    throw new ArgumentException("Contact number is required.");
+                //if (string.IsNullOrWhiteSpace(phone))
+                //    throw new ArgumentException("Contact number is required.");
 
                 if (string.IsNullOrWhiteSpace(type))
                     throw new ArgumentException("Customer type must be selected.");

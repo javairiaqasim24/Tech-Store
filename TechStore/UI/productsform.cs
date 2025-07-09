@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,8 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TechStore.BL.Models;
-using TechStore.UI;
 using TechStore.Interfaces.BLInterfaces;
+using TechStore.UI;
 namespace TechStore
 {
     public partial class productsform : Form
@@ -25,6 +26,8 @@ namespace TechStore
             paneledit.Visible = false;
             //paneladd.Visible = false;
             _productBl = ibl;
+            UIHelper.StyleGridView(dataGridView2);
+
 
         }
 
@@ -220,6 +223,12 @@ namespace TechStore
             {
                 MessageBox.Show("Error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Database error occurred while Updating: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
+          
 
             catch (Exception ex)
             {

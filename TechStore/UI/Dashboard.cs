@@ -26,6 +26,7 @@ namespace TechStore
             InitializeComponent();
             Instance = this;
             this.Activated += Dashboard_Activated;
+            panel10.Height = 1500;
 
         }
 
@@ -116,7 +117,8 @@ namespace TechStore
         {
             activebutton(sender, System.Drawing.Color.FromArgb(0, 126, 249));
 
-            LoadFormIntoPanel(new HomeContentform());
+            var f = Program.ServiceProvider.GetRequiredService<HomeContentform>();
+            LoadFormIntoPanel(f);
         }
         private void CollapsePanel(Panel panel, int collapsedHeight)
         {
@@ -126,6 +128,14 @@ namespace TechStore
         private void ExpandPanel(Panel panel, int expandedHeight)
         {
             panel.Height = expandedHeight;
+        }
+        private void CollapseAllTogglePanels()
+        {
+            CollapsePanel(panelbatch, 60);
+            CollapsePanel(panelcust, 60);
+            CollapsePanel(panelsupp, 60);
+            CollapsePanel(panelreturn, 60);
+            CollapsePanel(panelinventory, 60);
         }
 
         private void TogglePanel(Panel panel, int collapsedHeight, int expandedHeight)
@@ -138,7 +148,8 @@ namespace TechStore
         private void Dashboard_Load(object sender, EventArgs e)
         {
             activebutton(btndashboard, Color.FromArgb(0, 126, 249));
-            LoadFormIntoPanel(new HomeContentform());
+            var f = Program.ServiceProvider.GetRequiredService<HomeContentform>();
+            LoadFormIntoPanel(f);
 
         }
         private void activebutton(object senderbtn, System.Drawing.Color color)
@@ -150,10 +161,10 @@ namespace TechStore
             currentBtn = (IconButton)senderbtn;
             currentBtn.BackColor = System.Drawing.Color.FromArgb(5, 51, 69);
             currentBtn.ForeColor = color;
-            currentBtn.TextAlign = ContentAlignment.MiddleCenter;
+            //currentBtn.TextAlign = ContentAlignment.MiddleCenter;
             currentBtn.IconColor = color;
             currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
-            currentBtn.ImageAlign = ContentAlignment.MiddleRight;
+            //currentBtn.ImageAlign = ContentAlignment.MiddleRight;
         }
         private void disablebutton()
         {
@@ -223,30 +234,40 @@ namespace TechStore
 
         private void btnrecord_Click(object sender, EventArgs e)
         {
-            var f=Program.ServiceProvider.GetRequiredService<Inventorylogform>();
+            activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
+
+            var f =Program.ServiceProvider.GetRequiredService<Inventorylogform>();
             LoadFormIntoPanel(f);
         }
 
         private void btninventory_Click_1(object sender, EventArgs e)
         {
+            activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
+
             var f = Program.ServiceProvider.GetRequiredService<Inventoryform>();
             LoadFormIntoPanel(f);
         }
 
         private void btnproducts_Click(object sender, EventArgs e)
         {
+            activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
+
             var f = Program.ServiceProvider.GetRequiredService<productsform>();
             LoadFormIntoPanel(f);
         }
 
         private void btncategories_Click(object sender, EventArgs e)
         {
+            activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
+
             var f = Program.ServiceProvider.GetRequiredService<Addcategoryform>();
             f.ShowDialog(this);
         }
 
         private void btnbatches_Click(object sender, EventArgs e)
         {
+            activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
+
             var f = Program.ServiceProvider.GetRequiredService<Batchesform>();
             LoadFormIntoPanel(f);
         }
@@ -265,62 +286,108 @@ namespace TechStore
 
         private void btnsale_Click(object sender, EventArgs e)
         {
+            activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
+
             var f = Program.ServiceProvider.GetRequiredService<Customersale>();
             LoadFormIntoPanel(f);
         }
         private void iconPictureBox2_Click(object sender, EventArgs e)
         {
-            TogglePanel(panelbatch, 60, 183);
-
-        }
-
-        private void iconPictureBox4_Click(object sender, EventArgs e)
-        {
-            TogglePanel(panelcust, 60, 251);
+            if (panelbatch.Height == 183)
+                CollapsePanel(panelbatch, 60);
+            else
+            {
+                CollapseAllTogglePanels();
+                ExpandPanel(panelbatch, 183);
+            }
         }
 
         private void iconPictureBox5_Click(object sender, EventArgs e)
         {
-            TogglePanel(panelsupp, 60, 119);
-
+            if (panelsupp.Height == 132)
+                CollapsePanel(panelsupp, 60);
+            else
+            {
+                CollapseAllTogglePanels();
+                ExpandPanel(panelsupp, 132);
+            }
         }
 
         private void iconPictureBox6_Click(object sender, EventArgs e)
         {
-            TogglePanel(panelreturn, 60, 182);
+            if (panelreturn.Height == 195)
+                CollapsePanel(panelreturn, 60);
+            else
+            {
+                CollapseAllTogglePanels();
+                ExpandPanel(panelreturn, 195);
+            }
         }
 
         private void iconPictureBox1_Click(object sender, EventArgs e)
         {
-            TogglePanel(panelinventory, 60, 251);
+            if (panelinventory.Height == 251)
+                CollapsePanel(panelinventory, 60);
+            else
+            {
+                CollapseAllTogglePanels();
+                ExpandPanel(panelinventory, 251);
+            }
         }
+
+
+        private void iconPictureBox4_Click(object sender, EventArgs e)
+        {
+            if (panelcust.Height == 130)
+            {
+                CollapsePanel(panelcust, 60); // collapse if already expanded
+            }
+            else
+            {
+                CollapseAllTogglePanels();    // collapse all first
+                ExpandPanel(panelcust, 130);  // then expand this one
+            }
+        }
+
+
+     
 
         private void btnbatches_Click_1(object sender, EventArgs e)
         {
+            activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
+
             var f = Program.ServiceProvider.GetRequiredService<Batchesform>();
             LoadFormIntoPanel(f);
         }
 
         private void btnbatchdetails_Click(object sender, EventArgs e)
         {
+            activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
+
             var f = Program.ServiceProvider.GetRequiredService<BatchDetailsform>();
             LoadFormIntoPanel(f);
         }
 
         private void btnadddetails_Click(object sender, EventArgs e)
         {
+            activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
+
             var f = Program.ServiceProvider.GetRequiredService<AddbatchDetailsform>();
             f.ShowDialog(this);
         }
 
         private void btnSreturn_Click(object sender, EventArgs e)
         {
+            activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
+
             var f = Program.ServiceProvider.GetRequiredService<Supplier_eturnsform>();
             LoadFormIntoPanel(f);
         }
 
         private void btnorder_Click(object sender, EventArgs e)
         {
+            activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
+
             var f = Program.ServiceProvider.GetRequiredService<PurchaseInvoice>();
             LoadFormIntoPanel(f);
         }
@@ -332,18 +399,24 @@ namespace TechStore
 
         private void btncustomerbill_Click(object sender, EventArgs e)
         {
+            activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
+
             var f = Program.ServiceProvider.GetRequiredService<BillingRecordsOverview>();
             LoadFormIntoPanel(f);
         }
 
         private void btnSbills_Click(object sender, EventArgs e)
         {
+            activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
+
             var f = Program.ServiceProvider.GetRequiredService<Supplierbillsform>();
             LoadFormIntoPanel(f);
         }
 
         private void bntcustomerreturn_Click(object sender, EventArgs e)
         {
+            activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
+
             var f = Program.ServiceProvider.GetRequiredService<Customerreturns>();
             LoadFormIntoPanel(f);
         }

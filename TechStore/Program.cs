@@ -23,16 +23,14 @@ namespace TechStore
         [STAThread]
         static void Main()
         {
-            
-
-            var services = new ServiceCollection();
+               var services = new ServiceCollection();
             configureServices(services);
             ServiceProvider = services.BuildServiceProvider();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var mainForm = ServiceProvider.GetRequiredService<Services>();
+            var mainForm = ServiceProvider.GetRequiredService <Dashboard>();
 
             Application.Run(mainForm);
         }
@@ -48,9 +46,9 @@ namespace TechStore
             services.AddScoped<ISupplierbillDl, SupplierbillDl>();
             services.AddScoped<IInventorylogDl,InventorylogDl>();
             services.AddScoped<IPurchaseDl, purchaseDL>();
+            services.AddScoped<IInventoryDl,InventoryDl>();
+            services.AddScoped<ISreturnsDl,SreturnsDl>();
             services.AddScoped<ISbilldetailsDl,SbilldetailsDl>();
-            services.AddScoped<ISreturnsDl, SreturnsDl>();
-            services.AddScoped<IInventoryDl, InventoryDl>();
 
 
             //BL
@@ -62,12 +60,11 @@ namespace TechStore
             services.AddScoped<IBatchDetailsBL, BatchDetailsBL>();
             services.AddScoped<ISupplierBillBl, SupplierBillBl>();
             services.AddScoped<IInventorylogBl, InventorylogBl>();
-            services.AddScoped<IsbilldetailsBl, SbilldetailsBl>();
-            services.AddScoped<IsreturnBl,SreturnBl>();
-            services.AddScoped<IInventoryBl, InventoryBl>();
-
-
-
+            services.AddScoped<IInventoryBl,InventoryBl>();
+            services.AddScoped<IsreturnBl, SreturnBl>();
+            services.AddScoped<IInventorylogBl, InventorylogBl>();
+            services.AddScoped<IsbilldetailsBl,SbilldetailsBl>();
+            services.AddScoped<Idashboard,Dashboardservice>();
 
             //forms
             services.AddTransient<HomeContentform>();
@@ -95,10 +92,10 @@ namespace TechStore
             services.AddTransient<PurchaseInvoice>();
             services.AddTransient<CustomerBill_SpecificProducts>();
             services.AddTransient<Supplierbillsform>();
-            services.AddTransient<Supplier_eturnsform>();
             services.AddTransient<Inventoryform>();
-            services.AddTransient<Services>();
-
+            services.AddTransient<Supplier_eturnsform>();
+            services.AddTransient<DashboardDl>();
+            services.AddTransient<Login>();
 
         }
     }

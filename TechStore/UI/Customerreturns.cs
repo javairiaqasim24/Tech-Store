@@ -215,7 +215,7 @@ namespace TechStore.UI
 
             // Set values in the return panel
             txtproduct.Text = selectedRow.Cells["Product"].Value?.ToString();
-            txtdescription.Text = selectedRow.Cells["description"].Value?.ToString(); // SKU is used as Description for now
+            txtdescription.Text = selectedRow.Cells["description"].Value?.ToString();
             txtquantity.Text = "";
             txtscamserial.Text = "";
             //txtserialmanually.Text = "";
@@ -225,7 +225,7 @@ namespace TechStore.UI
             // Optional: Store required data in Tag or variables for validation later
             panelreturn.Tag = new ReturnMetadata
             {
-                ExpectedSKU = selectedRow.Cells["serial_number"].Value?.ToString(),
+                ExpectedSKU = selectedRow.Cells["serial_number"].Value?.ToString() ?? "",
                 MaxQuantity = Convert.ToInt32(selectedRow.Cells["quantity"].Value),
 
                 BillId = _currentBillId,  // ✅ Use class-level variable                                          // 💥 This was missing
@@ -248,25 +248,31 @@ namespace TechStore.UI
             // Only using scanned serials now
             string scannedSerial = txtscamserial.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(scannedSerial))
+            string[] enteredSkus = Array.Empty<string>();
+
+            if (metadata.HasSerials)
             {
-                MessageBox.Show("Please scan at least one serial number.", "Missing Serial", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                if (string.IsNullOrWhiteSpace(scannedSerial))
+                {
+                    MessageBox.Show("Please scan at least one serial number.", "Missing Serial", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                enteredSkus = scannedSerial.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                                           .Select(s => s.Trim())
+                                           .ToArray();
+
+                string[] expectedSkus = metadata.ExpectedSKU.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                                                            .Select(s => s.Trim())
+                                                            .ToArray();
+
+                if (enteredSkus.Any(sku => !expectedSkus.Contains(sku)))
+                {
+                    MessageBox.Show("One or more entered serial numbers do not match the original sale.", "Serial Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
 
-            string[] enteredSkus = scannedSerial.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                                                .Select(s => s.Trim())
-                                                .ToArray();
-
-            string[] expectedSkus = metadata.ExpectedSKU.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                                                        .Select(s => s.Trim())
-                                                        .ToArray();
-
-            if (enteredSkus.Any(sku => !expectedSkus.Contains(sku)))
-            {
-                MessageBox.Show("One or more entered serial numbers do not match the original sale.", "Serial Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             if (!int.TryParse(txtquantity.Text.Trim(), out int returnQty) || returnQty <= 0)
             {
@@ -280,11 +286,12 @@ namespace TechStore.UI
                 return;
             }
 
-            if (enteredSkus.Length != returnQty)
+            if (metadata.HasSerials && enteredSkus.Length != returnQty)
             {
                 MessageBox.Show("Number of entered serials must match the return quantity.", "Serial Count Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
 
             int? returnedAmount = null;
             if (!string.IsNullOrWhiteSpace(txtreturnedamount.Text) &&
@@ -304,7 +311,16 @@ namespace TechStore.UI
                 return;
             }
 
-            int billDetailId = CustomerReturnDL.GetBillDetailId(metadata.BillId, productId.Value, enteredSkus[0]);
+            int billDetailId;
+
+            if (metadata.HasSerials)
+            {
+                billDetailId = CustomerReturnDL.GetBillDetailId(metadata.BillId, productId.Value, enteredSkus[0]);
+            }
+            else
+            {
+                billDetailId = CustomerReturnDL.GetBillDetailIdForNonSerial(metadata.BillId, productId.Value); // implement this new method
+            }
 
 
             try
@@ -349,15 +365,22 @@ namespace TechStore.UI
         {
             public int BillId { get; set; }
             public int ProductId { get; set; }
-            public string ExpectedSKU { get; set; } // original comma-separated serials
-            public int MaxQuantity { get; set; }    // sold quantity
+            public string ExpectedSKU { get; set; } // can be empty if no SKU
+            public int MaxQuantity { get; set; }
+            public bool HasSerials => !string.IsNullOrWhiteSpace(ExpectedSKU);
         }
+
 
 
 
         private void btncancle1_Click(object sender, EventArgs e)
         {
             panelreturn.Visible = false;
+        }
+
+        private void Customerreturns_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

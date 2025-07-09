@@ -1,5 +1,6 @@
 ﻿using KIMS;
 using Microsoft.Extensions.DependencyInjection;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,7 @@ namespace TechStore.UI
             this.ibl = ibl;
             this.ibr = ibr;
             UIHelper.ApplyButtonStyles(dataGridView2);
+            UIHelper.StyleGridView(dataGridView2);
         }
 
         private void btnadd_Click(object sender, EventArgs e)
@@ -115,6 +117,15 @@ namespace TechStore.UI
                     MessageBox.Show("Update failed.");
                 }
             }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Database error occurred while Updating: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show("Validation error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+           
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
@@ -137,8 +148,13 @@ namespace TechStore.UI
             dataGridView2.Columns.Clear();
             dataGridView2.DataSource = list;
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView2.Columns["batch_details_id"].Visible=false;
+            dataGridView2.Columns["batch_id"].Visible = false;
 
-            UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
+            dataGridView2.Columns["product_id"].Visible = false;
+            UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", 
+                  
+                "Edit");
             UIHelper.AddButtonColumn(dataGridView2, "Delete", "Delete", "Delete");
 
             // Load products
@@ -165,6 +181,10 @@ namespace TechStore.UI
             var list=ibl.GetBatchDetailsByName(text);
             dataGridView2.Columns.Clear();
             dataGridView2.DataSource = list;
+            dataGridView2.Columns["batch_details_id"].Visible = false;
+            dataGridView2.Columns["batch_id"].Visible = false;
+
+            dataGridView2.Columns["product_id"].Visible = false;
             UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
             UIHelper.AddButtonColumn(dataGridView2, "Delete", "Delete", "Delete");
 
@@ -190,6 +210,7 @@ namespace TechStore.UI
                 MessageBox.Show("Enter a valid paid amount.");
                 return;
             }
+
             decimal total = Convert.ToInt32(txtTotal.Text.Trim());
             try
             {
@@ -207,6 +228,15 @@ namespace TechStore.UI
                     MessageBox.Show("Update failed. Please try again.");
                 }
             }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Database error occurred while generating bill: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show("Validation error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+           
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
@@ -215,7 +245,6 @@ namespace TechStore.UI
 
         private void iconButton8_Click(object sender, EventArgs e)
         {
-
             if (dataGridView2.CurrentRow == null)
             {
                 MessageBox.Show("Please select a row first.");
@@ -225,15 +254,27 @@ namespace TechStore.UI
             string batchName = dataGridView2.CurrentRow.Cells["batch_name"].Value.ToString();
 
             // Get bill info by batch name
-            var billData = ibr.getbills(batchName); // implement this method in BL/DL
+            var billData = ibr.getbills(batchName); // Make sure this doesn't return null
 
             if (billData != null)
             {
+                if (billData.total_price != 0 && billData.paid_price != 0)
+                {
+                    MessageBox.Show("Bill already generated. Go to Supplier Bills to add payment.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Fill the form if bill is editable
                 txtSupplierName.Text = billData.supplier_name;
                 textBox2.Text = billData.batch_name;
                 txtTotal.Text = billData.total_price.ToString("0.00");
                 txtDate.Text = billData.date.ToShortDateString();
                 txtPaid.Text = billData.paid_price.ToString("0.00");
+
+                txtSupplierName.ReadOnly = false;
+                textBox2.ReadOnly = false;
+                txtTotal.ReadOnly = false;
+                txtPaid.ReadOnly = false;
 
                 panelbill.Visible = true;
                 UIHelper.RoundPanelCorners(panelbill, 20);
@@ -244,6 +285,7 @@ namespace TechStore.UI
                 MessageBox.Show("No bill found for selected batch.");
             }
         }
+
 
         private void pictureBox10_Click(object sender, EventArgs e)
         {

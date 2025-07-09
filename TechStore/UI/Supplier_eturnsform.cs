@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using TechStore.BL.Models;
@@ -25,6 +26,7 @@ namespace TechStore.UI
             InitializeComponent();
             this.ibl = ibl;
             panelreturn.Visible = false;
+            UIHelper.StyleGridView(dataGridView1);
 
             txtreturnedamount.Enabled = false;
             btnsave1.Enabled = false;
@@ -59,13 +61,13 @@ namespace TechStore.UI
             dataGridView1.Columns.Add("ProductName", "Product Name");
             dataGridView1.Columns.Add("Description", "Description");
             dataGridView1.Columns.Add("Quantity", "Quantity");
-            dataGridView1.Columns.Add("Sku", "sku");
+            //dataGridView1.Columns.Add("Sku", "sku");
             dataGridView1.Columns["ProductId"].Visible = false;
 
             foreach (var item in billDetails)
             {
-                dataGridView1.Rows.Add(item.bill_detail_id, item.p.id, item.p.name, item.p.description, item.quantity,item.sku);
-                dataGridView1.AutoSizeColumnsMode=DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridView1.Rows.Add(item.bill_detail_id, item.p.id, item.p.name, item.p.description, item.quantity, item.sku);
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
         }
 
@@ -115,7 +117,7 @@ namespace TechStore.UI
             txtreturnqty.Enabled = true;
 
             cbActionTaken.SelectedIndex = 0;
-            UIHelper.ShowCenteredPanel(this,panelreturn);
+            UIHelper.ShowCenteredPanel(this, panelreturn);
             UIHelper.RoundPanelCorners(panelreturn, 20);
 
 
@@ -292,26 +294,47 @@ namespace TechStore.UI
                     r.amount = amount;
                 }
             }
+            try {
+                var success = ibl.AddSupplierReturns(supplierReturnList);
+                if (success)
+                {
+                    MessageBox.Show("Returns processed successfully.");
+                    supplierReturnList.Clear();
+                    listBox1.Items.Clear();
+                    txtreturnedamount.Clear();
+                    txtscamserial.Clear();
+                    txtproduct.Clear();
+                    txtdescription.Clear();
+                    txtreturnqty.Clear();
+                    txtreturnedamount.Enabled = false;
+                    txtreturnqty.Enabled = false;
+                    panelreturn.Visible = false;
+                }
+                else
+                {
+                    MessageBox.Show("Failed to process returns.");
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Sku Already returned: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show("Validation error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
 
-            var success = ibl.AddSupplierReturns(supplierReturnList);
-            if (success)
+            catch (Exception ex)
             {
-                MessageBox.Show("Returns processed successfully.");
-                supplierReturnList.Clear();
-                listBox1.Items.Clear();
-                txtreturnedamount.Clear();
-                txtscamserial.Clear();
-                txtproduct.Clear();
-                txtdescription.Clear();
-                txtreturnqty.Clear();
-                txtreturnedamount.Enabled = false;
-                txtreturnqty.Enabled = false;
-                panelreturn.Visible = false;
+                MessageBox.Show("Error returning product: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
-            {
-                MessageBox.Show("Failed to process returns.");
-            }
+        }
+
+     
+
+        private void btncancle1_Click(object sender, EventArgs e)
+        {
+            panelreturn.Visible=false;
         }
     }
 }

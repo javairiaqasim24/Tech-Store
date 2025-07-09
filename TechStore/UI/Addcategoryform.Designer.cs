@@ -102,7 +102,10 @@
             this.Controls.Add(this.txtname);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Addcategoryform";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Addcategoryform";
             this.ResumeLayout(false);
             this.PerformLayout();

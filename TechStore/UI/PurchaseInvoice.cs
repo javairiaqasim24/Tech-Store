@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using TechStore.BL.Models;
 using TechStore.DL;
 using System.IO;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TechStore.UI
 {
@@ -31,6 +32,7 @@ namespace TechStore.UI
             SetupSearchGrid();
             LoadProductData(); // Fill allProducts
             dgvInvoice.AllowUserToAddRows = false;
+            this.VisibleChanged += PurchaseInvoice_VisibleChanged;
 
             string searchKeyword = cmbSupplierName.Text.Trim();
 
@@ -64,8 +66,8 @@ namespace TechStore.UI
             dgvProductSearch = new DataGridView
             {
                 Location = new Point(txtProductName.Left, txtProductName.Bottom + 5),
-                Width = txtProductName.Width + 100,
-                Height = 180,
+                Width = txtProductName.Width + 1200,
+                Height = 580,
                 Visible = false,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
@@ -150,25 +152,29 @@ namespace TechStore.UI
                     cmbSupplierName.Focus();
                     return;
                 }
+            }
 
-                // 3. Get today's date
-                DateTime saleDate = DateTime.Now;
+            // ✅ Move the actual logic outside the if
+            DateTime saleDate = DateTime.Now;
 
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
-                saveFileDialog.Title = "Save Purchase Invoice";
-                saveFileDialog.FileName = "PurchaseInvoice.pdf";
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
+            saveFileDialog.Title = "Save Purchase Invoice";
+            saveFileDialog.FileName = "PurchaseInvoice.pdf";
 
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string filePath = saveFileDialog.FileName;
-                    p.CreateSaleInvoicePdf(dgvInvoice, filePath, supplierName, DateTime.Now);
-                    MessageBox.Show("PDF Generated Successfully..");
-                    ClearInvoiceForm();
-                }
-
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+                p.CreateSaleInvoicePdf(dgvInvoice, filePath, supplierName, saleDate);
+                MessageBox.Show("PDF Generated Successfully.");
+                ClearInvoiceForm();
+            }
+            else
+            {
+                MessageBox.Show("PDF generation was cancelled.");
             }
         }
+
 
         private void txtProductName_TextChanged(object sender, EventArgs e)
         {
@@ -218,7 +224,8 @@ namespace TechStore.UI
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-
+            var f = Program.ServiceProvider.GetRequiredService<Addsupplierform>();
+            f.ShowDialog(this);
         }
 
         private void cmbSupplierName_SelectedIndexChanged(object sender, EventArgs e)
@@ -235,7 +242,7 @@ namespace TechStore.UI
                 txtdescription.Text = row.Cells["Description"].Value?.ToString();
                 txtQuantity.Text = row.Cells["Quantity"].Value?.ToString();
 
-                editingRowIndex = row.Index; // Store the row index to update later
+                editingRowIndex = row.Index; 
             }
             else
             {
@@ -348,12 +355,30 @@ namespace TechStore.UI
         {
             LoadTempInvoice();
         }
+        private void PurchaseInvoice_VisibleChanged(object sender, EventArgs e)
+        {
+            if (!this.Visible)
+            {
+                SaveTempInvoice();
+            }
+        }
 
         private void ClearInvoiceForm()
         {
             cmbSupplierName.Text = "";
             dtpPurchaseDate.Value = DateTime.Today;
             dgvInvoice.Rows.Clear();
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<addproductform>();
+            f.ShowDialog(this);
+        }
+
+        private void dgvInvoice_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

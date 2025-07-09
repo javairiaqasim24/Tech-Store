@@ -16,7 +16,8 @@ namespace TechStore.UI
         private readonly IInventorylogBl ibl;
         public Inventorylogform(IInventorylogBl ibl)
         {
-            InitializeComponent();
+            InitializeComponent(); UIHelper.StyleGridView(dataGridView2);
+            UIHelper.StyleGridView(dataGridView2);
             this.ibl = ibl;
         }
 
@@ -34,7 +35,15 @@ namespace TechStore.UI
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+
             string searchTerm = textBox1.Text.Trim();
+            string text = textBox1.Text;
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+
+
+                load();
+            }
             var list = ibl.getlog(searchTerm);
             dataGridView2.DataSource = list;
         }

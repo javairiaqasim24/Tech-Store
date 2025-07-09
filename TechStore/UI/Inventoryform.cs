@@ -25,6 +25,7 @@ namespace TechStore.UI
             this.ibl = ibl;
             paneledit.Visible = false;
             UIHelper.ApplyButtonStyles(dataGridView2);
+            UIHelper.StyleGridView(dataGridView2);
 
         }
         private void load()
@@ -68,6 +69,7 @@ namespace TechStore.UI
                     txtname1.Clear();
                     txtsale.Clear();
                     txtstock.Clear();
+                    load();
                    }
                 else
                 {

@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.Extensions.DependencyInjection;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,6 +45,7 @@ namespace TechStore.UI
                     txtname.Clear();
                     comboBox1.SelectedIndex = -1; // Clear the selected supplier
                     dateTimePicker1.Value = DateTime.Now; // Reset to current date
+                    this.Close();
                 }
                 else
                 {
@@ -85,5 +87,11 @@ namespace TechStore.UI
             }
         }
 
+        private void iconPictureBox2_Click(object sender, EventArgs e)
+        {
+            var f=Program.ServiceProvider.GetRequiredService<Addsupplierform>();
+            f.ShowDialog(this);
+            AddBatchform_Load(sender, e);
+        }
     }
 }

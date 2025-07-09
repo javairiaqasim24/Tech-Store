@@ -23,6 +23,8 @@ namespace TechStore.UI
             panelbill.Visible = false;
             this.ibl = ibl;
             this.ibr = ibr;
+            UIHelper.StyleGridView(dataGridView2);
+
         }
 
         private void Batchesform_Load(object sender, EventArgs e)
@@ -52,19 +54,30 @@ namespace TechStore.UI
                 return;
             }
 
-            // Get batch_name from the selected row
             string batchName = dataGridView2.CurrentRow.Cells["batch_name"].Value.ToString();
 
             // Get bill info by batch name
-            var billData = ibr.getbills(batchName); // implement this method in BL/DL
+            var billData = ibr.getbills(batchName); // Make sure this doesn't return null
 
             if (billData != null)
             {
+                if (billData.total_price != 0 && billData.paid_price != 0)
+                {
+                    MessageBox.Show("Bill already generated. Go to Supplier Bills to add payment.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Fill the form if bill is editable
                 txtSupplierName.Text = billData.supplier_name;
                 textBox2.Text = billData.batch_name;
                 txtTotal.Text = billData.total_price.ToString("0.00");
                 txtDate.Text = billData.date.ToShortDateString();
-                txtPaid.Text = billData.paid_price.ToString("0.00");
+                textBox3.Text = billData.paid_price.ToString("0.00");
+
+                txtSupplierName.ReadOnly = false;
+                textBox2.ReadOnly = false;
+                txtTotal.ReadOnly = false;
+                textBox3.ReadOnly = false;
 
                 panelbill.Visible = true;
                 UIHelper.RoundPanelCorners(panelbill, 20);
@@ -96,15 +109,12 @@ namespace TechStore.UI
                 return;
             }
 
-            if (!decimal.TryParse(txtPaid.Text.Trim(), out decimal paidAmount) || paidAmount < 0)
-            {
-                MessageBox.Show("Enter a valid paid amount.");
-                return;
-            }
-            decimal total= Convert.ToInt32( txtTotal.Text.Trim());
+           
+            decimal total= Convert.ToDecimal( txtTotal.Text.Trim());
+            decimal payment = Convert.ToDecimal(textBox3.Text.Trim());
             try
             {
-                Supplierbill s = new Supplierbill(batchName, paidAmount, supplier,total);
+                Supplierbill s = new Supplierbill(batchName,payment, supplier,total);
                 bool success = ibr.updateamount(s);
 
                 if (success)
@@ -122,6 +132,20 @@ namespace TechStore.UI
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            string text= textBox1.Text.Trim();
+            if (string.IsNullOrEmpty(text))
+            {
+                load();
+            }
+            var list=ibl.getbatchesbyname(text);
+            dataGridView2.DataSource = list;
+            dataGridView2.AutoSizeColumnsMode=DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView2.Columns["batch_id"].Visible = false;
+
         }
     }
 }

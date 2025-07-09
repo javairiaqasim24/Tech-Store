@@ -47,7 +47,6 @@
             this.iconButton8 = new FontAwesome.Sharp.IconButton();
             this.btnsale = new FontAwesome.Sharp.IconButton();
             this.panelcust = new System.Windows.Forms.Panel();
-            this.btnCpayment = new FontAwesome.Sharp.IconButton();
             this.iconPictureBox4 = new FontAwesome.Sharp.IconPictureBox();
             this.btncustomerbill = new FontAwesome.Sharp.IconButton();
             this.btncustomers = new FontAwesome.Sharp.IconButton();
@@ -461,39 +460,13 @@
             // panelcust
             // 
             this.panelcust.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.panelcust.Controls.Add(this.btnCpayment);
             this.panelcust.Controls.Add(this.iconPictureBox4);
             this.panelcust.Controls.Add(this.btncustomerbill);
             this.panelcust.Controls.Add(this.btncustomers);
             this.panelcust.Location = new System.Drawing.Point(3, 461);
             this.panelcust.Name = "panelcust";
-            this.panelcust.Size = new System.Drawing.Size(270, 63);
+            this.panelcust.Size = new System.Drawing.Size(270, 124);
             this.panelcust.TabIndex = 12;
-            // 
-            // btnCpayment
-            // 
-            this.btnCpayment.BackColor = System.Drawing.Color.DimGray;
-            this.btnCpayment.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCpayment.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCpayment.FlatAppearance.BorderSize = 2;
-            this.btnCpayment.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            this.btnCpayment.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            this.btnCpayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCpayment.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCpayment.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCpayment.IconChar = FontAwesome.Sharp.IconChar.DollarSign;
-            this.btnCpayment.IconColor = System.Drawing.Color.White;
-            this.btnCpayment.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCpayment.IconSize = 40;
-            this.btnCpayment.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCpayment.Location = new System.Drawing.Point(0, 120);
-            this.btnCpayment.Name = "btnCpayment";
-            this.btnCpayment.Size = new System.Drawing.Size(270, 60);
-            this.btnCpayment.TabIndex = 8;
-            this.btnCpayment.Text = "payments";
-            this.btnCpayment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCpayment.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCpayment.UseVisualStyleBackColor = false;
             // 
             // iconPictureBox4
             // 
@@ -568,9 +541,9 @@
             this.panelsupp.Controls.Add(this.iconPictureBox5);
             this.panelsupp.Controls.Add(this.btnSbills);
             this.panelsupp.Controls.Add(this.btnsuppliers);
-            this.panelsupp.Location = new System.Drawing.Point(3, 530);
+            this.panelsupp.Location = new System.Drawing.Point(3, 591);
             this.panelsupp.Name = "panelsupp";
-            this.panelsupp.Size = new System.Drawing.Size(270, 64);
+            this.panelsupp.Size = new System.Drawing.Size(270, 65);
             this.panelsupp.TabIndex = 13;
             // 
             // iconPictureBox5
@@ -647,9 +620,9 @@
             this.panelreturn.Controls.Add(this.btnSreturn);
             this.panelreturn.Controls.Add(this.bntcustomerreturn);
             this.panelreturn.Controls.Add(this.btnreturns);
-            this.panelreturn.Location = new System.Drawing.Point(3, 600);
+            this.panelreturn.Location = new System.Drawing.Point(3, 662);
             this.panelreturn.Name = "panelreturn";
-            this.panelreturn.Size = new System.Drawing.Size(270, 63);
+            this.panelreturn.Size = new System.Drawing.Size(270, 62);
             this.panelreturn.TabIndex = 14;
             // 
             // iconPictureBox6
@@ -759,7 +732,7 @@
             this.btnorder.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnorder.IconSize = 40;
             this.btnorder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnorder.Location = new System.Drawing.Point(3, 669);
+            this.btnorder.Location = new System.Drawing.Point(3, 730);
             this.btnorder.Name = "btnorder";
             this.btnorder.Size = new System.Drawing.Size(267, 60);
             this.btnorder.TabIndex = 15;
@@ -785,7 +758,7 @@
             this.btnlogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnlogout.IconSize = 40;
             this.btnlogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnlogout.Location = new System.Drawing.Point(3, 735);
+            this.btnlogout.Location = new System.Drawing.Point(3, 796);
             this.btnlogout.Name = "btnlogout";
             this.btnlogout.Size = new System.Drawing.Size(270, 60);
             this.btnlogout.TabIndex = 16;
@@ -797,6 +770,7 @@
             // 
             // panel10
             // 
+            this.panel10.AutoScroll = true;
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel10.Location = new System.Drawing.Point(270, 0);
             this.panel10.Name = "panel10";
@@ -854,7 +828,6 @@
         private FontAwesome.Sharp.IconButton iconButton8;
         private FontAwesome.Sharp.IconButton btnsale;
         private System.Windows.Forms.Panel panelcust;
-        private FontAwesome.Sharp.IconButton btnCpayment;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox4;
         private FontAwesome.Sharp.IconButton btncustomerbill;
         private FontAwesome.Sharp.IconButton btncustomers;

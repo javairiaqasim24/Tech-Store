@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using TechStore.BL;
+using TechStore.BL.Models;
+using TechStore.DL;
 using TechStore.UI;
 
 namespace TechStore
@@ -32,6 +34,7 @@ namespace TechStore
             _billingBL = new BillingRecordsOverviewBL();
             this.Load += BillingRecordsOverview_Load;
             panelmenu.Visible= false;
+            paneledit.Visible= false;
         }
 
         private void BillingRecordsOverview_Load(object sender, EventArgs e)
@@ -63,51 +66,86 @@ namespace TechStore
 
         private void AddDetailsButtonColumn()
         {
-            // Remove existing button column if it exists
             if (dgvBillingRecords.Columns.Contains("btnDetails"))
                 dgvBillingRecords.Columns.Remove("btnDetails");
+            if (dgvBillingRecords.Columns.Contains("btnPayment"))
+                dgvBillingRecords.Columns.Remove("btnPayment");
 
-            // Add new button column
-            DataGridViewButtonColumn btnColumn = new DataGridViewButtonColumn
+            // View Details Button
+            var btnDetails = new DataGridViewButtonColumn
             {
                 Name = "btnDetails",
                 Text = "View Details",
                 UseColumnTextForButtonValue = true,
                 HeaderText = "Actions",
                 FlatStyle = FlatStyle.Flat,
-                Width = 120
+                Width = 100,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    BackColor = Color.FromArgb(0, 126, 250),
+                    ForeColor = Color.White,
+                    Font = new Font("Segoe UI", 9, FontStyle.Bold)
+                }
             };
 
-            btnColumn.DefaultCellStyle.BackColor = Color.FromArgb(0, 126, 250);
-            btnColumn.DefaultCellStyle.ForeColor = Color.White;
-            btnColumn.DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            // Payment Button
+            var btnPayment = new DataGridViewButtonColumn
+            {
+                Name = "btnPayment",
+                Text = "Payment",
+                UseColumnTextForButtonValue = true,
+                HeaderText = "",
+                FlatStyle = FlatStyle.Flat,
+                Width = 100,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    BackColor = Color.FromArgb(46, 204, 113),
+                    ForeColor = Color.White,
+                    Font = new Font("Segoe UI", 9, FontStyle.Bold)
+                }
+            };
 
-            dgvBillingRecords.Columns.Add(btnColumn);
+            dgvBillingRecords.Columns.Add(btnDetails);
+            dgvBillingRecords.Columns.Add(btnPayment);
         }
+
 
         private void dgvBillingRecords_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                // Check if click is on our button column and not header
-                if (e.RowIndex >= 0 &&
-                    dgvBillingRecords.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-                    dgvBillingRecords.Columns[e.ColumnIndex].Name == "btnDetails")
+                if (e.RowIndex >= 0)
                 {
-                    // Safely get the BillID value
-                    var billIdCell = dgvBillingRecords.Rows[e.RowIndex].Cells["BillID"];
-                    if (billIdCell.Value != null && int.TryParse(billIdCell.Value.ToString(), out int billId))
+                    var clickedColumn = dgvBillingRecords.Columns[e.ColumnIndex];
+
+                    if (clickedColumn.Name == "btnDetails")
                     {
-                        OpenBillDetailsForm(billId);
+                        var billIdCell = dgvBillingRecords.Rows[e.RowIndex].Cells["BillID"];
+                        if (billIdCell.Value != null && int.TryParse(billIdCell.Value.ToString(), out int billId))
+                            OpenBillDetailsForm(billId);
+                    }
+                    else if (clickedColumn.Name == "btnPayment")
+                    {
+                        var row = dgvBillingRecords.Rows[e.RowIndex];
+
+                        // Fetch values
+                        txtname1.Text = row.Cells["CustomerName"].Value?.ToString();
+                        txtbill.Text = row.Cells["BillID"].Value?.ToString();
+                        txtamount.Text = row.Cells["DueAmount"].Value?.ToString();
+                        txtpayment.Clear();
+                        txtremarks.Clear();
+                        txtdate.Text = DateTime.Now.ToString();
+
+                        paneledit.Visible = true;
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error handling details click: {ex.Message}",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void OpenBillDetailsForm(int billId)
         {
@@ -305,7 +343,7 @@ namespace TechStore
             if (MessageBox.Show("Are you sure you want to logout?", "Confirm Logout",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                var login = Program.ServiceProvider.GetRequiredService<Login>();
+                //var login = Program.ServiceProvider.GetRequiredService<Login>();
                 this.Hide();
                 //login.Show();
             }
@@ -315,6 +353,79 @@ namespace TechStore
         private void BillingRecordsOverview_Load_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnsave1_Click(object sender, EventArgs e)
+        {
+            // Validate payment input
+            if (!decimal.TryParse(txtpayment.Text, out decimal payment) || payment <= 0)
+            {
+                MessageBox.Show("Enter a valid payment amount.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Extract other fields
+            string customerName = txtname1.Text.Trim();
+            if (!int.TryParse(txtbill.Text, out int billId))
+            {
+                MessageBox.Show("Invalid Bill ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string remarks = txtremarks.Text.Trim();
+
+            if (!DateTime.TryParse(txtdate.Text, out DateTime date))
+            {
+                MessageBox.Show("Enter a valid date.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                // Create record object
+                var record = new Customerrecord
+                (0,
+                    customerName,
+                                        payment,
+                    date,
+
+                    billId,
+                    remarks
+                );
+
+                // Call DL method
+                bool result = BillingRecordsOverviewDL.AddRecord(record);
+
+                if (result)
+                {
+                    MessageBox.Show("Payment recorded successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadBillingRecords(); // Reload updated data
+                }
+                else
+                {
+                    MessageBox.Show("Failed to record payment.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving payment: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void dgvBillingRecords_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Addpayment_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btncancle1_Click(object sender, EventArgs e)
+        {
+            paneledit.Visible=false;
         }
     }
 }

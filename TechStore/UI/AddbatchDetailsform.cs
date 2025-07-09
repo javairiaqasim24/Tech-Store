@@ -27,7 +27,19 @@ namespace TechStore.UI
             this.batchDetailsBL = batchDetailsBL;
             this.ibl = ibl;
             panel1.Visible = checkBox1.Checked;
+            txtserailnumber.DoubleClick += txtserailnumber_DoubleClick;
+            txtserailnumber.KeyDown += txtserailnumber_KeyDown;
+            this.txtproducts.TextChanged += txtproducts_TextChanged;
+            this.txtBname.TextChanged += txtBname_TextChanged;
 
+
+        }
+        private void txtserailnumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete && txtserailnumber.SelectedItem != null)
+            {
+                txtserailnumber.Items.Remove(txtserailnumber.SelectedItem);
+            }
         }
 
         private void AddbatchDetailsform_Load(object sender, EventArgs e)
@@ -74,6 +86,24 @@ namespace TechStore.UI
                 BatchFormPersistence.Save(dto);
             }
         }
+        private void txtproducts_TextChanged(object sender, EventArgs e)
+        {
+            if (!txtproducts.DroppedDown)
+            {
+                txtproducts.DroppedDown = true;
+                txtproducts.SelectionStart = txtproducts.Text.Length;
+                txtproducts.SelectionLength = 0;
+            }
+        }
+        private void txtBname_TextChanged(object sender, EventArgs e)
+        {
+            if (!txtBname.DroppedDown)
+            {
+                txtBname.DroppedDown = true;
+                txtBname.SelectionStart = txtBname.Text.Length;
+                txtBname.SelectionLength = 0;
+            }
+        }
 
         private void load()
         {
@@ -86,7 +116,7 @@ namespace TechStore.UI
                 var autoSource = new AutoCompleteStringCollection();
                 autoSource.AddRange(productNames.ToArray());
                 txtproducts.AutoCompleteCustomSource = autoSource;
-
+                txtproducts.AutoCompleteMode=AutoCompleteMode.Suggest;
                 txtproducts.SelectedIndex = -1;
             }
 
@@ -99,7 +129,7 @@ namespace TechStore.UI
                 var autoSource = new AutoCompleteStringCollection();
                 autoSource.AddRange(batchNames.ToArray());
                 txtBname.AutoCompleteCustomSource = autoSource;
-
+                txtBname.AutoCompleteMode=AutoCompleteMode.Suggest;
                 txtBname.SelectedIndex = -1;
             }
         }
@@ -137,6 +167,7 @@ namespace TechStore.UI
                     MessageBox.Show("Batch and serial numbers added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearFields();
                     BatchFormPersistence.Clear();
+                    this.Close();
 
                 }
                 else
@@ -148,10 +179,18 @@ namespace TechStore.UI
             {
                 MessageBox.Show("Enter valid numeric values.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-         
+
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Database error occurred while adding: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show("Validation error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred while adding batch: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -190,10 +229,11 @@ namespace TechStore.UI
                     return;
                 }
 
-                txtserailnumber.Items.Add(serial);
+                txtserailnumber.Items.Insert(0, serial); // ⬅ Add at top
                 txtserialinput.Clear();
             }
         }
+
 
         private void txtproducts_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -246,6 +286,7 @@ namespace TechStore.UI
         {
             var f = Program.ServiceProvider.GetRequiredService<AddBatchform>();
             f.ShowDialog(this);
+            load();
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -255,6 +296,27 @@ namespace TechStore.UI
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void txtserailnumber_DoubleClick(object sender, EventArgs e)
+        {
+            if (txtserailnumber.SelectedItem != null)
+            {
+                string selected = txtserailnumber.SelectedItem.ToString();
+                txtserialinput.Text = selected;
+                txtserailnumber.Items.Remove(selected); // Remove so they can re-add after editing
+            }
+        }
+
+        private void iconPictureBox3_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<addproductform>();
+            f.ShowDialog(this);
+            load();
+        }
+
+        private void txtBname_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

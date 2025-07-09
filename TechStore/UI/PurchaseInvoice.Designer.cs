@@ -58,9 +58,9 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(254, 144);
+            this.label8.Location = new System.Drawing.Point(286, 180);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(100, 22);
+            this.label8.Size = new System.Drawing.Size(123, 25);
             this.label8.TabIndex = 160;
             this.label8.Text = "Specification";
             // 
@@ -68,9 +68,9 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(490, 144);
+            this.label6.Location = new System.Drawing.Point(551, 180);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 22);
+            this.label6.Size = new System.Drawing.Size(84, 25);
             this.label6.TabIndex = 158;
             this.label6.Text = "Quantity";
             // 
@@ -78,29 +78,29 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 144);
+            this.label4.Location = new System.Drawing.Point(14, 180);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(106, 22);
+            this.label4.Size = new System.Drawing.Size(130, 25);
             this.label4.TabIndex = 156;
             this.label4.Text = "Product name";
             // 
             // txtdescription
             // 
-            this.txtdescription.Location = new System.Drawing.Point(258, 173);
+            this.txtdescription.Location = new System.Drawing.Point(290, 216);
             this.txtdescription.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtdescription.Multiline = true;
             this.txtdescription.Name = "txtdescription";
-            this.txtdescription.Size = new System.Drawing.Size(193, 48);
+            this.txtdescription.Size = new System.Drawing.Size(217, 59);
             this.txtdescription.TabIndex = 151;
             // 
             // txtProductName
             // 
             this.txtProductName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductName.Location = new System.Drawing.Point(16, 173);
+            this.txtProductName.Location = new System.Drawing.Point(18, 216);
             this.txtProductName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtProductName.Multiline = true;
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(193, 48);
+            this.txtProductName.Size = new System.Drawing.Size(217, 59);
             this.txtProductName.TabIndex = 150;
             this.txtProductName.TextChanged += new System.EventHandler(this.txtProductName_TextChanged);
             // 
@@ -111,9 +111,9 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.label11.Location = new System.Drawing.Point(17, 587);
+            this.label11.Location = new System.Drawing.Point(19, 733);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(131, 24);
+            this.label11.Size = new System.Drawing.Size(159, 29);
             this.label11.TabIndex = 137;
             this.label11.Text = "Select Supplier ";
             // 
@@ -121,10 +121,10 @@
             // 
             this.btnsave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnsave.Font = new System.Drawing.Font("Palatino Linotype", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnsave.Location = new System.Drawing.Point(374, 689);
+            this.btnsave.Location = new System.Drawing.Point(421, 860);
             this.btnsave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnsave.Name = "btnsave";
-            this.btnsave.Size = new System.Drawing.Size(185, 50);
+            this.btnsave.Size = new System.Drawing.Size(208, 62);
             this.btnsave.TabIndex = 135;
             this.btnsave.Text = "Save PDF";
             this.btnsave.UseVisualStyleBackColor = true;
@@ -137,13 +137,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvInvoice.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(242)))), ((int)(((byte)(253)))));
             this.dgvInvoice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvInvoice.Location = new System.Drawing.Point(21, 249);
+            this.dgvInvoice.Location = new System.Drawing.Point(24, 311);
             this.dgvInvoice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvInvoice.Name = "dgvInvoice";
             this.dgvInvoice.RowHeadersWidth = 62;
             this.dgvInvoice.RowTemplate.Height = 28;
-            this.dgvInvoice.Size = new System.Drawing.Size(1351, 287);
+            this.dgvInvoice.Size = new System.Drawing.Size(1520, 358);
             this.dgvInvoice.TabIndex = 134;
+            this.dgvInvoice.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInvoice_CellContentClick);
             // 
             // panel1
             // 
@@ -167,19 +168,20 @@
             this.panel1.Controls.Add(this.btnadd);
             this.panel1.Controls.Add(this.btndelete);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 71);
+            this.panel1.Location = new System.Drawing.Point(0, 89);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1407, 763);
+            this.panel1.Size = new System.Drawing.Size(1583, 953);
             this.panel1.TabIndex = 18;
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Font = new System.Drawing.Font("Palatino Linotype", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(673, 689);
+            this.button1.Location = new System.Drawing.Point(757, 860);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(203, 50);
+            this.button1.Size = new System.Drawing.Size(228, 62);
             this.button1.TabIndex = 169;
             this.button1.Text = "Print Invoice";
             this.button1.UseVisualStyleBackColor = true;
@@ -201,14 +203,16 @@
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton2.IconSize = 35;
             this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton2.Location = new System.Drawing.Point(857, 6);
+            this.iconButton2.Location = new System.Drawing.Point(964, 8);
+            this.iconButton2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(238, 55);
+            this.iconButton2.Size = new System.Drawing.Size(268, 69);
             this.iconButton2.TabIndex = 168;
             this.iconButton2.Text = "Add Product";
             this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton2.UseVisualStyleBackColor = false;
+            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
             // 
             // iconButton1
             // 
@@ -226,9 +230,10 @@
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.IconSize = 35;
             this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(1139, 6);
+            this.iconButton1.Location = new System.Drawing.Point(1281, 8);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(225, 55);
+            this.iconButton1.Size = new System.Drawing.Size(253, 69);
             this.iconButton1.TabIndex = 167;
             this.iconButton1.Text = "Add Supplier";
             this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -252,9 +257,10 @@
             this.btnedit.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnedit.IconSize = 35;
             this.btnedit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnedit.Location = new System.Drawing.Point(1033, 158);
+            this.btnedit.Location = new System.Drawing.Point(1162, 198);
+            this.btnedit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnedit.Name = "btnedit";
-            this.btnedit.Size = new System.Drawing.Size(151, 55);
+            this.btnedit.Size = new System.Drawing.Size(170, 69);
             this.btnedit.TabIndex = 166;
             this.btnedit.Text = "Edit";
             this.btnedit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -269,11 +275,12 @@
             this.dtpPurchaseDate.FillColor = System.Drawing.Color.White;
             this.dtpPurchaseDate.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtpPurchaseDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtpPurchaseDate.Location = new System.Drawing.Point(786, 626);
+            this.dtpPurchaseDate.Location = new System.Drawing.Point(884, 781);
+            this.dtpPurchaseDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtpPurchaseDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpPurchaseDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpPurchaseDate.Name = "dtpPurchaseDate";
-            this.dtpPurchaseDate.Size = new System.Drawing.Size(336, 36);
+            this.dtpPurchaseDate.Size = new System.Drawing.Size(378, 45);
             this.dtpPurchaseDate.TabIndex = 164;
             this.dtpPurchaseDate.Value = new System.DateTime(2025, 7, 4, 2, 11, 10, 2);
             // 
@@ -284,9 +291,9 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.label2.Location = new System.Drawing.Point(782, 587);
+            this.label2.Location = new System.Drawing.Point(880, 733);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 24);
+            this.label2.Size = new System.Drawing.Size(128, 29);
             this.label2.TabIndex = 163;
             this.label2.Text = "Invoice Date";
             // 
@@ -298,21 +305,21 @@
             this.cmbSupplierName.Items.AddRange(new object[] {
             "Walk-in",
             "Regular"});
-            this.cmbSupplierName.Location = new System.Drawing.Point(21, 622);
+            this.cmbSupplierName.Location = new System.Drawing.Point(24, 777);
             this.cmbSupplierName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbSupplierName.Name = "cmbSupplierName";
-            this.cmbSupplierName.Size = new System.Drawing.Size(287, 30);
+            this.cmbSupplierName.Size = new System.Drawing.Size(322, 34);
             this.cmbSupplierName.TabIndex = 162;
             this.cmbSupplierName.SelectedIndexChanged += new System.EventHandler(this.cmbSupplierName_SelectedIndexChanged);
             // 
             // txtQuantity
             // 
             this.txtQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtQuantity.Location = new System.Drawing.Point(494, 173);
+            this.txtQuantity.Location = new System.Drawing.Point(556, 216);
             this.txtQuantity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtQuantity.Multiline = true;
             this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(204, 51);
+            this.txtQuantity.Size = new System.Drawing.Size(229, 63);
             this.txtQuantity.TabIndex = 155;
             // 
             // btnadd
@@ -331,9 +338,10 @@
             this.btnadd.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnadd.IconSize = 35;
             this.btnadd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnadd.Location = new System.Drawing.Point(857, 158);
+            this.btnadd.Location = new System.Drawing.Point(964, 198);
+            this.btnadd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnadd.Name = "btnadd";
-            this.btnadd.Size = new System.Drawing.Size(151, 55);
+            this.btnadd.Size = new System.Drawing.Size(170, 69);
             this.btnadd.TabIndex = 108;
             this.btnadd.Text = "Add";
             this.btnadd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -357,9 +365,10 @@
             this.btndelete.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btndelete.IconSize = 35;
             this.btndelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btndelete.Location = new System.Drawing.Point(1213, 158);
+            this.btndelete.Location = new System.Drawing.Point(1365, 198);
+            this.btndelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btndelete.Name = "btndelete";
-            this.btndelete.Size = new System.Drawing.Size(151, 54);
+            this.btndelete.Size = new System.Drawing.Size(170, 68);
             this.btndelete.TabIndex = 109;
             this.btndelete.Text = "Delete";
             this.btndelete.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -373,8 +382,9 @@
             this.panel2.Controls.Add(this.toplbl);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1407, 71);
+            this.panel2.Size = new System.Drawing.Size(1583, 89);
             this.panel2.TabIndex = 17;
             // 
             // toplbl
@@ -383,20 +393,21 @@
             this.toplbl.AutoSize = true;
             this.toplbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toplbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.toplbl.Location = new System.Drawing.Point(554, 18);
+            this.toplbl.Location = new System.Drawing.Point(623, 22);
             this.toplbl.Name = "toplbl";
-            this.toplbl.Size = new System.Drawing.Size(284, 38);
+            this.toplbl.Size = new System.Drawing.Size(342, 46);
             this.toplbl.TabIndex = 6;
             this.toplbl.Text = "Purchase Invoice";
             this.toplbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // PurchaseInvoice
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1407, 834);
+            this.ClientSize = new System.Drawing.Size(1583, 1042);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PurchaseInvoice";
             this.Text = "PurchaseInvoice";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PurchaseInvoice_FormClosing);
