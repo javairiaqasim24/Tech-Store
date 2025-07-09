@@ -153,11 +153,13 @@
     <Compile Include="BL\BL\InventoryBl.cs" />
     <Compile Include="BL\BL\InventorylogBl.cs" />
     <Compile Include="BL\BL\SbilldetailsBl.cs" />
+    <Compile Include="BL\BL\ServiceInvoiceBLLcs.cs" />
     <Compile Include="BL\BL\SreturnBl.cs" />
     <Compile Include="BL\Models\Batches\Batchdetails.cs" />
     <Compile Include="BL\Models\Batches\Batches.cs" />
     <Compile Include="BL\Models\Inventory.cs" />
     <Compile Include="BL\Models\inventorylog.cs" />
+    <Compile Include="BL\Models\ServicesInvo.cs" />
     <Compile Include="BL\Models\Spricerecord.cs" />
     <Compile Include="BL\Models\Supplierpayment.cs" />
     <Compile Include="BL\Models\TemporaryInvoice.cs" />
@@ -166,6 +168,7 @@
     <Compile Include="DL\BillingRecordsOverviewDL.cs" />
     <Compile Include="DL\CustomerBill_SpecificProductsDL.cs" />
     <Compile Include="DL\CustomerReturnDL.cs" />
+    <Compile Include="DL\ServiceDL.cs" />
     <Compile Include="Interfaces\DLInterfaces\ISbilldetailsDl.cs" />
     <Compile Include="DL\SbilldetailsDl.cs" />
     <Compile Include="Interfaces\BLInterfaces\IsreturnBl.cs" />
@@ -358,6 +361,12 @@
     <Compile Include="UI\Sbilldetailform.Designer.cs">
       <DependentUpon>Sbilldetailform.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Services.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Services.Designer.cs">
+      <DependentUpon>Services.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Supplierbillsform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -377,9 +386,17 @@
       <DependentUpon>Supplier_eturnsform.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\UIHelper.cs" />
-    <None Include="Resources\logo.jpg" />
+    <Content Include="Resources\logo.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\mns.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="UI\Sbilldetailform.resx">
       <DependentUpon>Sbilldetailform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Services.resx">
+      <DependentUpon>Services.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Supplierbillsform.resx">
       <DependentUpon>Supplierbillsform.cs</DependentUpon>
@@ -387,8 +404,12 @@
     <EmbeddedResource Include="UI\Supplier_eturnsform.resx">
       <DependentUpon>Supplier_eturnsform.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Resources\logoo.png" />
-    <None Include="Resources\logo %282%291.png" />
+    <Content Include="Resources\logoo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\logo %282%291.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\logo %282%29.png" />
     <EmbeddedResource Include="UI\AddbatchDetailsform.resx">
       <DependentUpon>AddbatchDetailsform.cs</DependentUpon>

@@ -59,7 +59,7 @@ namespace TechStore.DL
                         {
                             row.RelativeItem(1).Column(col =>
                             {
-                                col.Item().Image("logo.png", ImageScaling.FitWidth);
+                                col.Item().Image("mns.png", ImageScaling.FitWidth);
                             });
 
                             row.RelativeItem(3).Column(col =>
@@ -125,7 +125,7 @@ namespace TechStore.DL
                         page.Footer().AlignCenter().Column(col =>
                         {
                             col.Item().LineHorizontal(1).LineColor(Colors.Grey.Lighten2);
-                            col.Item().Text("Thank you for your business!").FontSize(12).Italic();
+                            col.Item().Text("Developed By : Tech Store ").FontSize(12).Italic();
                         });
                     });
                 });
@@ -172,12 +172,27 @@ namespace TechStore.DL
             float pageWidth = e.PageBounds.Width - 100;
 
             // Logo (optional)
-            try
-            {
-                System.Drawing.Image logo = System.Drawing.Image.FromFile("logoo.png");
-                e.Graphics.DrawImage(logo, x, y, 100, 50);
-            }
-            catch { }
+            
+                try
+                {
+                    string imagePath = "Resources/mns.png";
+                    if (!File.Exists(imagePath))
+                    {
+                        MessageBox.Show("Logo not found at: " + Path.GetFullPath(imagePath));
+                    }
+                    else
+                    {
+                    System.Drawing.Image logo = System.Drawing.Image.FromFile(imagePath);
+
+                    e.Graphics.DrawImage(logo, 50, 50, 200, 100);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Image load error: " + ex.Message);
+                }
+            
+           
 
             // Company Info
             e.Graphics.DrawString("Tech Store", titleFont, brush, x + 400, y);
@@ -252,7 +267,7 @@ namespace TechStore.DL
             // --- Footer at bottom ---
             float footerY = e.PageBounds.Height - 60;
             e.Graphics.DrawLine(Pens.Gray, x, footerY, x + pageWidth, footerY);
-            e.Graphics.DrawString("Thank you for your business!", new Font("Arial", 10, FontStyle.Italic), brush, x + pageWidth / 2 - 80, footerY + 5);
+            e.Graphics.DrawString("Developed By : Tech Store ", new Font("Italic", 10, FontStyle.Italic), brush, x + pageWidth / 2 - 80, footerY + 5);
 
 
         }
