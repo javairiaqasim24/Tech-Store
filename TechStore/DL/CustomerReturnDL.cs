@@ -52,6 +52,33 @@ namespace TechStore.DL
             }
         }
 
+        public static int GetBillDetailIdForNonSerial(int billId, int productId)
+        {
+            using (var conn = DatabaseHelper.Instance.GetConnection())
+            {
+                conn.Open();
+                string query = @"
+            SELECT cbd.Bill_detail_ID
+            FROM customer_bill_details cbd
+            WHERE cbd.Bill_id = @billId AND cbd.product_id = @pid
+              AND NOT EXISTS (
+                  SELECT 1 FROM bill_detail_serials s
+                  WHERE s.bill_detail_id = cbd.Bill_detail_ID
+              )
+            LIMIT 1;";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@billId", billId);
+                    cmd.Parameters.AddWithValue("@pid", productId);
+
+                    object result = cmd.ExecuteScalar();
+                    return result != null ? Convert.ToInt32(result)
+                                          : throw new Exception("Bill detail not found for non-serial product.");
+                }
+            }
+        }
+
 
 
         public static void SaveReturnToDatabase(

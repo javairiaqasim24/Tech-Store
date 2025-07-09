@@ -339,6 +339,12 @@
     <Compile Include="UI\Loadingform.Designer.cs">
       <DependentUpon>Loadingform.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\orders.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -383,6 +389,9 @@
     </Compile>
     <Compile Include="UI\UIHelper.cs" />
     <None Include="Resources\logo.jpg" />
+    <EmbeddedResource Include="UI\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Sbilldetailform.resx">
       <DependentUpon>Sbilldetailform.cs</DependentUpon>
     </EmbeddedResource>
