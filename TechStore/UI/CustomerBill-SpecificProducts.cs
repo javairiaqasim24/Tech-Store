@@ -246,7 +246,7 @@ namespace TechStore
             if (MessageBox.Show("Are you sure you want to logout?", "Confirm Logout",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                var login = Program.ServiceProvider.GetRequiredService<Login>();
+                //var login = Program.ServiceProvider.GetRequiredService<Login>();
                 this.Hide();
                 //login.Show();
             }
