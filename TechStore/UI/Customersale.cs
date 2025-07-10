@@ -38,7 +38,7 @@ namespace TechStore.UI
             // Initialize product search results grid
             dgvProductSearch = new DataGridView
             {
-                Location = new Point(txtproductname.Left, txtproductname.Bottom + 5),
+                Location = new Point(txtproductname.Left, txtproductname.Bottom + 200),
                 Size = new Size(dataGridView1.Width, 250), // Increased height for better visibility
                 Visible = false,
                 ReadOnly = true,
