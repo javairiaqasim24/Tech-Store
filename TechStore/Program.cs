@@ -14,6 +14,7 @@ using TechStore;
 using TechStore.BL;
 using TechStore.BL.Models;
 using QuestPDF.Infrastructure;
+using System.Web.UI.WebControls;
 namespace TechStore
 {
     internal static class Program
@@ -62,7 +63,7 @@ var services = new ServiceCollection();
             services.AddScoped<IsreturnBl, SreturnBl>();
             services.AddScoped<IInventorylogBl, InventorylogBl>();
             services.AddScoped<IsbilldetailsBl,SbilldetailsBl>();
-            services.AddScoped<Idashboard,Dashboardservice>();
+            //services.AddScoped<Idashboard,Dashboardservice>();
 
             services.AddTransient<HomeContentform>();
             services.AddTransient<Dashboard>();
@@ -91,7 +92,7 @@ var services = new ServiceCollection();
             services.AddTransient<Supplierbillsform>();
             services.AddTransient<Inventoryform>();
             services.AddTransient<Supplier_eturnsform>();
-            services.AddTransient<DashboardDl>();
+            //services.AddTransient<DashboardDl>();
             services.AddTransient<Login>();
 
         }
