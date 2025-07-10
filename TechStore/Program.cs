@@ -63,7 +63,7 @@ var services = new ServiceCollection();
             services.AddScoped<IsreturnBl, SreturnBl>();
             services.AddScoped<IInventorylogBl, InventorylogBl>();
             services.AddScoped<IsbilldetailsBl,SbilldetailsBl>();
-            //services.AddScoped<Idashboard,Dashboardservice>();
+            services.AddScoped<Idashboard, Dashboardservice>();
 
             services.AddTransient<HomeContentform>();
             services.AddTransient<Dashboard>();
@@ -92,8 +92,8 @@ var services = new ServiceCollection();
             services.AddTransient<Supplierbillsform>();
             services.AddTransient<Inventoryform>();
             services.AddTransient<Supplier_eturnsform>();
-            //services.AddTransient<DashboardDl>();
-            services.AddTransient<Login>();
+            services.AddTransient<DashboardDl>();
+            services.AddTransient<TechStore.UI.Login>();
 
         }
     }

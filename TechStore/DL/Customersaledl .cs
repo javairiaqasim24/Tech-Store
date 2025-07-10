@@ -69,6 +69,34 @@ namespace TechStore.DL
             }
         }
 
+        public static int? GetQuantityInStock(string productName)
+        {
+            using (var conn = DatabaseHelper.Instance.GetConnection())
+            {
+                string query = @"
+            SELECT i.quantity_in_stock
+            FROM inventory i
+            JOIN products p ON i.product_id = p.product_id
+            WHERE p.name = @productName
+            LIMIT 1;
+        ";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@productName", productName);
+
+                    conn.Open();
+                    object result = cmd.ExecuteScalar();
+                    conn.Close();
+
+                    return result != null && result != DBNull.Value
+                        ? Convert.ToInt32(result)
+                        : (int?)null; // Return null if not found
+                }
+            }
+        }
+
+
         public List<Customersale> SearchProductsByName(string name)
         {
             try
@@ -203,7 +231,46 @@ namespace TechStore.DL
                     return Convert.ToInt32(idCmd.ExecuteScalar());
                 }
             }
-        }        
+        }
+
+        public static bool IsProductSold(string sku)
+        {
+            using (var conn = DatabaseHelper.Instance.GetConnection())
+            {
+                string query = @"
+            SELECT status 
+            FROM productsserial 
+            WHERE sku = @sku
+            LIMIT 1;
+        ";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@sku", sku);
+                    conn.Open();
+
+                    object result = cmd.ExecuteScalar();
+                    conn.Close();
+
+                    if (result == null)
+                    {
+                        MessageBox.Show("Serial number not found.");
+                        return true; // Treat as blocked
+                    }
+
+                    string status = result.ToString();
+
+                    if (status == "sold")
+                    {
+                        //MessageBox.Show("Product is already sold.");
+                        return true; // Block operation
+                    }
+
+                    return false; // Safe to proceed
+                }
+            }
+        }
+
 
         public int SaveCustomerBill(int customerId, DateTime saleDate, decimal total, decimal paid, DataGridView cart)
         {
