@@ -49,7 +49,7 @@ var services = new ServiceCollection();
             services.AddScoped<IInventoryDl,InventoryDl>();
             services.AddScoped<ISreturnsDl,SreturnsDl>();
             services.AddScoped<ISbilldetailsDl,SbilldetailsDl>();
-
+            services.AddScoped<IFinancialReportDL, FinancialReportDL>();
 
             services.AddScoped<IproductBl, ProductBL>();
             services.AddScoped<ISupplierBL, SupplierBl>();
@@ -64,6 +64,7 @@ var services = new ServiceCollection();
             services.AddScoped<IInventorylogBl, InventorylogBl>();
             services.AddScoped<IsbilldetailsBl,SbilldetailsBl>();
             services.AddScoped<Idashboard, Dashboardservice>();
+            services.AddScoped<IFinancialReportBL,FinancialReportBL>();
 
             services.AddTransient<HomeContentform>();
             services.AddTransient<Dashboard>();
@@ -93,7 +94,9 @@ var services = new ServiceCollection();
             services.AddTransient<Inventoryform>();
             services.AddTransient<Supplier_eturnsform>();
             services.AddTransient<DashboardDl>();
-            services.AddTransient<TechStore.UI.Login>();
+            services.AddTransient<UI .Login>();
+            services.AddTransient<reportform>();
+
 
         }
     }

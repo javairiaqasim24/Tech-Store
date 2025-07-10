@@ -18,13 +18,58 @@ namespace TechStore.DL
                 using (var conn = DatabaseHelper.Instance.GetConnection())
                 {
                     conn.Open();
-                    string query = "UPDATE inventory SET quantity_in_stock = @quantity, sale_price = @price WHERE inventory_id = @id;";
-                    using (var cmd = new MySqlCommand(query, conn))
+
+                    using (var transaction = conn.BeginTransaction())
                     {
-                        cmd.Parameters.AddWithValue("@quantity", i.Stock);
-                        cmd.Parameters.AddWithValue("@price", i.SalePrice);
-                        cmd.Parameters.AddWithValue("@id", i.InventoryId); // <- FIXED HERE
-                        cmd.ExecuteNonQuery();
+                        // Step 1: Get old stock and product_id
+                        int oldStock = 0;
+                        int productId = 0;
+
+                        string getQuery = "SELECT quantity_in_stock, product_id FROM inventory WHERE inventory_id = @id";
+                        using (var getCmd = new MySqlCommand(getQuery, conn, transaction))
+                        {
+                            getCmd.Parameters.AddWithValue("@id", i.InventoryId);
+                            using (var reader = getCmd.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    oldStock = Convert.ToInt32(reader["quantity_in_stock"]);
+                                    productId = Convert.ToInt32(reader["product_id"]);
+                                }
+                                else
+                                {
+                                    throw new Exception("Inventory record not found.");
+                                }
+                            }
+                        }
+
+                        int quantityChange = i.Stock - oldStock;
+
+                        // Step 2: Update inventory
+                        string updateQuery = "UPDATE inventory SET quantity_in_stock = @quantity, sale_price = @price WHERE inventory_id = @id";
+                        using (var updateCmd = new MySqlCommand(updateQuery, conn, transaction))
+                        {
+                            updateCmd.Parameters.AddWithValue("@quantity", i.Stock);
+                            updateCmd.Parameters.AddWithValue("@price", i.SalePrice);
+                            updateCmd.Parameters.AddWithValue("@id", i.InventoryId);
+                            updateCmd.ExecuteNonQuery();
+                        }
+
+                        // Step 3: Insert log (without inventory_id)
+                        string logQuery = @"INSERT INTO inventory_log 
+                    (product_id, change_type, quantity_change, log_date, remarks)
+                    VALUES (@productId, @changeType, @quantityChange, @logDate, @remarks)";
+                        using (var logCmd = new MySqlCommand(logQuery, conn, transaction))
+                        {
+                            logCmd.Parameters.AddWithValue("@productId", productId);
+                            logCmd.Parameters.AddWithValue("@changeType", "manual_adjustment");
+                            logCmd.Parameters.AddWithValue("@quantityChange", quantityChange);
+                            logCmd.Parameters.AddWithValue("@logDate", DateTime.Now);
+                            logCmd.Parameters.AddWithValue("@remarks", "Manual adjustment of inventory");
+                            logCmd.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
                         return true;
                     }
                 }
@@ -34,6 +79,7 @@ namespace TechStore.DL
                 throw new Exception("Error updating inventory: " + ex.Message, ex);
             }
         }
+
         public List<Inventory> GetInventoryByProductName()
         {
             var inventoryList = new List<Inventory>();
