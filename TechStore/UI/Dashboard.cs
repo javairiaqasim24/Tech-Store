@@ -423,6 +423,12 @@ namespace TechStore
 
         private void btnlogout_Click_1(object sender, EventArgs e)
         {
+            var f = Program.ServiceProvider.GetRequiredService<reportform>();
+            f.ShowDialog(this);
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
             Application.Exit();
         }
     }

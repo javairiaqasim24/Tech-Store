@@ -383,6 +383,5 @@ namespace TechStore.UI
 
             label10.Text = $"{greeting}, {name}";
         }
-
     }
 }
