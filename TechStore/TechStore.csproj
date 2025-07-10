@@ -150,6 +150,7 @@
     <Compile Include="BL\BL\CustomerBill_SpecificProductsBL.cs" />
     <Compile Include="BL\BL\CustomerBL.cs" />
     <Compile Include="BL\BL\CustomerSaleBL.cs" />
+    <Compile Include="BL\BL\Dashboardservice.cs" />
     <Compile Include="BL\BL\InventoryBl.cs" />
     <Compile Include="BL\BL\InventorylogBl.cs" />
     <Compile Include="BL\BL\SbilldetailsBl.cs" />
@@ -157,6 +158,8 @@
     <Compile Include="BL\BL\SreturnBl.cs" />
     <Compile Include="BL\Models\Batches\Batchdetails.cs" />
     <Compile Include="BL\Models\Batches\Batches.cs" />
+    <Compile Include="BL\Models\Customerrecord.cs" />
+    <Compile Include="BL\Models\DashboardModel.cs" />
     <Compile Include="BL\Models\Inventory.cs" />
     <Compile Include="BL\Models\inventorylog.cs" />
     <Compile Include="BL\Models\ServicesInvo.cs" />
@@ -164,10 +167,13 @@
     <Compile Include="BL\Models\Supplierpayment.cs" />
     <Compile Include="BL\Models\TemporaryInvoice.cs" />
     <Compile Include="BL\Models\Supplierreturn.cs" />
+    <Compile Include="BL\Models\Usersession.cs" />
     <Compile Include="DL\BatchFormPersistence.cs" />
     <Compile Include="DL\BillingRecordsOverviewDL.cs" />
     <Compile Include="DL\CustomerBill_SpecificProductsDL.cs" />
     <Compile Include="DL\CustomerReturnDL.cs" />
+    <Compile Include="DL\DashboardDl.cs" />
+    <Compile Include="DL\LoginDL.cs" />
     <Compile Include="DL\ServiceDL.cs" />
     <Compile Include="Interfaces\DLInterfaces\Idashboard.cs" />
     <Compile Include="Interfaces\DLInterfaces\ISbilldetailsDl.cs" />
@@ -338,6 +344,12 @@
     <Compile Include="UI\Loadingform.Designer.cs">
       <DependentUpon>Loadingform.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\orders.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -393,6 +405,9 @@
     <Content Include="Resources\mns.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="UI\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Sbilldetailform.resx">
       <DependentUpon>Sbilldetailform.cs</DependentUpon>
     </EmbeddedResource>

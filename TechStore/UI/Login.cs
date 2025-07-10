@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TechStore.BL.Models;
 using TechStore.DL;
 
 namespace TechStore.UI
@@ -31,7 +33,7 @@ namespace TechStore.UI
         private void btnlogin_Click(object sender, EventArgs e)
         {
             string username = txtname.Text.Trim();
-            string password = txtpassword.Text; // don't trim passwords
+            string password = txtpassword.Text;
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
@@ -41,24 +43,26 @@ namespace TechStore.UI
 
             try
             {
-                string role = LoginDL.ValidateUser(username, password);
+                bool isValid = LoginDL.ValidateUser(username, password);
 
-                if (role == null)
+                if (!isValid)
                 {
                     MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (role == "Admin")
-                {
-                    MessageBox.Show("Signed in as Admin", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    // TODO: Show main admin dashboard
-                }
-                else
-                {
-                    MessageBox.Show($"Signed in as {role}", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    // TODO: Show role-specific dashboard
-                }
+                // Use Usersession values
+                string role = Usersession.Role;
+                string name = Usersession.FullName;
+
+                MessageBox.Show($"Signed in as {role}", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                this.Hide();
+
+                // Route based on role
+                var dashboard = Program.ServiceProvider.GetRequiredService<Dashboard>();
+                dashboard.ShowDialog();
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -66,6 +70,9 @@ namespace TechStore.UI
             }
         }
 
+        private void Login_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }

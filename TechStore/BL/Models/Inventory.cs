@@ -28,6 +28,8 @@ namespace TechStore.BL.Models
 
             this.product = new Products(productId, productName,description);
         }
+
+      
     }
 
 }

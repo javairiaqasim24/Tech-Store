@@ -45,9 +45,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(509, 31);
+            this.label2.Location = new System.Drawing.Point(452, 25);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(288, 56);
+            this.label2.Size = new System.Drawing.Size(238, 46);
             this.label2.TabIndex = 1;
             this.label2.Text = "Shop Name";
             // 
@@ -57,35 +57,38 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1293, 130);
+            this.panel1.Size = new System.Drawing.Size(1149, 104);
             this.panel1.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(161, 71);
+            this.label1.Location = new System.Drawing.Point(143, 57);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(169, 29);
+            this.label1.Size = new System.Drawing.Size(150, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Enter usrname";
+            this.label1.Text = "Enter username";
             // 
             // txtname
             // 
-            this.txtname.Location = new System.Drawing.Point(166, 103);
+            this.txtname.Location = new System.Drawing.Point(148, 82);
+            this.txtname.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtname.Multiline = true;
             this.txtname.Name = "txtname";
-            this.txtname.Size = new System.Drawing.Size(311, 72);
+            this.txtname.Size = new System.Drawing.Size(277, 58);
             this.txtname.TabIndex = 1;
             this.txtname.TextChanged += new System.EventHandler(this.txtname_TextChanged);
             // 
             // txtpassword
             // 
-            this.txtpassword.Location = new System.Drawing.Point(166, 256);
+            this.txtpassword.Location = new System.Drawing.Point(148, 205);
+            this.txtpassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtpassword.Multiline = true;
             this.txtpassword.Name = "txtpassword";
-            this.txtpassword.Size = new System.Drawing.Size(311, 72);
+            this.txtpassword.Size = new System.Drawing.Size(277, 58);
             this.txtpassword.TabIndex = 2;
             this.txtpassword.TextChanged += new System.EventHandler(this.txtpassword_TextChanged);
             // 
@@ -93,9 +96,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(161, 224);
+            this.label3.Location = new System.Drawing.Point(143, 179);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(169, 29);
+            this.label3.Size = new System.Drawing.Size(137, 25);
             this.label3.TabIndex = 3;
             this.label3.Text = "Enter pasword";
             // 
@@ -109,30 +112,40 @@
             this.panel2.Controls.Add(this.txtpassword);
             this.panel2.Controls.Add(this.txtname);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(357, 176);
+            this.panel2.Location = new System.Drawing.Point(317, 141);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(618, 584);
+            this.panel2.Size = new System.Drawing.Size(549, 467);
             this.panel2.TabIndex = 3;
             // 
             // btnlogin
             // 
-            this.btnlogin.Location = new System.Drawing.Point(166, 395);
+            this.btnlogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
+            this.btnlogin.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
+            this.btnlogin.FlatAppearance.BorderSize = 4;
+            this.btnlogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnlogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnlogin.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnlogin.Location = new System.Drawing.Point(148, 316);
+            this.btnlogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnlogin.Name = "btnlogin";
-            this.btnlogin.Size = new System.Drawing.Size(311, 58);
+            this.btnlogin.Size = new System.Drawing.Size(276, 46);
             this.btnlogin.TabIndex = 4;
             this.btnlogin.Text = "Login";
-            this.btnlogin.UseVisualStyleBackColor = true;
+            this.btnlogin.UseVisualStyleBackColor = false;
             this.btnlogin.Click += new System.EventHandler(this.btnlogin_Click);
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1293, 772);
+            this.ClientSize = new System.Drawing.Size(1149, 618);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Login";
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
