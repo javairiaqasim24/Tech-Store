@@ -211,6 +211,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(200, 84);
             this.listBox1.TabIndex = 164;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // btnadd
             // 
@@ -337,7 +338,7 @@
             this.txtreturnqty.Multiline = true;
             this.txtreturnqty.Name = "txtreturnqty";
             this.txtreturnqty.Size = new System.Drawing.Size(187, 35);
-            this.txtreturnqty.TabIndex = 154;
+            this.txtreturnqty.TabIndex = 0;
             // 
             // label2
             // 
