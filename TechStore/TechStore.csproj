@@ -391,6 +391,12 @@
     <Compile Include="UI\Services.Designer.cs">
       <DependentUpon>Services.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\servicesform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\servicesform.Designer.cs">
+      <DependentUpon>servicesform.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Supplierbillsform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -427,6 +433,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Services.resx">
       <DependentUpon>Services.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\servicesform.resx">
+      <DependentUpon>servicesform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Supplierbillsform.resx">
       <DependentUpon>Supplierbillsform.cs</DependentUpon>
