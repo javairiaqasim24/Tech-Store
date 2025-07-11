@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web.UI.WebControls.WebParts;
@@ -17,6 +18,19 @@ namespace TechStore.DL
 {
     public class invoices
     {
+
+        public static Stream GetLogoImageStream()
+        {
+            var image = Properties.Resources.logo; // This is a System.Drawing.Image
+
+
+            var ms = new MemoryStream();
+            image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            ms.Position = 0; // Reset stream position
+            return ms;
+        }
+
+
         public static void CreateSaleInvoicePdf(DataGridView cart, string filePath, string customerName, DateTime saleDate, decimal totalAmount, decimal paidAmount, int billid)
         {
             QuestPDF.Settings.License = LicenseType.Community;
@@ -37,7 +51,7 @@ namespace TechStore.DL
                         {
                             row.RelativeItem(1).Column(col =>
                             {
-                                col.Item().Image("logo.jpg", ImageScaling.FitWidth);
+                                col.Item().Image(GetLogoImageStream(), ImageScaling.FitWidth);
                             });
 
                             row.RelativeItem(3).Column(col =>

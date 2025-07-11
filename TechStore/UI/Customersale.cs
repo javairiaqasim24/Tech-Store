@@ -23,6 +23,7 @@ namespace TechStore.UI
         private DataGridView dgvProductSearch;
         private DataGridView dgvCustomerSearch = new DataGridView();
         private int _lastBillId;
+        private string sku;
 
         public Customersale(ICustomerSaleBL saleBl)
         {
@@ -130,6 +131,18 @@ namespace TechStore.UI
                 ClearProductFields();
                 return;
             }
+            sku = txtserial.Text;
+            if (!Customersaledl.IsProductSold(sku))
+            {
+                // Proceed with operation (e.g., return, resell, etc.)
+            }
+            else
+            {
+                MessageBox.Show("Product already sold.");
+                return;
+            }
+
+
 
             try
             {
@@ -156,7 +169,7 @@ namespace TechStore.UI
 
         private void txtproductname_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtproductname.Text))
+            if (string.IsNullOrWhiteSpace(txtproductname.Text) )
             {
                 dgvProductSearch.Visible = false;
                 return;
@@ -407,24 +420,6 @@ namespace TechStore.UI
         }
 
 
-        private bool ValidateSaleProduct()
-        {
-            if (string.IsNullOrWhiteSpace(txtproductname.Text))
-            {
-                ShowMessage("Product Required", "Please select a product first");
-                return false;
-            }
-
-            if (!int.TryParse(quantity.Text, out int qty) || qty <= 0)
-            {
-                ShowMessage("Invalid Quantity", "Please enter a valid quantity");
-                quantity.Focus();
-                return false;
-            }
-
-            return true;
-        }
-
         //private bool ValidateSaleProduct()
         //{
         //    if (string.IsNullOrWhiteSpace(txtproductname.Text))
@@ -440,30 +435,49 @@ namespace TechStore.UI
         //        return false;
         //    }
 
-        //    // Get available stock
-        //    int availableStock = 0;
-        //    if (!string.IsNullOrWhiteSpace(txtserial.Text))
-        //    {
-        //        // For serialized products, we assume 1 per serial (since they're unique)
-        //        availableStock = 1;
-        //    }
-        //    else
-        //    {
-        //        // For non-serialized products, get stock from database
-        //        var product = _saleBl.GetProductBySku(txtproductname.Text); // Or however you get the product
-        //        availableStock = product?.quantity ?? 0;
-        //    }
-
-        //    // Check if requested quantity exceeds available stock
-        //    if (qty > availableStock)
-        //    {
-        //        ShowMessage("Insufficient Stock", $"Only {availableStock} items available in stock");
-        //        quantity.Focus();
-        //        return false;
-        //    }
-
         //    return true;
         //}
+
+        private bool ValidateSaleProduct()
+        {
+            if (string.IsNullOrWhiteSpace(txtproductname.Text))
+            {
+                ShowMessage("Product Required", "Please select a product first");
+                return false;
+            }
+
+            if (!int.TryParse(quantity.Text, out int qty) || qty <= 0)
+            {
+                ShowMessage("Invalid Quantity", "Please enter a valid quantity");
+                quantity.Focus();
+                return false;
+            }
+
+            // Get available stock
+            int? availableStock = 0;
+            if (!string.IsNullOrWhiteSpace(txtserial.Text))
+            {
+                // For serialized products, we assume 1 per serial (since they're unique)
+                availableStock = 1;
+            }
+            else
+            {
+                // For non-serialized products, get stock from database
+                //var product = _saleBl.GetProductBySku(txtproductname.Text); // Or however you get the product
+                //availableStock = product?.quantity ?? 0;
+                availableStock = Customersaledl.GetQuantityInStock(txtproductname.Text);
+            }
+
+            // Check if requested quantity exceeds available stock
+            if (qty > availableStock)
+            {
+                ShowMessage("Insufficient Stock", $"Only {availableStock} items available in stock");
+                quantity.Focus();
+                return false;
+            }
+
+            return true;
+        }
 
 
 
@@ -544,7 +558,7 @@ namespace TechStore.UI
 
         private void quantity_TextChanged(object sender, EventArgs e)
         {
-
+            CalculateNetPrice();
         }
 
         private void priceafterdisc_TextChanged(object sender, EventArgs e)
@@ -559,6 +573,15 @@ namespace TechStore.UI
             if (string.IsNullOrWhiteSpace(manualSerial))
             {
                 ShowMessage("Input Required", "Please enter a serial number.");
+                return;
+            }
+            if (!Customersaledl.IsProductSold(manualSerial))
+            {
+                // Proceed with operation (e.g., return, resell, etc.)
+            }
+            else
+            {
+                MessageBox.Show("Product already sold.");
                 return;
             }
 
@@ -677,47 +700,50 @@ namespace TechStore.UI
                     ShowMessage("Cart Empty", "Please add at least one product.");
                     return;
                 }
-
-
-            // Now proceed to save bill + items
-            _lastBillId = _saleBl.SaveCustomerBill(
-                    customerId,
-                    DateTime.Now,
-                    Convert.ToDecimal(finalpricetxt.Text),
-                    Convert.ToDecimal(txtfinalpaid.Text),
-                    dataGridView1 // Send whole cart
-                );
-
-                if (_lastBillId > 0)
-                {
-                        ShowMessage("Success", "Sale recorded successfully!");
-                    // Clear form here
-                     // 🔥 Check PDF print type
-                    if (onlypdf.Checked)
+                 // Clear form here
+                 // Now proceed to save bill + items
+                 _lastBillId = _saleBl.SaveCustomerBill(
+                 customerId,
+                DateTime.Now,
+                 Convert.ToDecimal(finalpricetxt.Text),
+                 Convert.ToDecimal(txtfinalpaid.Text),
+                 dataGridView1 // Send whole cart
+                 );
+            if (_lastBillId > 0)
+            {
+                // 🔥 Check PDF print type
+                if (onlypdf.Checked)
                     {
                         SavePdfInvoice();  // ← Generate and save PDF only
+                        
                     }
+
                     else if (A4printer.Checked)
                     {
                         decimal total = long.Parse(finalpricetxt.Text);
                         decimal paid = long.Parse(txtfinalpaid.Text);
-                        invoices.PrintInvoiceDirectly(dataGridView1, customerName, DateTime.Now, total, paid, _lastBillId);
+                        invoices.PrintInvoiceDirectly(dataGridView1, customerName, DateTime.Now, total, paid, _lastBillId);                       
                     }
+
                     else if (thermalprint.Checked)
                     {
                         decimal total = long.Parse(finalpricetxt.Text);
                         decimal paid = long.Parse(txtfinalpaid.Text);
                         //invoices.PrintThermalReceipt(dataGridView1, customerName, total, paid, _lastBillId);
                         SavehthermalPdfInvoice();
-                    }
-                clearallfields();
+                         }
+
+                    clearallfields();
+
+                
+                MessageBox.Show("Bill Printed");
                 }
 
                 else
                 {
                     ShowMessage("Failure", "Error saving sale.");
                 }
-        }
+        }      
 
         private void SavePdfInvoice()
         {
