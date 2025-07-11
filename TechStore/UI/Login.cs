@@ -18,6 +18,9 @@ namespace TechStore.UI
         public Login()
         {
             InitializeComponent();
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Font = SystemFonts.DefaultFont; // ✅ ensures scaling matches
         }
 
         private void txtname_TextChanged(object sender, EventArgs e)
@@ -37,42 +40,26 @@ namespace TechStore.UI
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("Please enter both username and password.", "Missing Fields", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please enter both username and password.");
                 return;
             }
 
-            try
+            if (!LoginDL.ValidateUser(username, password))
             {
-                bool isValid = LoginDL.ValidateUser(username, password);
-
-                if (!isValid)
-                {
-                    MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Use Usersession values
-                string role = Usersession.Role;
-                string name = Usersession.FullName;
-
-                MessageBox.Show($"Signed in as {role}", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                this.Hide();
-
-                // Route based on role
-                var dashboard = Program.ServiceProvider.GetRequiredService<Dashboard>();
-                dashboard.ShowDialog();
-                this.Close();
+                MessageBox.Show("Invalid credentials.");
+                return;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Login failed due to an error:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+            this.DialogResult = DialogResult.OK;
+            this.Close(); // Closes the modal and triggers Application.Run for Dashboard
         }
+
 
         private void Login_Load(object sender, EventArgs e)
         {
 
         }
     }
+  
+
 }

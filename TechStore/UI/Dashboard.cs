@@ -26,7 +26,10 @@ namespace TechStore
             InitializeComponent();
             Instance = this;
             this.Activated += Dashboard_Activated;
-            panel10.Height = 1500;
+           panel10.Dock = DockStyle.Fill;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+
 
         }
 
@@ -46,7 +49,7 @@ namespace TechStore
             if (activeForm != null)
             {
                 await FadeOutFormAsync(activeForm);
-                panelinventory.Controls.Remove(activeForm);
+                panel10.Controls.Remove(activeForm); // <- fix: match the one used below
                 activeForm.Dispose();
             }
 
@@ -55,11 +58,12 @@ namespace TechStore
             newForm.FormBorderStyle = FormBorderStyle.None;
             newForm.Dock = DockStyle.Fill;
             newForm.Opacity = 0;
-            panel10.Controls.Add(newForm);
+            panel10.Controls.Add(newForm); // Use same panel here
             newForm.Show();
 
             await FadeInFormAsync(newForm);
         }
+
 
 
         private async Task FadeOutFormAsync(Form form)
@@ -150,6 +154,9 @@ namespace TechStore
             activebutton(btndashboard, Color.FromArgb(0, 126, 249));
             var f = Program.ServiceProvider.GetRequiredService<HomeContentform>();
             LoadFormIntoPanel(f);
+            this.WindowState = FormWindowState.Maximized;
+            this.PerformLayout();
+            this.Refresh();
 
         }
         private void activebutton(object senderbtn, System.Drawing.Color color)
