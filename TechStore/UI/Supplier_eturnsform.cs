@@ -245,29 +245,31 @@ namespace TechStore.UI
                 return;
             }
 
-            for (int i = 0; i < requiredQuantity; i++)
-            {
-                listBox1.Items.Add("No-SKU | " + txtproduct.Text);
+            // Add only one entry with total quantity
+            listBox1.Items.Add($"No-SKU | {txtproduct.Text} | Qty: {requiredQuantity}");
 
-                var returnObj = new Supplierreturn(
-                    bill_detail_id: selectedBillDetailId,
-                    return_date: dateTimePicker1.Value,
-                    action_taken: actionTaken,
-                    sku: null,
-                    name: txtproduct.Text,
-                    description: txtdescription.Text,
-                    amount: 0,
-                    quantity: 1,
-                    id: selectedProductId
-                );
+            var returnObj = new Supplierreturn(
+                bill_detail_id: selectedBillDetailId,
+                return_date: dateTimePicker1.Value,
+                action_taken: actionTaken,
+                sku: null,
+                name: txtproduct.Text,
+                description: txtdescription.Text,
+                amount: 0,
+                quantity: requiredQuantity,
+                id: selectedProductId
+            );
 
-                supplierReturnList.Add(returnObj);
-            }
-
+            supplierReturnList.Add(returnObj);
             scannedCount = requiredQuantity;
+
             txtreturnedamount.Enabled = true;
             btnsave1.Enabled = true;
+            btnadd.Enabled = false;
+            btnSkip.Enabled = false;
+            txtscamserial.Enabled = false;
         }
+
 
         private void btnsave1_Click(object sender, EventArgs e)
         {

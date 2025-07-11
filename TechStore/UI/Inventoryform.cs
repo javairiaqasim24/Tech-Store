@@ -32,7 +32,7 @@ namespace TechStore.UI
         {
             var list = ibl.getinventory();
             dataGridView2.Columns.Clear();
-            dataGridView2.DataSource = list;
+            dataGridView2.DataSource = list.Select(e => new { e.ProductName, e.description, e.SalePrice, e.Stock, e.InventoryId, e.ProductId }).ToList();
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView2.Columns["ProductId"].Visible = false;
             dataGridView2.Columns["inventoryId"].Visible = false;
