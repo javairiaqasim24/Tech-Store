@@ -41,6 +41,7 @@
             this.deliverydate = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.combocustomer = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -214,11 +215,23 @@
             this.label5.Text = "Date of delivery";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // combocustomer
+            // 
+            this.combocustomer.FormattingEnabled = true;
+            this.combocustomer.Items.AddRange(new object[] {
+            "Walk-in",
+            "Regular"});
+            this.combocustomer.Location = new System.Drawing.Point(12, 135);
+            this.combocustomer.Name = "combocustomer";
+            this.combocustomer.Size = new System.Drawing.Size(147, 28);
+            this.combocustomer.TabIndex = 168;
+            // 
             // servicesform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 811);
+            this.Controls.Add(this.combocustomer);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.deliverydate);
@@ -255,5 +268,6 @@
         private System.Windows.Forms.DateTimePicker deliverydate;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox combocustomer;
     }
 }

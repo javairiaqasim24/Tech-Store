@@ -39,8 +39,7 @@ namespace TechStore.UI
             //    return;
             //}
             string keyword = txtcustname.Text.Trim();
-            //string type = combocustomer.SelectedItem?.ToString();
-            string type = "Walk-in";
+            string type = combocustomer.SelectedItem?.ToString();
 
             if (string.IsNullOrWhiteSpace(keyword) || string.IsNullOrWhiteSpace(type))
             {
@@ -111,32 +110,93 @@ namespace TechStore.UI
         }
         private void SavehthermalPdfInvoice()
         {
-            using (SaveFileDialog saveDialog = new SaveFileDialog())
+            string customerName = txtcustname.Text.Trim();
+            string item = txtnameofitem.Text.Trim();
+            string desc = txtdescp.Text.Trim();
+            DateTime recDate = recievingdate.Value;
+            DateTime delivDate = deliverydate.Value;
+
+            int? customerId = servicesDL.GetCustomerIdByName(customerName);
+            if (customerId == null)
             {
-                saveDialog.Filter = "PDF files (*.pdf)|*.pdf";
-                saveDialog.Title = "Save PDF Invoice";
-                saveDialog.FileName = $"serviceInvoice_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
+                MessageBox.Show("Customer not found. Please select a valid customer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                if (saveDialog.ShowDialog() == DialogResult.OK)
+            try
+            {
+                int serviceId = servicesinvoices.InsertServiceAndReturnId(customerId.Value, item, desc, recDate, delivDate);
+
+                using (SaveFileDialog saveDialog = new SaveFileDialog())
                 {
-                    try
-                    {
-                        //invoices.CreateThermalReceiptPdf(dataGridVie  w1, saveDialog.FileName, txtcustomer.Text.Trim(), Convert.ToDecimal(finalpricetxt.Text), Convert.ToDecimal(txtfinalpaid.Text));
-                        servicesinvoices.CreateServiceReceiptPdf(saveDialog.FileName, txtcustname.Text, txtnameofitem.Text, txtdescp.Text, recievingdate.Value, deliverydate.Value);
+                    saveDialog.Filter = "PDF files (*.pdf)|*.pdf";
+                    saveDialog.Title = "Save Service Receipt PDF";
+                    saveDialog.FileName = $"serviceReceipt_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
 
-                        MessageBox.Show("PDF saved successfully!", "PDF", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch (Exception ex)
+                    if (saveDialog.ShowDialog() == DialogResult.OK)
                     {
-                        MessageBox.Show("Error generating PDF:\n" + ex.Message, "PDF Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        servicesinvoices.CreateServiceReceiptPdf(
+                            saveDialog.FileName,
+                            customerName,
+                            item,
+                            desc,
+                            recDate,
+                            delivDate,
+                            serviceId // pass service ID as string
+                        );
+
+                        MessageBox.Show("Service saved and receipt generated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to save service entry:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void btnsave_Click(object sender, EventArgs e)
         {
+            SaveServiceData();
             SavehthermalPdfInvoice();
+            cleartextboxes();
         }
+
+        private void SaveServiceData()
+        {
+            string customerName = txtcustname.Text.Trim();
+            string item = txtnameofitem.Text.Trim();
+            string desc = txtdescp.Text.Trim();
+            DateTime recDate = recievingdate.Value;
+            DateTime delivDate = deliverydate.Value;
+
+            int? customerId = servicesDL.GetCustomerIdByName(customerName);
+            if (customerId == null)
+            {
+                MessageBox.Show("Customer not found. Please select a valid customer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            bool inserted = servicesDL.InsertService(customerId.Value, item, desc, recDate, delivDate);
+            if (inserted)
+            {
+                MessageBox.Show("Service entry saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Failed to save service entry.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cleartextboxes()
+        {
+            txtcustname.Text = "";
+            txtnameofitem.Text = "";
+            txtdescp.Text = "";
+
+
+        }
+
     }
 }

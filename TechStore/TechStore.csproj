@@ -177,6 +177,7 @@
     <Compile Include="DL\DashboardDl.cs" />
     <Compile Include="DL\LoginDL.cs" />
     <Compile Include="DL\ServiceDL.cs" />
+    <Compile Include="DL\servicesDL.cs" />
     <Compile Include="DL\servicesinvoices.cs" />
     <Compile Include="Interfaces\BLInterfaces\IFinancialReportBL.cs" />
     <Compile Include="Interfaces\DLInterfaces\FinancialReportDL .cs" />
