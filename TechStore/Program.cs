@@ -31,7 +31,7 @@ var services = new ServiceCollection();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var mainForm = ServiceProvider.GetRequiredService <Dashboard>();
+            var mainForm = ServiceProvider.GetRequiredService <servicesform>();
 
             Application.Run(mainForm);
         }
@@ -96,6 +96,7 @@ var services = new ServiceCollection();
             services.AddTransient<DashboardDl>();
             services.AddTransient<UI .Login>();
             services.AddTransient<reportform>();
+            services.AddTransient<servicesform>();
 
 
         }
