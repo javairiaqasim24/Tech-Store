@@ -29,6 +29,8 @@ namespace TechStore
             var services = new ServiceCollection();
             configureServices(services);
             ServiceProvider = services.BuildServiceProvider();
+            var mainForm = ServiceProvider.GetRequiredService <servicesform>();
+
 
             // Show login first (Modal)
             var login = ServiceProvider.GetRequiredService<UI.Login>();
@@ -106,6 +108,7 @@ namespace TechStore
             services.AddTransient<UI .Login>();
             services.AddTransient<reportform>();
             services.AddTransient<logins>();
+            services.AddTransient<servicesform>();
 
 
         }
