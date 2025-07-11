@@ -27,6 +27,7 @@ namespace TechStore.UI
             this.ibl = ibl;
             panelreturn.Visible = false;
             UIHelper.StyleGridView(dataGridView1);
+            listBox1.DoubleClick += txtserailnumber_DoubleClick;
 
             txtreturnedamount.Enabled = false;
             btnsave1.Enabled = false;
@@ -146,7 +147,7 @@ namespace TechStore.UI
             listBox1.Items.Clear();
             txtscamserial.Enabled = true;
             btnadd.Enabled = true;
-            btnSkip.Enabled = !isSerialized;
+            btnSkip.Enabled = true;
             txtreturnqty.Enabled = false;
         }
 
@@ -232,22 +233,35 @@ namespace TechStore.UI
 
         private void btnSkip_Click(object sender, EventArgs e)
         {
-            if (isSerialized)
-            {
-                MessageBox.Show("You cannot skip for serialized products.");
-                return;
-            }
-
             string actionTaken = cbActionTaken.SelectedItem?.ToString();
+
             if (string.IsNullOrWhiteSpace(actionTaken))
             {
                 MessageBox.Show("Please select an action.");
                 return;
             }
 
-            // Add only one entry with total quantity
-            listBox1.Items.Add($"No-SKU | {txtproduct.Text} | Qty: {requiredQuantity}");
+            if (requiredQuantity <= 0)
+            {
+                MessageBox.Show("Please confirm return quantity first.");
+                return;
+            }
 
+            // Confirm if skipping SKUs for serialized product
+            if (isSerialized)
+            {
+                var result = MessageBox.Show(
+                    "This product has serial numbers. Are you sure you want to skip scanning and continue without them?",
+                    "Skip Serial Numbers?",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (result != DialogResult.Yes)
+                    return;
+            }
+
+            // Add only one record with total quantity
             var returnObj = new Supplierreturn(
                 bill_detail_id: selectedBillDetailId,
                 return_date: dateTimePicker1.Value,
@@ -260,15 +274,23 @@ namespace TechStore.UI
                 id: selectedProductId
             );
 
+            supplierReturnList.Clear(); // Clear previous items if any
             supplierReturnList.Add(returnObj);
-            scannedCount = requiredQuantity;
 
+            listBox1.Items.Clear();
+            listBox1.Items.Add($"No-SKU | {txtproduct.Text} | Qty: {requiredQuantity}");
+
+            scannedCount = requiredQuantity;
             txtreturnedamount.Enabled = true;
             btnsave1.Enabled = true;
+
+            // Disable further input
             btnadd.Enabled = false;
             btnSkip.Enabled = false;
             txtscamserial.Enabled = false;
+            txtreturnqty.Enabled = false;
         }
+
 
 
         private void btnsave1_Click(object sender, EventArgs e)
@@ -337,6 +359,19 @@ namespace TechStore.UI
         private void btncancle1_Click(object sender, EventArgs e)
         {
             panelreturn.Visible=false;
+        }
+        private void txtserailnumber_DoubleClick(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItem != null)
+            {
+                string selected = listBox1.SelectedItem.ToString();
+                txtscamserial.Text = selected;
+                listBox1.Items.Remove(selected); // Remove so they can re-add after editing
+            }
+        }
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -20,6 +20,8 @@ namespace TechStore.DL
                     conn.Open();
                     using (var tran = conn.BeginTransaction())
                     {
+                        Dictionary<int, decimal> refundTotals = new Dictionary<int, decimal>();
+
                         foreach (var sr in returns)
                         {
                             string insertQuery = @"
@@ -41,13 +43,39 @@ namespace TechStore.DL
 
                             if (!string.IsNullOrEmpty(sr.sku))
                             {
-                                // ❌ Previously was update; now delete from productsserial
-                                string deleteQuery = "update  productsserial  set status='returned' WHERE sku = @sku;";
-                                using (var cmdDelete = new MySqlCommand(deleteQuery, conn, tran))
+                                string updateStatus = "UPDATE productsserial SET status='returned' WHERE sku = @sku;";
+                                using (var cmdDelete = new MySqlCommand(updateStatus, conn, tran))
                                 {
                                     cmdDelete.Parameters.AddWithValue("@sku", sr.sku);
                                     cmdDelete.ExecuteNonQuery();
                                 }
+                            }
+                            if (sr.action_taken.ToLower() == "refunded")
+                            {
+                                if (!refundTotals.ContainsKey(sr.bill_detail_id))
+                                    refundTotals[sr.bill_detail_id] = 0;
+
+                                refundTotals[sr.bill_detail_id] += sr.amount;
+                            }
+                        }
+
+                        // Now update supplier_bills total_price
+                        foreach (var kvp in refundTotals)
+                        {
+                            int billDetailId = kvp.Key;
+                            decimal refundAmount = kvp.Value;
+
+                            string updateBillQuery = @"
+                        UPDATE supplierbills sb
+                        JOIN supplier_bill_details bd ON sb.supplier_bill_id = bd.supplier_bill_id
+                        SET sb.total_price = sb.total_price - @refund
+                        WHERE bd.s_bill_detail_id = @billDetailId;";
+
+                            using (var cmd = new MySqlCommand(updateBillQuery, conn, tran))
+                            {
+                                cmd.Parameters.AddWithValue("@refund", refundAmount);
+                                cmd.Parameters.AddWithValue("@billDetailId", billDetailId);
+                                cmd.ExecuteNonQuery();
                             }
                         }
 
