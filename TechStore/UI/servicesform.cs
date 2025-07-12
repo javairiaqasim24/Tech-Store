@@ -14,11 +14,6 @@ namespace TechStore.UI
     public partial class servicesform : Form
     {
         private DataGridView dgvCustomerSearch = new DataGridView();
-        private string customerName;
-        private string itemName;
-        private string description;
-        private string receivingDate;
-        private string deliveryDate;
 
         public servicesform()
         {
