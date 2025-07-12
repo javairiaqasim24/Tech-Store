@@ -188,13 +188,17 @@
     <Compile Include="BL\BL\SbilldetailsBl.cs" />
     <Compile Include="BL\BL\ServiceInvoiceBLLcs.cs" />
     <Compile Include="BL\BL\SreturnBl.cs" />
+    <Compile Include="BL\EditDeleteServicesBL.cs" />
     <Compile Include="BL\Models\Batches\Batchdetails.cs" />
     <Compile Include="BL\Models\Batches\Batches.cs" />
+    <Compile Include="BL\Models\customer.cs" />
     <Compile Include="BL\Models\Customerrecord.cs" />
     <Compile Include="BL\Models\DashboardModel.cs" />
     <Compile Include="BL\Models\FinancialReportModel.cs" />
     <Compile Include="BL\Models\Inventory.cs" />
     <Compile Include="BL\Models\inventorylog.cs" />
+    <Compile Include="BL\Models\ServiceLine.cs" />
+    <Compile Include="BL\Models\ServiceRequest.cs" />
     <Compile Include="BL\Models\ServicesInvo.cs" />
     <Compile Include="BL\Models\Spricerecord.cs" />
     <Compile Include="BL\Models\Supplierpayment.cs" />
@@ -206,6 +210,7 @@
     <Compile Include="DL\CustomerBill_SpecificProductsDL.cs" />
     <Compile Include="DL\CustomerReturnDL.cs" />
     <Compile Include="DL\DashboardDl.cs" />
+    <Compile Include="DL\EditDeleteServicesDL.cs" />
     <Compile Include="DL\LoginDL.cs" />
     <Compile Include="DL\ServiceDL.cs" />
     <Compile Include="DL\servicesDL.cs" />
@@ -356,6 +361,12 @@
     <Compile Include="UI\Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\EditDeleteServices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EditDeleteServices.Designer.cs">
+      <DependentUpon>EditDeleteServices.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\HomeContentform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -461,6 +472,9 @@
     <Content Include="Resources\mns.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="UI\EditDeleteServices.resx">
+      <DependentUpon>EditDeleteServices.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
