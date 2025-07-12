@@ -20,6 +20,29 @@ namespace TechStore
     internal static class Program
     {
         public static IServiceProvider ServiceProvider { get; private set; }
+        //[STAThread]
+        //static void Main()
+        //{
+        //    Application.EnableVisualStyles();
+        //    Application.SetCompatibleTextRenderingDefault(false);
+
+        //    var services = new ServiceCollection();
+        //    configureServices(services);
+        //    ServiceProvider = services.BuildServiceProvider();
+        //    var mainForm = ServiceProvider.GetRequiredService <servicesform>();
+
+
+        //    // Show login first (Modal)
+        //    var login = ServiceProvider.GetRequiredService<UI.Login>();
+        //    var result = login.ShowDialog();
+
+        //    if (result == DialogResult.OK)
+        //    {
+        //        // Run dashboard only after login passes
+        //        Application.Run(ServiceProvider.GetRequiredService<Dashboard>());
+        //    }
+        //}
+
         [STAThread]
         static void Main()
         {
@@ -29,21 +52,31 @@ namespace TechStore
             var services = new ServiceCollection();
             configureServices(services);
             ServiceProvider = services.BuildServiceProvider();
-            var mainForm = ServiceProvider.GetRequiredService <servicesform>();
 
+            // Directly run the servicesform
+            Application.Run(ServiceProvider.GetRequiredService<EditDeleteServices>());
 
-            // Show login first (Modal)
-            var login = ServiceProvider.GetRequiredService<UI.Login>();
-            var result = login.ShowDialog();
+            // If you want to keep the option to run with login as well, you could use a command line argument
+            // or an environment variable to switch between modes
+            /*
+            bool skipLogin = true; // Set this based on your condition
 
-            if (result == DialogResult.OK)
+            if (skipLogin)
             {
-                // Run dashboard only after login passes
-                Application.Run(ServiceProvider.GetRequiredService<Dashboard>());
+                Application.Run(ServiceProvider.GetRequiredService<servicesform>());
             }
+            else
+            {
+                var login = ServiceProvider.GetRequiredService<UI.Login>();
+                var result = login.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    Application.Run(ServiceProvider.GetRequiredService<Dashboard>());
+                }
+            }
+            */
         }
-
-
 
 
         public static void configureServices(IServiceCollection services)
@@ -109,6 +142,7 @@ namespace TechStore
             services.AddTransient<reportform>();
             services.AddTransient<logins>();
             services.AddTransient<servicesform>();
+            services.AddTransient<EditDeleteServices>();
 
 
         }
