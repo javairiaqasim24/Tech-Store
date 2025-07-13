@@ -8,8 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KIMS;
+using Microsoft.Extensions.DependencyInjection;
 using Mysqlx.Crud;
+using TechStore.BL;
 using TechStore.BL.BL;
+using TechStore.BL.Models;
 using TechStore.DL;
 using static TechStore.BL.Models.ServicesInvo;
 
@@ -17,203 +20,151 @@ namespace TechStore.UI
 {
     public partial class Services : Form
     {
-        private ServiceInvoice currentInvoice = new ServiceInvoice();
-        ServiceDL ser=new ServiceDL();
-        int invoiceId;
-        private DataGridView dgvProductSearch;
-        private DataTable allProducts;
-        public Services()
+        private List<servicedevices> serviceDevices = new List<servicedevices>();
+        private readonly ICustomer_serviceBl ibl;
+
+        public Services(ICustomer_serviceBl ibl)
         {
             InitializeComponent();
-            cmbCustomer.DropDownStyle = ComboBoxStyle.DropDown;
-            ConfigureInvoiceGrid();
-            LoadProductData();
-            SetupSearchGrid();
-            dgvInvoice.AllowUserToAddRows = false;
-            cmbCustomer.DataSource = ser.GetCustomers();
-            cmbCustomer.DisplayMember = "name";
-            cmbCustomer.ValueMember = "first_name"; 
-            cmbCustomer.SelectedIndex = -1;
-
+           
+            this.ibl = ibl;
+            ConfigureGrid();
+            loadcustomers();
         }
 
         private void LoadProductData()
         {
-            allProducts = ser.GetProducts();
+         
 
         }
-        private void btnsave_Click(object sender, EventArgs e)
+        private void loadcustomers()
         {
-            currentInvoice.CustomerName = cmbCustomer.Text;
-            currentInvoice.ServiceName = Service.Text;
-            currentInvoice.InvoiceDate = dtpDate.Value;
+            cmbCustomer.Items.Clear();
+            var customers = DatabaseHelper.Instance.getAllCustomers();
 
-            
-            invoiceId = ser.SaveInvoice(currentInvoice);
-
-            MessageBox.Show($"Invoice #{invoiceId} saved successfully.");
+            cmbCustomer.Items.AddRange(customers.ToArray());
         }
-
-        private void ConfigureInvoiceGrid()
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            dgvInvoice.Columns.Clear();
-
-            dgvInvoice.Columns.Add("Name", "Product Name");
-            dgvInvoice.Columns.Add("Description", "Description");
-            dgvInvoice.Columns.Add("Quantity", "Quantity");
-            dgvInvoice.Columns.Add("CostPrice", "CostPrice");
-            dgvInvoice.Columns.Add("Total", "Total");
-
-            dgvInvoice.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        }
-
-        private void btnadd_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtproductname.Text) || string.IsNullOrWhiteSpace(txtQuantity.Text))
+            if (cmbCustomer.SelectedItem == null)
             {
-                MessageBox.Show("Please fill in product name and quantity.");
+                MessageBox.Show("Please select a customer.");
                 return;
             }
 
-            if (!int.TryParse(txtQuantity.Text.Trim(), out int quantity))
+            if (serviceDevices.Count == 0)
             {
-                MessageBox.Show("Quantity should be in digits only.", "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtQuantity.Focus();
+                MessageBox.Show("Please add at least one device.");
                 return;
             }
 
-            if (!int.TryParse(txtCostprice.Text.Trim(), out int costPrice))
+            var receipt = new customerservicerecipt
             {
-                MessageBox.Show("Cost Price should be a valid number.");
-                txtCostprice.Focus();
-                return;
-            }
-
-            // 🟩 Create item
-            var item = new ServiceInvoiceItem
-            {
-                InvoiceId = invoiceId,
-                ProductId = 0, // optional
-                Description = txtDescription.Text,
-                Quantity = quantity,
-                CostPrice = costPrice
-
+                CustomerName = cmbCustomer.SelectedItem.ToString(),
+                Remarks = txtremarks. Text.Trim(),
+                Devices = serviceDevices
             };
 
-            // 🟩 Insert into DB
-            
-            ser.InsertInvoiceItems(new List<ServiceInvoiceItem> { item });
-
-            // 🟩 Show in DataGridView
-            dgvInvoice.Rows.Add(
-                txtproductname.Text,
-                item.Description,
-                item.Quantity,
-                item.CostPrice,
-                item.TotalPrice  // ← this uses your computed property
-            );
-
-            // 🟩 Clear
-            ClearItemInputs();
-            UpdateTotal();
-            txtproductname.Focus();
+            try
+            {
+                bool result =ibl.savereceipt (receipt);
+                if (result)
+                {
+                    MessageBox.Show("Service receipt saved successfully.");
+                    ClearForm();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to save receipt.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving receipt: " + ex.Message);
+            }
         }
+
+        private void ClearForm()
+        {
+            txtproductname.Clear();
+            txtDescription.Clear();
+            txtremarks.Clear();
+            cmbCustomer.SelectedIndex = -1;
+            serviceDevices.Clear();
+            dataGridView2.Rows.Clear();
+        }
+        private void ConfigureGrid()
+        {
+            dataGridView2.AutoGenerateColumns = false;
+            dataGridView2.Columns.Add("DeviceName", "Device Name");
+            dataGridView2.Columns.Add("Issue", "Issue");
+            dataGridView2.Columns.Add("ExpectedDate", "Expected Return Date");
+            dataGridView2.AutoSizeColumnsMode=DataGridViewAutoSizeColumnsMode.Fill;
+        }
+        private void ConfigureInvoiceGrid()
+        {
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtproductname.Text) || string.IsNullOrWhiteSpace(txtDescription.Text))
+            {
+                MessageBox.Show("Please enter both product name and issue.");
+                return;
+            }
+
+            var device = new servicedevices
+            {
+                DeviceName = txtproductname.Text.Trim(),
+                Issue = txtDescription.Text.Trim(),
+                ReportDate = DateTime.Now,
+                ExpectedDate = guna2DateTimePicker1.Value,
+                Status = "Pending",
+                ServiceCharge = 0
+            };
+
+            serviceDevices.Add(device);
+
+            dataGridView2.Rows.Add(device.DeviceName, device.Issue, device.ExpectedDate.ToShortDateString());
+
+            txtproductname.Clear();
+            txtDescription.Clear();
+        }
+
 
         private void ClearItemInputs()
         {
             txtproductname.Clear();
             txtDescription.Clear();
-            txtQuantity.Clear();
-            txtCostprice.Clear();
+          
         }
 
         private void UpdateTotal()
         {
-            decimal total = currentInvoice.Items.Sum(i => i.TotalPrice);
-            txtTotal.Text = $"Rs. {total:N2}";
+          
         }
 
         private void SetupSearchGrid()
         {
-            dgvProductSearch = new DataGridView
-            {
-                Location = new Point(txtproductname.Left, txtproductname.Bottom + 5),
-                Width = txtproductname.Width + 100,
-                Height = 180,
-                Visible = false,
-                ReadOnly = true,
-                SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-                AllowUserToAddRows = false,
-                MultiSelect = false,
-                BackgroundColor = SystemColors.Window,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                BorderStyle = BorderStyle.Fixed3D
-            };
-
-            dgvProductSearch.Columns.Add("Name", "Product Name");
-            dgvProductSearch.Columns.Add("Description", "Description");
-            dgvProductSearch.Columns.Add("CostPrice", "CostPrice");
-
-            dgvProductSearch.CellClick += DgvProductSearch_CellClick;
-            this.Controls.Add(dgvProductSearch);
+           
         }
 
         private void DgvProductSearch_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                string name = dgvProductSearch.Rows[e.RowIndex].Cells["Name"].Value.ToString();
-                string desc = dgvProductSearch.Rows[e.RowIndex].Cells["Description"].Value.ToString();
-                string cost = dgvProductSearch.Rows[e.RowIndex].Cells["CostPrice"].Value.ToString();
-
-                txtproductname.Text = name;
-                txtDescription.Text = desc;
-                txtCostprice.Text = cost;   
-
-                dgvProductSearch.Visible = false;
-                txtQuantity.Focus();
-            }
+          
         }
 
         private void txtproductname_TextChanged(object sender, EventArgs e)
         {
-            string search = txtproductname.Text.Trim().ToLower();
-            if (allProducts == null || string.IsNullOrEmpty(search))
-            {
-                dgvProductSearch.Visible = false;
-                return;
-            }
-
-                var filtered = allProducts.AsEnumerable()
-             .Where(row =>
-                row.Field<string>("name").ToLower().Contains(search) ||
-                row.Field<string>("description").ToLower().Contains(search) ||
-                row.Field<int>("sale_price").ToString().ToLower().Contains(search)
-             )
-                .ToList();
-
-            dgvProductSearch.Rows.Clear();
-
-            if (filtered.Any())
-            {
-                foreach (var row in filtered)
-                {
-                    dgvProductSearch.Rows.Add(row["name"], row["description"], row["sale_price"]);
-                }
-                dgvProductSearch.Visible = true;
-                dgvProductSearch.BringToFront();
-            }
-            else
-            {
-                dgvProductSearch.Visible = false;
-            }
+         
         }
 
         private void btndelete_Click(object sender, EventArgs e)
         {
-            if (dgvInvoice.SelectedRows.Count > 0)
+            if (dataGridView2.SelectedRows.Count > 0)
             {
-                dgvInvoice.Rows.RemoveAt(dgvInvoice.SelectedRows[0].Index);
+                dataGridView2.Rows.RemoveAt(dataGridView2.SelectedRows[0].Index);
             }
             else
             {
@@ -229,6 +180,12 @@ namespace TechStore.UI
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void iconPictureBox1_Click(object sender, EventArgs e)
+        {
+            var f = Program.ServiceProvider.GetRequiredService<Customerform>();
+            f.ShowDialog(this);
         }
     }
 }

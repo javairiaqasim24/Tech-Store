@@ -39,7 +39,7 @@ namespace TechStore
             //if (result == DialogResult.OK)
             //{
                 // Run dashboard only after login passes
-                Application.Run(ServiceProvider.GetRequiredService<Services>());
+                Application.Run(ServiceProvider.GetRequiredService<Dashboard>());
             //}
         }
 
@@ -61,6 +61,8 @@ namespace TechStore
             services.AddScoped<ISreturnsDl,SreturnsDl>();
             services.AddScoped<ISbilldetailsDl,SbilldetailsDl>();
             services.AddScoped<IFinancialReportDL, FinancialReportDL>();
+            services.AddScoped<ICustomerserviceDl,CustomerserviceDl>();
+            services.AddScoped<Iservice_partsDl,service_partsDl>();
 
             services.AddScoped<IproductBl, ProductBL>();
             services.AddScoped<ISupplierBL, SupplierBl>();
@@ -76,6 +78,9 @@ namespace TechStore
             services.AddScoped<IsbilldetailsBl,SbilldetailsBl>();
             services.AddScoped<Idashboard, Dashboardservice>();
             services.AddScoped<IFinancialReportBL,FinancialReportBL>();
+            services.AddScoped<ICustomer_serviceBl, Customer_serviceBl>();
+            services.AddScoped<IServicePartBl, ServicePartBl>();
+
 
             services.AddTransient<HomeContentform>();
             services.AddTransient<Dashboard>();
@@ -108,9 +113,9 @@ namespace TechStore
             services.AddTransient<UI .Login>();
             services.AddTransient<reportform>();
             services.AddTransient<logins>();
-            services.AddTransient<servicesform>();
+            services.AddTransient<serviceform>();
             services.AddTransient<Services>();
-
+           
 
         }
     }

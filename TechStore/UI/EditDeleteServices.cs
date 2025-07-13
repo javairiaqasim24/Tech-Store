@@ -380,5 +380,10 @@ namespace TechStore.UI
                 dvgservices.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
         }
+
+        private void EditDeleteServices_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Windows.Input;
 using System.Xml.Linq;
 using TechStore.BL.Models;
 
@@ -319,6 +320,22 @@ namespace KIMS
             }
             return suppliers;
         }
+        public List<string> getAllCustomers()
+        {
+            var names = new List<string>();
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                var cmd = new MySqlCommand("SELECT CONCAT(first_name, ' ', last_name) FROM customers", conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                        names.Add(reader.GetString(0));
+                }
+            }
+            return names;
+        }
+
         internal int getbatchid(string text)
         {
             try
@@ -385,7 +402,82 @@ namespace KIMS
 
             return products;
         }
+        public List<Products> GetProductsByNames(string name)
+        {
+            var products = new List<Products>();
 
+            using (var conn = DatabaseHelper.Instance.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT product_id, name, description FROM products WHERE name like @name";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@name", $"%{name}%");
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            products.Add(new Products
+                            (
+                                 Convert.ToInt32(reader["product_id"]),
+                                 reader["name"].ToString(),
+                                 reader["description"].ToString()));
+
+                        }
+                    }
+                }
+            }
+
+            return products;
+        }
+        internal List<servicedevices> search_device(int receipt_id)
+        {
+            List<servicedevices> search_devices = new List<servicedevices>();
+
+            try
+            {
+                using (var conn = DatabaseHelper.Instance.GetConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM service_devices WHERE receipt_id = @receipt_id;";
+
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@receipt_id", receipt_id);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var device = new servicedevices
+                                {
+                                    DeviceId = Convert.ToInt32(reader["device_id"]),
+                                    ReceiptId = Convert.ToInt32(reader["receipt_id"]),
+                                    DeviceName = reader["device_name"].ToString(),
+                                    Issue = reader["issue_description"].ToString(),
+                                    ReportDate = Convert.ToDateTime(reader["received_date"]),
+                                    ExpectedDate = Convert.ToDateTime(reader["expected_return_date"]),
+                                    Status = reader["status"].ToString(),
+                                    ServiceCharge = reader["service_charge"] != DBNull.Value
+                                                    ? Convert.ToDecimal(reader["service_charge"])
+                                                    : 0
+                                };
+
+                                search_devices.Add(device);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error searching devices: " + ex.Message, ex);
+            }
+
+            return search_devices;
+        }
 
         public DataTable ExecuteDataTable(string query, MySqlParameter[] parameters = null)
         {
