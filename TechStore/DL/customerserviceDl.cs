@@ -11,7 +11,7 @@ namespace TechStore.DL
 {
     public class CustomerserviceDl : ICustomerserviceDl
     {
-        public bool SaveReceipt(customerservicerecipt receipt)
+        public int SaveReceipt(customerservicerecipt receipt)
         {
             try
             {
@@ -23,9 +23,9 @@ namespace TechStore.DL
                     {
                         // 1. Insert into service_receipts
                         string insertReceiptQuery = @"
-                            INSERT INTO service_receipts (customer_id, remarks, receipt_date)
-                            VALUES (@customer_id, @remarks, NOW());
-                            SELECT LAST_INSERT_ID();";
+                    INSERT INTO service_receipts (customer_id, remarks, receipt_date)
+                    VALUES (@customer_id, @remarks, NOW());
+                    SELECT LAST_INSERT_ID();";
 
                         int receiptId;
                         using (var cmd = new MySqlCommand(insertReceiptQuery, conn, tran))
@@ -40,10 +40,10 @@ namespace TechStore.DL
                         foreach (var device in receipt.Devices)
                         {
                             string insertDeviceQuery = @"
-                                INSERT INTO service_devices 
-                                (receipt_id, device_name, issue_description, received_date, expected_return_date, status, service_charge)
-                                VALUES 
-                                (@receipt_id, @device_name, @issue, @report_date, @expected_date, @status, @service_charge);";
+                        INSERT INTO service_devices 
+                        (receipt_id, device_name, issue_description, received_date, expected_return_date, status, service_charge)
+                        VALUES 
+                        (@receipt_id, @device_name, @issue, @report_date, @expected_date, @status, @service_charge);";
 
                             using (var cmd = new MySqlCommand(insertDeviceQuery, conn, tran))
                             {
@@ -60,7 +60,7 @@ namespace TechStore.DL
                         }
 
                         tran.Commit();
-                        return true;
+                        return receiptId;
                     }
                 }
             }
@@ -69,5 +69,6 @@ namespace TechStore.DL
                 throw new Exception("Error saving service receipt: " + ex.Message, ex);
             }
         }
+
     }
 }

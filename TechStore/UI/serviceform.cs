@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using TechStore.BL.BL;
 using TechStore.BL.Models;
@@ -13,9 +14,10 @@ namespace TechStore.UI
     {
         private List<service_parts> addedParts = new List<service_parts>();
         private readonly IServicePartBl ibl;
+        private readonly IInventoryBl idl;
         private int SelectedDeviceId = -1;
         private int selectedproductid = -1;
-        public serviceform(IServicePartBl ibl)
+        public serviceform(IServicePartBl ibl,IInventoryBl idl)
         {
             InitializeComponent();
             this.ibl = ibl;
@@ -27,6 +29,7 @@ namespace TechStore.UI
             dgvproducts.CellClick += dgvproducts_CellClick;
             //txtproduct.TextChanged += txtproduct_TextChanged;
             paneledit.Visible = false;
+            this.idl = idl;
         }
 
         private void serviceform_Load(object sender, EventArgs e)
@@ -92,7 +95,8 @@ namespace TechStore.UI
             var part = new service_parts
             {
                 device_id = SelectedDeviceId,
-                product_name = txtproduct.Text.Trim(), // Use name, ID will be resolved in DL
+                product_id=selectedproductid,
+                product_name=txtproduct.Text,
                 quantity = qty,
                 price = price
             };
@@ -109,7 +113,9 @@ namespace TechStore.UI
                 MessageBox.Show("No device selected.");
                 return;
             }
-
+            if (selectedproductid == -1) {
+                MessageBox.Show("No product  selected.");
+            }
             if (!decimal.TryParse(txtlabor.Text, out decimal laborCharge))
             {
                 MessageBox.Show("Invalid labor charge.");
@@ -141,33 +147,79 @@ namespace TechStore.UI
         {
             string keyword = txtproduct.Text.Trim();
 
-            if (string.IsNullOrEmpty(keyword))
+            if (string.IsNullOrWhiteSpace(keyword))
             {
                 dgvproducts.Visible = false;
                 return;
             }
 
-            var products = DatabaseHelper.Instance.GetProductsByNames(keyword);
-
-            if (products == null || products.Count == 0)
+            try
             {
-                dgvproducts.Visible = false;
-                return;
+                var products = idl.getAllinventory(keyword);
+                foreach (var item in products)
+                {
+                    Console.WriteLine(string.Join(", ", item.GetType().GetProperties().Select(p => p.Name)));
+                    break; // Only print once
+                }
+
+
+                if (products == null || products.Count == 0)
+                {
+                    dgvproducts.Visible = false;
+                    return;
+                }
+
+                dgvproducts.Visible = true;
+                dgvproducts.BringToFront();
+
+                // Set up columns manually to ensure names
+                dgvproducts.AutoGenerateColumns = true;
+                dgvproducts.Columns.Clear();
+
+                //dgvproducts.Columns.Add(new DataGridViewTextBoxColumn
+                //{
+                //    Name = "ProductId",
+                //    HeaderText = "Product ID",
+                //    DataPropertyName = "ProductId"
+                //});
+
+                //dgvproducts.Columns.Add(new DataGridViewTextBoxColumn
+                //{
+                //    Name = "ProductName",
+                //    HeaderText = "Product Name",
+                //    DataPropertyName = "ProductName"
+                //});
+
+                //dgvproducts.Columns.Add(new DataGridViewTextBoxColumn
+                //{
+                //    Name = "Description",
+                //    HeaderText = "Description",
+                //    DataPropertyName = "Description"
+                //});
+
+                //dgvproducts.Columns.Add(new DataGridViewTextBoxColumn
+                //{
+                //    Name = "SalePrice",
+                //    HeaderText = "Sale Price",
+                //    DataPropertyName = "SalePrice"
+                //});
+
+                //dgvproducts.Columns.Add(new DataGridViewTextBoxColumn
+                //{
+                //    Name = "Stock",
+                //    HeaderText = "Stock",
+                //    DataPropertyName = "Stock"
+                //});
+
+                dgvproducts.DataSource = products;
+                dgvproducts.Columns["ProductId"].Visible = false;
+                dgvproducts.Columns["InventoryId"].Visible=false;
             }
-
-            dgvproducts.DataSource = products;
-            dgvproducts.Columns["id"].Visible = false;
-
-            if (dgvproducts.Columns.Contains("name"))
-                dgvproducts.Columns["name"].HeaderText = "Product Name";
-
-            if (dgvproducts.Columns.Contains("description"))
-                dgvproducts.Columns["description"].HeaderText = "Description";
-
-            dgvproducts.Visible = true;
-            dgvproducts.BringToFront();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Search error: " + ex.Message);
+            }
         }
-
 
 
         private void InitializeProductGrid()
@@ -182,15 +234,27 @@ namespace TechStore.UI
 
         private void dgvproducts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                var row = dgvproducts.Rows[e.RowIndex];
+            if (e.RowIndex < 0) return;
 
-                txtproduct.Text = row.Cells["name"].Value?.ToString();
+            try
+            {
+                var selectedInventory = dgvproducts.Rows[e.RowIndex].DataBoundItem as Inventory;
+                if (selectedInventory == null)
+                {
+                    MessageBox.Show("Could not read selected product.");
+                    return;
+                }
+
+                selectedproductid = selectedInventory.ProductId;
+                txtproduct.Text = selectedInventory.ProductName;
+
                 dgvproducts.Visible = false;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error selecting product: " + ex.Message);
+            }
         }
-
 
 
         private void btncancle1_Click(object sender, EventArgs e)

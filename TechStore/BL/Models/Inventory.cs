@@ -8,16 +8,15 @@ namespace TechStore.BL.Models
 {
     public class Inventory
     {
-        private readonly Products product; 
 
         public int InventoryId { get; private set; }
         public decimal SalePrice { get; private set; }
         public int Stock { get; private set; }
 
         // Expose only what you want
-        public int ProductId => product.id;
-        public string ProductName => product.name;
-        public string description=> product.description;
+        public int ProductId {get;set;}
+        public string ProductName {  get; set;}
+        public string description { get; set;}
 
         // Constructor
         public Inventory(int inventoryId, decimal salePrice, int stock, int productId, string productName,string description)
@@ -25,8 +24,10 @@ namespace TechStore.BL.Models
             this.InventoryId = inventoryId;
             this.SalePrice = salePrice;
             this.Stock = stock;
+            this.ProductId = productId;
+            this.ProductName= productName;
+            this.description = description;
 
-            this.product = new Products(productId, productName,description);
         }
 
       
