@@ -116,5 +116,10 @@ namespace TechStore.UI
         {
            //lbltime.Text = DateTime.Now.ToString("hh:mm:ss tt");
         }
+
+        private void piechart_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

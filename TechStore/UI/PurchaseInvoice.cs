@@ -310,7 +310,7 @@ namespace TechStore.UI
 
         private void SaveTempInvoice()
         {
-            var data = new TempInvoiceData
+            var data = new TempInvoiceData  
             {
                 SupplierName = cmbSupplierName.Text,
                 PurchaseDate = dtpPurchaseDate.Value,

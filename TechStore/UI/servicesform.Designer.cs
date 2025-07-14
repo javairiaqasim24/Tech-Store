@@ -246,7 +246,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
             this.Name = "servicesform";
-            this.Text = "servicesform";
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
