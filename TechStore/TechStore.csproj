@@ -185,18 +185,27 @@
     <Compile Include="BL\BL\FinancialReportBL.cs" />
     <Compile Include="BL\BL\InventoryBl.cs" />
     <Compile Include="BL\BL\InventorylogBl.cs" />
+    <Compile Include="Interfaces\BLInterfaces\IServicePartBl.cs" />
     <Compile Include="BL\BL\SbilldetailsBl.cs" />
     <Compile Include="BL\BL\ServiceInvoiceBLLcs.cs" />
+    <Compile Include="BL\BL\ServicePartBl.cs" />
     <Compile Include="BL\BL\SreturnBl.cs" />
+    <Compile Include="BL\BL\Customer_serviceBl.cs" />
     <Compile Include="BL\EditDeleteServicesBL.cs" />
+    <Compile Include="BL\Models\service_parts.cs" />
+    <Compile Include="Interfaces\DLInterfaces\Iservice_partsDl.cs" />
+    <Compile Include="DL\service_partsDl.cs" />
+    <Compile Include="Interfaces\BLInterfaces\ICustomer_serviceBl.cs" />
     <Compile Include="BL\Models\Batches\Batchdetails.cs" />
     <Compile Include="BL\Models\Batches\Batches.cs" />
     <Compile Include="BL\Models\customer.cs" />
     <Compile Include="BL\Models\Customerrecord.cs" />
+    <Compile Include="BL\Models\customerservicerecipt.cs" />
     <Compile Include="BL\Models\DashboardModel.cs" />
     <Compile Include="BL\Models\FinancialReportModel.cs" />
     <Compile Include="BL\Models\Inventory.cs" />
     <Compile Include="BL\Models\inventorylog.cs" />
+    <Compile Include="BL\Models\servicedevices.cs" />
     <Compile Include="BL\Models\ServiceLine.cs" />
     <Compile Include="BL\Models\ServiceRequest.cs" />
     <Compile Include="BL\Models\ServicesInvo.cs" />
@@ -209,8 +218,10 @@
     <Compile Include="DL\BillingRecordsOverviewDL.cs" />
     <Compile Include="DL\CustomerBill_SpecificProductsDL.cs" />
     <Compile Include="DL\CustomerReturnDL.cs" />
+    <Compile Include="DL\customerserviceDl.cs" />
     <Compile Include="DL\DashboardDl.cs" />
     <Compile Include="DL\EditDeleteServicesDL.cs" />
+    <Compile Include="Interfaces\DLInterfaces\ICustomerserviceDl.cs" />
     <Compile Include="DL\LoginDL.cs" />
     <Compile Include="DL\ServiceDL.cs" />
     <Compile Include="DL\servicesDL.cs" />
@@ -234,7 +245,7 @@
     <Compile Include="Interfaces\BLInterfaces\ISupplierBillBl.cs" />
     <Compile Include="BL\BL\SupplierBillBl.cs" />
     <Compile Include="BL\Models\Supplierbill.cs" />
-    <Compile Include="DL\invoices.cs" />
+    <Compile Include="Interfaces\invoices.cs" />
     <Compile Include="DL\purchaseDL.cs" />
     <Compile Include="Interfaces\DLInterfaces\IInventoryDl.cs" />
     <Compile Include="Interfaces\DLInterfaces\IPurchaseDl.cs" />
@@ -435,6 +446,12 @@
     <Compile Include="UI\Sbilldetailform.Designer.cs">
       <DependentUpon>Sbilldetailform.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\serviceform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\serviceform.Designer.cs">
+      <DependentUpon>serviceform.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Services.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -486,6 +503,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Sbilldetailform.resx">
       <DependentUpon>Sbilldetailform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\serviceform.resx">
+      <DependentUpon>serviceform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Services.resx">
       <DependentUpon>Services.cs</DependentUpon>

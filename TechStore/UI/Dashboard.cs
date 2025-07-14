@@ -438,5 +438,32 @@ namespace TechStore
         {
             Application.Exit();
         }
+
+        private void iconPictureBox3_Click(object sender, EventArgs e)
+        {
+            if (panel1.Height == 195)
+                CollapsePanel(panel1, 67);
+            else
+            {
+                CollapseAllTogglePanels();
+                ExpandPanel(panel1, 195);
+            }
+        }
+
+        private void iconButton4_Click(object sender, EventArgs e)
+        {
+            activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
+
+            var f = Program.ServiceProvider.GetRequiredService<Services>();
+            LoadFormIntoPanel(f);
+        }
+
+        private void iconButton3_Click(object sender, EventArgs e)
+        {
+            activebutton(sender, System.Drawing.Color.FromArgb(0, 212, 255));
+
+            var f = Program.ServiceProvider.GetRequiredService<serviceform>();
+            LoadFormIntoPanel(f);
+        }
     }
 }

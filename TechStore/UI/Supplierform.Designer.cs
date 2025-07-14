@@ -126,7 +126,7 @@
             this.paneledit.Controls.Add(this.txtname1);
             this.paneledit.Controls.Add(this.label10);
             this.paneledit.Controls.Add(this.label11);
-            this.paneledit.Location = new System.Drawing.Point(585, 16);
+            this.paneledit.Location = new System.Drawing.Point(366, 200);
             this.paneledit.Name = "paneledit";
             this.paneledit.Size = new System.Drawing.Size(443, 576);
             this.paneledit.TabIndex = 152;
@@ -350,7 +350,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(64)))));
             this.label4.Location = new System.Drawing.Point(818, 23);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
