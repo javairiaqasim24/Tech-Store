@@ -184,7 +184,7 @@ namespace TechStore.UI
 
         private void iconPictureBox1_Click(object sender, EventArgs e)
         {
-            var f = Program.ServiceProvider.GetRequiredService<Customerform>();
+            var f = Program.ServiceProvider.GetRequiredService<AddCustomerform>();
             f.ShowDialog(this);
         }
     }

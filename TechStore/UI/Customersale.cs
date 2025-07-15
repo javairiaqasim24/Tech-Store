@@ -34,6 +34,43 @@ namespace TechStore.UI
             SetupCustomerGrid();
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                // If txtProductName is focused and search grid is visible with rows
+                if (txtproductname.Focused && dgvProductSearch.Visible && dgvProductSearch.Rows.Count > 0)
+                {
+                    // Simulate clicking the first row
+                    int rowIndex = 0;
+                    if (rowIndex >= 0 && rowIndex < dgvProductSearch.Rows.Count)
+                    {
+                        dgvProductSearch.ClearSelection();
+                        dgvProductSearch.Rows[rowIndex].Selected = true;
+
+                        // Call the same logic as in actual click
+                        LoadProductFromSearch(rowIndex);
+
+                        return true; // Mark as handled
+                    }
+                }
+
+                // If not handled above, trigger Add button
+                btnadd.PerformClick();
+                return true;
+            }
+
+            else if (keyData ==  Keys.Delete)
+            {
+                btndelete.PerformClick();
+                return true;
+            }
+
+                // Let other keys process normally
+                return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+
         private void SetupSearchGrid()
         {
             // Initialize product search results grid
@@ -251,6 +288,8 @@ namespace TechStore.UI
         {
             AddToSaleCart();
         }
+
+       
 
         private void AddToSaleCart()
         {

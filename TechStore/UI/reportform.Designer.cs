@@ -50,9 +50,10 @@
             this.btnmonth.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnmonth.IconSize = 40;
             this.btnmonth.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnmonth.Location = new System.Drawing.Point(39, 80);
+            this.btnmonth.Location = new System.Drawing.Point(44, 100);
+            this.btnmonth.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnmonth.Name = "btnmonth";
-            this.btnmonth.Size = new System.Drawing.Size(340, 60);
+            this.btnmonth.Size = new System.Drawing.Size(382, 75);
             this.btnmonth.TabIndex = 2;
             this.btnmonth.Text = "By Month";
             this.btnmonth.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -75,9 +76,10 @@
             this.btnyear.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnyear.IconSize = 40;
             this.btnyear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnyear.Location = new System.Drawing.Point(39, 181);
+            this.btnyear.Location = new System.Drawing.Point(44, 226);
+            this.btnyear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnyear.Name = "btnyear";
-            this.btnyear.Size = new System.Drawing.Size(340, 60);
+            this.btnyear.Size = new System.Drawing.Size(382, 75);
             this.btnyear.TabIndex = 3;
             this.btnyear.Text = "By Year";
             this.btnyear.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -92,11 +94,12 @@
             this.dtpdate.FillColor = System.Drawing.Color.White;
             this.dtpdate.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtpdate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtpdate.Location = new System.Drawing.Point(39, 323);
+            this.dtpdate.Location = new System.Drawing.Point(46, 404);
+            this.dtpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtpdate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpdate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpdate.Name = "dtpdate";
-            this.dtpdate.Size = new System.Drawing.Size(336, 36);
+            this.dtpdate.Size = new System.Drawing.Size(378, 45);
             this.dtpdate.TabIndex = 165;
             this.dtpdate.Value = new System.DateTime(2025, 7, 10, 0, 0, 0, 0);
             // 
@@ -106,10 +109,10 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(61)))), ((int)(((byte)(147)))));
-            this.label7.Location = new System.Drawing.Point(42, 265);
+            this.label7.Location = new System.Drawing.Point(47, 331);
             this.label7.Name = "label7";
-            this.label7.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
-            this.label7.Size = new System.Drawing.Size(249, 44);
+            this.label7.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.label7.Size = new System.Drawing.Size(295, 50);
             this.label7.TabIndex = 166;
             this.label7.Text = "Pick Month/Year";
             // 
@@ -119,23 +122,24 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label1.Location = new System.Drawing.Point(70, 20);
+            this.label1.Location = new System.Drawing.Point(79, 25);
             this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
-            this.label1.Size = new System.Drawing.Size(284, 47);
+            this.label1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.label1.Size = new System.Drawing.Size(331, 56);
             this.label1.TabIndex = 167;
             this.label1.Text = "Generate Report";
             // 
             // reportform
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(417, 516);
+            this.ClientSize = new System.Drawing.Size(473, 645);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dtpdate);
             this.Controls.Add(this.btnyear);
             this.Controls.Add(this.btnmonth);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "reportform";
