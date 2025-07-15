@@ -15,7 +15,7 @@ namespace TechStore.BL
         {
             this.idl = idl;
         }
-        public bool savereceipt(customerservicerecipt r)
+        public int savereceipt(customerservicerecipt r)
         {
             return idl.SaveReceipt(r);
         }

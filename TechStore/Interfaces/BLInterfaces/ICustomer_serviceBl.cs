@@ -4,6 +4,6 @@ namespace TechStore.BL
 {
     public interface ICustomer_serviceBl
     {
-        bool savereceipt(customerservicerecipt r);
+        int savereceipt(customerservicerecipt r);
     }
 }

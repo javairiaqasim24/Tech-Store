@@ -4,6 +4,6 @@ namespace TechStore.DL
 {
     public interface ICustomerserviceDl
     {
-        bool SaveReceipt(customerservicerecipt receipt);
+        int SaveReceipt(customerservicerecipt receipt);
     }
 }
