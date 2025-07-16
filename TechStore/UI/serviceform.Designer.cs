@@ -38,6 +38,16 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnadd = new FontAwesome.Sharp.IconButton();
             this.panelreturn = new System.Windows.Forms.Panel();
+            this.paneledit = new System.Windows.Forms.Panel();
+            this.txtpayment = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.iconButton2 = new FontAwesome.Sharp.IconButton();
+            this.txttotal = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtid = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.dgvproducts = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.txtlabor = new System.Windows.Forms.TextBox();
@@ -55,22 +65,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.btnbill = new FontAwesome.Sharp.IconButton();
-            this.paneledit = new System.Windows.Forms.Panel();
-            this.txtpayment = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
-            this.txttotal = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtid = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panelreturn.SuspendLayout();
+            this.paneledit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvproducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.paneledit.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -206,6 +206,160 @@
             this.panelreturn.Size = new System.Drawing.Size(1426, 886);
             this.panelreturn.TabIndex = 158;
             // 
+            // paneledit
+            // 
+            this.paneledit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(200)))), ((int)(((byte)(254)))));
+            this.paneledit.Controls.Add(this.txtpayment);
+            this.paneledit.Controls.Add(this.label8);
+            this.paneledit.Controls.Add(this.iconButton1);
+            this.paneledit.Controls.Add(this.iconButton2);
+            this.paneledit.Controls.Add(this.txttotal);
+            this.paneledit.Controls.Add(this.label12);
+            this.paneledit.Controls.Add(this.txtid);
+            this.paneledit.Controls.Add(this.label13);
+            this.paneledit.Controls.Add(this.label14);
+            this.paneledit.Location = new System.Drawing.Point(527, 24);
+            this.paneledit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.paneledit.Name = "paneledit";
+            this.paneledit.Size = new System.Drawing.Size(498, 580);
+            this.paneledit.TabIndex = 160;
+            // 
+            // txtpayment
+            // 
+            this.txtpayment.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtpayment.Location = new System.Drawing.Point(82, 295);
+            this.txtpayment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtpayment.Multiline = true;
+            this.txtpayment.Name = "txtpayment";
+            this.txtpayment.Size = new System.Drawing.Size(352, 43);
+            this.txtpayment.TabIndex = 157;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
+            this.label8.Location = new System.Drawing.Point(80, 254);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(117, 36);
+            this.label8.TabIndex = 156;
+            this.label8.Text = "Payment";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(64)))));
+            this.iconButton1.FlatAppearance.BorderColor = System.Drawing.Color.Indigo;
+            this.iconButton1.FlatAppearance.BorderSize = 2;
+            this.iconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.iconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
+            this.iconButton1.IconColor = System.Drawing.Color.Red;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 35;
+            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.Location = new System.Drawing.Point(297, 394);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(170, 56);
+            this.iconButton1.TabIndex = 137;
+            this.iconButton1.Text = "Cancel";
+            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton1.UseVisualStyleBackColor = false;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click_1);
+            // 
+            // iconButton2
+            // 
+            this.iconButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(64)))));
+            this.iconButton2.FlatAppearance.BorderColor = System.Drawing.Color.Indigo;
+            this.iconButton2.FlatAppearance.BorderSize = 2;
+            this.iconButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.iconButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
+            this.iconButton2.IconColor = System.Drawing.Color.LimeGreen;
+            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton2.IconSize = 35;
+            this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton2.Location = new System.Drawing.Point(73, 394);
+            this.iconButton2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.iconButton2.Name = "iconButton2";
+            this.iconButton2.Size = new System.Drawing.Size(170, 56);
+            this.iconButton2.TabIndex = 136;
+            this.iconButton2.Text = "Save";
+            this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton2.UseVisualStyleBackColor = false;
+            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
+            // 
+            // txttotal
+            // 
+            this.txttotal.BackColor = System.Drawing.Color.Gainsboro;
+            this.txttotal.Location = new System.Drawing.Point(79, 202);
+            this.txttotal.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txttotal.Multiline = true;
+            this.txttotal.Name = "txttotal";
+            this.txttotal.ReadOnly = true;
+            this.txttotal.Size = new System.Drawing.Size(352, 43);
+            this.txttotal.TabIndex = 135;
+            // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
+            this.label12.Location = new System.Drawing.Point(76, 161);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(174, 36);
+            this.label12.TabIndex = 134;
+            this.label12.Text = "Total Amount";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtid
+            // 
+            this.txtid.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtid.Location = new System.Drawing.Point(82, 114);
+            this.txtid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtid.Multiline = true;
+            this.txtid.Name = "txtid";
+            this.txtid.ReadOnly = true;
+            this.txtid.Size = new System.Drawing.Size(352, 43);
+            this.txtid.TabIndex = 131;
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
+            this.label13.Location = new System.Drawing.Point(80, 72);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(136, 36);
+            this.label13.TabIndex = 130;
+            this.label13.Text = "Receipt ID";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
+            this.label14.Location = new System.Drawing.Point(148, 24);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(241, 46);
+            this.label14.TabIndex = 7;
+            this.label14.Text = "Edit Record";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // dgvproducts
             // 
             this.dgvproducts.AllowUserToAddRows = false;
@@ -276,6 +430,7 @@
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.Size = new System.Drawing.Size(891, 398);
             this.dataGridView1.TabIndex = 164;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // btnadd1
             // 
@@ -490,160 +645,6 @@
             this.btnbill.UseVisualStyleBackColor = false;
             this.btnbill.Click += new System.EventHandler(this.btnbill_Click);
             // 
-            // paneledit
-            // 
-            this.paneledit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(200)))), ((int)(((byte)(254)))));
-            this.paneledit.Controls.Add(this.txtpayment);
-            this.paneledit.Controls.Add(this.label8);
-            this.paneledit.Controls.Add(this.iconButton1);
-            this.paneledit.Controls.Add(this.iconButton2);
-            this.paneledit.Controls.Add(this.txttotal);
-            this.paneledit.Controls.Add(this.label12);
-            this.paneledit.Controls.Add(this.txtid);
-            this.paneledit.Controls.Add(this.label13);
-            this.paneledit.Controls.Add(this.label14);
-            this.paneledit.Location = new System.Drawing.Point(527, 24);
-            this.paneledit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.paneledit.Name = "paneledit";
-            this.paneledit.Size = new System.Drawing.Size(498, 580);
-            this.paneledit.TabIndex = 160;
-            // 
-            // txtpayment
-            // 
-            this.txtpayment.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtpayment.Location = new System.Drawing.Point(82, 295);
-            this.txtpayment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtpayment.Multiline = true;
-            this.txtpayment.Name = "txtpayment";
-            this.txtpayment.Size = new System.Drawing.Size(352, 43);
-            this.txtpayment.TabIndex = 157;
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label8.Location = new System.Drawing.Point(80, 254);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(117, 36);
-            this.label8.TabIndex = 156;
-            this.label8.Text = "Payment";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // iconButton1
-            // 
-            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(64)))));
-            this.iconButton1.FlatAppearance.BorderColor = System.Drawing.Color.Indigo;
-            this.iconButton1.FlatAppearance.BorderSize = 2;
-            this.iconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
-            this.iconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
-            this.iconButton1.IconColor = System.Drawing.Color.Red;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 35;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(297, 394);
-            this.iconButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(170, 56);
-            this.iconButton1.TabIndex = 137;
-            this.iconButton1.Text = "Cancel";
-            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton1.UseVisualStyleBackColor = false;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click_1);
-            // 
-            // iconButton2
-            // 
-            this.iconButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(38)))), ((int)(((byte)(64)))));
-            this.iconButton2.FlatAppearance.BorderColor = System.Drawing.Color.Indigo;
-            this.iconButton2.FlatAppearance.BorderSize = 2;
-            this.iconButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
-            this.iconButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
-            this.iconButton2.IconColor = System.Drawing.Color.LimeGreen;
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.IconSize = 35;
-            this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton2.Location = new System.Drawing.Point(73, 394);
-            this.iconButton2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(170, 56);
-            this.iconButton2.TabIndex = 136;
-            this.iconButton2.Text = "Save";
-            this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton2.UseVisualStyleBackColor = false;
-            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
-            // 
-            // txttotal
-            // 
-            this.txttotal.BackColor = System.Drawing.Color.Gainsboro;
-            this.txttotal.Location = new System.Drawing.Point(79, 202);
-            this.txttotal.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txttotal.Multiline = true;
-            this.txttotal.Name = "txttotal";
-            this.txttotal.ReadOnly = true;
-            this.txttotal.Size = new System.Drawing.Size(352, 43);
-            this.txttotal.TabIndex = 135;
-            // 
-            // label12
-            // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label12.Location = new System.Drawing.Point(76, 161);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(174, 36);
-            this.label12.TabIndex = 134;
-            this.label12.Text = "Total Amount";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtid
-            // 
-            this.txtid.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtid.Location = new System.Drawing.Point(82, 114);
-            this.txtid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtid.Multiline = true;
-            this.txtid.Name = "txtid";
-            this.txtid.ReadOnly = true;
-            this.txtid.Size = new System.Drawing.Size(352, 43);
-            this.txtid.TabIndex = 131;
-            // 
-            // label13
-            // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label13.Location = new System.Drawing.Point(80, 72);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(136, 36);
-            this.label13.TabIndex = 130;
-            this.label13.Text = "Receipt ID";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label14
-            // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label14.Location = new System.Drawing.Point(148, 24);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(241, 46);
-            this.label14.TabIndex = 7;
-            this.label14.Text = "Edit Record";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // serviceform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -666,10 +667,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panelreturn.ResumeLayout(false);
             this.panelreturn.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvproducts)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.paneledit.ResumeLayout(false);
             this.paneledit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvproducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

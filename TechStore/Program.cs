@@ -39,7 +39,7 @@ namespace TechStore
             //if (result == DialogResult.OK)
             //{
                 // Run dashboard only after login passes
-                Application.Run(ServiceProvider.GetRequiredService<Customersale>());
+                Application.Run(ServiceProvider.GetRequiredService<Dashboard>());
             //}
         }
 

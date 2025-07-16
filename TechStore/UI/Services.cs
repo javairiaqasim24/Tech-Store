@@ -40,6 +40,8 @@ namespace TechStore.UI
         private string lastSavedCustomerName;
         private string lastSavedRemarks;
         private List<servicedevices> lastSavedDevices;
+        private DataGridView dgvCustomerSearch = new DataGridView();
+
         public Services(ICustomer_serviceBl ibl)
         {
             InitializeComponent();
@@ -47,6 +49,25 @@ namespace TechStore.UI
             this.ibl = ibl;
             ConfigureGrid();
             loadcustomers();
+            SetupCustomerGrid();
+        }
+
+        private void SetupCustomerGrid()
+        {
+            dgvCustomerSearch.Visible = false;
+            dgvCustomerSearch.ReadOnly = true;
+            dgvCustomerSearch.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCustomerSearch.AllowUserToAddRows = false;
+            dgvCustomerSearch.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCustomerSearch.Columns.Add("name", "Customer Name");
+            dgvCustomerSearch.Columns.Add("address", "Address");
+
+            this.Controls.Add(dgvCustomerSearch);
+            dgvCustomerSearch.Location = new Point(txtcustomer.Left, txtcustomer.Top - dgvCustomerSearch.Height + 80);
+            dgvCustomerSearch.Size = new System.Drawing.Size(dataGridView2.Width / 2, 150);
+            dgvCustomerSearch.BringToFront();
+
+            dgvCustomerSearch.CellClick += DgvCustomerSearch_CellClick;
         }
 
         private void LoadProductData()
@@ -61,23 +82,39 @@ namespace TechStore.UI
 
             cmbCustomer.Items.AddRange(customers.ToArray());
         }
+        
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (cmbCustomer.SelectedItem == null)
-            {
-                MessageBox.Show("Please select a customer.");
-                return;
-            }
-
             if (serviceDevices.Count == 0)
             {
                 MessageBox.Show("Please add at least one device.");
                 return;
             }
 
+            string customerName = txtcustomer.Text.Trim();
+            if (string.IsNullOrWhiteSpace(customerName))
+            {
+                MessageBox.Show("Please enter a customer name.");
+                return;
+            }
+
+            int customerId = servicesDL.GetCustomerIdByName(customerName);
+
+            // If not found, create as walk-in
+            if (customerId == -1)
+            {
+                customerId = servicesDL.InsertNewWalkInCustomer(customerName);
+                if (customerId == -1)
+                {
+                    MessageBox.Show("Failed to create new customer record.", "Error");
+                    return;
+                }
+            }
+
             var receipt = new customerservicerecipt
             {
-                CustomerName = cmbCustomer.SelectedItem.ToString(),
+                CustomerId = customerId,
+                CustomerName = customerName,
                 Remarks = txtremarks.Text.Trim(),
                 Devices = serviceDevices
             };
@@ -88,7 +125,6 @@ namespace TechStore.UI
 
                 if (receiptId > 0)
                 {
-                    // Store for printing or PDF later
                     lastSavedReceiptId = receiptId;
                     lastSavedCustomerName = receipt.CustomerName;
                     lastSavedRemarks = receipt.Remarks;
@@ -428,6 +464,46 @@ namespace TechStore.UI
             else
             {
                 MessageBox.Show("Please save the receipt before generating PDF.");
+            }
+        }
+
+        private void cmbCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtcustomer_TextChanged(object sender, EventArgs e)
+        {
+           
+            string keyword = txtcustomer.Text.Trim();
+            //string type = combocustomer.SelectedItem?.ToString();
+
+            if (string.IsNullOrWhiteSpace(keyword) )
+            {
+                dgvCustomerSearch.Visible = false;
+                return;
+            }
+
+            DataTable customers = servicesDL.GetAllCustomers(); // ✅ Use your DL method
+
+            dgvCustomerSearch.Rows.Clear();
+            foreach (DataRow row in customers.Rows)
+            {
+                if (row["name"].ToString().ToLower().Contains(keyword.ToLower()))
+                {
+                    dgvCustomerSearch.Rows.Add(row["name"], row["address"]);
+                }
+            }
+
+            dgvCustomerSearch.Visible = dgvCustomerSearch.Rows.Count > 0;
+        }
+
+        private void DgvCustomerSearch_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                txtcustomer.Text = dgvCustomerSearch.Rows[e.RowIndex].Cells["name"].Value.ToString();
+                dgvCustomerSearch.Visible = false;
             }
         }
 
