@@ -88,8 +88,10 @@ namespace TechStore.UI
             {
                 MessageBox.Show("An error occurred while updating batch: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            paneledit.Visible = false;
+
         }
-        
+
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
