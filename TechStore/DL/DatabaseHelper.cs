@@ -6,6 +6,7 @@ using System.Data;
 using System.Windows.Input;
 using System.Xml.Linq;
 using TechStore.BL.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace KIMS
 {
@@ -431,6 +432,27 @@ namespace KIMS
             }
 
             return products;
+        }
+        public decimal getsaleprice(int id)
+        {
+            try
+            {
+                using (var conn = Instance.GetConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT sale_price from inventory where product_id = @id;";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        object result = cmd.ExecuteScalar();
+                        return result != null ? Convert.ToDecimal(result) : -1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error retrieving sale_price: " + ex.Message);
+            }
         }
         internal List<servicedevices> search_device(int receipt_id)
         {
