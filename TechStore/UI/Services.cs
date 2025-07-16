@@ -1,34 +1,19 @@
 ﻿using KIMS;
 using Microsoft.Extensions.DependencyInjection;
-using Mysqlx.Crud;
-
+using QuestPDF.Fluent;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+
 //using System.ComponentModel;
 using System.Data;
+using System.Drawing; // Required for Print
 //using System.Drawing;
-using System.Drawing.Printing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TechStore.BL;
-using TechStore.BL.BL;
 using TechStore.BL.Models;
 using TechStore.DL;
-using System.Drawing; // Required for Print
-using DrawingFont = System.Drawing.Font;
-using DrawingFontStyle = System.Drawing.FontStyle;
-using DrawingColor = System.Drawing.Color;
-using DrawingImage = System.Drawing.Image;
-using PdfContainer = QuestPDF.Infrastructure.IContainer;
-using QuestPDF.Fluent;
-using QuestPDF.Helpers;
-using QuestPDF.Infrastructure;
-
-using static TechStore.BL.Models.ServicesInvo;
-using System.Windows.Media.Animation;
 
 namespace TechStore.UI
 {
@@ -42,14 +27,23 @@ namespace TechStore.UI
         private List<servicedevices> lastSavedDevices;
         private DataGridView dgvCustomerSearch = new DataGridView();
 
+
+        private bool IsInDesignMode()
+        {
+            return LicenseManager.UsageMode == LicenseUsageMode.Designtime ||
+                   System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv";
+        }
         public Services(ICustomer_serviceBl ibl)
         {
             InitializeComponent();
 
-            this.ibl = ibl;
-            ConfigureGrid();
-            loadcustomers();
-            SetupCustomerGrid();
+            if (!IsInDesignMode())
+            {
+                this.ibl = ibl;
+                ConfigureGrid();
+                loadcustomers();
+                SetupCustomerGrid();
+            }
         }
 
         private void SetupCustomerGrid()
@@ -82,7 +76,7 @@ namespace TechStore.UI
 
             cmbCustomer.Items.AddRange(customers.ToArray());
         }
-        
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (serviceDevices.Count == 0)
@@ -474,11 +468,11 @@ namespace TechStore.UI
 
         private void txtcustomer_TextChanged(object sender, EventArgs e)
         {
-           
+
             string keyword = txtcustomer.Text.Trim();
             //string type = combocustomer.SelectedItem?.ToString();
 
-            if (string.IsNullOrWhiteSpace(keyword) )
+            if (string.IsNullOrWhiteSpace(keyword))
             {
                 dgvCustomerSearch.Visible = false;
                 return;

@@ -39,7 +39,7 @@ namespace TechStore
             //if (result == DialogResult.OK)
             //{
                 // Run dashboard only after login passes
-                Application.Run(ServiceProvider.GetRequiredService<Dashboard>());
+                Application.Run(ServiceProvider.GetRequiredService<Services>());
             //}
         }
 
@@ -115,7 +115,7 @@ namespace TechStore
             services.AddTransient<logins>();
             services.AddTransient<serviceform>();
             services.AddTransient<Services>();
-           
+           services.AddTransient<servicesform>();
 
         }
     }

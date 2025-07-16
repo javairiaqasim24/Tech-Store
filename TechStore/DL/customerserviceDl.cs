@@ -15,7 +15,7 @@ namespace TechStore.DL
         {
             try
             {
-                int customer_id = DatabaseHelper.Instance.getcustid(receipt.CustomerName);
+                int customer_id = receipt.CustomerId;
                 using (var conn = DatabaseHelper.Instance.GetConnection())
                 {
                     conn.Open();
