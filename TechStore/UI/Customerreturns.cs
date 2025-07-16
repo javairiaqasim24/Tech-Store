@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LiveCharts.Wpf;
+using System.Windows.Interop;
 using TechStore.DL;
 
 namespace TechStore.UI
@@ -20,6 +22,18 @@ namespace TechStore.UI
             InitializeComponent();
             panelreturn.Visible = false;
             InitializeGrid();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                if (idsearchtxt.Focused )
+                {
+                    btn.PerformClick();
+                    return true;
+                }
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -379,6 +393,11 @@ namespace TechStore.UI
         }
 
         private void Customerreturns_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

@@ -24,6 +24,8 @@ namespace TechStore.UI
         private DataGridView dgvCustomerSearch = new DataGridView();
         private int _lastBillId;
         private string sku;
+        private int selectedRowIndex = -1;
+
 
         public Customersale(ICustomerSaleBL saleBl)
         {
@@ -34,40 +36,54 @@ namespace TechStore.UI
             SetupCustomerGrid();
         }
 
+        //private int selectedRowIndex = 0;
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Enter)
             {
-                // If txtProductName is focused and search grid is visible with rows
                 if (txtproductname.Focused && dgvProductSearch.Visible && dgvProductSearch.Rows.Count > 0)
                 {
-                    // Simulate clicking the first row
-                    int rowIndex = 0;
-                    if (rowIndex >= 0 && rowIndex < dgvProductSearch.Rows.Count)
-                    {
-                        dgvProductSearch.ClearSelection();
-                        dgvProductSearch.Rows[rowIndex].Selected = true;
+                    dgvProductSearch.ClearSelection();
+                    dgvProductSearch.Rows[selectedRowIndex].Selected = true;
 
-                        // Call the same logic as in actual click
-                        LoadProductFromSearch(rowIndex);
-
-                        return true; // Mark as handled
-                    }
+                    LoadProductFromSearch(selectedRowIndex);
+                    selectedRowIndex = 0; // Reset for next entry
+                    return true;
                 }
 
-                // If not handled above, trigger Add button
                 btnadd.PerformClick();
                 return true;
             }
 
-            else if (keyData ==  Keys.Delete)
+            else if (keyData == Keys.Up)
+            {
+                if (dgvProductSearch.Visible && selectedRowIndex > 0)
+                {
+                    selectedRowIndex--;
+                    dgvProductSearch.ClearSelection();
+                    dgvProductSearch.Rows[selectedRowIndex].Selected = true;
+                    return true;
+                }
+            }
+            else if (keyData == Keys.Down)
+            {
+                if (dgvProductSearch.Visible && selectedRowIndex < dgvProductSearch.Rows.Count - 1)
+                {
+                    selectedRowIndex++;
+                    dgvProductSearch.ClearSelection();
+                    dgvProductSearch.Rows[selectedRowIndex].Selected = true;
+                    return true;
+                }
+            }
+
+            else if (keyData == Keys.Delete)
             {
                 btndelete.PerformClick();
                 return true;
             }
 
-                // Let other keys process normally
-                return base.ProcessCmdKey(ref msg, keyData);
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
 

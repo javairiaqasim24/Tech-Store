@@ -25,6 +25,7 @@ namespace TechStore.UI
         {
             InitializeComponent();
             this.ibl = ibl;
+            idsearchtxt.Focus();
             panelreturn.Visible = false;
             UIHelper.StyleGridView(dataGridView1);
             listBox1.DoubleClick += txtserailnumber_DoubleClick;
@@ -35,6 +36,19 @@ namespace TechStore.UI
             btnadd.Enabled = false;
             btnSkip.Enabled = false;
             txtreturnqty.Enabled = false;
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                if (idsearchtxt.Focused)
+                {
+                    btnsearch.PerformClick();
+                    return true;
+                }
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void Supplier_eturnsform_Load(object sender, EventArgs e) { }
@@ -370,6 +384,11 @@ namespace TechStore.UI
             }
         }
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelreturn_Paint(object sender, PaintEventArgs e)
         {
 
         }
