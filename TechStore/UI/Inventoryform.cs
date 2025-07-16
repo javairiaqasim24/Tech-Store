@@ -51,7 +51,9 @@ namespace TechStore.UI
             }
             var list = ibl.getAllinventory(text);
             dataGridView2.Columns.Clear();
-            dataGridView2.DataSource = list;
+            dataGridView2.DataSource = list.Select(p => new { p.ProductName, p.description, p.SalePrice, p.Stock, p.InventoryId, p.ProductId }).ToList();
+            dataGridView2.Columns["ProductId"].Visible = false;
+            dataGridView2.Columns["inventoryId"].Visible = false;
             UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
         }
 

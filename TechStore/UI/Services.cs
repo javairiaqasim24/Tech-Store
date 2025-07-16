@@ -71,10 +71,10 @@ namespace TechStore.UI
         }
         private void loadcustomers()
         {
-            cmbCustomer.Items.Clear();
-            var customers = DatabaseHelper.Instance.getAllCustomers();
+            //cmbCustomer.Items.Clear();
+            //var customers = DatabaseHelper.Instance.getAllCustomers();
 
-            cmbCustomer.Items.AddRange(customers.ToArray());
+            //cmbCustomer.Items.AddRange(customers.ToArray());
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -246,7 +246,7 @@ namespace TechStore.UI
             txtproductname.Clear();
             txtDescription.Clear();
             txtremarks.Clear();
-            cmbCustomer.SelectedIndex = -1;
+            //cmbCustomer.SelectedIndex = -1;
             serviceDevices.Clear();
             dataGridView2.Rows.Clear();
         }

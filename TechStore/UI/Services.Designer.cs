@@ -37,22 +37,19 @@
             this.btnadd = new FontAwesome.Sharp.IconButton();
             this.btndelete = new FontAwesome.Sharp.IconButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtcustomer = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtremarks = new System.Windows.Forms.TextBox();
-            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.guna2DateTimePicker1 = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.cmbCustomer = new System.Windows.Forms.ComboBox();
             this.btnsave = new FontAwesome.Sharp.IconButton();
             this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.toplbl = new System.Windows.Forms.Label();
-            this.txtcustomer = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,9 +57,9 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial Narrow", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(285, 175);
+            this.label8.Location = new System.Drawing.Point(253, 140);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 24);
+            this.label8.Size = new System.Drawing.Size(43, 22);
             this.label8.TabIndex = 160;
             this.label8.Text = "Issue";
             // 
@@ -70,30 +67,30 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Narrow", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(24, 175);
+            this.label4.Location = new System.Drawing.Point(21, 140);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(113, 24);
+            this.label4.Size = new System.Drawing.Size(99, 22);
             this.label4.TabIndex = 156;
             this.label4.Text = "Product name";
             // 
             // txtDescription
             // 
             this.txtDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescription.Location = new System.Drawing.Point(279, 210);
+            this.txtDescription.Location = new System.Drawing.Point(248, 168);
             this.txtDescription.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(396, 166);
+            this.txtDescription.Size = new System.Drawing.Size(352, 134);
             this.txtDescription.TabIndex = 151;
             // 
             // txtproductname
             // 
             this.txtproductname.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtproductname.Location = new System.Drawing.Point(28, 209);
+            this.txtproductname.Location = new System.Drawing.Point(25, 167);
             this.txtproductname.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtproductname.Multiline = true;
             this.txtproductname.Name = "txtproductname";
-            this.txtproductname.Size = new System.Drawing.Size(217, 69);
+            this.txtproductname.Size = new System.Drawing.Size(193, 56);
             this.txtproductname.TabIndex = 150;
             this.txtproductname.TextChanged += new System.EventHandler(this.txtproductname_TextChanged);
             // 
@@ -104,12 +101,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(242)))), ((int)(((byte)(253)))));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(27, 390);
+            this.dataGridView2.Location = new System.Drawing.Point(24, 312);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 62;
             this.dataGridView2.RowTemplate.Height = 28;
-            this.dataGridView2.Size = new System.Drawing.Size(1520, 297);
+            this.dataGridView2.Size = new System.Drawing.Size(1351, 239);
             this.dataGridView2.TabIndex = 134;
             // 
             // btnadd
@@ -128,10 +125,9 @@
             this.btnadd.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnadd.IconSize = 35;
             this.btnadd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnadd.Location = new System.Drawing.Point(1243, 290);
-            this.btnadd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnadd.Location = new System.Drawing.Point(1105, 232);
             this.btnadd.Name = "btnadd";
-            this.btnadd.Size = new System.Drawing.Size(132, 62);
+            this.btnadd.Size = new System.Drawing.Size(117, 50);
             this.btnadd.TabIndex = 108;
             this.btnadd.Text = "Add";
             this.btnadd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -155,10 +151,9 @@
             this.btndelete.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btndelete.IconSize = 35;
             this.btndelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btndelete.Location = new System.Drawing.Point(1421, 290);
-            this.btndelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btndelete.Location = new System.Drawing.Point(1263, 232);
             this.btndelete.Name = "btndelete";
-            this.btndelete.Size = new System.Drawing.Size(127, 62);
+            this.btndelete.Size = new System.Drawing.Size(113, 50);
             this.btndelete.TabIndex = 109;
             this.btndelete.Text = "Delete";
             this.btndelete.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -173,10 +168,8 @@
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtremarks);
-            this.panel1.Controls.Add(this.iconPictureBox1);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.guna2DateTimePicker1);
-            this.panel1.Controls.Add(this.cmbCustomer);
             this.panel1.Controls.Add(this.btnsave);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label5);
@@ -188,21 +181,31 @@
             this.panel1.Controls.Add(this.btnadd);
             this.panel1.Controls.Add(this.btndelete);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 104);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel1.Location = new System.Drawing.Point(0, 83);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1583, 938);
+            this.panel1.Size = new System.Drawing.Size(1407, 751);
             this.panel1.TabIndex = 18;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // txtcustomer
+            // 
+            this.txtcustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtcustomer.Location = new System.Drawing.Point(25, 59);
+            this.txtcustomer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtcustomer.Multiline = true;
+            this.txtcustomer.Name = "txtcustomer";
+            this.txtcustomer.Size = new System.Drawing.Size(248, 56);
+            this.txtcustomer.TabIndex = 181;
+            this.txtcustomer.TextChanged += new System.EventHandler(this.txtcustomer_TextChanged);
             // 
             // button2
             // 
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button2.Font = new System.Drawing.Font("Palatino Linotype", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(948, 820);
+            this.button2.Location = new System.Drawing.Point(843, 657);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(228, 62);
+            this.button2.Size = new System.Drawing.Size(203, 50);
             this.button2.TabIndex = 180;
             this.button2.Text = "Genearte Pdf";
             this.button2.UseVisualStyleBackColor = true;
@@ -212,38 +215,21 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(687, 175);
+            this.label1.Location = new System.Drawing.Point(611, 140);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 24);
+            this.label1.Size = new System.Drawing.Size(68, 22);
             this.label1.TabIndex = 179;
             this.label1.Text = "Remarks";
             // 
             // txtremarks
             // 
             this.txtremarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtremarks.Location = new System.Drawing.Point(682, 210);
+            this.txtremarks.Location = new System.Drawing.Point(606, 168);
             this.txtremarks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtremarks.Multiline = true;
             this.txtremarks.Name = "txtremarks";
-            this.txtremarks.Size = new System.Drawing.Size(307, 166);
+            this.txtremarks.Size = new System.Drawing.Size(273, 134);
             this.txtremarks.TabIndex = 178;
-            // 
-            // iconPictureBox1
-            // 
-            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.iconPictureBox1.ForeColor = System.Drawing.SystemColors.Control;
-            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.PlusSquare;
-            this.iconPictureBox1.IconColor = System.Drawing.SystemColors.Control;
-            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 34;
-            this.iconPictureBox1.Location = new System.Drawing.Point(358, 74);
-            this.iconPictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(34, 40);
-            this.iconPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.iconPictureBox1.TabIndex = 177;
-            this.iconPictureBox1.TabStop = false;
-            this.iconPictureBox1.Click += new System.EventHandler(this.iconPictureBox1_Click);
             // 
             // label2
             // 
@@ -251,9 +237,9 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.label2.Location = new System.Drawing.Point(502, 31);
+            this.label2.Location = new System.Drawing.Point(446, 25);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(170, 29);
+            this.label2.Size = new System.Drawing.Size(139, 24);
             this.label2.TabIndex = 176;
             this.label2.Text = "Expected Return";
             // 
@@ -263,28 +249,13 @@
             this.guna2DateTimePicker1.FillColor = System.Drawing.Color.White;
             this.guna2DateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.guna2DateTimePicker1.Location = new System.Drawing.Point(496, 74);
-            this.guna2DateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.guna2DateTimePicker1.Location = new System.Drawing.Point(441, 59);
             this.guna2DateTimePicker1.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.guna2DateTimePicker1.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.guna2DateTimePicker1.Name = "guna2DateTimePicker1";
-            this.guna2DateTimePicker1.Size = new System.Drawing.Size(378, 45);
+            this.guna2DateTimePicker1.Size = new System.Drawing.Size(336, 36);
             this.guna2DateTimePicker1.TabIndex = 175;
             this.guna2DateTimePicker1.Value = new System.DateTime(2025, 7, 4, 2, 11, 10, 2);
-            // 
-            // cmbCustomer
-            // 
-            this.cmbCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbCustomer.FormattingEnabled = true;
-            this.cmbCustomer.Items.AddRange(new object[] {
-            "Walk-in",
-            "Regular"});
-            this.cmbCustomer.Location = new System.Drawing.Point(28, 75);
-            this.cmbCustomer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cmbCustomer.Name = "cmbCustomer";
-            this.cmbCustomer.Size = new System.Drawing.Size(322, 34);
-            this.cmbCustomer.TabIndex = 174;
-            this.cmbCustomer.SelectedIndexChanged += new System.EventHandler(this.cmbCustomer_SelectedIndexChanged);
             // 
             // btnsave
             // 
@@ -301,10 +272,9 @@
             this.btnsave.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnsave.IconSize = 35;
             this.btnsave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsave.Location = new System.Drawing.Point(1045, 290);
-            this.btnsave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnsave.Location = new System.Drawing.Point(943, 232);
             this.btnsave.Name = "btnsave";
-            this.btnsave.Size = new System.Drawing.Size(132, 52);
+            this.btnsave.Size = new System.Drawing.Size(117, 50);
             this.btnsave.TabIndex = 171;
             this.btnsave.Text = "Save";
             this.btnsave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -315,10 +285,10 @@
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button1.Font = new System.Drawing.Font("Palatino Linotype", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(631, 820);
+            this.button1.Location = new System.Drawing.Point(561, 657);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(228, 62);
+            this.button1.Size = new System.Drawing.Size(203, 50);
             this.button1.TabIndex = 170;
             this.button1.Text = "Print Invoice";
             this.button1.UseVisualStyleBackColor = true;
@@ -330,9 +300,9 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.label5.Location = new System.Drawing.Point(24, 31);
+            this.label5.Location = new System.Drawing.Point(21, 25);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(165, 29);
+            this.label5.Size = new System.Drawing.Size(134, 24);
             this.label5.TabIndex = 167;
             this.label5.Text = "Customer Name";
             // 
@@ -342,9 +312,8 @@
             this.panel2.Controls.Add(this.toplbl);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1583, 104);
+            this.panel2.Size = new System.Drawing.Size(1407, 83);
             this.panel2.TabIndex = 17;
             // 
             // toplbl
@@ -353,39 +322,26 @@
             this.toplbl.AutoSize = true;
             this.toplbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toplbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.toplbl.Location = new System.Drawing.Point(658, 32);
+            this.toplbl.Location = new System.Drawing.Point(585, 26);
             this.toplbl.Name = "toplbl";
-            this.toplbl.Size = new System.Drawing.Size(353, 46);
+            this.toplbl.Size = new System.Drawing.Size(294, 38);
             this.toplbl.TabIndex = 6;
             this.toplbl.Text = "Customer Service";
             this.toplbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtcustomer
-            // 
-            this.txtcustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcustomer.Location = new System.Drawing.Point(960, 50);
-            this.txtcustomer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtcustomer.Multiline = true;
-            this.txtcustomer.Name = "txtcustomer";
-            this.txtcustomer.Size = new System.Drawing.Size(217, 69);
-            this.txtcustomer.TabIndex = 181;
-            this.txtcustomer.TextChanged += new System.EventHandler(this.txtcustomer_TextChanged);
-            // 
             // Services
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1583, 1042);
+            this.ClientSize = new System.Drawing.Size(1407, 834);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Services";
             this.Text = "Services";
             this.Load += new System.EventHandler(this.Services_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -406,10 +362,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
         private FontAwesome.Sharp.IconButton btnsave;
-        private System.Windows.Forms.ComboBox cmbCustomer;
         private System.Windows.Forms.Label label2;
         private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePicker1;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtremarks;
         private System.Windows.Forms.Button button2;
