@@ -326,7 +326,7 @@ namespace KIMS
             using (var conn = GetConnection())
             {
                 conn.Open();
-                var cmd = new MySqlCommand("SELECT CONCAT(first_name, ' ', last_name) FROM customers", conn);
+                var cmd = new MySqlCommand("SELECT CONCAT_WS(' ', first_name, last_name) FROM customers", conn);
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
