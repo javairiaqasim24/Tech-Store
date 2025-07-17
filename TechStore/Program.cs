@@ -29,22 +29,22 @@ namespace TechStore
             var services = new ServiceCollection();
             configureServices(services);
             ServiceProvider = services.BuildServiceProvider();
-            //var mainForm = ServiceProvider.GetRequiredService <servicesform>();
+            var mainForm = ServiceProvider.GetRequiredService<servicesform>();
 
 
-            // Show login first (Modal)
-            //var login = ServiceProvider.GetRequiredService<UI.Login>();
-            //var result = login.ShowDialog();
+            //Show login first(Modal)
+            var login = ServiceProvider.GetRequiredService<UI.Login>();
+            var result = login.ShowDialog();
 
-            //if (result == DialogResult.OK)
-            //{
+            if (result == DialogResult.OK)
+            {
                 // Run dashboard only after login passes
                 Application.Run(ServiceProvider.GetRequiredService<Dashboard>());
-            //}
+                //}
+            }
+
+
         }
-
-
-
 
         public static void configureServices(IServiceCollection services)
         {

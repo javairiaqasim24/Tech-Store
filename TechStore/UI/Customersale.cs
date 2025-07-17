@@ -307,14 +307,31 @@ namespace TechStore.UI
             AddToSaleCart();
         }
 
-       
+
 
         private void AddToSaleCart()
         {
-            string newSku = txtserial.Text.Trim(); // This is the new serial number (SKU)
+            string newSku = txtserial.Text.Trim(); // New serial number (SKU)
             string productName = txtproductname.Text.Trim();
 
             if (!ValidateSaleProduct()) return;
+
+            // ✅ Check if SKU already exists in any row
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                string existingSkus = row.Cells["Sku"].Value?.ToString() ?? "";
+                var serialList = existingSkus.Split(',').Select(s => s.Trim()).ToList();
+
+                if (serialList.Contains(newSku))
+                {
+                    MessageBox.Show($"The serial number '{newSku}' is already added.", "Duplicate Serial", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtserial.Clear();
+                    txtserial.Focus();
+                    return;
+                }
+            }
 
             int addedQty = int.TryParse(quantity.Text.Trim(), out int parsedQty) ? parsedQty : 1;
 
@@ -323,23 +340,20 @@ namespace TechStore.UI
                 if (row.IsNewRow) continue;
 
                 string existingName = row.Cells["Name"].Value?.ToString();
-                string existingSkus = row.Cells["Sku"].Value?.ToString() ?? "";
 
                 if (existingName == productName)
                 {
+                    string existingSkus = row.Cells["Sku"].Value?.ToString() ?? "";
                     var existingSerialList = existingSkus.Split(',').Select(s => s.Trim()).ToList();
-                    if (!existingSerialList.Contains(newSku))
-                    {
-                        existingSerialList.Add(newSku);
-                        row.Cells["Sku"].Value = string.Join(", ", existingSerialList);
-                    }
+
+                    existingSerialList.Add(newSku);
+                    row.Cells["Sku"].Value = string.Join(", ", existingSerialList);
 
                     int currentQty = Convert.ToInt32(row.Cells["Quantity"].Value);
                     row.Cells["Quantity"].Value = currentQty + addedQty;
 
                     decimal unitPrice = Convert.ToDecimal(row.Cells["Price"].Value ?? 0);
-                    decimal discount = 0;
-                    discount = Convert.ToDecimal(row.Cells["Discount"].Value ?? 0);
+                    decimal discount = Convert.ToDecimal(row.Cells["Discount"].Value ?? 0);
                     decimal total = (unitPrice - discount) * (currentQty + addedQty);
                     row.Cells["Total"].Value = total.ToString();
 
@@ -348,22 +362,24 @@ namespace TechStore.UI
                     return;
                 }
             }
-            // New product row
+
+            // ✅ Add new row if product not found
             dataGridView1.Rows.Add(
-            newSku,
-            productName,
-            txtdescription.Text.Trim(),
+                newSku,
+                productName,
+                txtdescription.Text.Trim(),
                 txtwarranty.Text.Trim(),
                 txtsaleprice.Text.Trim(),
-                addedQty.ToString(),                            // ✅ use actual quantity
+                addedQty.ToString(),
                 discount.Text.Trim(),
                 priceafterdisc.Text.Trim()
             );
 
             UpdateFinalTotals();
-        ClearProductFields();
-        txtserial.Focus();
+            ClearProductFields();
+            txtserial.Focus();
         }
+
 
         //private void AddToSaleCart()
         //{
@@ -726,18 +742,20 @@ namespace TechStore.UI
 
         private void btnsave_Click(object sender, EventArgs e)
         {
-            if(!thermalprint.Checked && !A4printer.Checked && !onlypdf.Checked)
+            try
             {
-                MessageBox.Show("Please select the option whether you to print or pdf");
-                return;
-            }
+                if (!thermalprint.Checked && !A4printer.Checked && !onlypdf.Checked)
+                {
+                    MessageBox.Show("Please select the option whether you to print or pdf");
+                    return;
+                }
 
-            if (!ValidatePayment()) return;
+                if (!ValidatePayment()) return;
 
-            string customerType = combocustomer.SelectedItem?.ToString();
-            string customerName = txtcustomer.Text.Trim();
-            int customerId;
-            
+                string customerType = combocustomer.SelectedItem?.ToString();
+                string customerName = txtcustomer.Text.Trim();
+                int customerId;
+
                 // Search existing customer
                 customerId = _saleBl.GetCustomerIdByNameAndType(customerName, customerType);
 
@@ -757,29 +775,29 @@ namespace TechStore.UI
                     ShowMessage("Cart Empty", "Please add at least one product.");
                     return;
                 }
-                 // Clear form here
-                 // Now proceed to save bill + items
-                 _lastBillId = _saleBl.SaveCustomerBill(
-                 customerId,
-                DateTime.Now,
-                 Convert.ToDecimal(finalpricetxt.Text),
-                 Convert.ToDecimal(txtfinalpaid.Text),
-                 dataGridView1 // Send whole cart
-                 );
-            if (_lastBillId > 0)
-            {
-                // 🔥 Check PDF print type
-                if (onlypdf.Checked)
+                // Clear form here
+                // Now proceed to save bill + items
+                _lastBillId = _saleBl.SaveCustomerBill(
+                customerId,
+               DateTime.Now,
+                Convert.ToDecimal(finalpricetxt.Text),
+                Convert.ToDecimal(txtfinalpaid.Text),
+                dataGridView1 // Send whole cart
+                );
+                if (_lastBillId > 0)
+                {
+                    // 🔥 Check PDF print type
+                    if (onlypdf.Checked)
                     {
                         SavePdfInvoice();  // ← Generate and save PDF only
-                        
+
                     }
 
                     else if (A4printer.Checked)
                     {
                         decimal total = long.Parse(finalpricetxt.Text);
                         decimal paid = long.Parse(txtfinalpaid.Text);
-                        invoices.PrintInvoiceDirectly(dataGridView1, customerName, DateTime.Now, total, paid, _lastBillId);                       
+                        invoices.PrintInvoiceDirectly(dataGridView1, customerName, DateTime.Now, total, paid, _lastBillId);
                     }
 
                     else if (thermalprint.Checked)
@@ -788,17 +806,18 @@ namespace TechStore.UI
                         decimal paid = long.Parse(txtfinalpaid.Text);
                         invoices.PrintThermalReceipt(dataGridView1, customerName, total, paid, _lastBillId);
                         //SavehthermalPdfInvoice();
-                         }
+                    }
 
                     clearallfields();
 
-                
-                MessageBox.Show("Bill Printed");
-                }
 
-                else
+                    MessageBox.Show("Bill Printed");
+                }
+            }
+
+                catch(Exception ex)
                 {
-                    ShowMessage("Failure", "Error saving sale.");
+                    ShowMessage("Failure", "Error saving sale + ." + ex.Message);
                 }
         }      
 

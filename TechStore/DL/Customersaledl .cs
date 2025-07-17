@@ -190,8 +190,8 @@ namespace TechStore.DL
         public int InsertNewWalkInCustomer(string name)
         {
             string[] parts = name.Split(' ');
-            string firstName = parts[0];
-            string lastName = parts.Length > 1 ? parts[1] : "";
+            string firstName = parts[0]; // First word
+            string lastName = string.Join(" ", parts.Skip(1));
 
             using (var conn = DatabaseHelper.Instance.GetConnection())
             {
