@@ -28,6 +28,21 @@ namespace TechStore.UI
 
         }
 
+       
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                if (paneledit.Visible)
+                {
+                    btnsave1.PerformClick();
+                    return true;
+                }
+                
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         private void Supplierbillsform_Load(object sender, EventArgs e)
         {
             load();

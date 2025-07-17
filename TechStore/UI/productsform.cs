@@ -23,6 +23,7 @@ namespace TechStore
         public productsform(IproductBl ibl)
         {
             InitializeComponent();
+            this.KeyPreview = true;
             paneledit.Visible = false;
             //paneladd.Visible = false;
             _productBl = ibl;
@@ -31,7 +32,31 @@ namespace TechStore
 
         }
 
+        private void YourForm_Load(object sender, EventArgs e)
+        {
+            this.ActiveControl = txtname1; // Or any starting control
+        }
 
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                if (txtname1.Focused || txtcategory.Focused || txtdescp1.Focused)
+                {
+                    btnsave.PerformClick();
+                    return true;
+                }                
+            }
+            else if (keyData == (Keys.Control | Keys.A))
+            {
+                this.Focus(); // Optional: ensures form regains focus
+                btnadd.PerformClick();
+                return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -304,6 +329,9 @@ namespace TechStore
             Dashboard.Instance.LoadFormIntoPanel(f);
         }
 
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
     }
 }

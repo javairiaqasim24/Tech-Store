@@ -64,9 +64,11 @@
             this.panel1.Controls.Add(this.toplbl);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1312, 84);
+            this.panel1.Size = new System.Drawing.Size(1476, 105);
             this.panel1.TabIndex = 14;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // toplbl
             // 
@@ -74,9 +76,9 @@
             this.toplbl.AutoSize = true;
             this.toplbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toplbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.toplbl.Location = new System.Drawing.Point(538, 26);
+            this.toplbl.Location = new System.Drawing.Point(605, 32);
             this.toplbl.Name = "toplbl";
-            this.toplbl.Size = new System.Drawing.Size(155, 38);
+            this.toplbl.Size = new System.Drawing.Size(187, 46);
             this.toplbl.TabIndex = 6;
             this.toplbl.Text = "Products";
             this.toplbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -92,9 +94,10 @@
             this.panel2.Controls.Add(this.button9);
             this.panel2.Controls.Add(this.textBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 84);
+            this.panel2.Location = new System.Drawing.Point(0, 105);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1312, 708);
+            this.panel2.Size = new System.Drawing.Size(1476, 885);
             this.panel2.TabIndex = 15;
             // 
             // paneledit
@@ -111,9 +114,10 @@
             this.paneledit.Controls.Add(this.txtname1);
             this.paneledit.Controls.Add(this.label10);
             this.paneledit.Controls.Add(this.label11);
-            this.paneledit.Location = new System.Drawing.Point(544, 59);
+            this.paneledit.Location = new System.Drawing.Point(612, 74);
+            this.paneledit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.paneledit.Name = "paneledit";
-            this.paneledit.Size = new System.Drawing.Size(443, 565);
+            this.paneledit.Size = new System.Drawing.Size(498, 706);
             this.paneledit.TabIndex = 138;
             // 
             // iconButton1
@@ -131,9 +135,10 @@
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.IconSize = 35;
             this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(262, 458);
+            this.iconButton1.Location = new System.Drawing.Point(295, 572);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(151, 42);
+            this.iconButton1.Size = new System.Drawing.Size(170, 52);
             this.iconButton1.TabIndex = 150;
             this.iconButton1.Text = "Cancel";
             this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -156,9 +161,10 @@
             this.btnsave.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnsave.IconSize = 35;
             this.btnsave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsave.Location = new System.Drawing.Point(49, 458);
+            this.btnsave.Location = new System.Drawing.Point(55, 572);
+            this.btnsave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnsave.Name = "btnsave";
-            this.btnsave.Size = new System.Drawing.Size(151, 42);
+            this.btnsave.Size = new System.Drawing.Size(170, 52);
             this.btnsave.TabIndex = 149;
             this.btnsave.Text = "Save";
             this.btnsave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -170,18 +176,20 @@
             // 
             this.txtcategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtcategory.FormattingEnabled = true;
-            this.txtcategory.Location = new System.Drawing.Point(73, 174);
+            this.txtcategory.Location = new System.Drawing.Point(82, 218);
+            this.txtcategory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtcategory.Name = "txtcategory";
-            this.txtcategory.Size = new System.Drawing.Size(313, 24);
+            this.txtcategory.Size = new System.Drawing.Size(352, 28);
             this.txtcategory.TabIndex = 140;
             // 
             // txtdescp1
             // 
             this.txtdescp1.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtdescp1.Location = new System.Drawing.Point(73, 251);
+            this.txtdescp1.Location = new System.Drawing.Point(82, 314);
+            this.txtdescp1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtdescp1.Multiline = true;
             this.txtdescp1.Name = "txtdescp1";
-            this.txtdescp1.Size = new System.Drawing.Size(313, 156);
+            this.txtdescp1.Size = new System.Drawing.Size(352, 194);
             this.txtdescp1.TabIndex = 139;
             // 
             // label7
@@ -190,9 +198,9 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label7.Location = new System.Drawing.Point(71, 218);
+            this.label7.Location = new System.Drawing.Point(80, 272);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(127, 30);
+            this.label7.Size = new System.Drawing.Size(151, 36);
             this.label7.TabIndex = 138;
             this.label7.Text = "Description";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -212,9 +220,10 @@
             this.btncancle1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btncancle1.IconSize = 35;
             this.btncancle1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btncancle1.Location = new System.Drawing.Point(235, 608);
+            this.btncancle1.Location = new System.Drawing.Point(264, 760);
+            this.btncancle1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btncancle1.Name = "btncancle1";
-            this.btncancle1.Size = new System.Drawing.Size(151, 42);
+            this.btncancle1.Size = new System.Drawing.Size(170, 52);
             this.btncancle1.TabIndex = 137;
             this.btncancle1.Text = "Cancel";
             this.btncancle1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -236,9 +245,10 @@
             this.btnsave1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnsave1.IconSize = 35;
             this.btnsave1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsave1.Location = new System.Drawing.Point(47, 608);
+            this.btnsave1.Location = new System.Drawing.Point(53, 760);
+            this.btnsave1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnsave1.Name = "btnsave1";
-            this.btnsave1.Size = new System.Drawing.Size(151, 42);
+            this.btnsave1.Size = new System.Drawing.Size(170, 52);
             this.btnsave1.TabIndex = 136;
             this.btnsave1.Text = "Save";
             this.btnsave1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -251,9 +261,9 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label9.Location = new System.Drawing.Point(71, 130);
+            this.label9.Location = new System.Drawing.Point(80, 162);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(104, 30);
+            this.label9.Size = new System.Drawing.Size(124, 36);
             this.label9.TabIndex = 132;
             this.label9.Text = "Category";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -261,10 +271,11 @@
             // txtname1
             // 
             this.txtname1.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtname1.Location = new System.Drawing.Point(73, 91);
+            this.txtname1.Location = new System.Drawing.Point(82, 114);
+            this.txtname1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtname1.Multiline = true;
             this.txtname1.Name = "txtname1";
-            this.txtname1.Size = new System.Drawing.Size(313, 35);
+            this.txtname1.Size = new System.Drawing.Size(352, 43);
             this.txtname1.TabIndex = 131;
             // 
             // label10
@@ -273,9 +284,9 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label10.Location = new System.Drawing.Point(71, 58);
+            this.label10.Location = new System.Drawing.Point(80, 72);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(72, 30);
+            this.label10.Size = new System.Drawing.Size(86, 36);
             this.label10.TabIndex = 130;
             this.label10.Text = "Name";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -286,9 +297,9 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
-            this.label11.Location = new System.Drawing.Point(132, 19);
+            this.label11.Location = new System.Drawing.Point(148, 24);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(207, 38);
+            this.label11.Size = new System.Drawing.Size(251, 46);
             this.label11.TabIndex = 7;
             this.label11.Text = "Edit Product";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -308,9 +319,10 @@
             this.btnadd.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnadd.IconSize = 35;
             this.btnadd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnadd.Location = new System.Drawing.Point(12, 18);
+            this.btnadd.Location = new System.Drawing.Point(14, 22);
+            this.btnadd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnadd.Name = "btnadd";
-            this.btnadd.Size = new System.Drawing.Size(151, 42);
+            this.btnadd.Size = new System.Drawing.Size(170, 52);
             this.btnadd.TabIndex = 135;
             this.btnadd.Text = "Add";
             this.btnadd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -334,22 +346,23 @@
             this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(242)))), ((int)(((byte)(253)))));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.GridColor = System.Drawing.SystemColors.AppWorkspace;
-            this.dataGridView2.Location = new System.Drawing.Point(12, 89);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView2.Location = new System.Drawing.Point(14, 111);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView2.Size = new System.Drawing.Size(1267, 405);
+            this.dataGridView2.Size = new System.Drawing.Size(1425, 506);
             this.dataGridView2.TabIndex = 134;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // pictureBox10
             // 
             this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(169, 17);
+            this.pictureBox10.Location = new System.Drawing.Point(190, 21);
+            this.pictureBox10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(43, 43);
+            this.pictureBox10.Size = new System.Drawing.Size(48, 54);
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox10.TabIndex = 133;
             this.pictureBox10.TabStop = false;
@@ -361,10 +374,10 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label4.Location = new System.Drawing.Point(818, 24);
+            this.label4.Location = new System.Drawing.Point(920, 30);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 25);
+            this.label4.Size = new System.Drawing.Size(97, 31);
             this.label4.TabIndex = 130;
             this.label4.Text = "Search :";
             // 
@@ -375,10 +388,10 @@
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button9.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button9.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button9.Location = new System.Drawing.Point(1156, 23);
-            this.button9.Margin = new System.Windows.Forms.Padding(4);
+            this.button9.Location = new System.Drawing.Point(1300, 29);
+            this.button9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(112, 31);
+            this.button9.Size = new System.Drawing.Size(126, 39);
             this.button9.TabIndex = 132;
             this.button9.Text = "Search";
             this.button9.UseVisualStyleBackColor = false;
@@ -388,21 +401,22 @@
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(904, 23);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Location = new System.Drawing.Point(1017, 29);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(230, 29);
+            this.textBox1.Size = new System.Drawing.Size(258, 33);
             this.textBox1.TabIndex = 131;
             this.textBox1.Click += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
             // productsform
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1312, 792);
+            this.ClientSize = new System.Drawing.Size(1476, 990);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "productsform";
             this.Text = "Inventoryform";
             this.Load += new System.EventHandler(this.Inventoryform_Load);

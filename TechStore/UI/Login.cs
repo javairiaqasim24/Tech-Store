@@ -23,6 +23,19 @@ namespace TechStore.UI
             this.Font = SystemFonts.DefaultFont; // ✅ ensures scaling matches
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                if (txtpassword.Focused)
+                {
+                    btnlogin.PerformClick();
+                    return true;
+                }
+               
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
         private void txtname_TextChanged(object sender, EventArgs e)
         {
 
@@ -56,6 +69,11 @@ namespace TechStore.UI
 
 
         private void Login_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }

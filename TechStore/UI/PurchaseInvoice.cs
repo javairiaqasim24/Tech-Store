@@ -383,9 +383,20 @@ namespace TechStore.UI
                 button1.PerformClick();
                 return true;
             }
-            
 
-                return base.ProcessCmdKey(ref msg, keyData); // Allow default behavior
+            else if (keyData == (Keys.Control | Keys.Shift | Keys.A))
+            {
+                iconButton2.PerformClick();
+                return true;
+            }
+
+            else if(keyData == (Keys.Control | Keys.Shift | Keys.S))
+            {
+                iconButton1.PerformClick();
+                return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData); // Allow default behavior
         }
 
 

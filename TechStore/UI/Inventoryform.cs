@@ -40,6 +40,26 @@ namespace TechStore.UI
             UIHelper.AddButtonColumn(dataGridView2, "Edit", "Edit", "Edit");
 
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                if (textBox1.Focused)
+                {
+                    button9.PerformClick();
+                    return true;
+                }           
+                else if(txtsale.Focused || txtstock.Focused) 
+                {
+                    btnsave.PerformClick(); 
+                    return true;
+                }
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             string text=textBox1.Text;

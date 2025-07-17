@@ -21,6 +21,20 @@ namespace TechStore.UI
             this.ibl = ibl;
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                if (textBox1.Focused)
+                {
+                    button9.PerformClick();
+                    return true;
+                }
+               
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         private void Inventorylogform_Load(object sender, EventArgs e)
         {
             load();
