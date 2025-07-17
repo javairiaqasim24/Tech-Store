@@ -361,6 +361,7 @@ namespace TechStore.UI
 
             // Footer
             e.Graphics.DrawString("Thank you for choosing Tech Store!", bodyFont, brush, x + 150, y);
+
         }
 
 

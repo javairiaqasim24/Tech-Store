@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\computer\\Tech-Store\\TechStore\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|C:\\Users\\User\\Desktop\\computer\\Tech-Store\\TechStore\\ui\\serviceform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|c:\\users\\user\\desktop\\computer\\tech-store\\techstore\\ui\\serviceform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:ui\\serviceform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -55,7 +55,7 @@
       "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:ui\\customerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|c:\\users\\user\\desktop\\computer\\tech-store\\techstore\\ui\\purchaseinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|C:\\Users\\User\\Desktop\\computer\\Tech-Store\\TechStore\\ui\\purchaseinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1DEC2436-0D9B-4575-A13D-4939F699761E}|TechStore.csproj|solutionrelative:ui\\purchaseinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -550,8 +550,7 @@
               "RelativeToolTip": "UI\\Services.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-09T17:36:37.416Z",
-              "IsPinned": true,
-              "EditorCaption": " [Design]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -564,8 +563,7 @@
               "ViewState": "AgIAAIcAAAAAAAAAAAAuwPUAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-09T17:38:07.568Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -597,8 +595,7 @@
               "RelativeToolTip": "DL\\DatabaseHelper.cs",
               "ViewState": "AgIAALIBAAAAAAAAAAAcwL0BAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-09T21:39:21.211Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-09T21:39:21.211Z"
             },
             {
               "$type": "Document",
@@ -620,7 +617,7 @@
               "RelativeDocumentMoniker": "UI\\serviceform.cs",
               "ToolTip": "C:\\Users\\User\\Desktop\\computer\\Tech-Store\\TechStore\\UI\\serviceform.cs",
               "RelativeToolTip": "UI\\serviceform.cs",
-              "ViewState": "AgIAAFgBAAAAAAAAAAAqwGwBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFsBAAAAAAAAAAAqwGsBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-12T21:53:55.629Z",
               "EditorCaption": ""
@@ -635,8 +632,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAAACkAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T06:20:07.454Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-08T06:20:07.454Z"
             },
             {
               "$type": "Document",
@@ -647,8 +643,7 @@
               "ToolTip": "C:\\Users\\User\\Desktop\\computer\\Tech-Store\\TechStore\\UI\\servicesform.cs [Design]",
               "RelativeToolTip": "UI\\servicesform.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-11T04:47:50.872Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-07-11T04:47:50.872Z"
             },
             {
               "$type": "Document",
@@ -659,8 +654,7 @@
               "ToolTip": "C:\\Users\\User\\Desktop\\computer\\Tech-Store\\TechStore\\UI\\Supplierbillsform.cs [Design]",
               "RelativeToolTip": "UI\\Supplierbillsform.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T01:27:29.407Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-07-08T01:27:29.407Z"
             },
             {
               "$type": "Document",
@@ -672,8 +666,7 @@
               "RelativeToolTip": "DL\\DashboardDl.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAALEBAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T09:34:42.143Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-08T09:34:42.143Z"
             },
             {
               "$type": "Document",
@@ -685,8 +678,7 @@
               "RelativeToolTip": "UI\\Inventoryform.cs",
               "ViewState": "AgIAABcAAAAAAAAAAAAWwDcAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T01:26:30.433Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-08T01:26:30.433Z"
             },
             {
               "$type": "Document",
@@ -697,8 +689,7 @@
               "ToolTip": "C:\\Users\\User\\Desktop\\computer\\Tech-Store\\TechStore\\UI\\Inventoryform.cs [Design]",
               "RelativeToolTip": "UI\\Inventoryform.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T01:26:28.88Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-07-08T01:26:28.88Z"
             },
             {
               "$type": "Document",
@@ -710,8 +701,7 @@
               "RelativeToolTip": "DL\\CustomerDL.cs",
               "ViewState": "AgIAAHkAAAAAAAAAAAAkwIgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T18:41:01.461Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-08T18:41:01.461Z"
             },
             {
               "$type": "Document",
@@ -722,8 +712,7 @@
               "ToolTip": "C:\\Users\\User\\Desktop\\computer\\Tech-Store\\TechStore\\UI\\Customerform.cs [Design]",
               "RelativeToolTip": "UI\\Customerform.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T01:25:55.859Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-07-08T01:25:55.859Z"
             },
             {
               "$type": "Document",
@@ -735,8 +724,7 @@
               "RelativeToolTip": "UI\\PurchaseInvoice.cs",
               "ViewState": "AgIAAFwBAAAAAAAAAAA+wHIBAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T07:02:12.033Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-08T07:02:12.033Z"
             },
             {
               "$type": "Document",
@@ -747,8 +735,7 @@
               "ToolTip": "C:\\Users\\User\\Desktop\\computer\\Tech-Store\\TechStore\\UI\\PurchaseInvoice.cs [Design]",
               "RelativeToolTip": "UI\\PurchaseInvoice.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T01:27:03.411Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-07-08T01:27:03.411Z"
             },
             {
               "$type": "Document",
@@ -796,8 +783,7 @@
               "RelativeToolTip": "UI\\Services.Designer.cs",
               "ViewState": "AgIAAFIBAAAAAAAAAAAAAF4BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-12T19:26:40.976Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-12T19:26:40.976Z"
             },
             {
               "$type": "Document",
@@ -821,8 +807,7 @@
               "RelativeToolTip": "UI\\servicesform.cs",
               "ViewState": "AgIAAK0AAAAAAAAAAAAswEoAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-11T04:48:59.056Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-11T04:48:59.056Z"
             },
             {
               "$type": "Document",
@@ -833,8 +818,7 @@
               "ToolTip": "C:\\Users\\User\\Desktop\\computer\\Tech-Store\\TechStore\\UI\\Services.resx",
               "RelativeToolTip": "UI\\Services.resx",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2025-07-16T07:27:05.857Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-16T07:27:05.857Z"
             },
             {
               "$type": "Document",
@@ -846,8 +830,7 @@
               "RelativeToolTip": "UI\\servicesform.Designer.cs",
               "ViewState": "AgIAAKMBAAAAAAAAAAAAAIoBAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-16T07:30:51.482Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-16T07:30:51.482Z"
             },
             {
               "$type": "Document",
@@ -859,8 +842,7 @@
               "RelativeToolTip": "App.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAB7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-07-08T06:20:18.567Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-08T06:20:18.567Z"
             },
             {
               "$type": "Document",
@@ -1245,8 +1227,7 @@
               "RelativeToolTip": "UI\\serviceform.Designer.cs",
               "ViewState": "AgIAAIABAAAAAAAAAAAvwJUBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-13T15:07:28.94Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-13T15:07:28.94Z"
             },
             {
               "$type": "Document",
@@ -1941,8 +1922,7 @@
               "RelativeToolTip": "UI\\Supplierbillsform.cs",
               "ViewState": "AgIAAEAAAAAAAAAAAAAqwGkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T01:27:30.807Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-08T01:27:30.807Z"
             },
             {
               "$type": "Document",
@@ -2082,8 +2062,7 @@
               "RelativeToolTip": "UI\\Customerform.cs",
               "ViewState": "AgIAAIYAAAAAAAAAAAAawIMAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T01:25:58.789Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-08T01:25:58.789Z"
             },
             {
               "$type": "Document",
