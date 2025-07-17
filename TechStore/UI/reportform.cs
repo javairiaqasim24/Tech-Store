@@ -67,6 +67,10 @@ namespace TechStore.UI
             }
         }
 
+        private void reportform_Load(object sender, EventArgs e)
+        {
+            dtpdate.Value = DateTime.Now;
+        }
     }
     public class FinancialReportDocument : IDocument
     {

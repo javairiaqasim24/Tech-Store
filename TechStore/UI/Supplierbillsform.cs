@@ -46,6 +46,7 @@ namespace TechStore.UI
         private void Supplierbillsform_Load(object sender, EventArgs e)
         {
             load();
+            dataGridView2.Focus();
         }
 
         private void load()

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LiveCharts.Wpf;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LiveCharts.Wpf;
 using System.Windows.Interop;
 using TechStore.DL;
 
@@ -355,9 +356,21 @@ namespace TechStore.UI
                 panelreturn.Visible = false;
                 ClearReturnPanel();
             }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to save return: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An unexpected error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

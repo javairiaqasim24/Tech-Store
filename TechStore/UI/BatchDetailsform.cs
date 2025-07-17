@@ -60,20 +60,39 @@ namespace TechStore.UI
                 // Delete button
                 else if (grid.Columns[e.ColumnIndex].Name == "Delete")
                 {
-                    int batchDetailId = Convert.ToInt32(selectedRow.Cells["batch_details_id"].Value);
-                    var confirm = MessageBox.Show("Are you sure you want to delete this batch detail?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (confirm == DialogResult.Yes)
+                    try
                     {
-                        var success = ibl.DeleteBatchDetails(batchDetailId);
-                        if (success)
+                        int batchDetailId = Convert.ToInt32(selectedRow.Cells["batch_details_id"].Value);
+                        var confirm = MessageBox.Show("Are you sure you want to delete this batch detail?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (confirm == DialogResult.Yes)
                         {
-                            MessageBox.Show("Deleted successfully.");
-                            load();
+                            var success = ibl.DeleteBatchDetails(batchDetailId);
+                            if (success)
+                            {
+                                MessageBox.Show("Deleted successfully.");
+                                load();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Failed to delete.");
+                            }
                         }
-                        else
-                        {
-                            MessageBox.Show("Failed to delete.");
-                        }
+                    }
+                    catch (ArgumentNullException ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An unexpected error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -141,6 +160,7 @@ namespace TechStore.UI
         private void BatchDetailsform_Load(object sender, EventArgs e)
         {
             load();
+            dataGridView2.Focus();
         }
         private void load()
         {

@@ -331,7 +331,7 @@ namespace TechStore.UI
 
         private void Services_Load(object sender, EventArgs e)
         {
-
+            guna2DateTimePicker1.Value = DateTime.Now;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

@@ -24,12 +24,52 @@ namespace TechStore.UI
             this.ibl = ibl;
             this.ibr = ibr;
             UIHelper.StyleGridView(dataGridView2);
+            this.KeyPreview = true;
+            this.KeyDown += Batchesform_KeyDown;
 
+        }
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                if (dataGridView2.Rows.Count > 0)
+                    dataGridView2.Focus();
+            }
+        }
+
+        private void Batchesform_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.F) // Ctrl + F = focus search
+            {
+                textBox1.Focus();
+                e.SuppressKeyPress = true;
+            }
+            else if (e.KeyCode == Keys.Enter && dataGridView2.Focused) // Select row
+            {
+                iconButton8.PerformClick(); // Open bill panel
+                e.SuppressKeyPress = true;
+            }
+            else if (e.KeyCode == Keys.Escape && panelbill.Visible) // ESC to close panel
+            {
+                iconButton4.PerformClick();
+                e.SuppressKeyPress = true;
+            }
+            else if (e.Control && e.KeyCode == Keys.S && panelbill.Visible) // Ctrl + S to Save
+            {
+                iconButton5.PerformClick();
+                e.SuppressKeyPress = true;
+            }
+            else if (e.KeyCode == Keys.F2) // F2 = open Add Batch form
+            {
+                btnadd.PerformClick();
+                e.SuppressKeyPress = true;
+            }
         }
 
         private void Batchesform_Load(object sender, EventArgs e)
         {
             load();
+            dataGridView2.Focus();
 
         }
         private void load()

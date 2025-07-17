@@ -51,7 +51,7 @@ namespace TechStore.UI
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void Supplier_eturnsform_Load(object sender, EventArgs e) { }
+        private void Supplier_eturnsform_Load(object sender, EventArgs e) { dateTimePicker1.Value = DateTime.Now; }
 
         private void button9_Click(object sender, EventArgs e)
         {
@@ -353,18 +353,21 @@ namespace TechStore.UI
                     MessageBox.Show("Failed to process returns.");
                 }
             }
-            catch (MySqlException ex)
+            catch (ArgumentNullException ex)
             {
-                MessageBox.Show("Sku Already returned: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show("Validation error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Error returning product: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An unexpected error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

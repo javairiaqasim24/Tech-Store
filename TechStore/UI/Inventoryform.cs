@@ -123,6 +123,7 @@ namespace TechStore.UI
         private void Inventoryform_Load(object sender, EventArgs e)
         {
             load();
+            dataGridView2.Focus();
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)

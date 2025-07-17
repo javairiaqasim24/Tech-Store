@@ -151,19 +151,37 @@ namespace TechStore.UI
                 MessageBox.Show("No parts added.");
                 return;
             }
-
-            bool success = ibl.AddPartsAndUpdateCharges(addedParts, laborCharge, out string message);
-            if (success)
+            try
             {
-                MessageBox.Show("Parts saved and charges updated.");
-                panelreturn.Visible = false;
-                addedParts.Clear();
-                dataGridView1.Rows.Clear();
-                ClearInputs();
+                bool success = ibl.AddPartsAndUpdateCharges(addedParts, laborCharge, out string message);
+                if (success)
+                {
+                    MessageBox.Show("Parts saved and charges updated.");
+                    panelreturn.Visible = false;
+                    addedParts.Clear();
+                    dataGridView1.Rows.Clear();
+                    ClearInputs();
+                }
+                else
+                {
+                    MessageBox.Show("Failed: " + message);
+                }
             }
-            else
+            catch (ArgumentNullException ex)
             {
-                MessageBox.Show("Failed: " + message);
+                MessageBox.Show("Error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
