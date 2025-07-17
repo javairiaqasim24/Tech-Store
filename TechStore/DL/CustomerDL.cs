@@ -134,8 +134,8 @@ namespace TechStore.DL
                                  reader.IsDBNull(reader.GetOrdinal("address")) ? "" : reader.GetString("address"),
 
                                 reader.GetString("first_name"),
-                                    reader.IsDBNull(reader.GetOrdinal("last_name")) ? "" : reader.GetString("last_name"),
-                                reader.GetString("type"),
+                                 reader.IsDBNull(reader.GetOrdinal("last_name")) ? "" : reader.GetString("last_name"),
+                                    reader.GetString("type"),
                                     reader.IsDBNull(reader.GetOrdinal("phone"))?"":reader.GetString("phone")
                                 );
                                 customers.Add(customer);
