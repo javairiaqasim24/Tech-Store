@@ -15,12 +15,16 @@ namespace TechStore.UI
 {
     public partial class Login : Form
     {
+
+        private bool passwordVisible = false;
         public Login()
         {
             InitializeComponent();
             this.AutoScaleMode = AutoScaleMode.Dpi;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Font = SystemFonts.DefaultFont; // ✅ ensures scaling matches
+            txtpassword.UseSystemPasswordChar = true; // hides password
+
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -76,6 +80,12 @@ namespace TechStore.UI
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            passwordVisible = !passwordVisible;
+            txtpassword.UseSystemPasswordChar = !passwordVisible;
         }
     }
   
