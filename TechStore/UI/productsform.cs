@@ -29,8 +29,29 @@ namespace TechStore
             _productBl = ibl;
             UIHelper.StyleGridView(dataGridView2);
 
+            dataGridView2.KeyDown += dataGridView2_KeyDown;
 
         }
+        // This can be removed if ProcessCmdKey handles everything
+        private void dataGridView2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+
+                if (dataGridView2.CurrentRow != null)
+                {
+                    int rowIndex = dataGridView2.CurrentRow.Index;
+                    int editColumnIndex = dataGridView2.Columns["Edit"].Index;
+
+                    dataGridView2_CellContentClick(
+                        dataGridView2,
+                        new DataGridViewCellEventArgs(editColumnIndex, rowIndex)
+                    );
+                }
+            }
+        }
+
 
         private void YourForm_Load(object sender, EventArgs e)
         {
@@ -44,19 +65,66 @@ namespace TechStore
             {
                 if (txtname1.Focused || txtcategory.Focused || txtdescp1.Focused)
                 {
-                    btnsave.PerformClick();
+                    btnsave1.PerformClick();
                     return true;
-                }                
+                }
+                else if (dataGridView2.Focused && dataGridView2.CurrentRow != null)
+                {
+                    int rowIndex = dataGridView2.CurrentRow.Index;
+
+                    // Simulate Edit button click — must match column name
+                    int editColumnIndex = dataGridView2.Columns["Edit"].Index;
+
+                    dataGridView2_CellContentClick(
+                        dataGridView2,
+                        new DataGridViewCellEventArgs(editColumnIndex, rowIndex)
+                    );
+
+                    return true;
+                }
             }
             else if (keyData == (Keys.Control | Keys.A))
             {
-                this.Focus(); // Optional: ensures form regains focus
                 btnadd.PerformClick();
+                return true;
+            }
+            else if (keyData == Keys.Escape && paneledit.Visible)
+            {
+                paneledit.Visible = false;
+                dataGridView2.Focus();
+                return true;
+            }
+            else if (keyData == Keys.Delete && dataGridView2.Focused && dataGridView2.CurrentRow != null)
+            {
+                DeleteSelectedRow();
                 return true;
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
+        private void DeleteSelectedRow()
+        {
+            if (dataGridView2.SelectedRows.Count > 0)
+            {
+                var result = MessageBox.Show("Delete selected product?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    var row = dataGridView2.SelectedRows[0];
+                    int id = Convert.ToInt32(row.Cells["id"].Value);
+                    if (_productBl.DeleteProduct(id))
+                    {
+                        MessageBox.Show("Deleted successfully.");
+                        load();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Delete failed.");
+                    }
+                }
+            }
+        }
+
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -75,8 +143,10 @@ namespace TechStore
                 UIHelper.RoundPanelCorners(paneledit, 20);
                 UIHelper.ShowCenteredPanel(this, paneledit);
             }
+            
             else if (columnName == "Delete")
             {
+                try { 
                 var result = MessageBox.Show("Are you sure you want to delete this product?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {
@@ -90,6 +160,23 @@ namespace TechStore
                     {
                         MessageBox.Show("Failed to delete product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                }
+            }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An unexpected error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -158,6 +245,7 @@ namespace TechStore
             //dataGridView2.CellContentClick += dataGridView2_CellContentClick;
 
             load();
+            dataGridView2.Focus();
         }
         private void txtcategory_TextChanged(object sender, EventArgs e)
         {
@@ -250,14 +338,11 @@ namespace TechStore
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Database error occurred while Updating: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-           
-          
-
             catch (Exception ex)
             {
-                MessageBox.Show("Error updating product: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An unexpected error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

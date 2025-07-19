@@ -26,15 +26,66 @@ namespace TechStore.UI
             paneledit.Visible = false;
             this.textBox1.TextChanged += textBox1_TextChanged;
             UIHelper.StyleGridView(dataGridView2);
-
+            this.KeyPreview = true;
+            this.KeyDown += Customerform_KeyDown;
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
+            dataGridView2.KeyDown += dataGridView2_KeyDown;
 
             UIHelper.ApplyButtonStyles(dataGridView2);
+        }
+        private void Customerform_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S && paneledit.Visible)
+            {
+                btnsave.PerformClick(); // save edited customer
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down && dataGridView2.Rows.Count > 0)
+            {
+                dataGridView2.Focus();
+                dataGridView2.CurrentCell = dataGridView2.Rows[0].Cells[1];
+            }
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape && paneledit.Visible)
+            {
+                paneledit.Visible = false;
+                return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void dataGridView2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (dataGridView2.CurrentRow == null) return;
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                dataGridView2_CellContentClick(sender,
+                    new DataGridViewCellEventArgs(dataGridView2.Columns["Edit"].Index, dataGridView2.CurrentRow.Index));
+            }
+
+            if (e.KeyCode == Keys.Delete)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                dataGridView2_CellContentClick(sender,
+                    new DataGridViewCellEventArgs(dataGridView2.Columns["Delete"].Index, dataGridView2.CurrentRow.Index));
+            }
         }
 
         private void Customerform_Load(object sender, EventArgs e)
         {
             LoadCustomers();
+            dataGridView2.Focus();
         }
 
         private void LoadCustomers()
@@ -74,38 +125,57 @@ namespace TechStore.UI
 
             if (columnName == "Edit")
             {
-                txtname.Text = row.Cells["_firstname"].Value?.ToString();
-                txtlname.Text = row.Cells["_lastname"].Value?.ToString();
-                txtcontact.Text = row.Cells["phone"].Value?.ToString();
-                string type = row.Cells["_type"].Value?.ToString() ?? "Walk_in";
-                comboBox1.Text = type;
+               
+                    txtname.Text = row.Cells["_firstname"].Value?.ToString();
+                    txtlname.Text = row.Cells["_lastname"].Value?.ToString();
+                    txtcontact.Text = row.Cells["phone"].Value?.ToString();
+                    string type = row.Cells["_type"].Value?.ToString() ?? "Walk_in";
+                    comboBox1.Text = type;
 
-                if (type == "Regular")
-                {
-                    txtemail.Text = row.Cells["email"].Value?.ToString();
-                    txtaddress.Text = row.Cells["address"].Value?.ToString();
-                    ToggleRegularFields(true);
-                }
-                else
-                {
-                    txtemail.Text = "";
-                    txtaddress.Text = "";
-                    ToggleRegularFields(false);
-                }
+                    if (type == "Regular")
+                    {
+                        txtemail.Text = row.Cells["email"].Value?.ToString();
+                        txtaddress.Text = row.Cells["address"].Value?.ToString();
+                        ToggleRegularFields(true);
+                    }
+                    else
+                    {
+                        txtemail.Text = "";
+                        txtaddress.Text = "";
+                        ToggleRegularFields(false);
+                    }
 
-                UIHelper.RoundPanelCorners(paneledit, 20);
-                UIHelper.ShowCenteredPanel(this, paneledit);
+                    UIHelper.RoundPanelCorners(paneledit, 20);
+                    UIHelper.ShowCenteredPanel(this, paneledit);
+                
+                
             }
             else if (columnName == "Delete")
             {
-                var confirm = MessageBox.Show("Are you sure you want to delete this customer?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (confirm == DialogResult.Yes)
+                try
                 {
-                    bool result = _customerBL.DeleteCustomer(selectedCustomerId);
-                    MessageBox.Show(result ? "Customer deleted successfully." : "Failed to delete customer.", result ? "Deleted" : "Error",
-                        MessageBoxButtons.OK, result ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+                    var confirm = MessageBox.Show("Are you sure you want to delete this customer?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (confirm == DialogResult.Yes)
+                    {
+                        bool result = _customerBL.DeleteCustomer(selectedCustomerId);
+                        MessageBox.Show(result ? "Customer deleted successfully." : "Failed to delete customer.", result ? "Deleted" : "Error",
+                            MessageBoxButtons.OK, result ? MessageBoxIcon.Information : MessageBoxIcon.Error);
 
-                    if (result) LoadCustomers();
+                        if (result) LoadCustomers();
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Database error occurred while Deleting: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show("Validation error: " + ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
                 }
             }
         }

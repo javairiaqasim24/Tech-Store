@@ -353,7 +353,9 @@ namespace TechStore.UI
 
         private void PurchaseInvoice_Load(object sender, EventArgs e)
         {
+            dtpPurchaseDate.Value=DateTime.Now;
             LoadTempInvoice();
+
         }
         private void PurchaseInvoice_VisibleChanged(object sender, EventArgs e)
         {

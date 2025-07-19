@@ -38,6 +38,7 @@ namespace TechStore.UI
         private void Inventorylogform_Load(object sender, EventArgs e)
         {
             load();
+            textBox1.Focus();
         }
         private void load()
         {

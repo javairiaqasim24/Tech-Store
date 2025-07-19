@@ -31,9 +31,33 @@ namespace TechStore.UI
             txtserailnumber.KeyDown += txtserailnumber_KeyDown;
             this.txtproducts.TextChanged += txtproducts_TextChanged;
             this.txtBname.TextChanged += txtBname_TextChanged;
-
+            this.KeyPreview = true; // Ensures form captures key presses
+            this.KeyDown += AddbatchDetailsform_KeyDown;
+            txtBname.TabIndex = 0;
+            txtproducts.TabIndex = 1;
+            dataGridView2.TabIndex = 2;
+            txtquantity.TabIndex = 3;
+            txtprice.TabIndex = 4;
+            txtSprice.TabIndex = 5;
+            txtserialinput.TabIndex = 6;
+            iconPictureBox1.TabIndex = 7;
+            btnsave.TabIndex = 8;
 
         }
+        //protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        //{
+        //    if (keyData == Keys.Enter)
+        //    {
+        //        var focused = this.ActiveControl;
+        //        if (focused is TextBox || focused is ComboBox || focused is NumericUpDown)
+        //        {
+        //            this.SelectNextControl(focused, true, true, true, true);
+        //            return true;
+        //        }
+        //    }
+        //    return base.ProcessCmdKey(ref msg, keyData);
+        //}
+
         private void txtserailnumber_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete && txtserailnumber.SelectedItem != null)
@@ -270,15 +294,8 @@ namespace TechStore.UI
         {
             if (e.RowIndex >= 0)
             {
-                var row = dataGridView2.Rows[e.RowIndex];
-                selectedProductId = Convert.ToInt32(row.Cells["ProductID"].Value);
-                selectedProductName = row.Cells["Name"].Value?.ToString();
-                selectedProductDescription = row.Cells["Description"].Value?.ToString();
-
-                txtproducts.Text = selectedProductName;
-
-                // Optionally show confirmation
-                MessageBox.Show($"Selected: ID={selectedProductId}, Name={selectedProductName}, Desc={selectedProductDescription}");
+                dataGridView2.CurrentCell = dataGridView2.Rows[e.RowIndex].Cells[1]; // Focus for Enter key
+                SelectRowFromGrid();
             }
         }
 
@@ -314,6 +331,54 @@ namespace TechStore.UI
             var f = Program.ServiceProvider.GetRequiredService<addproductform>();
             f.ShowDialog(this);
             load();
+        }
+        private void SelectRowFromGrid()
+        {
+            if (dataGridView2.CurrentRow != null)
+            {
+                var row = dataGridView2.CurrentRow;
+                selectedProductId = Convert.ToInt32(row.Cells["ProductID"].Value);
+                selectedProductName = row.Cells["Name"].Value?.ToString();
+                selectedProductDescription = row.Cells["Description"].Value?.ToString();
+
+                txtproducts.Text = selectedProductName;
+
+                MessageBox.Show($"Selected: ID={selectedProductId}, Name={selectedProductName}, Desc={selectedProductDescription}");
+            }
+        }
+
+        private void AddbatchDetailsform_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S) // Ctrl + S to Save
+            {
+                btnsave.PerformClick(); // Save data
+                e.SuppressKeyPress = true;
+            }
+            else if (e.KeyCode == Keys.Enter && dataGridView2.Focused)
+            {
+                SelectRowFromGrid(); // Select row on Enter
+                e.SuppressKeyPress = true;
+            }
+            else if (e.KeyCode == Keys.Insert) // Insert to add serial
+            {
+                iconPictureBox1_Click(null, null); // Simulate serial add button
+                e.SuppressKeyPress = true;
+            }
+            else if (e.KeyCode == Keys.F2) // F2 to open Add Product form
+            {
+                iconPictureBox3_Click(null, null);
+                e.SuppressKeyPress = true;
+            }
+            else if (e.KeyCode == Keys.F3) // F3 to open Add Batch form
+            {
+                iconPictureBox2_Click(null, null);
+                e.SuppressKeyPress = true;
+            }
+            else if (e.KeyCode == Keys.Escape) // ESC to close form
+            {
+                this.Close();
+                e.SuppressKeyPress = true;
+            }
         }
 
         private void txtBname_SelectedIndexChanged(object sender, EventArgs e)
