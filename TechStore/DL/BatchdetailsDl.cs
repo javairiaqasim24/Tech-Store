@@ -186,6 +186,17 @@ namespace TechStore.DL
                 throw new ArgumentException("error getting batches");
             }
         }
+        public decimal saleprice(int productid)
+        {
+            try
+            {
+                return DatabaseHelper.Instance.getsaleprice(productid);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error retrieving sale price: " + ex.Message, ex);
+            }
+        }
         public List<Batchdetails> getbatchdetailsbyname(string text)
         {
             List<Batchdetails> batchDetailsList = new List<Batchdetails>();
