@@ -37,9 +37,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtpro = new System.Windows.Forms.TextBox();
             this.txtBnames = new System.Windows.Forms.TextBox();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // checkBox1
@@ -208,9 +210,25 @@
             this.txtBnames.Size = new System.Drawing.Size(250, 22);
             this.txtBnames.TabIndex = 19;
             // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(52)))), ((int)(((byte)(88)))));
+            this.iconPictureBox1.ForeColor = System.Drawing.SystemColors.Control;
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.PlusSquare;
+            this.iconPictureBox1.IconColor = System.Drawing.SystemColors.Control;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.Location = new System.Drawing.Point(456, 75);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(49, 32);
+            this.iconPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.iconPictureBox1.TabIndex = 153;
+            this.iconPictureBox1.TabStop = false;
+            this.iconPictureBox1.Click += new System.EventHandler(this.iconPictureBox1_Click);
+            // 
             // AddbatchDetailsform
             // 
             this.ClientSize = new System.Drawing.Size(1285, 817);
+            this.Controls.Add(this.iconPictureBox1);
             this.Controls.Add(this.txtBnames);
             this.Controls.Add(this.txtpro);
             this.Controls.Add(this.panel1);
@@ -235,6 +253,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,5 +279,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtpro;
         private System.Windows.Forms.TextBox txtBnames;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
     }
 }

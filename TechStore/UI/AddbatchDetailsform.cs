@@ -1105,6 +1105,11 @@ namespace TechStore.UI
             }
         }
 
+        private void iconPictureBox1_Click(object sender, EventArgs e)
+        {
+            var f=Program.ServiceProvider.GetRequiredService<addproductform>();
+            f.ShowDialog(this);
+        }
     }
 
     // Serial Number Editor Dialog for easy editing
