@@ -30,13 +30,13 @@
             this.txtSprice = new System.Windows.Forms.TextBox();
             this.txtprice = new System.Windows.Forms.TextBox();
             this.txtquantity = new System.Windows.Forms.TextBox();
-            this.txtBname = new System.Windows.Forms.ComboBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.lblSerial = new System.Windows.Forms.Label();
             this.txtserialinput = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtpro = new System.Windows.Forms.TextBox();
+            this.txtBnames = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -148,13 +148,6 @@
             this.txtquantity.Size = new System.Drawing.Size(250, 22);
             this.txtquantity.TabIndex = 2;
             // 
-            // txtBname
-            // 
-            this.txtBname.Location = new System.Drawing.Point(186, 23);
-            this.txtBname.Name = "txtBname";
-            this.txtBname.Size = new System.Drawing.Size(250, 24);
-            this.txtBname.TabIndex = 0;
-            // 
             // dataGridView2
             // 
             this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(242)))), ((int)(((byte)(253)))));
@@ -208,14 +201,21 @@
             this.txtpro.TabIndex = 18;
             this.txtpro.TextChanged += new System.EventHandler(this.txtproducts_TextChanged);
             // 
+            // txtBnames
+            // 
+            this.txtBnames.Location = new System.Drawing.Point(186, 27);
+            this.txtBnames.Name = "txtBnames";
+            this.txtBnames.Size = new System.Drawing.Size(250, 22);
+            this.txtBnames.TabIndex = 19;
+            // 
             // AddbatchDetailsform
             // 
             this.ClientSize = new System.Drawing.Size(1285, 817);
+            this.Controls.Add(this.txtBnames);
             this.Controls.Add(this.txtpro);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.txtBname);
             this.Controls.Add(this.txtquantity);
             this.Controls.Add(this.txtprice);
             this.Controls.Add(this.txtSprice);
@@ -253,12 +253,12 @@
         private System.Windows.Forms.TextBox txtSprice;
         private System.Windows.Forms.TextBox txtprice;
         private System.Windows.Forms.TextBox txtquantity;
-        private System.Windows.Forms.ComboBox txtBname;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label lblSerial;
         private System.Windows.Forms.TextBox txtserialinput;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtpro;
+        private System.Windows.Forms.TextBox txtBnames;
     }
 }

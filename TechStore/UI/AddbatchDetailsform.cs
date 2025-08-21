@@ -22,6 +22,8 @@ namespace TechStore.UI
         private int selectedProductId;
         private string selectedProductName;
         private string selectedProductDescription;
+        public string InitialBatchName { get; set; }
+
 
         // Keep serials per product here (unique and easy to validate)
         private readonly Dictionary<int, HashSet<string>> serialsByProduct = new Dictionary<int, HashSet<string>>();
@@ -57,7 +59,7 @@ namespace TechStore.UI
         private void InitializeToolTips()
         {
             toolTip = new ToolTip();
-            toolTip.SetToolTip(txtBname, "Enter or select a batch name. Start typing to see suggestions.");
+            toolTip.SetToolTip(txtBnames, "Enter or select a batch name. Start typing to see suggestions.");
             toolTip.SetToolTip(txtpro, "Search for products by typing the product name");
             toolTip.SetToolTip(txtquantity, "Enter the quantity for this product");
             toolTip.SetToolTip(txtprice, "Enter the cost price for this batch");
@@ -152,7 +154,7 @@ namespace TechStore.UI
 
             // Hooks
             txtpro.TextChanged += txtproducts_TextChanged;
-            txtBname.TextChanged += txtBname_TextChanged;
+            txtBnames.TextChanged += txtBname_TextChanged;
             dataGridView2.CellClick += dataGridView2_CellClick;
             //btnsave.Click += btnsave_Click;
             //btnAdditem.Click += btnAddItem_Click;
@@ -177,7 +179,7 @@ namespace TechStore.UI
 
         private void SetupTabOrder()
         {
-            txtBname.TabIndex = 0;
+            txtBnames.TabIndex = 0;
             txtpro.TabIndex = 1;
             dataGridView2.TabIndex = 2;
             txtquantity.TabIndex = 3;
@@ -195,6 +197,8 @@ namespace TechStore.UI
             checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             checkBox1_CheckedChanged(null, null);
             SetupGrid();
+            if (!string.IsNullOrEmpty(InitialBatchName))
+                txtBnames.Text = InitialBatchName;
 
             var dto = BatchFormPersistence.Load();
             if (dto != null)
@@ -410,7 +414,7 @@ namespace TechStore.UI
 
         private bool HasUnsavedChanges()
         {
-            return !string.IsNullOrWhiteSpace(txtBname.Text) ||
+            return !string.IsNullOrWhiteSpace(txtBnames.Text) ||
                    !string.IsNullOrWhiteSpace(txtprice.Text) ||
                    !string.IsNullOrWhiteSpace(txtSprice.Text) ||
                    dataGridView1.Rows.Count > 0;
@@ -424,7 +428,7 @@ namespace TechStore.UI
             {
                 ShowProgress(true);
 
-                txtBname.Text = dto.BatchName ?? string.Empty;
+                txtBnames.Text = dto.BatchName ?? string.Empty;
                 txtprice.Text = dto.CostPrice.ToString();
                 txtSprice.Text = dto.SalePrice.ToString();
 
@@ -710,12 +714,12 @@ namespace TechStore.UI
             costPrice = 0;
             salePrice = 0;
 
-            batchname = txtBname.Text.Trim();
+            batchname = txtBnames.Text.Trim();
             if (string.IsNullOrWhiteSpace(batchname))
             {
                 ShowStatus("Batch name required", Color.Red);
                 MessageBox.Show("Please select or enter a batch name.", "Batch Name Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtBname.Focus();
+                txtBnames.Focus();
                 return false;
             }
 
@@ -805,7 +809,7 @@ namespace TechStore.UI
 
         private void ClearFields()
         {
-            txtBname.SelectedIndex = -1;
+            
             txtpro.Clear();
             txtquantity.Clear();
             txtprice.Clear();
@@ -873,39 +877,14 @@ namespace TechStore.UI
 
         private void txtBname_TextChanged(object sender, EventArgs e)
         {
-            if (!txtBname.DroppedDown)
-            {
-                txtBname.DroppedDown = true;
-                txtBname.SelectionStart = txtBname.Text.Length;
-                txtBname.SelectionLength = 0;
-            }
+           
 
             PersistState();
         }
 
         private void load()
         {
-            try
-            {
-                var batchNames = batchDetailsBL.GetBatches("");
-                if (batchNames != null && batchNames.Count > 0)
-                {
-                    txtBname.Items.Clear();
-                    txtBname.Items.AddRange(batchNames.ToArray());
-
-                    var autoSource = new AutoCompleteStringCollection();
-                    autoSource.AddRange(batchNames.ToArray());
-                    txtBname.AutoCompleteCustomSource = autoSource;
-                    txtBname.AutoCompleteMode = AutoCompleteMode.Suggest;
-
-                    ShowStatus($"Loaded {batchNames.Count} existing batch names", Color.Green);
-                }
-            }
-            catch (Exception ex)
-            {
-                ShowStatus("Error loading batch names", Color.Red);
-                System.Diagnostics.Debug.WriteLine($"Error loading batches: {ex.Message}");
-            }
+          
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -1095,7 +1074,7 @@ namespace TechStore.UI
             {
                 var dto = new TempBatchDetailDTO
                 {
-                    BatchName = txtBname.Text?.Trim() ?? string.Empty,
+                    BatchName = txtBnames.Text?.Trim() ?? string.Empty,
                     CostPrice = decimal.TryParse(txtprice.Text, out var cp) ? cp : 0,
                     SalePrice = decimal.TryParse(txtSprice.Text, out var sp) ? sp : 0,
                     Products = new List<ProductLine>()
