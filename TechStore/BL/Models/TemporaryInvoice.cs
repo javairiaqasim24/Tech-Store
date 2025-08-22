@@ -11,7 +11,7 @@ namespace TechStore.BL.Models
         public string SupplierName { get; set; }
         public DateTime PurchaseDate { get; set; }
         public List<InvoiceItem> Items { get; set; }
-    }
+    }   
 
     public class InvoiceItem
     {

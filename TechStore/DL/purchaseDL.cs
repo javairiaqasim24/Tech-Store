@@ -37,6 +37,16 @@ namespace TechStore.DL
             }
         }
 
+        public static Stream GetLogoImageStream()
+        {
+            var image = Properties.Resources.logo; // This is a System.Drawing.Image
+
+
+            var ms = new MemoryStream();
+            image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            ms.Position = 0; // Reset stream position
+            return ms;
+        }
 
         public void CreateSaleInvoicePdf(DataGridView cart, string filePath, string Name, DateTime saleDate)
         {
@@ -59,7 +69,7 @@ namespace TechStore.DL
                         {
                             row.RelativeItem(1).Column(col =>
                             {
-                                col.Item().Image("logo.jpg", ImageScaling.FitWidth);
+                                col.Item().Image(GetLogoImageStream(), ImageScaling.FitWidth);
                             });
 
                             row.RelativeItem(3).Column(col =>

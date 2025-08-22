@@ -91,7 +91,7 @@ namespace TechStore.BL.BL
                 throw new ArgumentException("Customer ID is invalid.");
 
             if (string.IsNullOrWhiteSpace(customer._firstName))
-                throw new ArgumentException("First name is required.");
+                throw new ArgumentException("First name is required."); 
 
             if (string.IsNullOrWhiteSpace(customer._lastName))
                 throw new ArgumentException("Last name is required.");

@@ -10,7 +10,7 @@ using TechStore.BL.Models.Person;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace TechStore.DL
-{
+{       
     public class CustomerDL : ICustomerDL
     {
         public bool Addcustomer(Ipersons c)
@@ -49,7 +49,7 @@ namespace TechStore.DL
             {
                 throw new Exception("Error adding customer: " + ex.Message, ex);
             }
-        }
+        }   
 
         public bool Updatecustomer(Ipersons c)
         {

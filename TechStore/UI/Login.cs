@@ -68,6 +68,8 @@ namespace TechStore.UI
             }
 
             this.DialogResult = DialogResult.OK;
+            Dashboard d = new Dashboard();
+            d.ShowDialog();
             this.Close(); // Closes the modal and triggers Application.Run for Dashboard
         }
 

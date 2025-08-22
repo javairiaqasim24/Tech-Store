@@ -245,7 +245,7 @@
     <Compile Include="Interfaces\BLInterfaces\ISupplierBillBl.cs" />
     <Compile Include="BL\BL\SupplierBillBl.cs" />
     <Compile Include="BL\Models\Supplierbill.cs" />
-    <Compile Include="Interfaces\invoices.cs" />
+    <Compile Include="DL\invoices.cs" />
     <Compile Include="DL\purchaseDL.cs" />
     <Compile Include="Interfaces\DLInterfaces\IInventoryDl.cs" />
     <Compile Include="Interfaces\DLInterfaces\IPurchaseDl.cs" />
@@ -259,7 +259,7 @@
     <Compile Include="DL\Customersaledl .cs" />
     <Compile Include="Interfaces\DLInterfaces\Icustomersaledl.cs" />
     <Compile Include="Interfaces\BLInterfaces\ICustomerSaleBL.cs" />
-    <Compile Include="Interfaces\Ipersons.cs" />
+    <Compile Include="BL\Models\Ipersons.cs" />
     <Compile Include="Interfaces\BLInterfaces\ICustomerBL.cs" />
     <Compile Include="BL\Models\Person\Customer.cs" />
     <Compile Include="BL\Models\Person\persons.cs" />

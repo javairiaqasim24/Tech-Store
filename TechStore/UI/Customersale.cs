@@ -50,8 +50,7 @@ namespace TechStore.UI
                     LoadProductFromSearch(selectedRowIndex);
                     selectedRowIndex = 0; // Reset for next entry
                     return true;
-                }
-
+                }              
                 btnadd.PerformClick();
                 return true;
             }
@@ -76,6 +75,7 @@ namespace TechStore.UI
                     return true;
                 }
             }
+                
 
             else if (keyData == Keys.Delete)
             {
@@ -1029,6 +1029,11 @@ namespace TechStore.UI
         }
 
         private void panel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }

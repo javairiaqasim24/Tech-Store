@@ -121,5 +121,10 @@ namespace TechStore.UI
         {
 
         }
+
+        private void lbltotalp_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

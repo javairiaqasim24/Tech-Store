@@ -14,7 +14,7 @@ namespace TechStore.BL.Models.Person
 
         public Customer(int id,string email,string address, string firstName, string lastName, string type,string phone) 
         {
-            this.id = id;
+            this.id = id;   
 
             this._firstName = firstName;
             this._lastName = lastName;
