@@ -72,12 +72,32 @@ namespace TechStore.UI
             dataGridView2.Focus();
 
         }
+        private void OpenBatchDetailsForm()
+        {
+            if (dataGridView2.CurrentRow != null)
+            {
+                var batchName = dataGridView2.CurrentRow.Cells["batch_name"].Value?.ToString();
+
+                if (!string.IsNullOrEmpty(batchName))
+                {
+                    var form = Program.ServiceProvider.GetRequiredService<AddbatchDetailsform>();
+                    form.InitialBatchName = batchName; // ✅ Inject batch name via property
+                    form.ShowDialog(this);
+                }
+                else
+                {
+                    MessageBox.Show("No batch name found in selected row.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
         private void load()
         {
             var list = ibl.getbatches();
             dataGridView2.DataSource = list;
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView2.Columns["batch_id"].Visible = false;
+            UIHelper.AddButtonColumn(dataGridView2, "Details", "Details", "Details");
+
         }
 
         private void btnadd_Click(object sender, EventArgs e)
@@ -185,7 +205,31 @@ namespace TechStore.UI
             dataGridView2.DataSource = list;
             dataGridView2.AutoSizeColumnsMode=DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView2.Columns["batch_id"].Visible = false;
+            UIHelper.AddButtonColumn(dataGridView2, "Details", "Details", "Details");
 
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            OpenBatchDetailsForm();
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            var columnName = dataGridView2.Columns[e.ColumnIndex].Name;
+            var row = dataGridView2.Rows[e.RowIndex];
+            if (columnName == "Details")
+            {
+                var selectedBatch = dataGridView2.Rows[e.RowIndex].DataBoundItem as Batches;
+                if (selectedBatch != null)
+                {
+                    var detailsForm = Program.ServiceProvider.GetRequiredService<BatchDetailsform>();
+                    detailsForm.BatchId= selectedBatch.batch_id; // <-- Inject batch ID
+                    detailsForm.ShowDialog(this);
+                }
+            }
         }
     }
 }

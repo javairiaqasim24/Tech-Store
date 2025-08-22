@@ -300,13 +300,13 @@ namespace TechStore
         }
         private void iconPictureBox2_Click(object sender, EventArgs e)
         {
-            if (panelbatch.Height == 183)
-                CollapsePanel(panelbatch, 60);
-            else
-            {
-                CollapseAllTogglePanels();
-                ExpandPanel(panelbatch, 183);
-            }
+            //if (panelbatch.Height == 183)
+            //    CollapsePanel(panelbatch, 60);
+            //else
+            //{
+            //    CollapseAllTogglePanels();
+            //    ExpandPanel(panelbatch, 183);
+            //}
         }
 
         private void iconPictureBox5_Click(object sender, EventArgs e)
