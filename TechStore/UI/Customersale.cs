@@ -319,7 +319,7 @@ namespace TechStore.UI
             // ✅ Check if SKU already exists in any row
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                if (row.IsNewRow) continue;
+                if (row.IsNewRow) continue; 
 
                 string existingSkus = row.Cells["Sku"].Value?.ToString() ?? "";
                 var serialList = existingSkus.Split(',').Select(s => s.Trim()).ToList();
@@ -804,8 +804,8 @@ namespace TechStore.UI
                     {
                         decimal total = long.Parse(finalpricetxt.Text);
                         decimal paid = long.Parse(txtfinalpaid.Text);
-                        invoices.PrintThermalReceipt(dataGridView1, customerName, total, paid, _lastBillId);
-                        //SavehthermalPdfInvoice();
+                        //invoices.PrintThermalReceipt(dataGridView1, customerName, total, paid, _lastBillId);
+                        SavehthermalPdfInvoice();
                     }
 
                     clearallfields();

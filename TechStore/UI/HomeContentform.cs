@@ -379,9 +379,14 @@ namespace TechStore.UI
                 greeting = "Good Night";
 
             // Get user's name from session
-            string name = Usersession.FullName ?? "Nadir Jamal";
+            string name = Usersession.FullName ?? "Zain";
 
             label10.Text = $"{greeting}, {name}";
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
